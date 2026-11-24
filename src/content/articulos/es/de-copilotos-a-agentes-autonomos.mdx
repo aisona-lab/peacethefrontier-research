@@ -1,0 +1,83 @@
+---
+titulo: "De copilotos a infraestructura autónoma: umbrales de fiabilidad compuesta y coste de verificación en cinco sectores (2026–2036)"
+resumen: "Modelo formal y simulación Monte Carlo (3.300 filas) sobre cuándo un bucle agéntico reemplaza racionalmente a una herramienta de apoyo en ciencia, educación, administración pública, gestión sanitaria y operación energética."
+clave: wp-delegacion-autonoma
+tipoPublicacion: working-paper
+serie: PTF-WP
+numero: 3
+version: 1.0.0
+hipotesis: H1
+experimento: h1-delegacion-autonoma
+repositorioCodigo: experiments/h1-delegacion-autonoma
+comandoReproduccion: npm run experiments:check
+temas: [ia, espacio, salud, energia, informacion, gobernanza]
+evidencia: emergente
+autor: Carlos Nicolás Soto
+publicado: 2026-11-24
+revisado: 2026-11-24
+fuentes: [metr-horizontes-2026, metr-desarrolladores-2025, metr-productividad-2026, oit-genai-2025, iasr-2026]
+asistidoPorIA: true
+estado: borrador
+sensible: false
+---
+
+import Nota from '../../../components/articulo/Nota.astro';
+
+**PTF-WP 3 · v1.0.0 · Investigación original sobre H1 · 24 de noviembre de 2026.** Este documento presenta un modelo teórico y un experimento computacional reproducible (`experiments/h1-delegacion-autonoma`) diseñado por Carlos Nicolás Soto con asistencia de herramientas de IA en programación y edición bilingüe. Los datos generados (`3.300` filas, `synthetic=true`) son salidas deterministas de un modelo estructural parametrizado, no observaciones de campo sobre plantillas reales.
+
+## Pregunta e hipótesis (H1)
+
+¿Bajo qué condiciones técnicas y económicas dejan los agentes autónomos de funcionar como simples copilotos supervisados paso a paso para convertirse en infraestructura operativa que reemplaza a las herramientas de apoyo? Este documento contrasta la primera hipótesis central del portafolio (**H1**): *«Los agentes autónomos reemplazarán las herramientas de apoyo en 5–10 años»* a través de cinco subtemas naturales: **ciencia, salud (gestión administrativa no clínica), energía, educación y gobierno**.
+
+La literatura empírica reciente muestra una paradoja aparente. Por un lado, los paneles de horizontes de tareas de METR documentan incrementos sostenidos en la duración de tareas de software y razonamiento que los modelos completan con probabilidades del 50 % u 80 %.<Nota f="metr-horizontes-2026" /> Por otro lado, el ensayo controlado aleatorizado de METR de julio de 2025 sobre desarrolladores experimentados encontró un aumento del 19 % en el tiempo total de finalización cuando el ahorro de escritura quedó absorbido por revisión, depuración y verificación.<Nota f="metr-desarrolladores-2025" /> El seguimiento posterior de febrero de 2026 apuntó posibles mejoras con modelos más capaces, pero subrayó problemas severos de selección y medición cuando coexisten múltiples agentes en paralelo.<Nota f="metr-productividad-2026" />
+
+Nuestra tesis es que esa divergencia no es una anomalía transitoria, sino la manifestación exacta de una **ley de economía de delegación**: el reemplazo de herramientas de apoyo no depende linealmente de la fluidez media del modelo, sino de la interacción entre **fiabilidad compuesta en cadenas largas** y **capacidad de verificación automatizada**.
+
+## Marco teórico y modelo formal
+
+Modelamos un flujo profesional como una secuencia estructurada de `K` subtareas dependientes. En la **arquitectura de herramienta de apoyo (copiloto)**, una persona interviene en cada paso obteniendo una fracción de aceleración `α` sobre el coste humano unitario `c_h`, pero paga un coste recurrente de inspección paso a paso `c_rev`:
+
+`C_copiloto = K × ((1 − α) × c_h + c_rev)`
+
+En la **arquitectura de infraestructura autónoma**, el agente ejecuta de extremo a extremo los `K` pasos con fiabilidad unitaria `p(t)` en el año `t`. La probabilidad de completar la cadena íntegra sin desviación es `P_cadena(t) = p(t)^K`. Un sistema verificador inspecciona la salida final con coste fijo `c_audit` y detecta fallos con probabilidad `d_det(t)`. Si el fallo se detecta, se incurre en coste de recuperación `c_rec`; si escapa sin detección, la organización asume una pérdida o responsabilidad `L_sector`:
+
+`E[C_agente(t)] = c_cómputo(t) + c_audit + (1 − p(t)^K) × (d_det(t) × c_rec + (1 − d_det(t)) × L_sector)`
+
+La infraestructura autónoma reemplaza racionalmente al copiloto cuando se cumplen simultáneamente dos condiciones: ventaja económica neta (`E[C_agente(t)] < C_copiloto`) y acotación del riesgo residual de cola (`(1 − p(t)^K) × (1 − d_det(t)) ≤ ε_sector`). Este planteamiento concuerda con la distinción de la Organización Internacional del Trabajo entre exposición de tareas individuales y transformación efectiva de ocupaciones completas.<Nota f="oit-genai-2025" /> Asimismo, incorpora la advertencia del International AI Safety Report 2026 sobre la diferencia entre rendimiento nominal en pruebas y control fiable en despliegues autónomos.<Nota f="iasr-2026" />
+
+## Diseño experimental reproducible
+
+El módulo `experiments/h1-delegacion-autonoma/model.ts` evalúa cinco sectores representativos entre `2026` y `2036` (`11` años) a través de `20` semillas pseudoaleatorias deterministas (`LCG32`) y tres regímenes tecnológicos (`3.300` filas totales verificadas con `SHA-256`):
+
+- **Sectores (`K` pasos y tolerancia de riesgo `ε`):** ciencia computacional (`K=8`, `ε=0,025`), educación y tutoría (`K=6`, `ε=0,032`), administración pública reglada (`K=7`, `ε=0,022`), gestión administrativa sanitaria estrictamente no clínica conforme a R10 (`K=9`, `ε=0,009`) y despacho de red eléctrica (`K=10`, `ε=0,0055`).
+- **Tres regímenes de evolución:** `conservative` (reducción a la mitad del error por paso cada `4,2` años sin mejora del verificador), `baseline-coevolution` (reducción a la mitad cada `2,4` años y mejora gradual del verificador cada `6,0` años) y `verifier-infrastructure` (igual avance del modelo base combinado con infraestructura dedicada de verificación formal y telemetría que reduce a la mitad el fallo de detección cada `2,0` años).
+
+En `2026`, la parametrización inicial sitúa a los cinco sectores en `0 %` de reemplazo autónomo, reproduciendo el predominio actual de copilotos supervisados.
+
+## Hallazgos cuantitativos
+
+La tabla resume el año mediano de cruce hacia infraestructura autónoma (`median_crossover_year`), la cuota de semillas que adoptan delegación autónoma en `2031` (horizonte de 5 años) y el riesgo medio de cola no detectado en `2036`:
+
+| Sector | Conservador | Coevolución base | Infraestructura verificadora | Adopción 2031 (base / verif.) |
+| --- | --- | --- | --- | --- |
+| Ciencia computacional | 2031 | 2028 | 2028 | 100 % / 100 % |
+| Educación y tutoría | 2031 | 2028 | 2028 | 100 % / 100 % |
+| Administración pública | 2034 | 2029 | 2028 | 100 % / 100 % |
+| Gestión sanitaria (admin.) | Sin cruce | 2033 | 2030 | 0 % / 100 % |
+| Operación de red eléctrica | Sin cruce | 2034 | 2031 | 0 % / 100 % |
+
+Emergen tres conclusiones estructurales que matizan y precisan **H1**:
+
+1. **Bifurcación sectorial en la ventana de 5–10 años:** En dominios donde los resultados intermedios admiten comprobación barata y responsabilidad acotada (ciencia computacional, educación y tramitación reglada), la transición de copiloto a infraestructura autónoma ocurre temprano (`2028–2029` en el escenario base).
+2. **La fiabilidad bruta no basta en infraestructuras críticas:** En el régimen `conservative`, aunque el ahorro económico bruto en `2036` sería positivo (`77,29` unidades en gestión sanitaria y `95,84` en red eléctrica), el riesgo de cola no detectado (`0,0208`) duplica y triplica los umbrales de seguridad admisibles (`0,009` y `0,0055`), bloqueando indefinidamente el reemplazo.
+3. **La verificación es el verdadero multiplicador de infraestructura:** Invertir en `verifier-infrastructure` adelanta tres años completos la adopción segura en salud administrativa (`2033 → 2030`) y red eléctrica (`2034 → 2031`), reduciendo diez veces el riesgo residual en `2036` (`0,0020 → 0,0002`) sin exigir un modelo generativo más grande.
+
+## Criterio de refutación y limitaciones
+
+**Qué refutaría H1:** La hipótesis quedaría refutada empíricamente si entre `2031` y `2036` más del `60 %` de los flujos estructurados en ciencia computacional, educación y administración pública continúan operando mediante intervención humana paso a paso a pesar de existir verificadores automatizados con tasa de detección documentada superior al `95 %`.
+
+**Limitaciones:** Las curvas de coste y responsabilidad son parámetros estilizados explícitos, no estimaciones econométricas por país. El ámbito sanitario se restringe deliberadamente a logística documental y administrativa (cumplimiento de la política R10). Tampoco se modelan barreras sindicales, inercia regulatoria ni cuellos de botella energéticos, abordados por separado en el [modelo macro de futuros](/futuros/).
+
+## Historial de versiones
+
+**v1.0.0 — 24 de noviembre de 2026:** primera versión con modelo matemático explícito, simulación Monte Carlo de `3.300` filas en cinco sectores y publicación del código en `experiments/h1-delegacion-autonoma`.

@@ -1,0 +1,251 @@
+---
+import { getCollection } from 'astro:content';
+import type { Idioma } from '../../i18n/rutas';
+import { NIVELES } from '../../lib/evidencia';
+import { HIPOTESIS } from '../../lib/programa/hipotesis';
+import { PERFIL, urlCodigoRepositorio } from '../../lib/studio/config';
+import { hrefPublico } from '../../lib/studio/espacios';
+import { rutaPublicacion } from '../../lib/studio/publicaciones';
+import { textosTema, urlTema } from '../../lib/temas';
+import LineaEvidencia from '../LineaEvidencia.astro';
+
+interface Props {
+	lang: Idioma;
+}
+
+const { lang } = Astro.props;
+const coleccionTemas = await getCollection('temas');
+const mapaTemas = new Map(coleccionTemas.map((t) => [t.id, t]));
+
+const ui =
+	lang === 'es'
+		? {
+				titulo: 'Tres hipótesis falsables que estructuran el programa',
+				intro:
+					'Cada hipótesis delimita sus subtemas naturales, expone el mecanismo teórico que ponemos a prueba, declara qué evidencia futura la refutaría y enlaza directamente su working paper, código y datos.',
+				subtemas: 'Subtemas naturales:',
+				temasAtlas: 'Temas del Atlas:',
+				teoria: 'Mecanismo teórico',
+				prueba: 'Prueba y hallazgo cuantitativo',
+				refutacion: 'Criterio de refutación',
+				leerPaper: 'Leer investigación',
+				verCodigo: 'Código en GitHub',
+				descargarCsv: 'Dataset CSV',
+			}
+		: {
+				titulo: 'Three falsifiable hypotheses structuring the programme',
+				intro:
+					'Each hypothesis scopes its natural subtopics, states the theoretical mechanism under test, declares which future evidence would falsify it, and links directly to its working paper, code and dataset.',
+				subtemas: 'Natural subtopics:',
+				temasAtlas: 'Atlas topics:',
+				teoria: 'Theoretical mechanism',
+				prueba: 'Quantitative test and finding',
+				refutacion: 'Falsifiability criterion',
+				leerPaper: 'Read working paper',
+				verCodigo: 'Code on GitHub',
+				descargarCsv: 'CSV dataset',
+			};
+---
+
+<section class="matriz-hipotesis" id="hipotesis" aria-labelledby="titulo-hipotesis">
+	<div class="hipotesis-cabecera">
+		<h2 id="titulo-hipotesis">{ui.titulo}</h2>
+		<p>{ui.intro}</p>
+	</div>
+
+	<ol class="hipotesis-lista" role="list">
+		{
+			HIPOTESIS.map((h) => {
+				const txt = h[lang];
+				const nivel = NIVELES.find((n) => n.id === h.evidencia)!;
+				const urlPaper = hrefPublico(
+					rutaPublicacion(lang, h.paperSlug[lang], 'working-paper'),
+					PERFIL,
+				);
+				const urlRepo = urlCodigoRepositorio(h.rutaCodigo);
+				const urlCsv = `/datos/experimentos/${h.experimentoId}/dataset.csv`;
+				const temasEnlazados = h.temas
+					.map((id) => mapaTemas.get(id))
+					.filter((t): t is NonNullable<typeof t> => Boolean(t));
+
+				return (
+					<li class="hipotesis-tarjeta" id={`hipotesis-${h.id.toLowerCase()}`}>
+						<div class="hipotesis-meta ui">
+							<span class="hipotesis-etiqueta">{h.id}</span>
+							<span>{h.horizonte}</span>
+							<span aria-hidden="true">·</span>
+							<span class="hipotesis-evidencia">
+								<LineaEvidencia nivel={h.evidencia} /> {nivel.nombre[lang]}
+							</span>
+						</div>
+
+						<h3>«{txt.enunciado}»</h3>
+						<p class="hipotesis-subtitulo ui">{txt.subtitulo}</p>
+
+						<p class="hipotesis-subtemas ui">
+							<strong>{ui.subtemas}</strong> {txt.subtemasNaturales.join(' · ')}
+						</p>
+
+						<dl class="hipotesis-bloques">
+							<div>
+								<dt class="ui">{ui.teoria}</dt>
+								<dd>{txt.mecanismoTeorico}</dd>
+							</div>
+							<div>
+								<dt class="ui">{ui.prueba}</dt>
+								<dd>{txt.hallazgoPrincipal}</dd>
+							</div>
+							<div class="hipotesis-refutacion">
+								<dt class="ui">{ui.refutacion}</dt>
+								<dd>{txt.criterioRefutacion}</dd>
+							</div>
+						</dl>
+
+						<p class="hipotesis-temas ui">
+							<span>{ui.temasAtlas}</span>{' '}
+							{temasEnlazados.map((tema, i) => (
+								<>
+									{i > 0 && ', '}
+									<a href={hrefPublico(urlTema(tema, lang), PERFIL)}>
+										{textosTema(tema, lang).titulo}
+									</a>
+								</>
+							))}
+						</p>
+
+						<div class="hipotesis-acciones ui">
+							<a class="accion-principal" href={urlPaper}>
+								{ui.leerPaper}
+								<span class="solo-lectores"> {h.id}</span> →
+							</a>
+							<a href={urlRepo}>
+								{ui.verCodigo}
+								<span class="solo-lectores"> {h.id}</span>
+							</a>
+							<a href={urlCsv} download={`${h.experimentoId}.csv`}>
+								{ui.descargarCsv}
+								<span class="solo-lectores"> {h.id}</span>
+							</a>
+						</div>
+					</li>
+				);
+			})
+		}
+	</ol>
+</section>
+
+<style>
+	.matriz-hipotesis {
+		margin-block: 3.5rem;
+	}
+
+	.hipotesis-cabecera {
+		max-width: 46rem;
+		margin-bottom: 2rem;
+	}
+
+	.hipotesis-cabecera p {
+		margin-top: 0.85rem;
+		color: var(--tinta-suave);
+	}
+
+	.hipotesis-lista {
+		display: grid;
+		gap: 1.5rem;
+	}
+
+	.hipotesis-tarjeta {
+		padding: clamp(1.25rem, 1rem + 1.5vw, 2rem);
+		border: 1px solid var(--linea);
+		background: var(--superficie);
+		min-width: 0;
+	}
+
+	.hipotesis-meta {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.5rem 0.65rem;
+		color: var(--tinta-suave);
+		font-size: var(--t-mini);
+		margin-bottom: 0.85rem;
+	}
+
+	.hipotesis-etiqueta {
+		display: inline-block;
+		padding: 0.12rem 0.5rem;
+		background: var(--sodio);
+		color: var(--sobre-sodio);
+		font-weight: 600;
+		border-radius: 2px;
+	}
+
+	.hipotesis-evidencia {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.45rem;
+	}
+
+	.hipotesis-tarjeta h3 {
+		font-size: clamp(1.35rem, 1.15rem + 0.8vw, 1.75rem);
+		line-height: 1.2;
+		max-width: 44ch;
+	}
+
+	.hipotesis-subtitulo {
+		margin-top: 0.45rem;
+		color: var(--tinta-suave);
+	}
+
+	.hipotesis-subtemas {
+		margin-top: 0.9rem;
+		font-size: var(--t-mini);
+		color: var(--tinta);
+	}
+
+	.hipotesis-bloques {
+		margin: 1.25rem 0 0;
+		display: grid;
+		gap: 1rem;
+	}
+
+	@media (min-width: 56rem) {
+		.hipotesis-bloques {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			gap: 1.5rem;
+		}
+	}
+
+	.hipotesis-bloques dt {
+		font-size: var(--t-mini);
+		font-weight: 600;
+		color: var(--tinta-suave);
+		margin-bottom: 0.35rem;
+	}
+
+	.hipotesis-bloques dd {
+		margin: 0;
+		font-size: var(--t-ui);
+		line-height: 1.5;
+	}
+
+	.hipotesis-temas {
+		margin-top: 1.25rem;
+		padding-top: 1rem;
+		border-top: 1px solid var(--linea);
+		font-size: var(--t-mini);
+		color: var(--tinta-suave);
+	}
+
+	.hipotesis-acciones {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.65rem 1.35rem;
+		margin-top: 1rem;
+		font-size: var(--t-mini);
+	}
+
+	.accion-principal {
+		font-weight: 600;
+	}
+</style>

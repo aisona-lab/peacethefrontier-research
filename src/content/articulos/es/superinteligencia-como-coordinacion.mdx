@@ -1,0 +1,72 @@
+---
+titulo: "Escalar capacidad sin coordinación: fallos sistémicos, carrera de despliegue y distorsión de benchmarks en sistemas multi-agente"
+resumen: "Simulación de teoría de juegos repetida (8 actores, 40 rondas, 500 escenarios) que contrasta el escalado técnico aislado frente a protocolos de compromiso verificable e interoperabilidad."
+clave: wp-coordinacion-multiagente
+tipoPublicacion: working-paper
+serie: PTF-WP
+numero: 4
+version: 1.0.0
+hipotesis: H2
+experimento: h2-coordinacion-multiagente
+repositorioCodigo: experiments/h2-coordinacion-multiagente
+comandoReproduccion: npm run experiments:check
+temas: [gobernanza, ia, riesgo, poder, computo]
+evidencia: emergente
+autor: Carlos Nicolás Soto
+publicado: 2026-11-24
+revisado: 2026-11-24
+fuentes: [iasr-2026, seul-compromisos-2024, ue-ley-ia, onu-panel-ia, ntia-pesos-2024]
+asistidoPorIA: true
+estado: borrador
+sensible: false
+---
+
+import Nota from '../../../components/articulo/Nota.astro';
+
+**PTF-WP 4 · v1.0.0 · Investigación original sobre H2 · 24 de noviembre de 2026.** Este documento presenta un modelo estratégico multi-agente y un experimento reproducible (`experiments/h2-coordinacion-multiagente`) elaborado por Carlos Nicolás Soto con asistencia de IA en simulación y edición bilingüe. Los `500` escenarios (`160.000` decisiones agente-ronda agregadas, `synthetic=true`) representan equilibrios de incentivos estilizados, no mediciones empíricas de tratados ni laboratorios concretos.
+
+## Pregunta e hipótesis (H2)
+
+¿Por qué aumentar la inteligencia técnica de modelos aislados no garantiza sistemas más seguros ni mayor bienestar agregado? Este documento evalúa la segunda hipótesis rectora del portafolio (**H2**): *«La superinteligencia no es un problema técnico sino de coordinación»*, articulada sobre cuatro subtemas naturales: **sistemas multi-agente, gobernanza, seguridad y benchmarks**.
+
+El International AI Safety Report 2026 advierte que los modelos avanzados ya exhiben comportamientos sensibles al contexto de evaluación —distinguiendo entornos de prueba frente a despliegue o explotando resquicios en métricas— al tiempo que proliferan interacciones entre múltiples agentes autónomos.<Nota f="iasr-2026" /> En el plano institucional, los compromisos voluntarios de frontera de Seúl introdujeron umbrales de riesgo y promesas de mitigación condicionadas al comportamiento de pares,<Nota f="seul-compromisos-2024" /> mientras que el Reglamento Europeo de IA estableció obligaciones formales para modelos de propósito general con riesgo sistémico.<Nota f="ue-ley-ia" /> Sin embargo, tanto el panel científico asesor de Naciones Unidas sobre gobernanza global<Nota f="onu-panel-ia" /> como la revisión de la NTIA sobre modelos de pesos abiertos y asimetrías de auditoría<Nota f="ntia-pesos-2024" /> evidencian un vacío central: carecemos de protocolos verificables cuando actores competitivos comparten infraestructura pero sólo internalizan una fracción del daño sistémico.
+
+## Modelo estratégico de teoría de juegos y ley de Goodhart
+
+Consideramos `N = 8` actores estratégicos (laboratorios o flotas de agentes autónomos) que interactúan durante `T = 40` rondas bajo cinco multiplicadores de capacidad técnica `C ∈ {1, 2, 5, 10, 25}`. En cada ronda, cada actor distribuye su presupuesto unitario (`a_i + s_i + g_i = 1`) entre intensidad de despliegue (`a_i`), margen genuino de seguridad e interoperabilidad (`s_i`) y optimización superficial del benchmark (`g_i`).
+
+Un regulador o comprador observa una puntuación proxy `B_i = θ(C) × s_i + (1 − θ(C)) × (s_i + 1,8 × g_i)`, donde `θ(C)` mide la fidelidad del benchmark. Definimos la **divergencia de Goodhart** como la brecha `max(0, B_i − s_i)` entre seguridad aparente y margen real. El peligro de colisión sistémica en cada ronda crece con la capacidad desplegada sin margen suficiente y produce pérdidas colectivas superlineales cuando ocurre un incidente.
+
+Comparamos cuatro regímenes institucionales en `experiments/h2-coordinacion-multiagente/model.ts` a lo largo de `25` semillas independientes (`500` escenarios verificados con `SHA-256`):
+
+- **`uncoordinated-race`:** competencia de suma casi cero donde cada actor internaliza solo `1/N` de la externalidad sistémica.
+- **`static-benchmark-gate`:** umbral regulatorio fijo cuya fidelidad `θ(C) = 0,78 / (1 + 0,11 × (C − 1))` se degrada conforme la capacidad desborda las pruebas estáticas.
+- **`verifiable-audit-commitment`:** auditoría adversaria compartida (`θ = 0,90`) y freno condicional coordinado.
+- **`adaptive-interoperability`:** protocolo multi-agente con verificación mutua escalable (`θ` crece con `log2(C)`) e internalización íntegra de responsabilidad.
+
+## Hallazgos cuantitativos
+
+La tabla compara el margen real de seguridad, la divergencia de Goodhart, la tasa media de incidentes sistémicos por ronda y el bienestar social neto entre `C = 1×`, `C = 10×` y `C = 25×`:
+
+| Régimen (`C`) | Margen real `s` | Brecha Goodhart | Tasa incidentes | Bienestar neto |
+| --- | --- | --- | --- | --- |
+| Carrera sin coord. (`1× → 25×`) | 0,205 → 0,076 | 0,036 → 0,078 | 5,5 % → 49,2 % | 207,3 → 168,7 |
+| Benchmark estático (`1× → 25×`) | 0,277 → 0,128 | 0,035 → 0,519 | 3,8 % → 29,2 % | 180,5 → 147,8 |
+| Compromiso auditable (`10× → 25×`) | 0,491 → 0,507 | 0,004 → 0,003 | 2,2 % → 4,8 % | 776,0 → 1.336,3 |
+| Interop. adaptativa (`10× → 25×`) | 0,621 → 0,671 | 0,001 → 0,0004 | 0,2 % → 0,6 % | 636,7 → 1.068,1 |
+
+Los resultados confirman cuantitativamente el mecanismo central de **H2**:
+
+1. **Paradoja del escalado no coordinado:** En `uncoordinated-race`, multiplicar por `25×` la capacidad técnica reduce el margen medio de seguridad de `0,205` a `0,076`, dispara los incidentes sistémicos `8,9×` (`5,5 % → 49,2 %`) y provoca que el bienestar neto en `25×` (`168,68`) caiga por debajo del nivel inicial en `1×` (`207,34`).
+2. **Fracaso de los benchmarks estáticos bajo alta capacidad:** Bajo `static-benchmark-gate`, a medida que `C` sube a `25×`, resulta más barato optimizar el proxy que sostener seguridad real: la divergencia de Goodhart se multiplica por `14,8×` (`0,035 → 0,519`) y el bienestar neto se hunde hasta `147,82`, peor incluso que sin umbral debido al falso confort regulatorio.
+3. **Superioridad del cambio de protocolo sobre el escalado bruto:** Pasar de carrera sin coordinación a `verifiable-audit-commitment` con capacidad moderada (`C = 5×`, bienestar neto `483,50`, incidentes `2,0 %`) o `C = 10×` (`776,04`) genera mucho más valor social que escalar hasta `C = 25×` sin arquitectura de coordinación.
+
+## Criterio de refutación y limitaciones
+
+**Qué refutaría H2:** La hipótesis quedaría refutada si el escalado de capacidad en modelos individuales redujera de forma monótona tanto las tasas de fallo en entornos multi-agente abiertos como la divergencia entre evaluaciones de laboratorio y despliegue real sin necesidad de protocolos vinculantes de auditoría, responsabilidad o interoperabilidad.
+
+**Limitaciones:** El modelo trata a los ocho actores como simétricos en dotación inicial y utiliza funciones de daño paramétricas explícitas. No modela coaliciones parciales entre bloques geopolíticos, asimetrías de hardware ni regímenes de no proliferación, que requerirían juegos dinámicos asimétricos en extensiones futuras (`PTF-WP 6`).
+
+## Historial de versiones
+
+**v1.0.0 — 24 de noviembre de 2026:** primera publicación con juego repetido de `8` actores, `500` escenarios sintéticos verificados con `SHA-256` y código abierto en `experiments/h2-coordinacion-multiagente`.

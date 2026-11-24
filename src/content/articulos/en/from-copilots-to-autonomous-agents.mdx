@@ -1,0 +1,83 @@
+---
+titulo: "From copilots to autonomous infrastructure: compound reliability and verification-cost thresholds across five sectors (2026–2036)"
+resumen: "Formal model and Monte Carlo simulation (3,300 rows) analysing when an agentic loop rationally replaces an assistive tool across science, education, public administration, health administration and power-grid dispatch."
+clave: wp-delegacion-autonoma
+tipoPublicacion: working-paper
+serie: PTF-WP
+numero: 3
+version: 1.0.0
+hipotesis: H1
+experimento: h1-delegacion-autonoma
+repositorioCodigo: experiments/h1-delegacion-autonoma
+comandoReproduccion: npm run experiments:check
+temas: [ia, espacio, salud, energia, informacion, gobernanza]
+evidencia: emergente
+autor: Carlos Nicolás Soto
+publicado: 2026-11-24
+revisado: 2026-11-24
+fuentes: [metr-horizontes-2026, metr-desarrolladores-2025, metr-productividad-2026, oit-genai-2025, iasr-2026]
+asistidoPorIA: true
+estado: borrador
+sensible: false
+---
+
+import Nota from '../../../components/articulo/Nota.astro';
+
+**PTF-WP 3 · v1.0.0 · Original research on H1 · 24 November 2026.** This paper presents a theoretical model and reproducible computational experiment (`experiments/h1-delegacion-autonoma`) designed by Carlos Nicolás Soto with AI assistance in coding and bilingual editing. All generated records (`3,300` rows, `synthetic=true`) are deterministic outputs of an explicit structural model, not field observations of real workforces.
+
+## Question and hypothesis (H1)
+
+Under which technical and economic conditions do autonomous agents stop acting as step-by-step human-supervised copilots and become operational infrastructure that replaces assistive tools? This paper tests the portfolio’s first core hypothesis (**H1**): *“Autonomous agents will replace assistive tools within 5–10 years”* across five natural subtopics: **science, health (non-clinical administrative workflows), energy, education and government**.
+
+Recent empirical evidence exhibits an apparent paradox. On one side, METR task-horizon evaluations document steady increases in the length of software and reasoning tasks that frontier models complete at 50% or 80% success thresholds.<Nota f="metr-horizontes-2026" /> On the other side, METR’s July 2025 randomized controlled trial with experienced open-source developers measured a 19% increase in total completion time when drafting speedups were offset by human review, debugging and verification overhead.<Nota f="metr-desarrolladores-2025" /> Their February 2026 follow-up suggested faster performance with newer tools, while highlighting severe selection effects and timing-measurement limits once developers run parallel agents.<Nota f="metr-productividad-2026" />
+
+Our thesis is that this divergence is not a temporary quirk, but the direct consequence of a **law of delegation economics**: replacing assistive tools does not scale linearly with single-turn fluency, but depends on the interaction between **compound reliability across multi-step chains** and **automated verification capacity**.
+
+## Theoretical framework and formal model
+
+We represent a workflow as a sequential chain of `K` dependent subtasks. Under the **assistive tool (copilot) architecture**, a human intervenes at every step, gaining a fractional speedup `α` on unit human labour cost `c_h` while paying a per-step inspection cost `c_rev`:
+
+`C_copilot = K × ((1 − α) × c_h + c_rev)`
+
+Under the **autonomous agent infrastructure architecture**, the agent executes all `K` steps end to end with per-step reliability `p(t)` in year `t`. Full-chain reliability is `P_chain(t) = p(t)^K`. An automated or institutional verifier audits the final output at fixed cost `c_audit` and catches failures with detection rate `d_det(t)`. Detected failures trigger recovery cost `c_rec`, whereas undetected failures incur sector liability `L_sector`:
+
+`E[C_agent(t)] = c_compute(t) + c_audit + (1 − p(t)^K) × (d_det(t) × c_rec + (1 − d_det(t)) × L_sector)`
+
+Autonomous infrastructure rationally replaces the copilot only when two conditions hold simultaneously: positive net cost savings (`E[C_agent(t)] < C_copilot`) and bounded residual tail risk (`(1 − p(t)^K) × (1 − d_det(t)) ≤ ε_sector`). This formulation aligns with the International Labour Organization’s distinction between task-level exposure and full occupational transformation.<Nota f="oit-genai-2025" /> It also operationalizes the International AI Safety Report 2026 distinction between benchmark scores and dependable deployment control.<Nota f="iasr-2026" />
+
+## Reproducible experimental design
+
+The module `experiments/h1-delegacion-autonoma/model.ts` simulates five representative sectors from `2026` through `2036` (`11` years) across `20` deterministic PRNG seeds (`LCG32`) and three technological trajectories (`3,300` SHA-256-verified rows):
+
+- **Sectors (`K` steps and tail-risk cap `ε`):** computational science (`K=8`, `ε=0.025`), education and tutoring (`K=6`, `ε=0.032`), rule-bound public administration (`K=7`, `ε=0.022`), non-clinical healthcare workflow administration per R10 (`K=9`, `ε=0.009`), and power-grid dispatch (`K=10`, `ε=0.0055`).
+- **Three regimes:** `conservative` (per-step error halving every `4.2` years with static verifiers), `baseline-coevolution` (error halving every `2.4` years and gradual verifier miss-rate halving every `6.0` years), and `verifier-infrastructure` (identical base-model progress paired with dedicated formal/telemetry verification halving miss rates every `2.0` years).
+
+In `2026`, all five sectors start at `0%` autonomous replacement, matching current copilot dominance.
+
+## Quantitative findings
+
+The table reports the median crossover year into autonomous infrastructure (`median_crossover_year`) and the share of seeds crossing by `2031` (5-year mark):
+
+| Sector | Conservative | Baseline co-evolution | Verifier infrastructure | 2031 adoption (base / verif.) |
+| --- | --- | --- | --- | --- |
+| Computational science | 2031 | 2028 | 2028 | 100% / 100% |
+| Education and tutoring | 2031 | 2028 | 2028 | 100% / 100% |
+| Public administration | 2034 | 2029 | 2028 | 100% / 100% |
+| Health admin (non-clinical) | No crossover | 2033 | 2030 | 0% / 100% |
+| Power-grid dispatch | No crossover | 2034 | 2031 | 0% / 100% |
+
+Three structural findings sharpen **H1**:
+
+1. **Sectoral bifurcation across the 5–10 year window:** Domains with inexpensive checkability and bounded liability (computational science, education, rule-bound administration) cross into autonomous infrastructure early (`2028–2029` under baseline co-evolution).
+2. **Raw capability gains fail in high-liability infrastructure without better verifiers:** Under `conservative`, even though gross cost savings in `2036` would be substantial (`77.29` units in health administration and `95.84` in grid dispatch), residual undetected tail risk (`0.0208`) exceeds safety caps (`0.009` and `0.0055`), blocking autonomous replacement throughout the decade.
+3. **Verification infrastructure is the decisive unlock:** Investing in `verifier-infrastructure` pulls safe autonomous adoption forward by three full years in health administration (`2033 → 2030`) and power-grid dispatch (`2034 → 2031`), cutting `2036` tail risk tenfold (`0.0020 → 0.0002`) at identical base-model capability.
+
+## Falsifiability criterion and limitations
+
+**What would falsify H1:** The hypothesis would be empirically falsified if between `2031` and `2036` more than `60%` of structured workflows in computational science, education and public administration still require step-by-step human copilot supervision despite automated verifiers achieving documented error detection above `95%`.
+
+**Limitations:** Cost and liability parameters are stylized structural inputs rather than country-specific econometric estimates. Healthcare analysis is strictly restricted to non-clinical administrative logistics in compliance with policy R10. Institutional friction, procurement inertia and electricity constraints are analysed separately in the [macro futures model](/en/futures/).
+
+## Version history
+
+**v1.0.0 — 24 November 2026:** initial release with explicit mathematical formulation, `3,300`-row Monte Carlo simulation across five sectors and public source code in `experiments/h1-delegacion-autonoma`.

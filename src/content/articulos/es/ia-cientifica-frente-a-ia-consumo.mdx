@@ -1,0 +1,72 @@
+---
+titulo: "La ventaja del oráculo verificable: por qué la IA científica transforma más valor estructural que la IA de consumo"
+resumen: "Modelo de embudos de descubrimiento sujetos a la Ley de Amdahl (1.500 filas, 2026–2035) comparando materiales, triaje preclínico abstracto, clima y física frente a asistentes y medios de consumo."
+clave: wp-ia-cientifica-vs-consumer
+tipoPublicacion: working-paper
+serie: PTF-WP
+numero: 5
+version: 1.0.0
+hipotesis: H3
+experimento: h3-ia-cientifica-vs-consumer
+repositorioCodigo: experiments/h3-ia-cientifica-vs-consumer
+comandoReproduccion: npm run experiments:check
+temas: [tecnologias, espacio, salud, planeta, energia]
+evidencia: emergente
+autor: Carlos Nicolás Soto
+publicado: 2026-11-24
+revisado: 2026-11-24
+fuentes: [jumper-2021, kva-nobel-2024, iasr-2026, ipcc-ar6-wg1, aie-ia-2026]
+asistidoPorIA: true
+estado: borrador
+sensible: false
+---
+
+import Nota from '../../../components/articulo/Nota.astro';
+
+**PTF-WP 5 · v1.0.0 · Investigación original sobre H3 · 24 de noviembre de 2026.** Este documento presenta un modelo comparativo de embudos de descubrimiento y un experimento computacional reproducible (`experiments/h3-ia-cientifica-vs-consumer`) desarrollado por Carlos Nicolás Soto con asistencia de IA en programación y edición bilingüe. El dataset (`1.500` filas, `synthetic=true`) modela transiciones agregadas de etapas; conforme a la política R10, el dominio biomédico se restringe a métricas estadísticas abstractas de triaje preclínico sin protocolos experimentales ni rutas químicas.
+
+## Pregunta e hipótesis (H3)
+
+¿Dónde produce una unidad de cómputo mayor transformación duradera: en productos conversacionales y mediáticos de consumo, o en bucles de descubrimiento acoplados a leyes físicas? Este documento evalúa la tercera hipótesis del portafolio (**H3**): *«La IA científica cambiará más que la IA consumer»* en sus cuatro subtemas naturales: **descubrimiento de materiales, fármacos (triaje computacional abstracto), clima y física**.
+
+La resolución computacional del plegamiento de proteínas con AlphaFold demostró que cuando un dominio dispone de una representación geométrica rigurosa y un banco de validación experimental claro, el aprendizaje profundo comprime décadas de caracterización estructural.<Nota f="jumper-2021" /> El reconocimiento del Premio Nobel de Química de 2024 subrayó precisamente ese cambio de paradigma hacia el diseño y predicción computacional de estructuras.<Nota f="kva-nobel-2024" /> Al mismo tiempo, el International AI Safety Report 2026 recuerda que acelerar la generación *in-silico* de candidatos no equivale automáticamente a descubrimientos confirmados en el mundo físico ni elimina los riesgos de uso dual.<Nota f="iasr-2026" /> En paralelo, tanto la modelización física del sistema climático evaluada por el IPCC<Nota f="ipcc-ar6-wg1" /> como las proyecciones energéticas de centros de datos de la Agencia Internacional de la Energía para 2026–2030<Nota f="aie-ia-2026" /> obligan a preguntar qué asignación del cómputo mundial genera retornos físicos netos que compensen su huella eléctrica.
+
+## Teoría del oráculo verificable y Ley de Amdahl del descubrimiento
+
+La asimetría estructural entre **IA científica** e **IA consumer** descansa en dos mecanismos formales implementados en `experiments/h3-ia-cientifica-vs-consumer/model.ts`:
+
+1. **Fidelidad del oráculo y acumulación no rival:** En la IA de consumo, la señal de recompensa proviene de preferencias humanas subjetivas y el producto compite por un techo inelástico de atención diaria (`24` horas), sufriendo saturación cóncava (`3,2 × E(t) / (2,2 + E(t))`) y erosión competitiva de márgenes. En la IA científica, los agentes exploran espacios combinatorios filtrados por **oráculos verificables** (`q_oracle ∈ [0,76; 0,93]`): ecuaciones en derivadas parciales, energía libre en cristales o ensayos controlados. Cada hallazgo verificado se incorpora como **capital de conocimiento no rival** que eleva la productividad de ciclos posteriores.
+2. **Ley de Amdahl aplicada al laboratorio físico:** Un ciclo completo de descubrimiento combina una fracción *in-silico* `(1 − β_fís)` acelerada por `S(t)` y una fracción de síntesis o validación física `β_fís` que escala más lentamente a ritmo `V(t)`:
+
+`E(t) = 1 / (((1 − β_fís) / S(t)) + (β_fís / V(t)))`
+
+Cuando `S(t)` crece mucho más deprisa que `V(t)`, la aceleración total del embudo queda acotada por `V(t) / β_fís` y el tiempo de ciclo se desplaza hacia la validación experimental.
+
+## Diseño experimental y hallazgos cuantitativos
+
+Simulamos seis dominios durante `10` años (`2026–2035`) y `25` semillas deterministas (`1.500` filas verificadas con `SHA-256`): cuatro dominios con oráculo físico (`materials-discovery`, `therapeutics-preclinical-triage`, `climate-earth-systems`, `fundamental-physics`) y dos líneas base de consumo (`consumer-assistant`, `digital-media`). La tabla muestra las medias en `2035`:
+
+| Dominio | Clase | Aceleración `E(2035)` | Cuello físico | Excedente / PFLOP-día |
+| --- | --- | --- | --- | --- |
+| Descubrimiento de materiales | Oráculo científico | 8,25× | 88,9 % | 15,43 |
+| Física fundamental | Oráculo científico | 7,80× | 80,5 % | 13,16 |
+| Clima y sistema Tierra | Oráculo científico | 9,39× | 81,8 % | 12,86 |
+| Triaje preclínico (R10) | Oráculo científico | 4,38× | 93,6 % | 8,88 |
+| Asistente consumer | Atención humana | 13,09× | 82,7 % | 1,18 |
+| Medios digitales | Atención humana | 17,58× | 81,9 % | 0,92 |
+
+Los resultados aportan tres pruebas analíticas sobre **H3**:
+
+1. **Divergencia de retorno estructural por unidad de cómputo:** Aunque las aplicaciones de consumo exhiben mayor velocidad aparente de iteración de ciclo (`13,09×–17,58×`), los cuatro dominios con oráculo físico generan entre **`7,5×` y `16,8×` más excedente estructural acumulado por PFLOP-día** (`8,88–15,43` frente a `0,92–1,18`).
+2. **Migración del cuello de botella al mundo físico:** Hacia `2035`, entre el `80,5 %` (física) y el `93,6 %` (triaje preclínico, donde `β_fís = 0,52` refleja la duración de ensayos clínicos) del tiempo total de ciclo reside en la validación física. Multiplicar el tamaño del modelo *in-silico* sin automatizar síntesis y caracterización rinde beneficios decrecientes por Ley de Amdahl.
+3. **Conexión directa con H1 y H2:** Desbloquear el potencial completo de la IA científica exige agentes autónomos de instrumentación y verificación (**H1**) gobernados bajo protocolos estrictos de auditoría y bioseguridad (**H2**).
+
+## Criterio de refutación y limitaciones
+
+**Qué refutaría H3:** La hipótesis quedaría refutada si para `2035` las ganancias verificables de productividad multifactorial y excedente económico neto derivadas de descubrimientos asistidos por IA en materiales, energía, clima y biomedicina resultaran menores que las atribuibles a interfaces conversacionales y entretenimiento generativo de consumo.
+
+**Limitaciones:** Las intensidades de cómputo y parámetros de valor unitario son índices comparativos estilizados, no contabilidad nacional en dólares constantes. En cumplimiento estricto de la política R10, no se modela diseño molecular ni biología operativa.
+
+## Historial de versiones
+
+**v1.0.0 — 24 de noviembre de 2026:** primera publicación con modelo de Ley de Amdahl de descubrimiento, `1.500` filas sintéticas verificadas con `SHA-256` y código público en `experiments/h3-ia-cientifica-vs-consumer`.

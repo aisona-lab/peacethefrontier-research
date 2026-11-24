@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+title: "Autonomous Agents as the Infrastructure of the Next Decade — Peace The Frontier Research Portfolio"
+message: "If you use the models, synthetic datasets, or working papers in this repository, please cite this research portfolio as below."
+type: software
+authors:
+  - family-names: "Soto"
+    given-names: "Carlos Nicolás"
+repository-code: "https://github.com/aisona-lab/peacethefrontier-research"
+url: "https://peacethefrontier.com"
+abstract: >-
+  Bilingual research portfolio and reproducible simulation suite investigating autonomous agents
+  as operational, institutional, and scientific infrastructure (2026–2036) across three falsifiable
+  hypotheses: delegation economics and compound reliability (H1), multi-agent coordination and
+  Goodhart benchmark distortion (H2), and verifiable-oracle scientific AI pipelines (H3).
+keywords:
+  - autonomous-agents
+  - multi-agent-coordination
+  - ai-governance
+  - ai-for-science
+  - reproducible-research
+version: "1.0.0"
+date-released: "2026-11-24"

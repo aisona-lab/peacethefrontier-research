@@ -1,0 +1,141 @@
+---
+import type { Idioma } from '../../i18n/rutas';
+import { leerExperimentosPortafolio } from '../../lib/studio/artefactos';
+import { PERFIL, urlCodigoRepositorio } from '../../lib/studio/config';
+import { hrefPublico } from '../../lib/studio/espacios';
+import { rutaPublicacion } from '../../lib/studio/publicaciones';
+
+interface Props {
+	lang: Idioma;
+}
+
+const { lang } = Astro.props;
+const experimentos = await leerExperimentosPortafolio();
+const fmt = new Intl.NumberFormat(lang === 'es' ? 'es-ES' : 'en-US');
+
+const ui =
+	lang === 'es'
+		? {
+				titulo: 'Experimentos reproducibles de las tres hipótesis (H1–H3)',
+				intro:
+					'Modelos deterministas en TypeScript (Apache-2.0) y series sintéticas verificadas con SHA-256 (CC BY 4.0) que respaldan las investigaciones originales del portafolio.',
+				filas: 'filas',
+				semillas: 'semillas',
+				paper: 'Working paper',
+				github: 'Código en GitHub',
+				csv: 'Dataset CSV',
+				esquema: 'Esquema JSON',
+				manifiesto: 'Manifiesto SHA-256',
+			}
+		: {
+				titulo: 'Reproducible experiments across the three hypotheses (H1–H3)',
+				intro:
+					'Deterministic TypeScript models (Apache-2.0) and SHA-256-verified synthetic series (CC BY 4.0) backing the portfolio’s original working papers.',
+				filas: 'rows',
+				semillas: 'seeds',
+				paper: 'Working paper',
+				github: 'Code on GitHub',
+				csv: 'CSV dataset',
+				esquema: 'JSON schema',
+				manifiesto: 'SHA-256 manifest',
+			};
+---
+
+<section class="experimentos-portafolio" aria-labelledby="titulo-exp-portafolio">
+	<h2 id="titulo-exp-portafolio">{ui.titulo}</h2>
+	<p class="exp-intro">{ui.intro}</p>
+	<ul class="exp-rejilla" role="list">
+		{
+			experimentos.map((exp) => {
+				const dataset = exp.files.find((f) => f.role === 'dataset')!;
+				const schema = exp.files.find((f) => f.role === 'schema')!;
+				const paperUrl = hrefPublico(
+					rutaPublicacion(lang, exp.paper_slug[lang], 'working-paper'),
+					PERFIL,
+				);
+				return (
+					<li>
+						<p class="ui exp-meta">
+							<strong>{exp.hypothesis}</strong> · v{exp.version} · {fmt.format(exp.row_count)}{' '}
+							{ui.filas} · {exp.seed_count} {ui.semillas}
+						</p>
+						<h3>{exp.title[lang]}</h3>
+						<p>{exp.description[lang]}</p>
+						<p class="ui exp-limite">{exp.limitations[lang]}</p>
+						<div class="ui exp-enlaces">
+							<a href={paperUrl}>
+								{ui.paper}
+								<span class="solo-lectores"> {exp.hypothesis}</span> →
+							</a>
+							<a href={urlCodigoRepositorio(exp.code_repository_path)}>
+								{ui.github}
+								<span class="solo-lectores"> {exp.hypothesis}</span>
+							</a>
+							<a href={dataset.path} download={`${exp.id}.csv`}>
+								{ui.csv}
+								<span class="solo-lectores"> {exp.hypothesis}</span>
+							</a>
+							<a href={schema.path} download={`${exp.id}.schema.json`}>
+								{ui.esquema}
+								<span class="solo-lectores"> {exp.hypothesis}</span>
+							</a>
+							<a href={`/datos/experimentos/${exp.id}/manifest.json`} download={`${exp.id}.manifest.json`}>
+								{ui.manifiesto}
+								<span class="solo-lectores"> {exp.hypothesis}</span>
+							</a>
+						</div>
+					</li>
+				);
+			})
+		}
+	</ul>
+</section>
+
+<style>
+	.experimentos-portafolio {
+		margin-block: 3rem;
+	}
+
+	.exp-intro {
+		max-width: 46rem;
+		margin-top: 0.75rem;
+		color: var(--tinta-suave);
+	}
+
+	.exp-rejilla {
+		display: grid;
+		gap: 1.25rem;
+		margin-top: 1.5rem;
+	}
+
+	.exp-rejilla li {
+		padding: 1.35rem 1.5rem;
+		border: 1px solid var(--linea);
+		background: var(--superficie);
+		min-width: 0;
+	}
+
+	.exp-meta {
+		font-size: var(--t-mini);
+		color: var(--tinta-suave);
+	}
+
+	.exp-rejilla h3 {
+		margin-block: 0.45rem 0.65rem;
+		font-size: 1.3rem;
+	}
+
+	.exp-limite {
+		margin-top: 0.75rem;
+		font-size: var(--t-mini);
+		color: var(--tinta-suave);
+	}
+
+	.exp-enlaces {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.55rem 1.15rem;
+		margin-top: 1rem;
+		font-size: var(--t-mini);
+	}
+</style>

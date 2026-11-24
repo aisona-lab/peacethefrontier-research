@@ -1,0 +1,172 @@
+---
+import type { Idioma } from '../../i18n/rutas';
+import type { Articulo } from '../../lib/articulos-coleccion';
+import { leerExperimento } from '../../lib/studio/artefactos';
+import { urlCodigoRepositorio } from '../../lib/studio/config';
+
+interface Props {
+	lang: Idioma;
+	data: Articulo['data'];
+}
+
+const { lang, data } = Astro.props;
+const exp = data.experimento ? await leerExperimento(data.experimento) : undefined;
+const urlGitHub = data.repositorioCodigo ? urlCodigoRepositorio(data.repositorioCodigo) : undefined;
+const fmt = new Intl.NumberFormat(lang === 'es' ? 'es-ES' : 'en-US');
+
+const etiquetasArchivo =
+	lang === 'es'
+		? {
+				dataset: 'Dataset CSV',
+				schema: 'Esquema JSON',
+				'source-code': 'Modelo TypeScript',
+			}
+		: {
+				dataset: 'CSV dataset',
+				schema: 'JSON schema',
+				'source-code': 'TypeScript model',
+			};
+
+const t =
+	lang === 'es'
+		? {
+				kicker: 'Código público, datos y reproducibilidad',
+				sintetico: 'Experimento determinista (100 % sintético)',
+				github: 'Ver código fuente en GitHub',
+				manifiesto: 'Manifiesto SHA-256 (JSON)',
+				comando: 'Reproducir y verificar localmente:',
+				filas: 'filas',
+				semillas: 'semillas',
+				hashes: 'Sumas de verificación SHA-256',
+			}
+		: {
+				kicker: 'Public code, data and reproducibility',
+				sintetico: 'Deterministic experiment (100% synthetic)',
+				github: 'Inspect source code on GitHub',
+				manifiesto: 'SHA-256 manifest (JSON)',
+				comando: 'Reproduce and verify locally:',
+				filas: 'rows',
+				semillas: 'seeds',
+				hashes: 'SHA-256 checksums',
+			};
+---
+
+{
+	exp && urlGitHub && (
+		<aside class="ficha-codigo ui" aria-label={t.kicker}>
+			<p class="ficha-codigo-kicker">
+				<span class="ficha-codigo-punto" aria-hidden="true" />
+				<span>
+					{t.kicker}
+					{data.hipotesis ? ` · ${data.hipotesis}` : ''}
+				</span>
+			</p>
+			<p class="ficha-codigo-titulo">
+				<strong>{exp.title[lang]}</strong> — {t.sintetico} · v{exp.version} · {fmt.format(exp.row_count)}{' '}
+				{t.filas} · {exp.seed_count} {t.semillas}.
+			</p>
+			<div class="ficha-codigo-enlaces">
+				<a class="ficha-codigo-repo" href={urlGitHub}>
+					{t.github} (<code>{data.repositorioCodigo}</code>) →
+				</a>
+				{exp.files.map((f) => (
+					<a href={f.path} download>
+						{etiquetasArchivo[f.role]} ({f.license})
+					</a>
+				))}
+				<a href={`/datos/experimentos/${exp.id}/manifest.json`} download>
+					{t.manifiesto}
+				</a>
+			</div>
+			<p class="ficha-codigo-cli">
+				<span>{t.comando}</span>{' '}
+				<code>{data.comandoReproduccion ?? exp.check_command}</code>
+			</p>
+			<details class="ficha-codigo-detalles">
+				<summary>{t.hashes}</summary>
+				<dl>
+					{exp.files.map((f) => (
+						<div>
+							<dt>{f.path.split('/').at(-1)}</dt>
+							<dd>
+								<code>{f.sha256}</code> · {fmt.format(f.bytes)} bytes
+							</dd>
+						</div>
+					))}
+				</dl>
+			</details>
+		</aside>
+	)
+}
+
+<style>
+	.ficha-codigo {
+		padding: 1.25rem 1.35rem;
+		margin-block: 0 2.5rem;
+		border: 1px solid var(--linea);
+		background: var(--superficie);
+		font-size: var(--t-mini);
+		min-width: 0;
+	}
+
+	.ficha-codigo p {
+		margin: 0;
+	}
+
+	.ficha-codigo-kicker {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		color: var(--tinta-suave);
+		font-weight: 600;
+	}
+
+	.ficha-codigo-punto {
+		width: 0.55rem;
+		height: 0.55rem;
+		border-radius: 50%;
+		background: var(--sodio);
+		flex: none;
+	}
+
+	.ficha-codigo-titulo {
+		margin-top: 0.55rem !important;
+		color: var(--tinta);
+	}
+
+	.ficha-codigo-enlaces {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.55rem 1.15rem;
+		margin-top: 0.85rem;
+	}
+
+	.ficha-codigo-repo {
+		font-weight: 600;
+	}
+
+	.ficha-codigo-cli {
+		margin-top: 0.85rem !important;
+		color: var(--tinta-suave);
+	}
+
+	.ficha-codigo-detalles {
+		margin-top: 0.75rem;
+	}
+
+	.ficha-codigo-detalles summary {
+		cursor: pointer;
+		color: var(--tinta-suave);
+	}
+
+	.ficha-codigo-detalles dl {
+		margin: 0.65rem 0 0;
+		display: grid;
+		gap: 0.45rem;
+	}
+
+	.ficha-codigo-detalles dd {
+		margin: 0;
+		overflow-wrap: anywhere;
+	}
+</style>

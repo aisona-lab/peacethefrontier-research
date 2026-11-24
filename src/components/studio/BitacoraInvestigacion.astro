@@ -1,0 +1,179 @@
+---
+import type { Idioma } from '../../i18n/rutas';
+import { AGENDA_ACTIVA, BITACORA } from '../../lib/programa/bitacora';
+import { PERFIL } from '../../lib/studio/config';
+import { hrefPublico } from '../../lib/studio/espacios';
+
+interface Props {
+	lang: Idioma;
+}
+
+const { lang } = Astro.props;
+const rssHref = lang === 'en' ? '/en/rss.xml' : '/rss.xml';
+
+const ui =
+	lang === 'es'
+		? {
+				titulo: 'Bitácora de investigación y consistencia editorial',
+				intro:
+					'Registro cronológico de investigaciones originales, datasets y auditorías publicadas, junto a la agenda mensual de próximas pruebas empíricas y computacionales.',
+				rss: 'Suscribirse por RSS (XML)',
+				entregas: 'Entregas versionadas',
+				agenda: 'Agenda activa · Próximas pruebas',
+				entregable: 'Entregable previsto:',
+			}
+		: {
+				titulo: 'Research log and publication cadence',
+				intro:
+					'Chronological ledger of versioned original papers, datasets and audits, alongside the active monthly queue of upcoming empirical and computational tests.',
+				rss: 'Subscribe via RSS (XML)',
+				entregas: 'Versioned releases',
+				agenda: 'Active queue · Upcoming tests',
+				entregable: 'Planned deliverable:',
+			};
+---
+
+<section class="bitacora" id="bitacora" aria-labelledby="titulo-bitacora">
+	<div class="bitacora-cabecera">
+		<div>
+			<h2 id="titulo-bitacora">{ui.titulo}</h2>
+			<p>{ui.intro}</p>
+		</div>
+		<p class="ui bitacora-rss">
+			<a href={rssHref}>{ui.rss} →</a>
+		</p>
+	</div>
+
+	<div class="bitacora-columnas">
+		<div>
+			<h3 class="ui bitacora-subtitulo">{ui.entregas}</h3>
+			<ol class="bitacora-lista" role="list">
+				{
+					BITACORA.map((item) => (
+						<li>
+							<p class="ui bitacora-fecha">
+								<time datetime={item.fecha}>{item.fecha}</time>
+								<span>·</span>
+								<span>{item.version}</span>
+								{item.hipotesis && (
+									<>
+										<span>·</span>
+										<strong>{item.hipotesis}</strong>
+									</>
+								)}
+							</p>
+							<p class="bitacora-item-titulo">
+								<a href={hrefPublico(item.ruta[lang], PERFIL)}>{item.titulo[lang]}</a>
+							</p>
+							<p class="bitacora-resumen">{item.resumen[lang]}</p>
+						</li>
+					))
+				}
+			</ol>
+		</div>
+
+		<div>
+			<h3 class="ui bitacora-subtitulo">{ui.agenda}</h3>
+			<ol class="bitacora-agenda" role="list">
+				{
+					AGENDA_ACTIVA.map((prox) => (
+						<li>
+							<p class="ui bitacora-fecha">
+								<span>{prox.ventana[lang]}</span>
+								<span>·</span>
+								<strong>{prox.hipotesis}</strong>
+							</p>
+							<p class="bitacora-item-titulo">{prox.titulo[lang]}</p>
+							<p class="ui bitacora-entregable">
+								<span>{ui.entregable}</span> {prox.entregable[lang]}
+							</p>
+						</li>
+					))
+				}
+			</ol>
+		</div>
+	</div>
+</section>
+
+<style>
+	.bitacora {
+		margin-block: 3.5rem;
+		padding-top: 2.5rem;
+		border-top: 1px solid var(--linea);
+	}
+
+	.bitacora-cabecera {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		align-items: flex-end;
+		gap: 1rem 2rem;
+		margin-bottom: 2rem;
+	}
+
+	.bitacora-cabecera > div {
+		max-width: 44rem;
+	}
+
+	.bitacora-cabecera p {
+		margin-top: 0.75rem;
+		color: var(--tinta-suave);
+	}
+
+	.bitacora-rss a {
+		font-weight: 600;
+	}
+
+	.bitacora-columnas {
+		display: grid;
+		gap: 2.5rem;
+	}
+
+	@media (min-width: 56rem) {
+		.bitacora-columnas {
+			grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+			gap: 2.5rem;
+		}
+	}
+
+	.bitacora-subtitulo {
+		font-size: var(--t-ui);
+		font-weight: 600;
+		margin-bottom: 1rem;
+		color: var(--tinta);
+	}
+
+	.bitacora-lista,
+	.bitacora-agenda {
+		display: grid;
+		gap: 1rem;
+	}
+
+	.bitacora-lista li,
+	.bitacora-agenda li {
+		padding: 1.15rem 1.25rem;
+		border: 1px solid var(--linea);
+		background: var(--superficie);
+		min-width: 0;
+	}
+
+	.bitacora-fecha {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.4rem;
+		font-size: var(--t-mini);
+		color: var(--tinta-suave);
+	}
+
+	.bitacora-item-titulo {
+		margin-top: 0.4rem;
+		font-weight: 600;
+	}
+
+	.bitacora-resumen,
+	.bitacora-entregable {
+		margin-top: 0.45rem;
+		font-size: var(--t-mini);
+		color: var(--tinta-suave);
+	}
+</style>

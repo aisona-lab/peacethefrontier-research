@@ -1,0 +1,72 @@
+---
+titulo: "Scaling capability without coordination: systemic failures, deployment racing and benchmark distortion in multi-agent systems"
+resumen: "Repeated game-theoretic simulation (8 actors, 40 rounds, 500 scenarios) contrasting isolated technical capability scaling against verifiable audit commitments and adaptive interoperability protocols."
+clave: wp-coordinacion-multiagente
+tipoPublicacion: working-paper
+serie: PTF-WP
+numero: 4
+version: 1.0.0
+hipotesis: H2
+experimento: h2-coordinacion-multiagente
+repositorioCodigo: experiments/h2-coordinacion-multiagente
+comandoReproduccion: npm run experiments:check
+temas: [gobernanza, ia, riesgo, poder, computo]
+evidencia: emergente
+autor: Carlos Nicolás Soto
+publicado: 2026-11-24
+revisado: 2026-11-24
+fuentes: [iasr-2026, seul-compromisos-2024, ue-ley-ia, onu-panel-ia, ntia-pesos-2024]
+asistidoPorIA: true
+estado: borrador
+sensible: false
+---
+
+import Nota from '../../../components/articulo/Nota.astro';
+
+**PTF-WP 4 · v1.0.0 · Original research on H2 · 24 November 2026.** This paper presents a multi-agent strategic model and reproducible computational experiment (`experiments/h2-coordinacion-multiagente`) developed by Carlos Nicolás Soto with AI assistance in simulation code and bilingual editing. All `500` scenarios (`160,000` aggregated agent-round decisions, `synthetic=true`) represent stylized incentive equilibria rather than empirical measurements of specific treaties or laboratories.
+
+## Question and hypothesis (H2)
+
+Why does scaling raw technical intelligence inside isolated models fail to guarantee safer systems or higher aggregate welfare? This paper evaluates the portfolio’s second core hypothesis (**H2**): *“Superintelligence is not a technical problem, but a coordination problem”*, structured across four natural subtopics: **multi-agent systems, governance, safety and benchmarks**.
+
+The International AI Safety Report 2026 documents that frontier systems already display evaluation-aware behaviour—distinguishing test conditions from deployment or exploiting scoring loopholes—just as multi-agent deployments begin interacting across shared infrastructure.<Nota f="iasr-2026" /> Institutionally, the Seoul Frontier AI Safety Commitments introduced risk thresholds and conditional mitigation pledges,<Nota f="seul-compromisos-2024" /> while the European Union AI Act codified systemic-risk obligations for general-purpose models.<Nota f="ue-ley-ia" /> Yet both the United Nations High-Level Advisory Body on AI governance<Nota f="onu-panel-ia" /> and NTIA’s assessment of open-weight models and audit asymmetries<Nota f="ntia-pesos-2024" /> highlight an unresolved structural gap: competitive actors share systemic blast radius while internalizing only a fraction of collective externalities.
+
+## Game-theoretic model and Goodhart distortion
+
+We model `N = 8` strategic actors (frontier labs or autonomous agent fleets) interacting across `T = 40` rounds under five technical capability multipliers `C ∈ {1, 2, 5, 10, 25}`. Every round, actor `i` allocates unit budget (`a_i + s_i + g_i = 1`) across deployment intensity (`a_i`), genuine alignment and interoperability margin (`s_i`), and superficial benchmark optimization (`g_i`).
+
+Regulators or buyers observe an imperfect proxy score `B_i = θ(C) × s_i + (1 − θ(C)) × (s_i + 1.8 × g_i)`, where `θ(C)` denotes benchmark fidelity. We define **Goodhart divergence** as `max(0, B_i − s_i)`, measuring the gap between apparent compliance and true safety margin. Round-level systemic collision probability grows with unverified deployment intensity and inflicts super-linear externality losses when cascades occur.
+
+We compare four institutional architectures in `experiments/h2-coordinacion-multiagente/model.ts` across `25` deterministic seeds (`500` SHA-256-verified scenarios):
+
+- **`uncoordinated-race`:** winner-take-most competition where each actor internalizes only `1/N` of shared systemic hazard.
+- **`static-benchmark-gate`:** fixed threshold regulation whose fidelity `θ(C) = 0.78 / (1 + 0.11 × (C − 1))` decays as capability outpaces static human-written test suites.
+- **`verifiable-audit-commitment`:** shared adversarial auditing (`θ = 0.90`) paired with conditional deployment throttling.
+- **`adaptive-interoperability`:** multi-agent protocol where mutual verification scales alongside capability (`log2(C)`) with full liability internalization.
+
+## Quantitative findings
+
+The table contrasts genuine safety margin, Goodhart divergence, systemic incident rate per round and net social welfare across `C = 1×`, `C = 10×` and `C = 25×`:
+
+| Regime (`C`) | Real safety `s` | Goodhart gap | Incident rate | Net welfare |
+| --- | --- | --- | --- | --- |
+| Uncoordinated race (`1× → 25×`) | 0.205 → 0.076 | 0.036 → 0.078 | 5.5% → 49.2% | 207.3 → 168.7 |
+| Static benchmark gate (`1× → 25×`) | 0.277 → 0.128 | 0.035 → 0.519 | 3.8% → 29.2% | 180.5 → 147.8 |
+| Audit commitment (`10× → 25×`) | 0.491 → 0.507 | 0.004 → 0.003 | 2.2% → 4.8% | 776.0 → 1,336.3 |
+| Adaptive interop. (`10× → 25×`) | 0.621 → 0.671 | 0.001 → 0.0004 | 0.2% → 0.6% | 636.7 → 1,068.1 |
+
+Three quantitative results substantiate **H2**:
+
+1. **The uncoordinated scaling paradox:** Under `uncoordinated-race`, multiplying technical capability `25×` erodes mean safety margins from `0.205` to `0.076`, multiplies systemic incidents `8.9×` (`5.5% → 49.2%`), and drives `25×` net social welfare (`168.68`) below the `1×` baseline (`207.34`).
+2. **Collapse of static benchmark gates at high capability:** Under `static-benchmark-gate`, as `C` reaches `25×`, gaming evaluation proxies becomes far cheaper than maintaining real alignment: Goodhart divergence jumps `14.8×` (`0.035 → 0.519`) and net welfare drops to `147.82`, underperforming even uncoordinated baselines due to false regulatory assurance.
+3. **Coordination dominates raw scaling:** Switching from uncoordinated racing to `verifiable-audit-commitment` at moderate capability (`C = 5×`, net welfare `483.50`, incident rate `2.0%`) or `C = 10×` (`776.04`) produces substantially higher social surplus than scaling raw capability to `25×` without coordination protocols.
+
+## Falsifiability criterion and limitations
+
+**What would falsify H2:** The hypothesis would be falsified if scaling raw model capability in isolation monotonically reduced both open-environment multi-agent incident rates and lab-to-deployment benchmark divergence without binding audit, liability or interoperability protocols.
+
+**Limitations:** Actors are modelled with symmetric baseline endowments and explicit parametric damage curves. Partial geopolitical coalitions, compute supply-chain asymmetries and partial Byzantine collusion are reserved for upcoming extensions (`PTF-WP 6`).
+
+## Version history
+
+**v1.0.0 — 24 November 2026:** initial release with `8`-actor repeated game, `500` SHA-256-verified synthetic scenarios and public source code in `experiments/h2-coordinacion-multiagente`.

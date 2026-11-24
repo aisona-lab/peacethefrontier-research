@@ -1,0 +1,72 @@
+---
+titulo: "The verifiable-oracle advantage: why scientific AI drives deeper structural transformation than consumer AI"
+resumen: "Amdahl-constrained discovery-funnel model (1,500 rows, 2026–2035) comparing materials discovery, abstract preclinical triage, climate and physics against consumer assistants and digital media."
+clave: wp-ia-cientifica-vs-consumer
+tipoPublicacion: working-paper
+serie: PTF-WP
+numero: 5
+version: 1.0.0
+hipotesis: H3
+experimento: h3-ia-cientifica-vs-consumer
+repositorioCodigo: experiments/h3-ia-cientifica-vs-consumer
+comandoReproduccion: npm run experiments:check
+temas: [tecnologias, espacio, salud, planeta, energia]
+evidencia: emergente
+autor: Carlos Nicolás Soto
+publicado: 2026-11-24
+revisado: 2026-11-24
+fuentes: [jumper-2021, kva-nobel-2024, iasr-2026, ipcc-ar6-wg1, aie-ia-2026]
+asistidoPorIA: true
+estado: borrador
+sensible: false
+---
+
+import Nota from '../../../components/articulo/Nota.astro';
+
+**PTF-WP 5 · v1.0.0 · Original research on H3 · 24 November 2026.** This paper presents a comparative discovery-pipeline model and reproducible computational experiment (`experiments/h3-ia-cientifica-vs-consumer`) developed by Carlos Nicolás Soto with AI assistance in coding and bilingual editing. The dataset (`1,500` rows, `synthetic=true`) models aggregate stage transitions; in strict compliance with policy R10, biomedical analysis is restricted to abstract preclinical triage statistics without experimental protocols or synthesis pathways.
+
+## Question and hypothesis (H3)
+
+Where does a unit of compute create deeper lasting transformation: in conversational and media consumer products, or in discovery loops coupled to physical laws? This paper tests the portfolio’s third core hypothesis (**H3**): *“Scientific AI will drive deeper structural change than consumer AI”* across its four natural subtopics: **materials discovery, therapeutics (abstract computational triage), climate and physics**.
+
+High-accuracy protein-structure prediction with AlphaFold showed that when a domain possesses rigorous geometric constraints and an experimental validation benchmark, deep learning compresses decades of structural characterization.<Nota f="jumper-2021" /> The 2024 Nobel Prize in Chemistry explicitly recognized this shift toward computational protein design and structure prediction.<Nota f="kva-nobel-2024" /> At the same time, the International AI Safety Report 2026 emphasizes that accelerating *in-silico* candidate generation is neither identical to confirmed physical deployment nor free of dual-use governance risks.<Nota f="iasr-2026" /> Meanwhile, physical Earth-system assessments by the IPCC<Nota f="ipcc-ar6-wg1" /> and International Energy Agency projections of rising data-centre electricity demand through 2030<Nota f="aie-ia-2026" /> raise a sharper allocation question: which uses of global compute generate compounding physical returns that justify their energy footprint?
+
+## Verifiable-oracle theory and Amdahl’s Law of discovery
+
+The structural asymmetry between **scientific AI** and **consumer AI** rests on two formal mechanisms implemented in `experiments/h3-ia-cientifica-vs-consumer/model.ts`:
+
+1. **Oracle fidelity and non-rival compounding:** Consumer AI optimizes against subjective human preferences and competes for an inelastic daily attention ceiling (`24` hours), facing concave saturation (`3.2 × E(t) / (2.2 + E(t))`) and rapid competitive rent erosion. Scientific AI searches vast combinatorial spaces filtered by **verifiable physical or formal oracles** (`q_oracle ∈ [0.76, 0.93]`): conservation laws, density-functional simulations or controlled assays. Validated breakthroughs accumulate as **non-rival knowledge capital** that raises the productivity of subsequent discovery cycles.
+2. **Amdahl’s Law in hybrid physical pipelines:** An end-to-end discovery cycle combines an *in-silico* screening share `(1 − β_phys)` accelerated by `S(t)` with a physical synthesis or clinical validation share `β_phys` scaling more slowly at rate `V(t)`:
+
+`E(t) = 1 / (((1 − β_phys) / S(t)) + (β_phys / V(t)))`
+
+Once `S(t)` outpaces `V(t)`, end-to-end pipeline speedup is upper-bounded by `V(t) / β_phys` and cycle time concentrates inside physical validation.
+
+## Experimental design and quantitative findings
+
+We simulate six domains across `10` years (`2026–2035`) and `25` deterministic seeds (`1,500` SHA-256-verified rows): four verifiable-oracle domains (`materials-discovery`, `therapeutics-preclinical-triage`, `climate-earth-systems`, `fundamental-physics`) and two consumer baselines (`consumer-assistant`, `digital-media`). The table summarizes `2035` means:
+
+| Domain | Class | Speedup `E(2035)` | Physical share | Surplus / PFLOP-day |
+| --- | --- | --- | --- | --- |
+| Materials discovery | Scientific oracle | 8.25× | 88.9% | 15.43 |
+| Fundamental physics | Scientific oracle | 7.80× | 80.5% | 13.16 |
+| Climate & Earth systems | Scientific oracle | 9.39× | 81.8% | 12.86 |
+| Preclinical triage (R10) | Scientific oracle | 4.38× | 93.6% | 8.88 |
+| Consumer assistant | Human attention | 13.09× | 82.7% | 1.18 |
+| Digital media | Human attention | 17.58× | 81.9% | 0.92 |
+
+Three analytical findings support and bound **H3**:
+
+1. **Wide divergence in structural return per unit of compute:** Although consumer products exhibit faster raw iteration speedups (`13.09×–17.58×`), the four verifiable-oracle domains generate **`7.5×` to `16.8×` higher cumulative structural surplus per PFLOP-day** (`8.88–15.43` versus `0.92–1.18`).
+2. **Migration of the binding bottleneck into physical validation:** By `2035`, between `80.5%` (physics) and `93.6%` (preclinical triage, where `β_phys = 0.52` reflects clinical validation duration) of total cycle time sits inside physical verification. Scaling *in-silico* models further without automating synthesis and experimental characterization hits sharp Amdahl diminishing returns.
+3. **Synthesis across H1, H2 and H3:** Unlocking scientific AI’s full surplus requires autonomous laboratory and verification infrastructure (**H1**) governed by verifiable audit and biosafety commitments (**H2**).
+
+## Falsifiability criterion and limitations
+
+**What would falsify H3:** The hypothesis would be falsified if by `2035` verifiable multifactor productivity gains and net economic surplus attributable to AI-assisted breakthroughs in materials, energy, climate and biomedicine fell below those generated by consumer assistants and generative media.
+
+**Limitations:** Compute intensities and unit structural values are stylized comparative indices rather than constant-dollar national accounts. In strict adherence to policy R10, no molecular design or operational biology is represented.
+
+## Version history
+
+**v1.0.0 — 24 November 2026:** initial release with Amdahl discovery-funnel model, `1,500` SHA-256-verified synthetic rows and public source code in `experiments/h3-ia-cientifica-vs-consumer`.
