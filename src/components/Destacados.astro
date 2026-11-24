@@ -1,0 +1,158 @@
+---
+import { IDIOMAS, rutaArticulo, type Idioma } from '../i18n/rutas';
+import { textos } from '../i18n/ui';
+import { articulosDe, slugArticulo } from '../lib/articulos-coleccion';
+import { resolverDestacados } from '../lib/destacados';
+import { temasOrdenados, textosTema, urlTema } from '../lib/temas';
+
+interface Props {
+	lang: Idioma;
+	variante: 'completo' | 'compacto';
+}
+
+const { lang, variante } = Astro.props;
+const t = textos(lang);
+const [porIdioma, temas] = await Promise.all([
+	Promise.all(IDIOMAS.map(articulosDe)),
+	temasOrdenados(),
+]);
+const temasPorId = new Map(temas.map((tema) => [tema.id, tema]));
+const destacados = resolverDestacados(lang, porIdioma.flat(), new Set(temasPorId.keys()));
+const idTitulo = `titulo-destacados-${variante}`;
+const actual = Astro.url.pathname;
+---
+
+<section class:list={['destacados', `destacados-${variante}`]} aria-labelledby={idTitulo}>
+	<div class="destacados-cabecera">
+		<h2 id={idTitulo}>{t.destacados.titulo}</h2>
+		<p class="destacados-criterio ui">{t.destacados.criterio}</p>
+	</div>
+	<ul class="destacados-lista" role="list">
+		{destacados.map((destacado) => {
+			const url = rutaArticulo(lang, slugArticulo(destacado.articulo));
+			return (
+				<li class="destacado">
+					<h3>
+						<a class="destacado-articulo" href={url} aria-current={actual === url ? 'page' : undefined}>
+							{t.destacados.etiquetas[destacado.etiqueta]}
+						</a>
+					</h3>
+					<p class="destacado-estado ui">{t.articulo.estados[destacado.articulo.data.estado]}</p>
+					<ul class="destacado-temas ui" aria-label={t.destacados.temas} role="list">
+						{destacado.temas.map((id) => {
+							// La validación comprueba todas las referencias antes de renderizar.
+							const tema = temasPorId.get(id)!;
+							const titulo = textosTema(tema, lang).titulo;
+							const href = urlTema(tema, lang);
+							return (
+								<li>
+									<a href={href} aria-label={t.destacados.temaEnlace(titulo)} aria-current={actual === href ? 'page' : undefined}>
+										{titulo}
+									</a>
+								</li>
+							);
+						})}
+					</ul>
+				</li>
+			);
+		})}
+	</ul>
+</section>
+
+<style>
+	.destacados-cabecera {
+		max-width: var(--medida);
+		margin-bottom: 1.5rem;
+	}
+
+	.destacados-criterio {
+		margin-top: 0.75rem;
+		color: var(--tinta-suave);
+	}
+
+	.destacados-lista {
+		display: grid;
+		gap: 1rem;
+	}
+
+	.destacado {
+		min-width: 0;
+		padding: 1.25rem;
+		border: 1px solid var(--linea);
+		border-radius: 3px;
+		background: var(--superficie);
+		overflow-wrap: anywhere;
+	}
+
+	.destacado h3 {
+		font-size: var(--t-h3);
+		line-height: 1.25;
+	}
+
+	.destacado-articulo {
+		display: block;
+		padding-block: 0.25rem;
+		color: var(--tinta);
+		text-decoration-thickness: 1px;
+		text-underline-offset: 0.2em;
+	}
+
+	.destacado-articulo:hover,
+	.destacado-articulo[aria-current='page'] {
+		text-decoration-thickness: 2px;
+		text-decoration-color: var(--foco);
+	}
+
+	.destacado-estado {
+		margin-top: 0.5rem;
+		color: var(--tinta-suave);
+		font-size: var(--t-mini);
+	}
+
+	.destacado-temas {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.25rem 0.75rem;
+		margin-top: 1rem;
+	}
+
+	.destacado-temas a {
+		display: inline-block;
+		padding-block: 0.25rem;
+		min-height: 1.5rem;
+	}
+
+	.destacados-compacto {
+		padding-bottom: 1.75rem;
+		margin-bottom: 1.75rem;
+		border-bottom: 1px solid var(--linea);
+	}
+
+	.destacados-compacto h2 {
+		font-size: var(--t-h3);
+	}
+
+	.destacados-compacto .destacado {
+		padding: 0.75rem 1rem;
+	}
+
+	.destacados-compacto h3 {
+		font-size: var(--t-base);
+	}
+
+	.destacados-compacto .destacado-temas {
+		margin-top: 0.5rem;
+	}
+
+	@media (min-width: 40rem) {
+		.destacados-lista {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+
+	@media (min-width: 64rem) {
+		.destacados-lista {
+			grid-template-columns: repeat(4, minmax(0, 1fr));
+		}
+	}
+</style>

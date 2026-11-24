@@ -1,0 +1,569 @@
+# Los 17 temas del sitio, ordenados por la escala a la que ocurren (ver src/lib/escala.ts).
+# Texto en español arriba; inglés en `en`, con su propio slug para la URL (/en/topics/<slug>/).
+
+# Mente y materia: del átomo al cerebro
+- id: tecnologias
+  codigo: P3
+  banda: mente
+  orden: 1
+  indicadores: [ ciencia ]
+  titulo: Tecnologías por descubrir
+  pregunta: ¿Qué materiales, máquinas y física todavía no imaginamos?
+  intro: >-
+    Exploramos cómo evaluar la ayuda de la IA al diseño de materiales, las simulaciones y los
+    experimentos. El informe de seguridad de 2026 describe avances y límites de capacidad; una
+    demostración no equivale a un descubrimiento confirmado ni a su aplicación industrial.
+  preguntas:
+    - ¿Qué descubrimientos recientes se hicieron con ayuda de IA y cuáles se han confirmado?
+    - ¿Puede una máquina encontrar fenómenos que no sabemos buscar?
+    - ¿Qué límites físicos son reales y cuáles son solo límites de nuestras herramientas?
+  en:
+    slug: undiscovered-technologies
+    titulo: Technologies yet to be discovered
+    pregunta: What materials, machines and physics have we not imagined yet?
+    intro: >-
+      We explore how to evaluate AI assistance with materials design, simulations and experiments.
+      The 2026 safety report describes capability gains and limits; a demonstration is not a
+      confirmed discovery or an industrial application.
+    preguntas:
+      - Which recent discoveries were made with AI, and which have been confirmed?
+      - Can a machine find phenomena we do not know how to look for?
+      - Which physical limits are real, and which are only limits of our tools?
+  fuentes:
+    - iasr-2026
+  verificacion: verificada
+  revisado: 2026-11-13
+
+- id: computo
+  codigo: P16
+  banda: mente
+  orden: 2
+  indicadores: [ capacidad, energiaIA ]
+  titulo: Cómputo y chips
+  pregunta: ¿Cuánta potencia de cálculo hace falta y quién la fabrica?
+  intro: >-
+    Epoch estimó en 2024 un crecimiento histórico del cómputo de entrenamiento de frontera de entre
+    4 y 5 veces al año. Esa referencia no mide capacidades directamente ni describe necesariamente
+    el ritmo de 2026. Estudiamos hardware, eficiencia y cadenas de suministro.
+  preguntas:
+    - ¿A qué ritmo crece el cómputo usado para entrenar modelos y cuánto puede durar?
+    - ¿Por qué casi todos los chips avanzados dependen de tan pocas fábricas?
+    - ¿Qué pasa si el cómputo se convierte en el nuevo petróleo?
+  en:
+    slug: compute
+    titulo: Compute and chips
+    pregunta: How much computing power is needed, and who makes it?
+    intro: >-
+      In 2024, Epoch estimated historical frontier-training compute growth of 4 to 5 times a year.
+      That reference does not directly measure capabilities or necessarily describe the pace in
+      2026. We study hardware, efficiency and supply chains.
+    preguntas:
+      - How fast is the compute used to train models growing, and how long can that last?
+      - Why do almost all advanced chips depend on so few factories?
+      - What happens if compute becomes the new oil?
+  fuentes:
+    - epoch-computo
+    - epoch-hardware
+  verificacion: verificada
+  revisado: 2026-11-13
+
+- id: ia
+  codigo: P1
+  banda: mente
+  orden: 3
+  indicadores: [ capacidad, automatizacion ]
+  titulo: Inteligencia artificial
+  pregunta: ¿Qué es una IA general y quién la controla?
+  intro: >-
+    Las evaluaciones de agentes miden rendimiento en tareas y condiciones concretas. El panel de
+    METR, actualizado por última vez en septiembre de 2026, se centra en tareas de software y no
+    demuestra autonomía fiable en cualquier empleo. Exploramos capacidades, límites y control.
+  preguntas:
+    - ¿Qué distingue a la IA actual de una inteligencia general?
+    - ¿Cómo se comprueba que un sistema hace lo que queremos y no solo lo que le pedimos?
+    - ¿Qué pasa cuando la IA empieza a hacer ciencia por su cuenta?
+    - ¿Quién controla los modelos más capaces y con qué reglas?
+  en:
+    slug: ai
+    titulo: Artificial intelligence
+    pregunta: What is general AI, and who controls it?
+    intro: >-
+      Agent evaluations measure performance on specific tasks under specific conditions. METR’s
+      dashboard, last updated in September 2026, focuses on software tasks and does not establish
+      reliable autonomy in every job. We explore capabilities, limitations and control.
+    preguntas:
+      - What separates today’s AI from a general intelligence?
+      - How do we check that a system does what we want, not just what we asked for?
+      - What happens when AI starts doing science on its own?
+      - Who controls the most capable models, and under what rules?
+  fuentes:
+    - metr-horizontes-2026
+    - iasr-2026
+  verificacion: verificada
+  revisado: 2026-11-13
+
+- id: salud
+  codigo: P4
+  banda: mente
+  orden: 4
+  indicadores: [ ciencia, poblacion ]
+  titulo: Salud y enfermedad
+  pregunta: ¿Qué curas se acercan y qué riesgos biológicos traen consigo?
+  intro: >-
+    Estudiamos predicción de estructuras de proteínas, diseño de fármacos y evaluación clínica.
+    Distinguimos resultados de laboratorio, validación médica y acceso a tratamientos. Los riesgos
+    biológicos se abordan desde la historia, la política y la gobernanza; las referencias
+    fundacionales siguen pendientes de revisión completa.
+  preguntas:
+    - ¿Qué enfermedades podrían dejar de ser mortales en las próximas décadas?
+    - ¿Cuánto podemos alargar una vida sana y quién tendrá acceso a ello?
+    - ¿Cómo se gobiernan herramientas biológicas que sirven tanto para curar como para dañar?
+  en:
+    slug: health
+    titulo: Health and disease
+    pregunta: Which cures are coming, and what biological risks come with them?
+    intro: >-
+      We study protein-structure prediction, drug design and clinical evaluation. We distinguish
+      laboratory results, medical validation and access to treatment. Biological risks are addressed
+      through history, policy and governance; foundational references still await full review.
+    preguntas:
+      - Which diseases could stop being deadly in the coming decades?
+      - How much can we extend a healthy life, and who will have access to it?
+      - How do we govern biological tools that can both heal and harm?
+  fuentes:
+    - jumper-2021
+    - iasr-2026
+  verificacion: pendiente
+
+- id: mente
+  codigo: P11
+  banda: mente
+  orden: 5
+  indicadores: []
+  titulo: Mente y neurociencia
+  pregunta: ¿Qué es la conciencia y qué pasa al conectar el cerebro a una máquina?
+  intro: >-
+    Exploramos qué pueden aportar la neurociencia y la IA al estudio de la mente, cómo evaluar las
+    interfaces cerebro-máquina y cómo proteger los datos cerebrales. Las preguntas sobre conciencia
+    artificial siguen abiertas; este tema no presenta una prueba de conciencia.
+  preguntas:
+    - ¿Qué nos enseña la IA sobre cómo funciona el cerebro, y al revés?
+    - ¿Podría una máquina tener experiencia consciente? ¿Cómo lo sabríamos?
+    - ¿Quién es dueño de los datos de tu actividad cerebral?
+  en:
+    slug: mind
+    titulo: Mind and neuroscience
+    pregunta: What is consciousness, and what happens when we connect the brain to a machine?
+    intro: >-
+      We explore what neuroscience and AI can contribute to studying the mind, how to evaluate
+      brain-computer interfaces and how to protect neural data. Questions about artificial
+      consciousness remain open; this topic does not present a test that establishes consciousness.
+    preguntas:
+      - What does AI teach us about how the brain works, and the other way around?
+      - Could a machine have conscious experience? How would we know?
+      - Who owns the data of your brain activity?
+  fuentes:
+    - sep-turing
+    - iasr-2026
+  verificacion: pendiente
+
+# Sociedad: de una persona a un país
+- id: sentido
+  codigo: P17
+  banda: sociedad
+  orden: 6
+  indicadores: [ empleo ]
+  titulo: Sentido y propósito
+  pregunta: ¿Qué nos hace humanos cuando las máquinas pueden hacerlo casi todo?
+  intro: >-
+    Exploramos sentido, comunidad e identidad ante cambios posibles del trabajo. La exposición de
+    tareas estudiada por la OIT no demuestra que el empleo vaya a desaparecer. Las preguntas
+    filosóficas y los escenarios de abundancia se distinguen de las observaciones laborales.
+  preguntas:
+    - ¿De dónde sacaremos sentido si el trabajo deja de ser necesario?
+    - ¿Qué tradiciones antiguas pensaron ya en una vida de abundancia?
+    - ¿Cómo cambia la identidad humana al convivir con mentes artificiales?
+  en:
+    slug: meaning
+    titulo: Meaning and purpose
+    pregunta: What makes us human when machines can do almost everything?
+    intro: >-
+      We explore meaning, community and identity under possible changes to work. The task exposure
+      studied by the ILO does not establish that employment will disappear. Philosophical questions
+      and abundance scenarios are distinguished from labour observations.
+    preguntas:
+      - Where will we find meaning if work is no longer necessary?
+      - Which ancient traditions already imagined a life of abundance?
+      - How does human identity change when we live alongside artificial minds?
+  fuentes:
+    - oit-genai-2025
+  verificacion: verificada
+  revisado: 2026-11-13
+
+- id: privacidad
+  codigo: P6
+  banda: sociedad
+  orden: 7
+  indicadores: [ poder ]
+  titulo: Privacidad y control
+  pregunta: ¿Cuánto de tu vida puede ver y predecir otra persona o un Estado?
+  intro: >-
+    Estudiamos privacidad, inferencias sobre personas y garantías frente a decisiones automatizadas.
+    El Convenio Marco del Consejo de Europa ofrece una referencia de derechos; su firma no equivale
+    a ratificación o aplicación en cada país. Tratamos riesgos y límites, sin manuales de
+    vigilancia.
+  preguntas:
+    - ¿Qué puede inferir un sistema de IA a partir de tus datos cotidianos?
+    - ¿Dónde termina la seguridad y empieza el control social?
+    - ¿Qué derechos tienes hoy sobre tus datos y cuáles faltan?
+  en:
+    slug: privacy
+    titulo: Privacy and control
+    pregunta: How much of your life can another person, or a state, see and predict?
+    intro: >-
+      We study privacy, inferences about people and safeguards around automated decisions. The
+      Council of Europe Framework Convention provides a rights reference; signing is not equivalent
+      to ratification or application in each country. We discuss risks and limits, without
+      surveillance manuals.
+    preguntas:
+      - What can an AI system infer from your everyday data?
+      - Where does security end and social control begin?
+      - What rights do you have over your data today, and which are missing?
+  fuentes:
+    - coe-convenio-ia
+    - iasr-2026
+  verificacion: verificada
+  revisado: 2026-11-13
+
+- id: informacion
+  codigo: P13
+  banda: sociedad
+  orden: 8
+  indicadores: []
+  titulo: Información y verdad
+  pregunta: ¿Cómo sabremos qué es verdad cuando todo se puede fabricar?
+  intro: >-
+    El informe internacional de seguridad de 2026 examina riesgos de contenido sintético y
+    manipulación. Una demostración de daño posible no mide su frecuencia social. Estudiamos cómo
+    evaluar información, educación y respuestas a la desinformación.
+  preguntas:
+    - ¿Qué funciona de verdad contra la desinformación?
+    - ¿Cómo cambia la educación cuando cualquier respuesta está a un clic?
+    - ¿Puede la IA ayudarnos a pensar mejor en lugar de pensar por nosotros?
+  en:
+    slug: information
+    titulo: Information and truth
+    pregunta: How will we know what is true when anything can be fabricated?
+    intro: >-
+      The 2026 international safety report examines risks involving synthetic content and
+      manipulation. Demonstrating possible harm does not measure its prevalence in society. We study
+      how to evaluate information, education and responses to disinformation.
+    preguntas:
+      - What actually works against disinformation?
+      - How does education change when any answer is one click away?
+      - Can AI help us think better instead of thinking for us?
+  fuentes:
+    - iasr-2026
+  verificacion: verificada
+  revisado: 2026-11-13
+
+- id: economia
+  codigo: P12
+  banda: sociedad
+  orden: 9
+  indicadores: [ automatizacion, empleo, desigualdad, robots ]
+  titulo: Trabajo y economía
+  pregunta: ¿Qué trabajos cambian, quién gana y quién pierde?
+  intro: >-
+    La OIT estimó en 2025 que el 25 % del empleo mundial tiene alguna exposición a IA generativa; no
+    es una estimación de despidos. Estudios de productividad encuentran resultados distintos según
+    tareas y contextos. Analizamos adopción, trabajo, salarios y distribución de beneficios.
+  preguntas:
+    - ¿Qué tareas automatiza ya la IA y cuáles no?
+    - ¿Hace falta una renta básica o hay mejores alternativas?
+    - ¿Qué pasa con los países cuya ventaja era la mano de obra barata?
+  en:
+    slug: economy
+    titulo: Work and the economy
+    pregunta: Which jobs change, who wins and who loses?
+    intro: >-
+      In 2025, the ILO estimated that 25% of global employment has some exposure to generative AI;
+      this is not an estimate of job losses. Productivity studies find different results across
+      tasks and contexts. We examine adoption, work, wages and the distribution of benefits.
+    preguntas:
+      - Which tasks does AI already automate, and which not?
+      - Do we need a basic income, or are there better alternatives?
+      - What happens to countries whose advantage was cheap labor?
+  fuentes:
+    - oit-genai-2025
+    - nber-ia-trabajo-2023
+    - metr-desarrolladores-2025
+  verificacion: verificada
+  revisado: 2026-11-13
+
+- id: conocimiento-antiguo
+  codigo: P10
+  banda: sociedad
+  orden: 10
+  indicadores: []
+  titulo: Conocimiento antiguo, perdido y recuperado
+  pregunta: ¿Qué sabían las primeras civilizaciones y por qué lo olvidamos?
+  intro: >-
+    Exploramos qué permiten afirmar los objetos, textos y reconstrucciones sobre el conocimiento
+    antiguo. Separamos evidencia arqueológica, interpretación y mitos populares. Las referencias
+    históricas se conservan y su revisión completa está pendiente.
+  preguntas:
+    - ¿Cómo se perdió conocimiento que ya existía y cómo se recuperó?
+    - ¿Qué nos enseña la caída de bibliotecas y civilizaciones?
+    - ¿Puede la IA ayudar a leer textos antiguos que nadie ha logrado descifrar?
+  en:
+    slug: ancient-knowledge
+    titulo: Ancient knowledge, lost and recovered
+    pregunta: What did the first civilizations know, and why did we forget it?
+    intro: >-
+      We explore what objects, texts and reconstructions can establish about ancient knowledge. We
+      separate archaeological evidence, interpretation and popular myths. Historical references are
+      retained and their full review is pending.
+    preguntas:
+      - How was knowledge that already existed lost, and how was it recovered?
+      - What does the fall of libraries and civilizations teach us?
+      - Can AI help read ancient texts that nobody has managed to decipher?
+  fuentes:
+    - freeth-2006
+    - palimpsesto-arquimedes
+    - vesuvius-2024
+  verificacion: pendiente
+
+- id: poder
+  codigo: P5
+  banda: sociedad
+  orden: 11
+  indicadores: [ poder, riesgo ]
+  titulo: Poder, defensa y gobiernos
+  pregunta: ¿Cómo cambia la IA las guerras, las defensas y la caída de gobiernos?
+  intro: >-
+    Exploramos cómo podrían cambiar la disuasión, las alianzas y las responsabilidades con nuevas
+    capacidades de IA. Distinguimos incidentes documentados, escenarios y juicios políticos. Los
+    temas de defensa se abordan sin instrucciones técnicas de armamento.
+  preguntas:
+    - ¿Qué cambia cuando una máquina puede decidir a quién atacar?
+    - ¿Hace la IA más fáciles o más difíciles los golpes de Estado y las revoluciones?
+    - ¿Qué tratados existen y cuáles podrían existir?
+  en:
+    slug: power
+    titulo: Power, defense and governments
+    pregunta: How is AI changing wars, defenses and the fall of governments?
+    intro: >-
+      We explore how deterrence, alliances and responsibilities could change with new AI
+      capabilities. We distinguish documented incidents, scenarios and political judgments. Defence
+      topics are addressed without technical weapons instructions.
+    preguntas:
+      - What changes when a machine can decide whom to attack?
+      - Does AI make coups and revolutions easier or harder?
+      - Which treaties exist, and which could exist?
+  fuentes:
+    - iasr-2026
+    - unoda-tnp
+  verificacion: pendiente
+
+# Planeta: la Tierra entera
+- id: energia
+  codigo: P8
+  banda: planeta
+  orden: 12
+  indicadores: [ energiaIA, energiaLimpia ]
+  titulo: Energía y recursos
+  pregunta: ¿Puede la IA ayudar a conseguir energía abundante y limpia?
+  intro: >-
+    La AIE estima que todos los centros de datos consumieron 485 TWh en 2025 y proyecta unos 950 TWh
+    en 2030. Estas cifras no corresponden solo a IA. Exploramos suministro eléctrico, eficiencia y
+    recursos, distinguiendo estimaciones históricas de escenarios.
+  preguntas:
+    - ¿Cuándo es realista la fusión y qué falta para llegar?
+    - ¿Cuánta energía consume la IA y cómo va a cambiar?
+    - ¿Qué materiales escasean y quién los controla?
+  en:
+    slug: energy
+    titulo: Energy and resources
+    pregunta: Can AI help us reach abundant, clean energy?
+    intro: >-
+      The IEA estimates that all data centres consumed 485 TWh in 2025 and projects about 950 TWh in
+      2030. These figures are not AI-only. We explore electricity supply, efficiency and resources,
+      distinguishing historical estimates from scenarios.
+    preguntas:
+      - When is fusion realistic, and what is still missing?
+      - How much energy does AI consume, and how will that change?
+      - Which materials are scarce, and who controls them?
+  fuentes:
+    - aie-ia-2026
+    - aie-energia-ia
+  verificacion: verificada
+  revisado: 2026-11-13
+
+- id: planeta
+  codigo: P9
+  banda: planeta
+  orden: 13
+  indicadores: [ temperatura, energiaLimpia ]
+  titulo: Sanar el planeta
+  pregunta: ¿Qué tecnologías pueden reparar el clima y los ecosistemas?
+  intro: >-
+    Exploramos cómo evaluar tecnologías para medir y reducir daños climáticos y restaurar
+    ecosistemas. Las fuentes climáticas históricas conservan su periodo de observación: no son
+    mediciones de 2026. Las proyecciones de energía de la IA se interpretan con sus límites de
+    emisiones y suministro.
+  preguntas:
+    - ¿Qué soluciones climáticas tienen hoy evidencia sólida?
+    - ¿Quién decide si se interviene a escala planetaria?
+    - ¿Cómo ayuda la IA a vigilar y restaurar ecosistemas?
+  en:
+    slug: healing-the-planet
+    titulo: Healing the planet
+    pregunta: Which technologies can repair the climate and ecosystems?
+    intro: >-
+      We explore how to evaluate technologies for measuring and reducing climate damage and
+      restoring ecosystems. Historical climate sources retain their observation periods: they are
+      not 2026 measurements. AI energy projections are interpreted with their emissions and supply
+      limitations.
+    preguntas:
+      - Which climate solutions have solid evidence today?
+      - Who decides whether to intervene at a planetary scale?
+      - How does AI help monitor and restore ecosystems?
+  fuentes:
+    - forster-2024
+    - ipcc-ar6-wg1
+    - aie-ia-2026
+  verificacion: pendiente
+
+- id: gobernanza
+  codigo: P14
+  banda: planeta
+  orden: 14
+  indicadores: [ poder, riesgo ]
+  titulo: Gobernanza de la IA
+  pregunta: ¿Quién pone reglas a una tecnología que no respeta fronteras?
+  intro: >-
+    Comparamos obligaciones jurídicas, orientaciones voluntarias y mecanismos de supervisión. La
+    revisión de 2026 recoge el calendario publicado por la Comisión Europea, con la comprobación de
+    la modificación legal aún pendiente. Una declaración o firma no demuestra cumplimiento efectivo.
+  preguntas:
+    - ¿Qué exige hoy la ley a quien desarrolla IA?
+    - ¿Es posible un tratado internacional sobre IA avanzada?
+    - ¿Cómo se verifica que alguien cumple?
+  en:
+    slug: governance
+    titulo: AI governance
+    pregunta: Who sets the rules for a technology that ignores borders?
+    intro: >-
+      We compare legal duties, voluntary guidance and oversight mechanisms. The 2026 review records
+      the timetable published by the European Commission, with verification of the legislative
+      amendment still pending. A declaration or signature does not establish effective compliance.
+    preguntas:
+      - What does the law require today from those who develop AI?
+      - Is an international treaty on advanced AI possible?
+      - How do we verify that someone complies?
+  fuentes:
+    - ue-ley-ia
+    - coe-convenio-ia
+  verificacion: verificada
+  revisado: 2026-11-13
+
+- id: caminos
+  codigo: P2
+  banda: planeta
+  orden: 15
+  indicadores: [ riesgo, temperatura, desigualdad ]
+  titulo: Los caminos de la humanidad
+  pregunta: ¿A dónde llegamos según lo que decidamos ahora?
+  intro: >-
+    Este tema conecta preguntas del atlas mediante escenarios a 2035, 2050 y 2100. Las decisiones y
+    sus efectos son supuestos editoriales, no estimaciones causales de políticas reales. Las fuentes
+    aportan contexto; no validan las trayectorias del modelo.
+  preguntas:
+    - ¿Qué decisiones de esta década pesan más a largo plazo?
+    - ¿Cómo sería un buen futuro, de forma concreta y creíble?
+    - ¿Qué señales tempranas indican que vamos por mal camino?
+  en:
+    slug: paths
+    titulo: The paths of humanity
+    pregunta: Where do we end up, depending on what we decide now?
+    intro: >-
+      This topic connects questions across the atlas through scenarios for 2035, 2050 and 2100.
+      Decisions and their effects are editorial assumptions, not causal estimates of real policies.
+      Sources provide context; they do not validate model trajectories.
+    preguntas:
+      - Which decisions of this decade weigh most in the long run?
+      - What would a good future look like, concretely and credibly?
+      - Which early signals tell us we are on the wrong path?
+  fuentes:
+    - iasr-2026
+    - aie-ia-2026
+  verificacion: verificada
+  revisado: 2026-11-13
+
+- id: riesgo
+  codigo: P15
+  banda: planeta
+  orden: 16
+  indicadores: [ riesgo ]
+  titulo: Riesgo existencial y resiliencia
+  pregunta: ¿Qué podría acabar con la civilización y cómo nos recuperaríamos?
+  intro: >-
+    Estudiamos riesgos catastróficos y resiliencia distinguiendo incidentes, mecanismos posibles y
+    juicios de pronosticadores. Las probabilidades de encuestas no son frecuencias observadas. La
+    comprobación de la tabla histórica del torneo XPT sigue pendiente.
+  preguntas:
+    - ¿Qué riesgos son más probables y cuáles más graves?
+    - ¿Qué hace que una sociedad sea resiliente?
+    - ¿Qué conocimiento habría que preservar para poder volver a empezar?
+  en:
+    slug: risk
+    titulo: Existential risk and resilience
+    pregunta: What could end civilization, and how would we recover?
+    intro: >-
+      We study catastrophic risks and resilience, distinguishing incidents, possible mechanisms and
+      forecasters’ judgments. Survey probabilities are not observed frequencies. Verification of the
+      historical XPT tournament table remains pending.
+    preguntas:
+      - Which risks are most likely, and which most severe?
+      - What makes a society resilient?
+      - What knowledge would we need to preserve to start over?
+  fuentes:
+    - iasr-2026
+    - grace-2024
+    - xpt-2023
+  verificacion: pendiente
+
+# Cosmos: del Sol al universo observable
+- id: espacio
+  codigo: P7
+  banda: cosmos
+  orden: 17
+  indicadores: [ ciencia ]
+  titulo: Ciencia y espacio
+  pregunta: ¿Cómo cambia la IA la forma de hacer ciencia y de explorar el universo?
+  intro: >-
+    Exploramos la participación de máquinas en el método científico, la interpretación de datos
+    astronómicos y las preguntas abiertas de la exploración espacial. Distinguimos hitos históricos,
+    resultados confirmados y aspiraciones; las referencias históricas siguen pendientes de revisión
+    completa.
+  preguntas:
+    - ¿Qué descubrimientos astronómicos dependen ya de la IA?
+    - ¿Cuándo llegaremos a Marte y qué buscaremos allí?
+    - ¿Estamos solos? ¿Qué evidencia tenemos y qué nos falta?
+  en:
+    slug: space
+    titulo: Science and space
+    pregunta: How is AI changing the way we do science and explore the universe?
+    intro: >-
+      We explore machines’ role in the scientific method, the interpretation of astronomical data
+      and open questions in space exploration. We distinguish historical milestones, confirmed
+      findings and aspirations; historical references still await full review.
+    preguntas:
+      - Which astronomical discoveries already depend on AI?
+      - When will we reach Mars, and what will we look for there?
+      - Are we alone? What evidence do we have, and what is missing?
+  fuentes:
+    - nasa-apolo-11
+    - iasr-2026
+  verificacion: pendiente

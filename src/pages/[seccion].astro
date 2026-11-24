@@ -1,0 +1,15 @@
+---
+// Páginas de texto (metodología, sobre, apoyar): el contenido vive en src/content/paginas/es/.
+import PaginaTexto from '../components/vistas/PaginaTexto.astro';
+import { SECCIONES_TEXTO, ruta, segmentoFinal } from '../i18n/rutas';
+
+export const getStaticPaths = () =>
+	SECCIONES_TEXTO.map((seccion) => ({
+		params: { seccion: segmentoFinal(ruta('es', seccion)) },
+		props: { seccion },
+	}));
+
+const { seccion } = Astro.props;
+---
+
+<PaginaTexto lang="es" seccion={seccion} />

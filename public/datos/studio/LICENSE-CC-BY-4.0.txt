@@ -1,0 +1,20 @@
+Synthetic service continuity / Continuidad de servicio sintética — v1.0.0
+Copyright 2026 Peace The Frontier Research Studio
+
+This new synthetic artifact is licensed under Creative Commons Attribution 4.0 International (CC BY 4.0).
+Este nuevo artefacto sintético se ofrece bajo Creative Commons Atribución 4.0 Internacional (CC BY 4.0).
+
+Scope / Alcance: continuidad-servicio-v1.csv, schema.json, manifest.json, dataset-card.es.md, dataset-card.en.md and this notice in public/datos/studio/ only.
+simulator.ts is separately licensed under Apache-2.0; see LICENSE-Apache-2.0.txt. It is not covered by this data licence.
+simulator.ts se ofrece por separado bajo Apache-2.0; ver LICENSE-Apache-2.0.txt. No está cubierto por esta licencia de datos.
+No other repository content, code, existing model or third-party source is relicensed.
+No cambia la licencia de ningún otro contenido, código, modelo previo ni fuente de terceros.
+
+Attribution / Atribución: Peace The Frontier Research Studio (2026), Synthetic service continuity, v1.0.0.
+Keep attribution, link to the licence, indicate changes and do not imply endorsement.
+Conservar atribución y enlace a la licencia, indicar cambios y no sugerir respaldo.
+
+Licence summary / Resumen: https://creativecommons.org/licenses/by/4.0/
+Binding legal terms / Términos legales: https://creativecommons.org/licenses/by/4.0/legalcode.en
+The linked legal terms govern. This notice is not a substitute for them. The artifact is supplied without warranties.
+Rigen los términos legales enlazados; este aviso no los sustituye. El artefacto se ofrece sin garantías.

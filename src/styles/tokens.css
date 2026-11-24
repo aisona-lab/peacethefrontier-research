@@ -1,0 +1,56 @@
+/*
+ * Dirección visual: placa de vidrio (claro) y cianotipo (oscuro).
+ * Los colores usan light-dark(): un solo token, dos temas. data-tema fuerza uno.
+ */
+:root {
+	color-scheme: light dark;
+
+	--fondo: light-dark(#eef2f3, #123a6b);
+	--superficie: light-dark(#f8fafa, #17457e);
+	--tinta: light-dark(#0c2340, #eef3f7);
+	--tinta-suave: light-dark(#4a5d73, #b3c6da);
+	--enlace: light-dark(#1b4f8a, #a9d0f5);
+	--regla: light-dark(#6f8398, #7fa3c9);
+	--linea: light-dark(#b6c4cf, #3f6c9f);
+	--sodio: light-dark(#e8a317, #f4b940);
+	--sobre-sodio: #0c2340;
+	--foco: light-dark(#1b4f8a, #f4b940);
+	--grano: light-dark(transparent, rgb(255 255 255 / 0.08));
+	/* Etiquetas ética / no ética de los caminos (contraste ≥ 4,5:1, ver contraste.test.ts). */
+	--etico: light-dark(#1f7a6e, #6fd3c3);
+	--no-etico: light-dark(#b13b2a, #ff9a85);
+	/* Ámbitos de los futuros: cifras del relato y líneas de sus gráficos (contraste ≥ 4,5:1, ver contraste.test.ts). */
+	--ambito-humanidad: light-dark(#7a4a00, #f4b940);
+	--ambito-tecnologia: light-dark(#3b3fa6, #c3c5ff);
+	--ambito-ciencia: light-dark(#7a2d8c, #eab0f5);
+	--ambito-planeta: light-dark(#2b6630, #a3dba5);
+	--ambito-politica: light-dark(#0e5e70, #8fdcec);
+
+	/* Escala tipográfica: 13 · 15 · 17–19 · 21 · 24 · 30–36 · 44–96 px */
+	--t-mini: 0.8125rem;
+	--t-ui: 0.9375rem;
+	--t-base: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem);
+	--t-entradilla: clamp(1.1875rem, 1.05rem + 0.6vw, 1.3125rem);
+	--t-h3: 1.5rem;
+	--t-h2: clamp(1.875rem, 1.4rem + 1.8vw, 2.25rem);
+	--t-portada: clamp(2.75rem, 1.2rem + 6vw, 6rem);
+	--t-titulo: clamp(2.5rem, 1.5rem + 4vw, 4.5rem);
+
+	--medida: 38rem;
+	--ancho: 75rem;
+	--margen: clamp(1rem, 4vw, 3rem);
+	--espacio-seccion: clamp(4rem, 3rem + 5vw, 9rem);
+	--alto-cabecera: 4rem;
+
+	--dur-rapida: 150ms;
+	--dur: 300ms;
+	--ease-salida: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+:root[data-tema='claro'] {
+	color-scheme: light;
+}
+
+:root[data-tema='oscuro'] {
+	color-scheme: dark;
+}

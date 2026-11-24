@@ -1,0 +1,9 @@
+---
+import Portada from '../vistas/Portada.astro';
+import PaginaEstudio from './PaginaEstudio.astro';
+import type {Idioma} from '../../i18n/rutas';
+import type {EspacioId} from '../../lib/studio/espacios';
+interface Props {lang:Idioma;espacio:EspacioId}
+const {lang,espacio}=Astro.props;
+---
+{espacio==='atlas'?<Portada lang={lang}/>:<PaginaEstudio lang={lang} espacio={espacio}/>}

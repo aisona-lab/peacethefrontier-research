@@ -1,0 +1,49 @@
+{
+  "name": "peacethefrontier",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build && node scripts/generar-og.mjs",
+    "preview": "astro preview",
+    "check": "astro check",
+    "test": "vitest run && node --test scripts/enlaces.test.mjs",
+    "test:e2e": "playwright test",
+    "astro": "astro",
+    "test:csp": "node scripts/auditar-csp.mjs",
+    "research:links": "node scripts/enlaces.mjs",
+    "research:snapshot": "node scripts/research-ledger.mjs",
+    "build:spaces": "node scripts/build-spaces.mjs",
+    "simulation:generate": "node scripts/generar-resiliencia.mjs",
+    "simulation:check": "node scripts/generar-resiliencia.mjs --check",
+    "experiments:generate": "node scripts/ejecutar-experimentos.mjs",
+    "experiments:check": "node scripts/ejecutar-experimentos.mjs --check",
+    "research:new": "node scripts/nueva-investigacion.mjs"
+  },
+  "allowScripts": {
+    "esbuild": true
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^8.0.2",
+    "@astrojs/sitemap": "^3.7.4",
+    "astro": "^7.3.5",
+    "temml": "^0.13.5"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@axe-core/playwright": "^4.13.0",
+    "@lhci/cli": "^0.15.1",
+    "@mdx-js/mdx": "^3.1.1",
+    "@playwright/test": "^1.63.0",
+    "esbuild": "^0.28.2",
+    "typescript": "^6.0.3",
+    "unist-util-visit": "^5.2.0",
+    "vitest": "^5.0.3",
+    "wrangler": "^4.147.0",
+    "yaml": "^2.9.1"
+  }
+}

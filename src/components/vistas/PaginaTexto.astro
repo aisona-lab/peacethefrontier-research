@@ -1,0 +1,45 @@
+---
+import { getEntry, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { otroIdioma, ruta, type Idioma, type Seccion } from '../../i18n/rutas';
+
+interface Props {
+	lang: Idioma;
+	seccion: Seccion;
+}
+
+const { lang, seccion } = Astro.props;
+const entrada = await getEntry('paginas', `${lang}/${seccion}`);
+if (!entrada) throw new Error(`Falta src/content/paginas/${lang}/${seccion}.mdx`);
+const { Content } = await render(entrada);
+---
+
+<Base
+	lang={lang}
+	titulo={entrada.data.titulo}
+	descripcion={entrada.data.descripcion}
+	alternativa={ruta(otroIdioma(lang), seccion)}
+>
+	<div class="contenedor">
+		<article class="pagina-texto prosa">
+			<h1>{entrada.data.titulo}</h1>
+			<Content />
+		</article>
+	</div>
+</Base>
+
+<style>
+	.pagina-texto {
+		padding-top: clamp(3rem, 2rem + 4vw, 6rem);
+	}
+
+	.pagina-texto h1 {
+		font-size: var(--t-titulo);
+	}
+
+	/* El primer párrafo de cada página es su entradilla. */
+	.pagina-texto > h1 + :global(p) {
+		font-size: var(--t-entradilla);
+		line-height: 1.55;
+	}
+</style>

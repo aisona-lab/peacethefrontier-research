@@ -1,0 +1,30 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import type { Idioma } from '../i18n/rutas';
+import { textos } from '../i18n/ui';
+import { fechaFuente } from '../lib/fuentes';
+
+interface Props { fuente: CollectionEntry<'fuentes'>['data']; lang: Idioma; compacta?: boolean }
+const { fuente: f, lang, compacta = false } = Astro.props;
+const t = textos(lang).fuentes;
+const organizacion = lang === 'en' && f.organizacionEn ? f.organizacionEn : f.organizacion;
+const fecha = fechaFuente(f, lang);
+const acceso = f.fechaAcceso?.toISOString().slice(0, 10);
+---
+<span class="fuente">
+	<a href={f.url}>{compacta ? `${organizacion}, ${fecha}` : f.titulo}</a>
+	{compacta && f.verificacion !== 'verificada' && <small class="verificacion">{f.verificacion === 'acceso-limitado' ? (lang === 'es' ? 'Acceso limitado; verificación pendiente' : 'Restricted access; verification pending') : t.pendiente}</small>}
+	{!compacta && <>
+		<span>{` — ${organizacion} (${fecha}).`}</span>
+		{f.autores?.length && <span>{` ${f.autores.join(', ')}.`}</span>}
+		{f.doi && <span> DOI: <a href={`https://doi.org/${f.doi}`}>{f.doi}</a>.</span>}
+		{f.archivo && <span> <a href={f.archivo}>{t.archivo}</a>.</span>}
+		{f.fechaPublicacion && <span>{` ${t.publicacion}: `}<time datetime={f.fechaPublicacion}>{f.fechaPublicacion}</time>.</span>}
+		{acceso && <span>{` ${t.acceso}: `}<time datetime={acceso}>{acceso}</time>.</span>}
+		<small class="verificacion">{f.verificacion === 'verificada' ? `${t.revisada}: ${f.verificado}` : t.pendiente}</small>
+	</>}
+</span>
+<style>
+	.fuente { overflow-wrap: anywhere; }
+	.verificacion { display: block; color: var(--tinta-suave); margin-top: 0.3rem; }
+</style>

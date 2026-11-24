@@ -1,0 +1,581 @@
+# Fuentes del modelo de futuros. Cada cifra usada se verificó contra el documento original.
+- id: epoch-computo
+  titulo: Training compute of frontier AI models grows by 4–5x per year
+  organizacion: Epoch AI
+  anio: 2024
+  tipo: analisis
+  url: https://epoch.ai/publications/training-compute-of-frontier-ai-models-grows-by-4-5x-per-year
+  fechaAcceso: 2026-11-13
+  verificado: "2026-11-13"
+  verificacion: verificada
+- id: epoch-hardware
+  titulo: Trends in Machine Learning Hardware
+  organizacion: Epoch AI
+  anio: 2023
+  tipo: analisis
+  url: https://epoch.ai/publications/trends-in-machine-learning-hardware
+  fechaAcceso: 2026-11-13
+  verificado: "2026-11-13"
+  verificacion: verificada
+  autores:
+    - Marius Hobbhahn
+    - Lennart Heim
+    - Gökçe Aydos
+  fechaPublicacion: "2023-11-09"
+- id: eloundou-2023
+  titulo: "GPTs are GPTs: An Early Look at the Labor Market Impact Potential of Large Language Models"
+  organizacion: Eloundou, Manning, Mishkin y Rock
+  organizacionEn: Eloundou, Manning, Mishkin and Rock
+  anio: 2023
+  tipo: preprint
+  url: https://arxiv.org/abs/2303.10130
+  fechaAcceso: 2026-10-02
+  verificacion: pendiente
+- id: grace-2024
+  titulo: Thousands of AI Authors on the Future of AI
+  organizacion: Grace et al.
+  anio: 2024
+  tipo: preprint
+  url: https://arxiv.org/abs/2401.02843v1
+  fechaAcceso: 2026-10-02
+  verificacion: pendiente
+  doi: 10.48550/arXiv.2401.02843
+  fechaPublicacion: "2024-01-05"
+  autores:
+    - Katja Grace
+    - Harlan Stewart
+    - Julia Fabienne Sandkühler
+    - Stephen Thomas
+    - Ben Weinstein-Raun
+    - Jan Brauner
+- id: oit-empleo
+  titulo: Employment-to-population ratio (ILOSTAT)
+  organizacion: Organización Internacional del Trabajo
+  organizacionEn: International Labour Organization
+  anio: 2025
+  tipo: dataset
+  url: https://ilostat.ilo.org/data/snapshots/employment-to-population-ratio/
+  fechaAcceso: 2026-10-02
+  verificacion: pendiente
+- id: acemoglu-restrepo-2019
+  titulo: "Automation and New Tasks: How Technology Displaces and Reinstates Labor"
+  organizacion: Acemoglu y Restrepo, Journal of Economic Perspectives
+  organizacionEn: Acemoglu and Restrepo, Journal of Economic Perspectives
+  anio: 2019
+  tipo: revisado-por-pares
+  url: https://doi.org/10.1257/jep.33.2.3
+  fechaAcceso: 2026-10-02
+  doi: 10.1257/jep.33.2.3
+  verificacion: acceso-limitado
+- id: milanovic-2024
+  titulo: "The three eras of global inequality, 1820–2020 with the focus on the past thirty years"
+  organizacion: Milanovic, World Development
+  anio: 2024
+  tipo: revisado-por-pares
+  url: https://doi.org/10.1016/j.worlddev.2023.106516
+  fechaAcceso: 2026-10-02
+  doi: 10.1016/j.worlddev.2023.106516
+  verificacion: acceso-limitado
+- id: ifr-2024
+  titulo: "World Robotics 2024: Record of 4 Million Robots in Factories Worldwide"
+  organizacion: International Federation of Robotics
+  anio: 2024
+  tipo: dataset
+  url: https://ifr.org/ifr-press-releases/news/record-of-4-million-robots-working-in-factories-worldwide
+  fechaAcceso: 2026-10-02
+  verificacion: pendiente
+- id: aie-energia-ia
+  titulo: Energy and AI
+  organizacion: Agencia Internacional de la Energía
+  organizacionEn: International Energy Agency
+  anio: 2025
+  tipo: oficial
+  url: https://www.iea.org/reports/energy-and-ai
+  fechaAcceso: 2026-11-13
+  verificado: "2026-11-13"
+  verificacion: verificada
+- id: aie-electricidad-2025
+  titulo: "Electricity 2025: Analysis and forecast to 2027"
+  organizacion: Agencia Internacional de la Energía
+  organizacionEn: International Energy Agency
+  anio: 2025
+  tipo: oficial
+  url: https://www.iea.org/reports/electricity-2025
+  fechaAcceso: 2026-10-02
+  verificacion: pendiente
+- id: ei-statistical-review
+  titulo: Statistical Review of World Energy 2024
+  organizacion: Energy Institute
+  anio: 2024
+  tipo: dataset
+  url: https://www.energyinst.org/statistical-review
+  fechaAcceso: 2026-10-02
+  verificacion: pendiente
+- id: gcb-2024
+  titulo: Global Carbon Budget 2024
+  organizacion: Global Carbon Project
+  anio: 2025
+  tipo: revisado-por-pares
+  url: https://essd.copernicus.org/articles/17/965/2025/
+  fechaAcceso: 2026-11-13
+  verificacion: verificada
+  fechaPublicacion: "2025-03-14"
+  doi: 10.5194/essd-17-965-2025
+  verificado: "2026-11-13"
+- id: forster-2024
+  titulo: "Indicators of Global Climate Change 2023"
+  organizacion: Forster et al., Earth System Science Data
+  anio: 2024
+  tipo: revisado-por-pares
+  url: https://doi.org/10.5194/essd-16-2625-2024
+  fechaAcceso: 2026-10-02
+  doi: 10.5194/essd-16-2625-2024
+  verificacion: pendiente
+- id: ipcc-ar6-wg1
+  titulo: "Climate Change 2021: The Physical Science Basis (AR6 WGI)"
+  organizacion: IPCC
+  anio: 2021
+  tipo: oficial
+  url: https://www.ipcc.ch/report/ar6/wg1/
+  fechaAcceso: 2026-10-02
+  verificacion: pendiente
+- id: onu-wpp-2024
+  titulo: World Population Prospects 2024
+  organizacion: Naciones Unidas
+  organizacionEn: United Nations
+  anio: 2024
+  tipo: oficial
+  url: https://population.un.org/wpp/
+  fechaAcceso: 2026-10-02
+  verificacion: pendiente
+- id: xpt-2023
+  titulo: "Forecasting Existential Risk: Evidence from a Long-Run Forecasting Tournament"
+  organizacion: Karger et al., Forecasting Research Institute
+  anio: 2023
+  tipo: preprint
+  url: https://forecastingresearch.org/research/existential-risk-persuasion-tournament
+  fechaAcceso: 2026-10-02
+  verificacion: pendiente
+  fechaPublicacion: "2023-07-10"
+# Señales del punto de hoy (src/lib/futuros/hoy.ts)
+- id: coe-convenio-ia
+  titulo: Framework Convention on Artificial Intelligence and Human Rights, Democracy and the Rule of Law (CETS 225)
+  organizacion: Consejo de Europa
+  organizacionEn: Council of Europe
+  anio: 2024
+  tipo: oficial
+  url: https://www.coe.int/en/web/artificial-intelligence/the-framework-convention-on-artificial-intelligence
+  fechaAcceso: 2026-11-13
+  verificado: "2026-11-13"
+  verificacion: verificada
+- id: onu-panel-ia
+  titulo: Independent International Scientific Panel on AI
+  organizacion: Naciones Unidas
+  organizacionEn: United Nations
+  anio: 2025
+  tipo: oficial
+  url: https://www.un.org/independent-international-scientific-panel-ai/en/faq
+  fechaAcceso: 2026-10-02
+  verificacion: acceso-limitado
+- id: cfr-chips-2026
+  titulo: "The New AI Chip Export Policy to China: Strategically Incoherent and Unenforceable"
+  organizacion: Chris McGuire, Council on Foreign Relations
+  anio: 2026
+  tipo: analisis
+  url: https://www.cfr.org/articles/new-ai-chip-export-policy-china-strategically-incoherent-and-unenforceable
+  fechaAcceso: 2026-10-02
+  verificacion: pendiente
+  fechaPublicacion: "2026-01-14"
+  autores:
+    - Chris McGuire
+- id: brookings-delhi
+  titulo: "Sovereignty, safety, and scale: Takeaways from the India AI Impact Summit"
+  organizacion: Cameron F. Kerry y Elham Tabassi, Brookings
+  organizacionEn: Cameron F. Kerry and Elham Tabassi, Brookings
+  anio: 2026
+  tipo: analisis
+  url: https://www.brookings.edu/articles/takeaways-from-the-india-ai-impact-summit/
+  fechaAcceso: 2026-10-02
+  verificacion: pendiente
+- id: ue-ley-ia
+  titulo: "AI Act: regulatory framework for AI"
+  organizacion: Comisión Europea
+  organizacionEn: European Commission
+  anio: 2026
+  tipo: oficial
+  url: https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai
+  fechaAcceso: 2026-11-13
+  verificado: "2026-11-13"
+  verificacion: verificada
+- id: california-sb53
+  titulo: "SB 53: Transparency in Frontier Artificial Intelligence Act"
+  organizacion: Legislatura de California
+  organizacionEn: California Legislature
+  anio: 2025
+  tipo: oficial
+  url: https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260SB53
+  fechaAcceso: 2026-10-02
+  verificacion: acceso-limitado
+- id: eeuu-orden-14365
+  titulo: "Executive Order 14365: Ensuring a National Policy Framework for Artificial Intelligence"
+  organizacion: Federal Register (Estados Unidos)
+  organizacionEn: Federal Register (United States)
+  anio: 2025
+  tipo: oficial
+  url: https://www.federalregister.gov/documents/2025/12/16/2025-23092/ensuring-a-national-policy-framework-for-artificial-intelligence
+  fechaAcceso: 2026-10-02
+  verificacion: pendiente
+- id: hrw-armas-autonomas-2026
+  titulo: UN Talks on Killer Robots Ends with Calls for Negotiations Growing
+  organizacion: Human Rights Watch
+  anio: 2026
+  tipo: analisis
+  url: https://www.hrw.org/news/2026/09/07/un-talks-on-killer-robots-ends-with-calls-for-negotiations-growing
+  fechaAcceso: 2026-10-02
+  verificacion: pendiente
+# Contexto de las decisiones de los caminos (src/lib/caminos/decisiones.ts)
+- id: cfr-taiwan-2024
+  titulo: "Onshoring Semiconductor Production: National Security Versus Economic Efficiency"
+  organizacion: David Sacks y Seaton Huang, Council on Foreign Relations
+  organizacionEn: David Sacks and Seaton Huang, Council on Foreign Relations
+  anio: 2024
+  tipo: analisis
+  url: https://www.cfr.org/articles/onshoring-semiconductor-production-national-security-versus-economic-efficiency
+  fechaAcceso: 2026-10-02
+  verificacion: pendiente
+- id: ntia-pesos-2024
+  titulo: Dual-Use Foundation Models with Widely Available Model Weights
+  organizacion: NTIA, Departamento de Comercio de Estados Unidos
+  organizacionEn: NTIA, U.S. Department of Commerce
+  anio: 2024
+  tipo: oficial
+  url: https://www.ntia.gov/sites/default/files/publications/ntia-ai-open-model-report.pdf
+  fechaAcceso: 2026-10-02
+  verificacion: pendiente
+- id: seul-compromisos-2024
+  titulo: "Frontier AI Safety Commitments, AI Seoul Summit 2024"
+  organizacion: Gobierno del Reino Unido
+  organizacionEn: UK Government
+  anio: 2024
+  tipo: oficial
+  url: https://www.gov.uk/government/publications/frontier-ai-safety-commitments-ai-seoul-summit-2024/frontier-ai-safety-commitments-ai-seoul-summit-2024
+  fechaAcceso: 2026-10-02
+  verificacion: pendiente
+# Artículos ancla (src/content/articulos)
+- id: sevilla-2022
+  titulo: Compute Trends Across Three Eras of Machine Learning
+  organizacion: Sevilla, Heim, Ho, Besiroglu, Hobbhahn y Villalobos (IJCNN 2022)
+  organizacionEn: Sevilla, Heim, Ho, Besiroglu, Hobbhahn and Villalobos (IJCNN 2022)
+  anio: 2022
+  tipo: revisado-por-pares
+  url: https://doi.org/10.1109/IJCNN55064.2022.9891914
+  fechaAcceso: 2026-10-02
+  doi: 10.1109/IJCNN55064.2022.9891914
+  verificacion: acceso-limitado
+- id: iasr-2026
+  titulo: International AI Safety Report 2026
+  organizacion: Bengio et al., por encargo de más de 30 países
+  organizacionEn: Bengio et al., commissioned by more than 30 countries
+  anio: 2026
+  tipo: oficial
+  url: https://internationalaisafetyreport.org/publication/international-ai-safety-report-2026
+  fechaAcceso: 2026-11-13
+  verificado: "2026-11-13"
+  verificacion: verificada
+# Línea del tiempo (src/lib/linea/eventos.ts). Páginas web sin fecha propia: anio = año de consulta.
+- id: archaeology-escritura-2016
+  titulo: The World's Oldest Writing
+  organizacion: Archaeology Magazine
+  anio: 2016
+  tipo: prensa
+  url: https://archaeology.org/collection/the-worlds-oldest-writing/
+  fechaAcceso: 2026-10-02
+  verificacion: pendiente
+- id: sep-copernico
+  titulo: Nicolaus Copernicus
+  organizacion: Stanford Encyclopedia of Philosophy
+  anio: 2023
+  tipo: libro
+  url: https://plato.stanford.edu/entries/copernicus/
+  fechaAcceso: 2026-10-02
+  verificacion: pendiente
+- id: freeth-2006
+  titulo: Decoding the ancient Greek astronomical calculator known as the Antikythera Mechanism
+  organizacion: Freeth et al., Nature
+  anio: 2006
+  tipo: revisado-por-pares
+  url: https://doi.org/10.1038/nature05357
+  fechaAcceso: 2026-10-02
+  doi: 10.1038/nature05357
+  verificacion: acceso-limitado
+- id: vesuvius-2024
+  titulo: Vesuvius Challenge 2023 Grand Prize awarded
+  organizacion: Vesuvius Challenge
+  anio: 2024
+  tipo: analisis
+  url: https://scrollprize.org/grandprize
+  fechaAcceso: 2026-10-02
+  verificacion: pendiente
+- id: mit-hormigon-2023
+  titulo: "Riddle solved: Why was Roman concrete so durable?"
+  organizacion: MIT News
+  anio: 2023
+  tipo: prensa
+  url: https://news.mit.edu/2023/roman-concrete-durability-lime-casts-0106
+  fechaAcceso: 2026-10-02
+  verificacion: pendiente
+- id: seymour-2023
+  titulo: "Hot mixing: Mechanistic insights into the durability of ancient Roman concrete"
+  organizacion: Seymour et al., Science Advances
+  anio: 2023
+  tipo: revisado-por-pares
+  url: https://doi.org/10.1126/sciadv.add1602
+  fechaAcceso: 2026-10-02
+  doi: 10.1126/sciadv.add1602
+  verificacion: acceso-limitado
+- id: palimpsesto-arquimedes
+  titulo: The Archimedes Palimpsest
+  organizacion: Archimedes Palimpsest Project
+  tipo: analisis
+  url: https://www.archimedespalimpsest.org/about/history/
+  fechaAcceso: 2026-10-02
+  verificacion: pendiente
+- id: oms-viruela
+  titulo: History of smallpox vaccination
+  organizacion: Organización Mundial de la Salud
+  organizacionEn: World Health Organization
+  tipo: oficial
+  url: https://www.who.int/news-room/spotlight/history-of-vaccination/history-of-smallpox-vaccination
+  fechaAcceso: 2026-10-02
+  verificacion: pendiente
+- id: chm-lovelace
+  titulo: Ada Lovelace
+  organizacion: Computer History Museum
+  tipo: analisis
+  url: https://www.computerhistory.org/babbage/adalovelace/
+  fechaAcceso: 2026-10-02
+  verificacion: pendiente
+- id: gaynes-2017
+  titulo: The Discovery of Penicillin—New Insights After More Than 75 Years of Clinical Use
+  organizacion: Gaynes, Emerging Infectious Diseases
+  anio: 2017
+  tipo: revisado-por-pares
+  url: https://wwwnc.cdc.gov/eid/article/23/5/16-1556_article
+  fechaAcceso: 2026-10-02
+  verificacion: pendiente
+- id: ahf-trinity
+  titulo: Trinity Test
+  organizacion: Atomic Heritage Foundation
+  tipo: analisis
+  url: https://ahf.nuclearmuseum.org/ahf/history/trinity-test/
+  fechaAcceso: 2026-10-02
+  verificacion: pendiente
+- id: sep-turing
+  titulo: The Turing Test
+  organizacion: Stanford Encyclopedia of Philosophy
+  anio: 2021
+  tipo: libro
+  url: https://plato.stanford.edu/entries/turing-test/
+  fechaAcceso: 2026-10-02
+  verificacion: pendiente
+- id: dartmouth-1955
+  titulo: A Proposal for the Dartmouth Summer Research Project on Artificial Intelligence
+  organizacion: McCarthy, Minsky, Rochester y Shannon
+  organizacionEn: McCarthy, Minsky, Rochester and Shannon
+  anio: 1955
+  tipo: libro
+  url: http://www-formal.stanford.edu/jmc/history/dartmouth/dartmouth.html
+  fechaAcceso: 2026-10-02
+  verificacion: pendiente
+- id: unoda-tnp
+  titulo: Treaty on the Non-Proliferation of Nuclear Weapons (NPT)
+  organizacion: Oficina de Asuntos de Desarme de la ONU
+  organizacionEn: UN Office for Disarmament Affairs
+  tipo: oficial
+  url: https://disarmament.unoda.org/wmd/nuclear/npt/
+  fechaAcceso: 2026-10-02
+  verificacion: pendiente
+- id: nasa-apolo-11
+  titulo: Apollo 11
+  organizacion: NASA
+  tipo: oficial
+  url: https://www.nasa.gov/mission/apollo-11/
+  fechaAcceso: 2026-10-02
+  verificacion: pendiente
+- id: berg-1975
+  titulo: Summary statement of the Asilomar conference on recombinant DNA molecules
+  organizacion: Berg, Baltimore, Brenner, Roblin y Singer, PNAS
+  organizacionEn: Berg, Baltimore, Brenner, Roblin and Singer, PNAS
+  anio: 1975
+  tipo: revisado-por-pares
+  url: https://doi.org/10.1073/pnas.72.6.1981
+  fechaAcceso: 2026-10-02
+  doi: 10.1073/pnas.72.6.1981
+  verificacion: acceso-limitado
+- id: imperiale-2025
+  titulo: Two golden anniversaries in the biological sciences
+  organizacion: Imperiale y Casadevall, mSphere
+  organizacionEn: Imperiale and Casadevall, mSphere
+  anio: 2025
+  tipo: revisado-por-pares
+  url: https://pmc.ncbi.nlm.nih.gov/articles/PMC12188734/
+  fechaAcceso: 2026-10-02
+  verificacion: pendiente
+- id: pnuma-montreal
+  titulo: The Montreal Protocol
+  organizacion: Secretaría del Ozono del PNUMA
+  organizacionEn: UNEP Ozone Secretariat
+  tipo: oficial
+  url: https://ozone.unep.org/treaties/montreal-protocol
+  fechaAcceso: 2026-10-02
+  verificacion: pendiente
+- id: ipcc-historia
+  titulo: History of the IPCC
+  organizacion: IPCC
+  tipo: oficial
+  url: https://www.ipcc.ch/about/history/
+  fechaAcceso: 2026-10-02
+  verificacion: pendiente
+- id: cern-web
+  titulo: The birth of the Web
+  organizacion: CERN
+  tipo: oficial
+  url: https://home.cern/science/computing/the-birth-of-the-web/
+  fechaAcceso: 2026-10-02
+  verificacion: pendiente
+- id: nhgri-genoma
+  titulo: The Human Genome Project
+  organizacion: National Human Genome Research Institute
+  tipo: oficial
+  url: https://www.genome.gov/human-genome-project
+  fechaAcceso: 2026-10-02
+  verificacion: pendiente
+- id: krizhevsky-2012
+  titulo: ImageNet Classification with Deep Convolutional Neural Networks
+  organizacion: Krizhevsky, Sutskever y Hinton, NeurIPS
+  organizacionEn: Krizhevsky, Sutskever and Hinton, NeurIPS
+  anio: 2012
+  tipo: revisado-por-pares
+  url: https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks
+  fechaAcceso: 2026-10-02
+  verificacion: pendiente
+- id: onu-paris
+  titulo: The Paris Agreement
+  organizacion: Naciones Unidas
+  organizacionEn: United Nations
+  tipo: oficial
+  url: https://www.un.org/en/climatechange/paris-agreement
+  fechaAcceso: 2026-10-02
+  verificacion: acceso-limitado
+- id: vaswani-2017
+  titulo: Attention Is All You Need
+  organizacion: Vaswani et al.
+  anio: 2017
+  tipo: preprint
+  url: https://arxiv.org/abs/1706.03762
+  fechaAcceso: 2026-10-02
+  verificacion: pendiente
+- id: jumper-2021
+  titulo: Highly accurate protein structure prediction with AlphaFold
+  organizacion: Jumper et al., Nature
+  anio: 2021
+  tipo: revisado-por-pares
+  url: https://doi.org/10.1038/s41586-021-03819-2
+  fechaAcceso: 2026-10-02
+  doi: 10.1038/s41586-021-03819-2
+  verificacion: acceso-limitado
+- id: kva-nobel-2024
+  titulo: Nobelpriset i kemi 2024
+  organizacion: Real Academia Sueca de Ciencias
+  organizacionEn: Royal Swedish Academy of Sciences
+  anio: 2024
+  tipo: oficial
+  url: https://www.kva.se/en/news/nobelpriset-i-kemi-2024/
+  fechaAcceso: 2026-10-02
+  verificacion: pendiente
+- id: onu-dialogo-ia
+  titulo: Global Dialogue on AI Governance — FAQ
+  organizacion: Naciones Unidas
+  organizacionEn: United Nations
+  anio: 2026
+  tipo: oficial
+  url: https://www.un.org/global-dialogue-ai-governance/en/faq
+  fechaAcceso: 2026-10-03
+  verificacion: acceso-limitado
+- id: aie-ia-2026
+  titulo: Key Questions on Energy and AI
+  organizacion: Agencia Internacional de la Energía
+  organizacionEn: International Energy Agency
+  anio: 2026
+  tipo: oficial
+  url: https://www.iea.org/reports/key-questions-on-energy-and-ai/executive-summary
+  fechaPublicacion: "2026-04-16"
+  fechaAcceso: 2026-11-13
+  verificacion: verificada
+  verificado: "2026-11-13"
+- id: metr-horizontes-2025
+  titulo: Measuring AI Ability to Complete Long Software Tasks
+  organizacion: METR
+  anio: 2025
+  tipo: analisis
+  url: https://metr.org/blog/2025-03-19-measuring-ai-ability-to-complete-long-tasks/
+  fechaPublicacion: "2025-03-19"
+  fechaAcceso: 2026-11-13
+  verificacion: pendiente
+- id: metr-horizontes-2026
+  titulo: Task-Completion Time Horizons of Frontier AI Models
+  organizacion: METR
+  anio: 2026
+  tipo: dataset
+  url: https://metr.org/time-horizons/
+  fechaAcceso: 2026-11-13
+  verificacion: verificada
+  verificado: "2026-11-13"
+- id: metr-desarrolladores-2025
+  titulo: Measuring the Impact of Early-2025 AI on Experienced Open-Source Developer Productivity
+  organizacion: METR
+  anio: 2025
+  tipo: analisis
+  url: https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/
+  fechaPublicacion: "2025-07-10"
+  fechaAcceso: 2026-11-13
+  verificacion: verificada
+  verificado: "2026-11-13"
+- id: metr-productividad-2026
+  titulo: We are Changing our Developer Productivity Experiment Design
+  organizacion: METR
+  anio: 2026
+  tipo: analisis
+  url: https://metr.org/blog/2026-02-24-uplift-update/
+  fechaPublicacion: "2026-02-24"
+  fechaAcceso: 2026-11-13
+  verificacion: verificada
+  verificado: "2026-11-13"
+- id: oit-genai-2025
+  titulo: "Generative AI and Jobs: A Refined Global Index of Occupational Exposure"
+  organizacion: Organización Internacional del Trabajo
+  organizacionEn: International Labour Organization
+  anio: 2025
+  tipo: oficial
+  url: https://www.ilo.org/publications/generative-ai-and-jobs-refined-global-index-occupational-exposure
+  fechaPublicacion: "2025-05-20"
+  fechaAcceso: 2026-11-13
+  verificacion: verificada
+  verificado: "2026-11-13"
+  doi: 10.54394/HETP0387
+- id: nber-ia-trabajo-2023
+  titulo: Generative AI at Work (Working Paper 31161, November 2023 revision)
+  organizacion: Brynjolfsson, Li y Raymond (NBER)
+  organizacionEn: Brynjolfsson, Li and Raymond (NBER)
+  anio: 2023
+  tipo: preprint
+  url: https://www.nber.org/papers/w31161
+  fechaPublicacion: "2023-04"
+  fechaAcceso: 2026-11-13
+  verificacion: verificada
+  verificado: "2026-11-13"
+  doi: 10.3386/w31161
+  autores:
+    - Erik Brynjolfsson
+    - Danielle Li
+    - Lindsey R. Raymond

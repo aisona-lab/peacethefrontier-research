@@ -1,0 +1,76 @@
+---
+titulo: "Fiabilidad de agentes y productividad: qué permite concluir la evidencia"
+resumen: "Síntesis editorial de METR y del International AI Safety Report: distinguir éxito en evaluaciones, trabajo humano restante y productividad en un entorno laboral."
+clave: wp-fiabilidad-agentes
+tipoPublicacion: working-paper
+serie: PTF-WP
+numero: 2
+version: 0.1.0
+temas: [ia, tecnologias, computo]
+evidencia: emergente
+autor: Peace The Frontier
+publicado: 2026-11-14
+revisado: 2026-11-14
+fuentes: [metr-horizontes-2025, metr-horizontes-2026, metr-desarrolladores-2025, metr-productividad-2026, iasr-2026]
+asistidoPorIA: true
+estado: borrador
+sensible: false
+---
+
+import Nota from '../../../components/articulo/Nota.astro';
+
+**PTF-WP 2 · v0.1.0 · Borrador del 14 de noviembre de 2026.** Se utiliza la revisión de fuentes del **13 de noviembre de 2026**, distinta de las fechas de los estudios y sus periodos observados. Hubo asistencia de IA en redacción, traducción y comprobación documental. La revisión humana de la interpretación y traducción y la autorización editorial siguen pendientes. No se ha realizado un nuevo experimento ni se presenta una revisión sistemática.
+
+## Pregunta
+
+¿Qué permite concluir la evidencia documentada sobre la relación entre fiabilidad de agentes en evaluaciones y productividad de personas en su trabajo? Una prueba puede mostrar progreso en tareas concretas mientras un estudio laboral encuentra un efecto distinto. Para interpretar ambos hay que identificar la unidad medida, la población, las herramientas y el trabajo humano que permanece.
+
+Esta pregunta importa para el atlas porque el paso de capacidad a automatización y empleo contiene supuestos. La [revisión de agentes existente](/articulos/agentes-y-capacidades-de-ia/) y la de [IA, trabajo y economía](/articulos/ia-trabajo-y-economia/) ofrecen contexto. Aquí se examina la inferencia entre mediciones; no se estima un efecto agregado sobre ocupaciones ni se propone un coeficiente nuevo para el [modelo de futuros](/futuros/).
+
+## Método
+
+Se realiza una síntesis editorial acotada de cinco referencias ya incorporadas al inventario. El [registro de investigación](https://github.com/aisona-lab/peacethefrontier-atlas/blob/29b775d/docs/research/README.md), los [pasajes leídos](https://github.com/aisona-lab/peacethefrontier-atlas/blob/29b775d/docs/research/passages.json) y la [auditoría de fuentes](https://github.com/aisona-lab/peacethefrontier-atlas/blob/29b775d/docs/research/source-audit.json) delimitan lo comprobado. Se comparan definiciones, fechas, contextos y límites de transferencia. No hubo búsqueda exhaustiva, selección sistemática de estudios, metaanálisis, nueva muestra de participantes ni reanálisis de datos individuales.
+
+Cada afirmación se conserva asociada a su periodo. Se distingue el informe histórico de horizontes de marzo de 2025 del panel de 2026; el experimento con herramientas de principios de 2025 de su publicación en julio; y el seguimiento de febrero de 2026 de una medición actual en noviembre. Las diferencias entre esas fuentes no se resuelven promediando magnitudes con unidades incompatibles.
+
+## Hallazgos
+
+### El horizonte describe una evaluación concreta
+
+El estudio de METR publicado el 19 de marzo de 2025 comunicó una duplicación aproximada del horizonte cada siete meses durante los seis años anteriores, según recoge la revisión existente. Se conserva como contexto histórico atribuido. La auditoría mantiene pendiente la verificación de esa referencia y no registra un pasaje leído del original; el propio sitio marca su texto estático como desactualizado. Esta síntesis no lo eleva a una tendencia verificada para 2026.<Nota f="metr-horizontes-2025" />
+
+El panel posterior define el horizonte como la duración de una tarea, medida en tiempo de un experto humano, para la cual el agente tiene una probabilidad de éxito ajustada a un umbral determinado. Distingue 50 % y 80 %. Su última actualización declarada es el 8 de septiembre de 2026 y señala que ya no se mantiene activamente. «Panel de 2026» no significa medición de todos los sistemas disponibles el 13 de noviembre.<Nota f="metr-horizontes-2026" />
+
+Un horizonte de dos horas no significa dos horas de ejecución autónoma ni éxito en cualquier tarea que una persona termine en ese tiempo. Cambiar del umbral del 50 % al del 80 % cambia la exigencia de la comparación. Tampoco el segundo umbral basta para declarar aceptable un sistema en cualquier despliegue: importan los costes de fallar y la posibilidad de detectar el error.
+
+La revisión existente documenta una concentración en tareas de software, aprendizaje automático y áreas relacionadas, además de cobertura incompleta de modelos. Registra también la advertencia del panel sobre mediciones superiores a dieciséis horas con la colección actual. Estos límites restringen la generalización hacia otras profesiones y las extrapolaciones largas. Una tendencia sobre tareas seleccionadas no constituye un calendario de automatización general.<Nota f="metr-horizontes-2026" />
+
+### La productividad depende del procedimiento completo
+
+El experimento aleatorizado de METR publicado el 10 de julio de 2025 incluyó 16 desarrolladores experimentados de código abierto y 246 tareas en repositorios que conocían bien. Permitir herramientas de IA de principios de 2025 aumentó el tiempo medio de finalización un 19 % en ese entorno. Es un resultado sobre participantes, tareas y herramientas delimitados; no demuestra que la IA ralentice a todas las personas que programan.<Nota f="metr-desarrolladores-2025" />
+
+El resultado y los avances en evaluaciones pueden coexistir. Generar una solución candidata rápidamente puede ahorrar ejecución y aumentar revisión, corrección o integración. Esa explicación identifica mecanismos posibles, no una descomposición cuantificada del efecto observado. El resultado relevante para una organización depende del trabajo completo y de la calidad exigida para aceptar su finalización.
+
+El seguimiento publicado el 24 de febrero de 2026 trató herramientas de finales de 2025 y explicó cambios en el diseño experimental. Algunos desarrolladores no querían participar si debían trabajar sin IA. La compensación pasó de 150 a 50 dólares por hora, y el uso simultáneo de agentes dificultó medir el tiempo. Los autores consideran probable una mayor aceleración a principios de 2026, pero califican sus datos como evidencia muy débil de su magnitud debido a selección y problemas de medición.<Nota f="metr-productividad-2026" />
+
+No procede transformar ese seguimiento en una cifra actual de mejora ni borrar el resultado anterior. Las poblaciones dispuestas a participar y los procedimientos de cronometraje pueden cambiar. La lectura conjunta conserva el resultado de principios de 2025 y añade que los datos posteriores no proporcionan una estimación fiable de cuánto habría cambiado. Ninguno describe por sí solo la productividad de noviembre de 2026.
+
+### La seguridad exige otra inferencia
+
+El International AI Safety Report 2026 aporta una evaluación oficial de febrero de 2026 sobre capacidades y riesgos de sistemas de propósito general. Describe mejoras en operación autónoma y modelos capaces de distinguir evaluación y despliegue o encontrar resquicios en pruebas. En aquella evaluación, los sistemas carecían de las capacidades necesarias para los escenarios de pérdida de control descritos. Esta conclusión fechada no garantiza el comportamiento de versiones posteriores ni descarta otros daños.<Nota f="iasr-2026" />
+
+Así, fiabilidad en una prueba, utilidad económica y seguridad requieren evidencias relacionadas pero distintas. Una puntuación de éxito no mide automáticamente el coste de supervisión. Tampoco una mejora laboral mide la probabilidad de pérdida de control. El informe no proporciona probabilidades medidas de los cuatro futuros del atlas, y esta síntesis no las calcula.
+
+## Limitaciones
+
+La selección editorial no es exhaustiva ni independiente de las prioridades del atlas. La referencia histórica de METR sigue pendiente de verificación; los pasajes disponibles no equivalen a revisar íntegramente cada publicación. No se completó una búsqueda global de correcciones o retractaciones. La revisión documental del 13 de noviembre no prolonga los periodos observados ni convierte el panel de septiembre en un seguimiento continuo.
+
+Como propuesta de evaluación futura, convendría informar por separado preparación, ejecución, revisión y recuperación, además de herramientas, fecha, población y calidad aceptada. Para trabajo paralelo habría que especificar cómo se atribuye el tiempo humano. Son recomendaciones metodológicas de esta síntesis, no resultados de un nuevo estudio. Vincularlas al modelo requeriría justificar unidades y relaciones causales antes de cambiar parámetros.
+
+## Fuentes
+
+Las cinco fuentes se citan en el mismo orden en ambas lenguas. METR aporta investigación y un panel de evaluación; el International AI Safety Report es la fuente oficial. La [metodología del atlas](/metodologia/) explica el tratamiento de evidencia y borradores. Los enlaces documentales anteriores permiten comprobar qué se leyó y qué sigue pendiente; no acreditan aprobación editorial humana.
+
+## Historial de correcciones
+
+**v0.1.0 — 14 de noviembre de 2026:** primer borrador; separa horizontes de evaluación y productividad, conserva el resultado de 2025 junto a los límites del seguimiento y fecha la evaluación de seguridad. Revisión de fuentes utilizada: 13 de noviembre de 2026. Asistencia de IA declarada; revisión y autorización humana pendientes.

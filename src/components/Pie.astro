@@ -1,0 +1,99 @@
+---
+import { ruta, type Idioma } from '../i18n/rutas';
+import { textos } from '../i18n/ui';
+import NavegacionEspacios from './studio/NavegacionEspacios.astro';
+
+interface Props {
+	lang: Idioma;
+}
+
+const { lang } = Astro.props;
+const t = textos(lang);
+const anio = new Date().getFullYear();
+---
+
+<footer class="pie">
+	<div class="contenedor pie-rejilla">
+		<div class="pie-sobre">
+			<p class="pie-marca">Peace The Frontier</p>
+			<p>{t.pie.sobre}</p>
+		</div>
+		<nav class="ui" aria-label={t.pie.navegacion}>
+			<ul class="pie-enlaces">
+				<li><a href={ruta(lang, 'temas')}>{t.nav.temas}</a></li>
+				<li><a href={ruta(lang, 'metodologia')}>{t.nav.metodologia}</a></li>
+				<li><a href={ruta(lang, 'sobre')}>{t.nav.sobre}</a></li>
+				<li><a class="pie-apoyar" href={ruta(lang, 'apoyar')}>{t.pie.apoyar}</a></li>
+			</ul>
+		</nav>
+		<p class="ui pie-juego">
+			{t.pie.juego}{' '}
+			<a href="https://play.peacethefrontier.com/">play.peacethefrontier.com</a>.
+		</p>
+		<NavegacionEspacios lang={lang} />
+	</div>
+	<div class="contenedor pie-legal ui">
+		<p>© {anio} Peace The Frontier</p>
+		<p>{t.pie.privacidad}</p>
+	</div>
+</footer>
+
+<style>
+	.pie {
+		margin-top: var(--espacio-seccion);
+		padding-block: 3rem 2rem;
+		border-top: 1.5px solid var(--tinta);
+	}
+
+	.pie-rejilla {
+		display: grid;
+		gap: 2rem 3rem;
+	}
+
+	@media (min-width: 48rem) {
+		.pie-rejilla {
+			grid-template-columns: 2fr 1fr 1.5fr;
+		}
+	}
+
+	.pie-sobre {
+		max-width: 24rem;
+	}
+
+	.pie-marca {
+		margin-bottom: 0.5rem;
+		font-size: var(--t-h3);
+		font-weight: 200;
+	}
+
+	.pie-enlaces {
+		display: grid;
+		gap: 0.6rem;
+	}
+
+	/* El punto de sodio es el mismo acento que marca "tú" en la regla. */
+	.pie-apoyar::before {
+		content: '';
+		display: inline-block;
+		width: 0.55rem;
+		height: 0.55rem;
+		margin-right: 0.5rem;
+		border-radius: 50%;
+		background: var(--sodio);
+		box-shadow: 0 0 0 1px var(--sobre-sodio);
+	}
+
+	.pie-juego {
+		color: var(--tinta-suave);
+	}
+
+	.pie-legal {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		gap: 0.5rem 2rem;
+		margin-top: 3rem;
+		color: var(--tinta-suave);
+		font-size: var(--t-mini);
+	}
+</style>

@@ -1,0 +1,144 @@
+---
+// "Cómo citar esta página": texto y BibTeX con botón de copiar (patrón de Our World in Data y Distill).
+import type { Idioma } from '../i18n/rutas';
+import { textos } from '../i18n/ui';
+import { PERFIL } from '../lib/studio/config';
+import { urlPublica } from '../lib/studio/espacios';
+
+interface Props {
+	lang: Idioma;
+	titulo: string;
+	/** Ruta de la página; se convierte en URL absoluta. */
+	ruta: string;
+	clave: string;
+}
+
+const { lang, titulo, ruta, clave } = Astro.props;
+const t = textos(lang).citar;
+const anio = new Date().getFullYear();
+const url = urlPublica(ruta, PERFIL);
+const comillas = lang === 'es' ? `«${titulo}»` : `“${titulo}.”`;
+const texto = `Peace The Frontier (${anio}). ${comillas} ${url}`;
+const bibtex = `@misc{ptf${anio}${clave.replaceAll('-', '')},
+  author   = {{Peace The Frontier}},
+  title    = {${titulo}},
+  year     = {${anio}},
+  url      = {${url}},
+  language = {${lang === 'es' ? 'spanish' : 'english'}}
+}`;
+---
+
+<details class="citar ui">
+	<summary>{t.titulo}</summary>
+	<div class="citar-cuerpo">
+		{
+			[
+				{ etiqueta: t.texto, contenido: texto, codigo: false },
+				{ etiqueta: 'BibTeX', contenido: bibtex, codigo: true },
+			].map(({ etiqueta, contenido, codigo }) => (
+				<div class="citar-bloque">
+					<div class="citar-fila">
+						<p class="citar-etiqueta">{etiqueta}</p>
+						<button class="citar-copiar" type="button" data-copiado={t.copiado} hidden>
+							{t.copiar}
+						</button>
+					</div>
+					{codigo ? <pre>{contenido}</pre> : <p class="citar-texto">{contenido}</p>}
+				</div>
+			))
+		}
+		<p class="citar-error" role="status" data-error={t.errorCopia}></p>
+	</div>
+</details>
+
+<script>
+	// Copia el bloque al portapapeles. Sin JS (o sin portapapeles) el texto se selecciona a mano.
+	for (const boton of document.querySelectorAll<HTMLButtonElement>('.citar-copiar')) {
+		if (!navigator.clipboard) continue;
+		boton.hidden = false;
+		const original = boton.textContent ?? '';
+		boton.addEventListener('click', async () => {
+			const bloque = boton.closest('.citar-bloque');
+			const estado = boton.closest('.citar')?.querySelector<HTMLElement>('.citar-error');
+			try {
+				await navigator.clipboard.writeText(bloque?.querySelector('pre, .citar-texto')?.textContent ?? '');
+				boton.textContent = boton.dataset.copiado ?? original;
+				if (estado) estado.textContent = '';
+				setTimeout(() => (boton.textContent = original), 2000);
+			} catch (error) {
+				console.warn('No se pudo copiar la cita', error);
+				if (estado) estado.textContent = estado.dataset.error ?? '';
+			}
+		});
+	}
+</script>
+
+<style>
+	.citar {
+		max-width: var(--medida);
+		min-width: 0;
+		border-block: 1px solid var(--linea);
+	}
+
+	summary {
+		padding-block: 0.9rem;
+		cursor: pointer;
+		color: var(--tinta);
+	}
+
+	summary:hover {
+		color: var(--enlace);
+	}
+
+	.citar-cuerpo {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr);
+		gap: 1.25rem;
+		padding-bottom: 1.25rem;
+	}
+
+	.citar-fila {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		margin-bottom: 0.4rem;
+	}
+
+	.citar-etiqueta {
+		color: var(--tinta-suave);
+	}
+
+	.citar-copiar {
+		min-height: 2rem;
+		padding: 0.2rem 0.75rem;
+		border: 1px solid var(--linea);
+		border-radius: 999px;
+		background: none;
+		cursor: pointer;
+		font-size: var(--t-mini);
+	}
+
+	.citar-copiar:hover {
+		background: var(--superficie);
+	}
+
+	.citar-texto,
+	pre {
+		margin: 0;
+		padding: 0.85rem 1rem;
+		background: var(--superficie);
+		font-size: var(--t-mini);
+		line-height: 1.55;
+		overflow-wrap: anywhere;
+	}
+
+	pre {
+		overflow-x: auto;
+		white-space: pre-wrap;
+		font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+	}
+
+	.citar-error:empty {
+		display: none;
+	}
+</style>

@@ -1,0 +1,383 @@
+---
+// Caminos: once decisiones de hoy a 2040; cada elección mueve el punto de la matriz (fase G5).
+import { getCollection, getEntry, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Fuente from '../Fuente.astro';
+import MatrizFuturos from '../futuros/MatrizFuturos.astro';
+import { otroIdioma, ruta, type Idioma } from '../../i18n/rutas';
+import { textos } from '../../i18n/ui';
+import { DECISIONES, INICIO } from '../../lib/caminos/decisiones';
+import { destino, etiqueta } from '../../lib/caminos/motor';
+import { textoOpcion, textoPosicion } from '../../lib/caminos/texto';
+
+interface Props {
+	lang: Idioma;
+}
+
+const { lang } = Astro.props;
+const entrada = await getEntry('paginas', `${lang}/caminos`);
+if (!entrada) throw new Error(`Falta src/content/paginas/${lang}/caminos.mdx`);
+const { Content } = await render(entrada);
+const t = textos(lang);
+const fuentes = new Map((await getCollection('fuentes')).map((f) => [f.id, f.data]));
+const faltan = DECISIONES.flatMap((d) => d.fuentes).filter((id) => !fuentes.has(id));
+if (faltan.length) throw new Error(`Fuentes de decisiones.ts sin ficha en fuentes.yaml: ${faltan.join(', ')}`);
+const inicial = destino(INICIO, lang);
+---
+
+<Base lang={lang} titulo={entrada.data.titulo} descripcion={entrada.data.descripcion} alternativa={ruta(otroIdioma(lang), 'caminos')}>
+	<ptf-caminos class="contenedor caminos" data-lang={lang}>
+		<header class="caminos-cabecera prosa">
+			<h1>{entrada.data.titulo}</h1>
+			<p class="entradilla">{entrada.data.descripcion}</p>
+			<details class="caminos-metodo">
+				<summary class="ui">{t.caminos.metodo}</summary>
+				<Content />
+			</details>
+		</header>
+
+		<form class="caminos-cuerpo" data-formulario>
+			<ol class="decisiones">
+				{
+					DECISIONES.map((d) => (
+						<li>
+							<fieldset class="decision" id={`decision-${d.id}`}>
+								<legend>
+									<span class="decision-anio ui">{d.anio}</span>
+									<span class="decision-titulo">{d.titulo[lang]}</span>
+								</legend>
+								<p class="decision-contexto">{d.contexto[lang]}</p>
+								<p class="decision-fuentes ui">
+									{`${t.caminos.fuentes}: `}
+									{d.fuentes.map((id, i) => {
+										const f = fuentes.get(id)!;
+										return (
+											<>
+												{i > 0 && '; '}
+												<Fuente fuente={f} lang={lang} compacta />
+											</>
+										);
+									})}
+								</p>
+								<ul class="opciones">
+									{d.opciones.map((o) => {
+										const texto = textoOpcion(lang, o);
+										return (
+											<li class="opcion" data-etiqueta={etiqueta(o.criterios)}>
+												<label>
+													<input type="radio" name={d.id} value={o.id} />
+													<span class="opcion-texto">{o.texto[lang]}</span>
+													<span class="opcion-meta ui">
+														<strong class="opcion-etiqueta">{texto.etiqueta}.</strong> {texto.porque} {texto.efecto}
+													</span>
+												</label>
+											</li>
+										);
+									})}
+								</ul>
+							</fieldset>
+						</li>
+					))
+				}
+			</ol>
+
+			<section class="caminos-resumen" aria-labelledby="titulo-resumen" data-resumen>
+				<h2 id="titulo-resumen">{t.caminos.resumenTitulo}</h2>
+				<p data-resumen-texto>{t.caminos.sinJs}</p>
+				<p class="ui" data-resumen-destino hidden>
+					{t.caminos.llevaA} <a href={inicial.url}>{t.futuros.cuadrantes[inicial.id].nombre}</a>.
+				</p>
+			</section>
+
+			<aside class="caminos-panel ui" aria-labelledby="titulo-camino">
+				<h2 id="titulo-camino">{t.caminos.panel}</h2>
+				<div class="caminos-matriz">
+					<MatrizFuturos lang={lang} variante="mini" posicion={INICIO} />
+				</div>
+				<p data-elegidas>{t.caminos.elegidas(0, DECISIONES.length)}</p>
+				<output class="caminos-resultado" data-resultado>
+					<span>{t.caminos.llevaA}</span>
+					<strong data-destino-nombre>{t.futuros.cuadrantes[inicial.id].nombre}</strong>
+					<span class="caminos-posicion" data-posicion>{textoPosicion(lang, INICIO)}</span>
+				</output>
+				<a class="caminos-enlace" data-destino href={inicial.url}>{t.caminos.verFuturo}</a>
+				<button class="caminos-reiniciar" type="reset">{t.caminos.reiniciar}</button>
+				<p class="caminos-sin-js" data-sin-js>{t.caminos.sinJs}</p>
+			</aside>
+		</form>
+	</ptf-caminos>
+</Base>
+
+<script>
+	import '../caminos/caminos';
+</script>
+
+<style>
+	ptf-caminos {
+		display: block;
+		padding-top: clamp(3rem, 2rem + 4vw, 6rem);
+	}
+
+	.caminos-cabecera h1 {
+		font-size: var(--t-titulo);
+	}
+
+	.caminos-cuerpo {
+		display: grid;
+		gap: 2.5rem;
+		margin-top: var(--espacio-seccion);
+	}
+
+	@media (min-width: 64rem) {
+		.caminos-cuerpo {
+			grid-template-columns: minmax(0, 1fr) 20rem;
+			align-items: start;
+			gap: 4rem;
+		}
+
+		.caminos-panel {
+			grid-column: 2;
+			grid-row: 1 / span 2;
+			position: sticky;
+			top: calc(var(--alto-cabecera) + 1.5rem);
+		}
+	}
+
+	.caminos-metodo {
+		margin-top: 1.5rem;
+		border-block: 1px solid var(--linea);
+	}
+
+	.caminos-metodo summary {
+		padding-block: 0.9rem;
+		cursor: pointer;
+	}
+
+	.caminos-metodo summary:hover {
+		color: var(--enlace);
+	}
+
+	.caminos-metodo[open] {
+		padding-bottom: 1rem;
+	}
+
+	/* El resumen va al final de la lista, en la columna de las decisiones. */
+	.caminos-resumen {
+		max-width: var(--medida);
+		margin-top: clamp(2.5rem, 2rem + 2vw, 4rem);
+		padding: 1.25rem 1.5rem;
+		border-left: 3px solid var(--sodio);
+		background: var(--superficie);
+	}
+
+	.caminos-resumen h2 {
+		font-size: var(--t-h3);
+	}
+
+	.caminos-resumen p {
+		margin-top: 0.6rem;
+	}
+
+	@media (min-width: 64rem) {
+		.caminos-resumen {
+			grid-column: 1;
+			grid-row: 2;
+		}
+	}
+
+	.decisiones {
+		display: grid;
+		gap: clamp(2.5rem, 2rem + 2vw, 4rem);
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.decision {
+		max-width: var(--medida);
+		margin: 0;
+		padding: 0;
+		border: 0;
+	}
+
+	legend {
+		display: grid;
+		gap: 0.3rem;
+		padding: 0;
+	}
+
+	.decision-anio {
+		color: var(--tinta-suave);
+		font-variant-numeric: tabular-nums;
+	}
+
+	.decision-titulo {
+		font-size: var(--t-h3);
+		line-height: 1.25;
+	}
+
+	.decision-contexto {
+		margin-top: 0.9rem;
+	}
+
+	.decision-fuentes {
+		margin-top: 0.5rem;
+		color: var(--tinta-suave);
+		font-size: var(--t-mini);
+	}
+
+	.opciones {
+		display: grid;
+		gap: 0.5rem;
+		margin: 1.25rem 0 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.opcion label {
+		display: grid;
+		grid-template-columns: auto minmax(0, 1fr);
+		gap: 0.2rem 0.75rem;
+		padding: 0.8rem 1rem;
+		border: 1px solid var(--linea);
+		border-radius: 0.5rem;
+		cursor: pointer;
+		transition: background-color var(--dur-rapida), border-color var(--dur-rapida);
+	}
+
+	.opcion label:hover {
+		background: var(--superficie);
+	}
+
+	.opcion label:has(input:checked) {
+		border-color: var(--tinta);
+		background: var(--superficie);
+		box-shadow: inset 3px 0 0 var(--tinta);
+	}
+
+	.opcion label:has(input:focus-visible) {
+		outline: 2px solid var(--foco);
+		outline-offset: 2px;
+	}
+
+	input {
+		grid-row: span 2;
+		margin: 0.3rem 0 0;
+		accent-color: var(--tinta);
+	}
+
+	.opcion-meta {
+		color: var(--tinta-suave);
+		font-size: var(--t-mini);
+	}
+
+	.opcion-etiqueta {
+		font-weight: 600;
+	}
+
+	.opcion[data-etiqueta='etico'] .opcion-etiqueta {
+		color: var(--etico);
+	}
+
+	.opcion[data-etiqueta='no-etico'] .opcion-etiqueta {
+		color: var(--no-etico);
+	}
+
+	.caminos-panel {
+		display: grid;
+		gap: 0.9rem;
+		align-content: start;
+	}
+
+	.caminos-panel h2 {
+		font-size: var(--t-h3);
+		font-weight: 400;
+	}
+
+	/* El punto de un camino recorre sobre todo el centro: celdas más altas y nombres en las esquinas exteriores.
+	   .caminos-panel sube la especificidad por encima de .matriz-mini. */
+	.caminos-panel .caminos-matriz :global(.puerta a) {
+		min-height: 5.5rem;
+	}
+
+	.caminos-panel .caminos-matriz :global(.puerta-pausa a),
+	.caminos-panel .caminos-matriz :global(.puerta-frontera-en-paz a) {
+		justify-content: flex-start;
+	}
+
+	.caminos-panel .caminos-matriz :global(.puerta-fractura a),
+	.caminos-panel .caminos-matriz :global(.puerta-carrera a) {
+		justify-content: flex-end;
+	}
+
+	.caminos-panel [data-elegidas],
+	.caminos-posicion {
+		color: var(--tinta-suave);
+		font-size: var(--t-mini);
+	}
+
+	.caminos-resultado {
+		display: grid;
+		gap: 0.2rem;
+	}
+
+	.caminos-resultado strong {
+		font-size: var(--t-h3);
+		font-weight: 600;
+	}
+
+	/* Estilo propio: .control vive dentro de Cabecera y no llega aquí (sin él, WebKit oscuro pintaba gris sobre gris). */
+	.caminos-reiniciar {
+		justify-self: start;
+		min-height: 2.5rem;
+		padding: 0.45rem 0.95rem;
+		border: 1px solid var(--linea);
+		border-radius: 999px;
+		background: var(--fondo);
+		color: var(--tinta);
+		font: inherit;
+		cursor: pointer;
+		transition: background-color var(--dur-rapida);
+	}
+
+	.caminos-reiniciar:hover {
+		background: var(--superficie);
+	}
+
+	.caminos-reiniciar:focus-visible {
+		outline: 2px solid var(--foco);
+		outline-offset: 2px;
+	}
+
+	/* En móvil, el panel va pegado abajo y sin matriz: solo el destino y sus acciones. */
+	@media (max-width: 63.99rem) {
+		.caminos-panel {
+			position: sticky;
+			bottom: 0;
+			grid-template-columns: minmax(0, 1fr) auto;
+			gap: 0.4rem 1rem;
+			margin-inline: calc(-1 * var(--margen));
+			padding: 0.75rem var(--margen);
+			border-top: 1px solid var(--linea);
+			background: var(--fondo);
+		}
+
+		.caminos-panel > :not(.caminos-resultado, .caminos-enlace, .caminos-reiniciar, [data-sin-js]) {
+			display: none;
+		}
+
+		.caminos-resultado strong {
+			font-size: var(--t-base);
+		}
+
+		.caminos-enlace {
+			grid-column: 1;
+		}
+
+		.caminos-reiniciar {
+			grid-column: 2;
+			grid-row: 1 / span 2;
+			align-self: center;
+		}
+	}
+</style>

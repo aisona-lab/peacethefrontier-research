@@ -1,0 +1,132 @@
+---
+import Base from '../../layouts/Base.astro';
+import IndiceTemas from '../IndiceTemas.astro';
+import Destacados from '../Destacados.astro';
+import MatrizFuturos from '../futuros/MatrizFuturos.astro';
+import NivelesEvidencia from '../NivelesEvidencia.astro';
+import Regla from '../Regla.astro';
+import { otroIdioma, ruta, type Idioma } from '../../i18n/rutas';
+import { textos } from '../../i18n/ui';
+import { rutaEspacio, urlPublica } from '../../lib/studio/espacios';
+import { PERFIL } from '../../lib/studio/config';
+
+interface Props {
+	lang: Idioma;
+}
+
+const { lang } = Astro.props;
+const t = textos(lang);
+
+const jsonld = {
+	'@context': 'https://schema.org',
+	'@type': 'WebSite',
+	name: 'Peace The Frontier',
+	url: urlPublica(rutaEspacio('atlas', lang), PERFIL),
+	inLanguage: lang,
+	description: t.sitio.descripcion,
+};
+---
+
+<Base
+	lang={lang}
+	descripcion={t.sitio.descripcion}
+	alternativa={rutaEspacio('atlas', otroIdioma(lang))}
+	jsonld={jsonld}
+>
+	<section class="contenedor portada" aria-labelledby="titulo-portada">
+		<div class="portada-texto">
+			<div class="portada-principal">
+				<h1 id="titulo-portada">{t.portada.titulo}</h1>
+				<p class="entradilla">{t.portada.entradilla}</p>
+				<nav class="orientacion ui" aria-label={t.portada.orientacion}>
+					<a href={ruta(lang, 'sobre')}>{t.portada.queEs}</a>
+					<a href={ruta(lang, 'metodologia')}>{t.portada.comoTrabajamos}</a>
+				</nav>
+			</div>
+			<MatrizFuturos lang={lang} variante="portada" />
+		</div>
+	</section>
+
+	<div class="contenedor seccion">
+		<Destacados lang={lang} variante="completo" />
+	</div>
+
+	<section class="contenedor seccion" id="temas" aria-labelledby="titulo-temas">
+		<div class="seccion-cabecera">
+			<h2 id="titulo-temas">{t.portada.temasTitulo}</h2>
+			<p>{t.portada.temasTexto}</p>
+		</div>
+		<Regla lang={lang} />
+		<IndiceTemas lang={lang} variante="completo" encabezado="h3" />
+	</section>
+
+	<section class="contenedor seccion" aria-labelledby="titulo-evidencia">
+		<div class="seccion-cabecera">
+			<h2 id="titulo-evidencia">{t.portada.evidenciaTitulo}</h2>
+			<p>{t.portada.evidenciaTexto}</p>
+		</div>
+		<NivelesEvidencia lang={lang} variante="rejilla" />
+		<p class="ui mas"><a href={ruta(lang, 'metodologia')}>{t.portada.evidenciaMas}</a></p>
+	</section>
+</Base>
+
+<style>
+	.portada {
+		padding-top: clamp(2.5rem, 1.5rem + 5vw, 6.5rem);
+	}
+
+	.portada h1 {
+		max-width: 15ch;
+		font-size: clamp(2.75rem, 1.2rem + 5vw, 5.25rem);
+		line-height: 1.02;
+	}
+
+	.portada .entradilla {
+		margin-top: clamp(1.5rem, 1rem + 2vw, 2.5rem);
+		color: var(--tinta-suave);
+	}
+
+	/* Enlaces de orientación para quien llega por primera vez. */
+	.orientacion {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 0.5rem;
+		margin-top: 1.5rem;
+	}
+
+	.portada-texto {
+		display: grid;
+		gap: clamp(3rem, 2rem + 4vw, 5rem);
+	}
+
+	@media (min-width: 64rem) {
+		.portada-texto {
+			grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+			align-items: end;
+		}
+	}
+
+	.seccion :global(.regla) {
+		margin-bottom: clamp(2.5rem, 2rem + 3vw, 4rem);
+	}
+
+	.seccion {
+		padding-top: var(--espacio-seccion);
+	}
+
+	.seccion-cabecera {
+		display: grid;
+		gap: 1rem;
+		max-width: var(--medida);
+		margin-bottom: 2.5rem;
+	}
+
+	.seccion-cabecera p {
+		color: var(--tinta-suave);
+	}
+
+	.mas {
+		margin-top: 2.5rem;
+	}
+</style>

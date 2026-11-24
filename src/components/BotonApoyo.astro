@@ -1,0 +1,52 @@
+---
+import type { Idioma } from '../i18n/rutas';
+import { textos } from '../i18n/ui';
+import { ENLACE_APOYO } from '../lib/sitio';
+
+interface Props {
+	lang: Idioma;
+}
+
+const t = textos(Astro.props.lang).apoyo;
+---
+
+{
+	ENLACE_APOYO ? (
+		<a class="boton-apoyo ui" href={ENLACE_APOYO} rel="noopener">
+			{t.boton}
+		</a>
+	) : (
+		<p class="apoyo-pronto ui">{t.pronto}</p>
+	)
+}
+
+<style>
+	.boton-apoyo {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.6rem;
+		min-height: 3rem;
+		padding: 0.75rem 1.5rem;
+		border-radius: 999px;
+		background: var(--sodio);
+		color: var(--sobre-sodio);
+		font-weight: 600;
+		text-decoration: none;
+		transition: translate var(--dur-rapida) var(--ease-salida);
+	}
+
+	.boton-apoyo:hover {
+		translate: 0 -2px;
+	}
+
+	.boton-apoyo:active {
+		translate: 0 0;
+	}
+
+	.apoyo-pronto {
+		padding: 1rem 1.25rem;
+		border-left: 2px solid var(--sodio);
+		background: var(--superficie);
+		color: var(--tinta-suave);
+	}
+</style>

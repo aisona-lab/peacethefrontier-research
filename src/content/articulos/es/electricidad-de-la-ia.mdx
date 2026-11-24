@@ -1,0 +1,45 @@
+---
+titulo: La electricidad de la IA
+resumen: La AIE estima 485 TWh para todos los centros de datos en 2025 y proyecta 950 TWh en 2030. Qué distingue esas cifras de la IA sola y de los supuestos del modelo.
+clave: electricidad
+temas: [energia, computo, planeta]
+evidencia: emergente
+autor: Peace The Frontier
+publicado: 2026-10-02
+revisado: 2026-11-13
+fuentes: [aie-energia-ia, aie-ia-2026, epoch-computo, epoch-hardware]
+asistidoPorIA: true
+estado: borrador
+---
+
+import Nota from '../../../components/articulo/Nota.astro';
+
+## Cuánta electricidad
+
+La Agencia Internacional de la Energía estima que los centros de datos consumieron unos 415 TWh en 2024, cerca del 1,5 % de la electricidad mundial. En su escenario base, llegarán a unos 945 TWh en 2030, algo menos del 3 % del total.<Nota f="aie-energia-ia" />
+
+La actualización de abril de 2026 estima 485 TWh para 2025 y proyecta unos 950 TWh en 2030. Son cifras de todos los centros de datos, incluidas cargas ajenas a la IA. El informe estima un crecimiento del 17 % para todos los centros de datos en 2025 y del 50 % para los orientados a IA; estas categorías no proporcionan un total mundial exacto de la IA sola.<Nota f="aie-ia-2026" />
+
+## Por qué crece menos que el cómputo
+
+El análisis de Epoch de 2024 resumió el crecimiento histórico del cómputo de entrenamiento de frontera en entre 4 y 5 veces al año,<Nota f="epoch-computo" /> pero esa cifra mide el mayor entrenamiento de cada momento, no todo lo que hacen los centros de datos. Su electricidad, que incluye la web, el vídeo y el uso diario de la IA, crece en el escenario base de la AIE algo menos de un 15 % al año: de 415 TWh en 2024 a 945 en 2030.<Nota f="aie-energia-ia" /> Son medidas distintas, y no hay que esperar que vayan al mismo ritmo.
+
+La muestra de hardware de Epoch de 2023 estimó una duplicación de la eficiencia energética cada 3 años: alrededor de un 26 % más de operaciones por unidad de energía al año. Esta tendencia histórica del hardware no mide el coste energético de todas las tareas de IA.<Nota f="epoch-hardware" /> Eso explica solo una parte de la diferencia.
+
+La eficiencia, sin embargo, no garantiza que el consumo baje. Las operaciones más baratas pueden incentivar más entrenamiento y uso; la magnitud de este rebote es incierta.
+
+## Limpia o fósil
+
+El efecto climático depende tanto de la demanda eléctrica como de las emisiones de su suministro. La AIE examina restricciones de suministro y distintas fuentes de generación.<Nota f="aie-ia-2026" /> Nuestros [caminos](/caminos/) tratan el despliegue de energía limpia como una decisión política; no modelan una red eléctrica regional.
+
+## En el modelo
+
+En el [modelo de futuros](/futuros/), la electricidad de centros de datos parte de unos 550 TWh en 2026, una estimación del modelo entre la estimación de la AIE de 2024 y su proyección anterior de 2030. El repositorio original no documentaba una fórmula exacta de interpolación. No es un valor observado en 2026 ni una base exclusiva de IA; se conserva el identificador histórico del indicador. Crece con la capacidad de la IA, se modera con la eficiencia y no puede pasar del 20 % de la electricidad mundial. Ese techo es un supuesto nuestro, no un dato. En los futuros más rápidos el techo manda: Frontera en paz y Carrera acaban con una electricidad modelada de centros de datos parecida, como se ve en el tema de [energía](/temas/energia/).
+
+## Lo que no sabemos
+
+Las proyecciones dependen de cuánto siga creciendo el cómputo, de cuánto mejoren los chips y de cuánta IA se use, no solo de cuánta se entrene. La AIE también publica escenarios posteriores a 2030, incluido 2035. Son proyecciones condicionales, no observaciones ni pronósticos precisos. La estimación nueva de 2025 y la proyección de 2030 no miden directamente la base de 2026 del modelo, por lo que esta actualización cambia sus etiquetas de procedencia y conserva sus entradas numéricas.
+
+## Corrección — 13 de noviembre de 2026
+
+Se sustituyó la afirmación sin fecha de «hoy», se añadió la edición de la AIE de 2026, se distinguieron todos los centros de datos de la IA y se corrigió la afirmación de que no existen escenarios posteriores a 2030. La base de 550 TWh sigue siendo una estimación del modelo.

@@ -1,0 +1,187 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Synthetic service-continuity CSV row v1.0.0",
+  "description": "Schema applies to typed CSV values: booleans true/false, decimal numbers; every record is synthetic. Units and Spanish descriptions are annotations. See dataset cards for conservation equations and limits.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "synthetic",
+    "dataset_version",
+    "seed",
+    "policy",
+    "hour",
+    "step_hours",
+    "capacity_slots",
+    "recovery_budget_slots_per_hour",
+    "demand_service_units",
+    "requested_unavailable_slots",
+    "newly_unavailable_slots",
+    "unavailable_start_slots",
+    "unavailable_during_slots",
+    "available_during_slots",
+    "served_service_units",
+    "unmet_service_units",
+    "recovered_slots",
+    "unavailable_end_slots",
+    "service_ratio",
+    "capacity_availability_ratio",
+    "recovered_to_full"
+  ],
+  "properties": {
+    "synthetic": {
+      "type": "boolean",
+      "const": true,
+      "unit": "dimensionless",
+      "description": "Every row is synthetic, not an observation.",
+      "description_es": "Toda fila es sintética, no una observación."
+    },
+    "dataset_version": {
+      "type": "string",
+      "const": "1.0.0",
+      "unit": "identifier",
+      "description": "Synthetic artifact version.",
+      "description_es": "Versión del artefacto sintético."
+    },
+    "seed": {
+      "type": "integer",
+      "minimum": 1,
+      "unit": "identifier",
+      "description": "Unsigned 32-bit scenario seed; shared across policies.",
+      "description_es": "Semilla de escenario de 32 bits sin signo; común a las políticas.",
+      "maximum": 20
+    },
+    "policy": {
+      "type": "string",
+      "enum": [
+        "steady",
+        "rapid-recovery",
+        "extra-capacity"
+      ],
+      "unit": "identifier",
+      "description": "Capacity and recovery policy.",
+      "description_es": "Política de capacidad y recuperación."
+    },
+    "hour": {
+      "type": "integer",
+      "minimum": 0,
+      "unit": "hour",
+      "description": "Relative interval start, not a calendar timestamp.",
+      "description_es": "Inicio relativo del intervalo, no una fecha de calendario.",
+      "maximum": 47
+    },
+    "step_hours": {
+      "type": "integer",
+      "minimum": 0,
+      "unit": "hour",
+      "description": "Interval duration.",
+      "description_es": "Duración del intervalo.",
+      "const": 1
+    },
+    "capacity_slots": {
+      "type": "integer",
+      "minimum": 1,
+      "unit": "slot",
+      "description": "Installed slots, each delivering one service unit per hour.",
+      "description_es": "Plazas instaladas; cada una entrega una unidad de servicio por hora."
+    },
+    "recovery_budget_slots_per_hour": {
+      "type": "integer",
+      "minimum": 0,
+      "unit": "slot/hour",
+      "description": "Maximum slots repairable per hour, separate from service throughput.",
+      "description_es": "Máximo de plazas reparables por hora, separado del servicio."
+    },
+    "demand_service_units": {
+      "type": "integer",
+      "minimum": 0,
+      "unit": "service_unit",
+      "description": "Demand arriving within this one-hour interval.",
+      "description_es": "Demanda que llega en este intervalo de una hora."
+    },
+    "requested_unavailable_slots": {
+      "type": "integer",
+      "minimum": 0,
+      "unit": "slot",
+      "description": "Exogenous requested loss; identical input across policies for a seed.",
+      "description_es": "Pérdida exógena solicitada; entrada idéntica entre políticas para una semilla."
+    },
+    "newly_unavailable_slots": {
+      "type": "integer",
+      "minimum": 0,
+      "unit": "slot",
+      "description": "Realized loss, capped at slots still available at interval start.",
+      "description_es": "Pérdida efectiva, limitada a plazas disponibles al inicio."
+    },
+    "unavailable_start_slots": {
+      "type": "integer",
+      "minimum": 0,
+      "unit": "slot",
+      "description": "Unavailable slots inherited from previous end of hour; initially zero.",
+      "description_es": "Plazas no disponibles heredadas del final anterior; inicialmente cero."
+    },
+    "unavailable_during_slots": {
+      "type": "integer",
+      "minimum": 0,
+      "unit": "slot",
+      "description": "Unavailable during service, after interruption and before repair.",
+      "description_es": "Plazas no disponibles durante el servicio, tras la interrupción y antes de reparar."
+    },
+    "available_during_slots": {
+      "type": "integer",
+      "minimum": 0,
+      "unit": "slot",
+      "description": "Slots able to serve demand in this interval.",
+      "description_es": "Plazas capaces de atender demanda en este intervalo."
+    },
+    "served_service_units": {
+      "type": "integer",
+      "minimum": 0,
+      "unit": "service_unit",
+      "description": "Work served, bounded by demand and available slots times one hour.",
+      "description_es": "Servicio entregado, limitado por demanda y plazas disponibles por una hora."
+    },
+    "unmet_service_units": {
+      "type": "integer",
+      "minimum": 0,
+      "unit": "service_unit",
+      "description": "Unserved work discarded at interval end; no backlog.",
+      "description_es": "Servicio no atendido descartado al terminar el intervalo; sin cola."
+    },
+    "recovered_slots": {
+      "type": "integer",
+      "minimum": 0,
+      "unit": "slot",
+      "description": "End-of-hour repairs; cannot serve work until the next interval.",
+      "description_es": "Reparaciones al final de la hora; no sirven demanda hasta el intervalo siguiente."
+    },
+    "unavailable_end_slots": {
+      "type": "integer",
+      "minimum": 0,
+      "unit": "slot",
+      "description": "Unavailable slots carried to next interval, after repair.",
+      "description_es": "Plazas no disponibles trasladadas al intervalo siguiente, después de reparar."
+    },
+    "service_ratio": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "unit": "fraction",
+      "description": "Served/demand; defined as one when demand is zero.",
+      "description_es": "Servicio/demanda; se define como uno si la demanda es cero."
+    },
+    "capacity_availability_ratio": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "unit": "fraction",
+      "description": "Available/installed capacity during service; not service fulfilment.",
+      "description_es": "Capacidad disponible/instalada durante el servicio; no es demanda satisfecha."
+    },
+    "recovered_to_full": {
+      "type": "boolean",
+      "unit": "dimensionless",
+      "description": "True only when positive unavailable capacity reaches zero at this interval end.",
+      "description_es": "Verdadero solo cuando una pérdida positiva de capacidad llega a cero al final del intervalo."
+    }
+  }
+}

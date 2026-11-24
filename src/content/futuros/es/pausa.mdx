@@ -1,0 +1,106 @@
+---
+premisa: Los países firman un tratado que limita el desarrollo de la IA más avanzada. Se puede investigar y usar la IA actual, pero entrenar sistemas mucho más capaces requiere permisos y verificación internacional.
+supuestos:
+  - Un tratado internacional limita el cómputo de entrenamiento de los modelos de frontera.
+  - Un organismo verifica el cumplimiento, como ocurre con la energía nuclear.
+  - Los beneficios de la IA existente se reparten con políticas activas.
+  - La cooperación evita las grandes crisis entre bloques.
+ganancias:
+  - Tiempo para adaptar la educación, el empleo y las leyes.
+  - El riesgo de catástrofe es el más bajo de los cuatro futuros.
+  - La concentración del poder apenas sube y la desigualdad baja.
+perdidas:
+  - Curas, materiales y descubrimientos llegan décadas más tarde.
+  - Mantener el tratado exige vigilar el cómputo, con costes para la libertad.
+  - Hay presión constante de quien quiere salirse para ganar ventaja.
+---
+
+import Ambito from '../../../components/futuros/Ambito.astro';
+import Cifra from '../../../components/futuros/Cifra.astro';
+import Parada from '../../../components/futuros/Parada.astro';
+
+<Parada anio={2026} />
+
+<Parada anio={2036}>
+<Ambito id="humanidad">
+El tratado da tiempo. La IA solo puede hacer <Cifra v="automatizacion" anio={2036} /> de las tareas humanas y el empleo apenas cambia: tiene trabajo <Cifra v="empleo" anio={2036} /> de la población en edad de trabajar. Escuelas y universidades aprovechan la pausa para cambiar lo que enseñan.
+</Ambito>
+<Ambito id="tecnologia">
+La IA es útil pero acotada: entrenar sistemas mucho más capaces requiere permiso. Hay <Cifra v="robots" anio={2036} /> de robots en funcionamiento, casi todos en fábricas, y los centros de datos consumen <Cifra v="energiaIA" anio={2036} /> al año.
+</Ambito>
+<Ambito id="ciencia">
+La ciencia se acelera más despacio que en los futuros sin freno: el ritmo de descubrimiento es <Cifra v="ciencia" anio={2036} /> el de 2026. Algunos fármacos que ya podrían existir todavía esperan.
+</Ambito>
+<Ambito id="planeta">
+La transición energética avanza sin prisa pero sin pausa: la energía limpia llega al <Cifra v="energiaLimpia" anio={2036} /> y el calentamiento ronda <Cifra v="temperatura" anio={2036} />.
+</Ambito>
+<Ambito id="politica">
+Un organismo internacional verifica el cómputo de los grandes centros de datos, como se hace con el material nuclear, y algunos países presionan para salirse. El índice de concentración del poder se mantiene en <Cifra v="poder" anio={2036} /> y el riesgo acumulado de catástrofe es de <Cifra v="riesgo" anio={2036} />.
+</Ambito>
+</Parada>
+
+<Parada anio={2046} />
+
+<Parada anio={2056}>
+<Ambito id="humanidad">
+La automatización crece de forma gradual hasta <Cifra v="automatizacion" anio={2056} /> de las tareas, con tiempo para que la gente cambie de oficio. La desigualdad baja a <Cifra v="desigualdad" anio={2056} />, porque los beneficios de la IA se reparten con políticas públicas.
+</Ambito>
+<Ambito id="tecnologia">
+Los robots despegan tarde, pero despegan: hay <Cifra v="robots" anio={2056} /> de robots en funcionamiento.
+</Ambito>
+<Ambito id="ciencia">
+La ciencia avanza <Cifra v="ciencia" anio={2056} /> respecto a 2026. Curas que en otros futuros llegaron una o dos décadas antes aquí todavía están en ensayo.
+</Ambito>
+<Ambito id="planeta">
+La energía limpia ya es mayoría: <Cifra v="energiaLimpia" anio={2056} />. El calentamiento llega a <Cifra v="temperatura" anio={2056} /> y empieza a frenarse.
+</Ambito>
+<Ambito id="politica">
+El debate central es cuándo levantar los límites y cómo saber que es seguro hacerlo. El riesgo acumulado de catástrofe se mantiene en <Cifra v="riesgo" anio={2056} />.
+</Ambito>
+</Parada>
+
+<Parada anio={2066} />
+
+<Parada anio={2076} />
+
+<Parada anio={2086}>
+<Ambito id="humanidad">
+La automatización alcanza <Cifra v="automatizacion" anio={2086} /> de las tareas y tiene empleo <Cifra v="empleo" anio={2086} /> de la población en edad de trabajar. La transición fue lenta y, por eso, menos traumática.
+</Ambito>
+<Ambito id="tecnologia">
+Hay <Cifra v="robots" anio={2086} /> de robots. Llegan las tecnologías que la pausa retrasó, ya con reglas probadas durante décadas.
+</Ambito>
+<Ambito id="ciencia">
+El ritmo de la ciencia es <Cifra v="ciencia" anio={2086} /> el de 2026: más lento que en los futuros sin freno, pero sin que nadie pierda el control de lo que se investiga.
+</Ambito>
+<Ambito id="planeta">
+Casi toda la energía es limpia (<Cifra v="energiaLimpia" anio={2086} />) y el calentamiento se estabiliza cerca de <Cifra v="temperatura" anio={2086} />.
+</Ambito>
+<Ambito id="politica">
+La concentración del poder apenas ha cambiado (<Cifra v="poder" anio={2086} />). El riesgo acumulado de catástrofe, <Cifra v="riesgo" anio={2086} />, viene sobre todo de amenazas que no tienen que ver con la IA.
+</Ambito>
+</Parada>
+
+<Parada anio={2096} />
+
+<Parada anio={2106} />
+
+<Parada anio={2116} />
+
+<Parada anio={2126}>
+<Ambito id="humanidad">
+Un siglo después, tiene empleo <Cifra v="empleo" anio={2126} /> de la población en edad de trabajar: menos que hoy, pero con una desigualdad más baja (<Cifra v="desigualdad" anio={2126} />).
+</Ambito>
+<Ambito id="tecnologia">
+Hay <Cifra v="robots" anio={2126} /> de robots. Las mismas tecnologías que otros futuros tuvieron antes llegaron aquí, solo que más tarde.
+</Ambito>
+<Ambito id="ciencia">
+El ritmo de la ciencia es <Cifra v="ciencia" anio={2126} /> el de 2026.
+</Ambito>
+<Ambito id="planeta">
+El calentamiento quedó contenido en torno a <Cifra v="temperatura" anio={2126} />.
+</Ambito>
+<Ambito id="politica">
+El riesgo acumulado de catástrofe, <Cifra v="riesgo" anio={2126} />, es de los más bajos de los cuatro futuros. El coste fue otro: varias generaciones esperaron curas y avances que podían haber llegado antes.
+</Ambito>
+</Parada>

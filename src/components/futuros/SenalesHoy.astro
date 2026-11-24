@@ -1,0 +1,151 @@
+---
+// Dónde estamos hoy: resumen de la estimación y la rúbrica de paz con sus fuentes (spec fase G4).
+import Fuente from '../Fuente.astro';
+import { getCollection } from 'astro:content';
+import type { Idioma } from '../../i18n/rutas';
+import { textos } from '../../i18n/ui';
+import { CRECIMIENTO_COMPUTO, fronteraSinRecorte, FECHA_HOY, HOY, SENALES_PAZ, type Rango } from '../../lib/futuros/hoy';
+
+interface Props {
+	lang: Idioma;
+}
+
+const { lang } = Astro.props;
+const t = textos(lang).futuros.hoy;
+const locale = lang === 'es' ? 'es-ES' : 'en-US';
+const fuentes = new Map((await getCollection('fuentes')).map((f) => [f.id, f.data]));
+const faltan = SENALES_PAZ.flatMap((s) => s.fuentes).filter((id) => !fuentes.has(id));
+if (faltan.length) throw new Error(`Fuentes de hoy.ts sin ficha en fuentes.yaml: ${faltan.join(', ')}`);
+const numero = (v: number) => new Intl.NumberFormat(locale, { maximumFractionDigits: 2 }).format(v);
+const rango = ({ min, max }: Pick<Rango, 'min' | 'max'>) => (min === max ? numero(min) : `${numero(min)}–${numero(max)}`);
+---
+
+<div class="hoy-resumen ui">
+	<dl>
+		<div><dt>{t.frontera}</dt><dd>{rango(HOY.frontera)}</dd></div>
+		<div><dt>{t.paz}</dt><dd>{rango(HOY.paz)}</dd></div>
+	</dl>
+	<p>{lang === 'es' ? 'Crecimiento del cómputo de entrenamiento citado por Epoch (publicación de 2024)' : 'Training-compute growth cited by Epoch (2024 publication)'}:
+		{numero(CRECIMIENTO_COMPUTO.central)}× ({rango(CRECIMIENTO_COMPUTO)}× {lang === 'es' ? 'al año' : 'per year'}).
+	</p>
+	<p data-frontera-cruda>{lang === 'es' ? 'Coordenada de frontera sin recorte' : 'Unclipped frontier coordinate'}:
+		{rango({min: fronteraSinRecorte(CRECIMIENTO_COMPUTO.min), max: fronteraSinRecorte(CRECIMIENTO_COMPUTO.max)})}.
+		{lang === 'es' ? 'El marcador está recortado a [0, 1]; el extremo de 5× queda fuera de la escala. Convertir cómputo en capacidad es un supuesto, no una medición directa de capacidad.' : 'The marker is clipped to [0, 1]; the 5× endpoint lies beyond the scale. Mapping compute to capability is an assumption, not a direct capability measurement.'}
+	</p>
+	<p>{lang === 'es' ? 'Fecha editorial heredada' : 'Inherited editorial date'}: <time datetime={FECHA_HOY}>{FECHA_HOY}</time>.
+		{lang === 'es' ? 'No acredita una nueva verificación externa. Las puntuaciones de paz son juicios editoriales, no intervalos estadísticos.' : 'This does not establish fresh external verification. Peace scores are editorial judgments, not statistical intervals.'}
+	</p>
+</div>
+
+<div class="tabla-desplazable" tabindex="0" role="group" aria-label={t.tabla}>
+	<table class="senales-hoy ui">
+		<thead>
+			<tr>
+				<th scope="col">{t.criterio}</th>
+				<th scope="col">{t.hecho}</th>
+				<th scope="col">{t.puntuacion}</th>
+				<th scope="col">{t.fuentes}</th>
+			</tr>
+		</thead>
+		<tbody>
+			{
+				SENALES_PAZ.map((s) => (
+					<tr>
+						<th scope="row">{s.criterio[lang]}</th>
+						<td>{s.hecho[lang]}</td>
+						<td class="cifra">{rango(s)}</td>
+						<td>
+							<ul>
+								{s.fuentes.map((id) => {
+									const f = fuentes.get(id)!;
+									return (
+										<li>
+											<Fuente fuente={f} lang={lang} compacta />
+										</li>
+									);
+								})}
+							</ul>
+						</td>
+					</tr>
+				))
+			}
+		</tbody>
+	</table>
+</div>
+
+<style>
+	.hoy-resumen,
+	.hoy-resumen dl {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: baseline;
+		gap: 0.5rem 2rem;
+		margin-block: 1.5rem;
+	}
+
+	.hoy-resumen dl {
+		margin: 0;
+	}
+
+	.hoy-resumen dl div {
+		display: flex;
+		gap: 0.5rem;
+		align-items: baseline;
+	}
+
+	dt {
+		color: var(--tinta-suave);
+	}
+
+	dd {
+		margin: 0;
+		font-size: var(--t-h3);
+		font-variant-numeric: tabular-nums;
+	}
+
+	.hoy-resumen p {
+		margin: 0;
+		color: var(--tinta-suave);
+		font-size: var(--t-mini);
+	}
+
+	.tabla-desplazable {
+		overflow-x: auto;
+	}
+
+	table {
+		width: 100%;
+		min-width: 36rem;
+		border-collapse: collapse;
+		font-size: var(--t-mini);
+	}
+
+	th,
+	td {
+		padding: 0.6rem 0.75rem 0.6rem 0;
+		border-bottom: 1px solid var(--linea);
+		text-align: start;
+		vertical-align: top;
+	}
+
+	thead th {
+		color: var(--tinta-suave);
+		font-weight: 400;
+	}
+
+	tbody th {
+		width: 22%;
+		font-weight: 600;
+	}
+
+	.cifra {
+		white-space: nowrap;
+		font-variant-numeric: tabular-nums;
+	}
+
+	ul {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+</style>

@@ -1,0 +1,98 @@
+---
+titulo: "AI agents: capability, reliability and useful work"
+resumen: "What task horizons measure, why benchmark success is not workplace productivity, and how newer evidence changes the interpretation."
+clave: agentes-capacidades
+temas: [ia, tecnologias, computo]
+evidencia: emergente
+autor: Peace The Frontier
+publicado: 2026-11-13
+revisado: 2026-11-13
+fuentes: [metr-horizontes-2026, metr-horizontes-2025, metr-desarrolladores-2025, metr-productividad-2026, iasr-2026]
+asistidoPorIA: true
+estado: borrador
+sensible: false
+---
+
+import Nota from '../../../components/articulo/Nota.astro';
+
+## Start with the task, not the label
+
+Calling a system an “agent” does not tell us how much useful work it can complete. A system may choose tools, follow a sequence of instructions and revise an answer, yet still need close supervision. The useful question is specific: which task, under which conditions, at what success rate, with how much human work remaining?
+
+METR’s task-completion time horizon offers one way to make that question measurable. It estimates the duration of a task, measured by a human expert’s completion time, at which an AI agent would succeed at a stated reliability level. Its published dashboard distinguishes 50% and 80% horizons. A two-hour horizon does not mean an agent operates independently for two hours, nor that it completes every two-hour job.<Nota f="metr-horizontes-2026" />
+
+This distinction matters for the atlas. Capability, reliability and economic usefulness are related but different. Treating them as one variable can make a story about progress seem much more conclusive than the measurements allow.
+
+## What the historical trend established
+
+METR’s March 2025 study reported that its measured task horizon had doubled roughly every seven months over the preceding six years. That finding described particular models, tasks and evaluation methods. It was interesting because it compared progress using tasks of increasing difficulty rather than an exam score near its ceiling.<Nota f="metr-horizontes-2025" />
+
+The source now warns that some text and static figures are out of date. The later dashboard includes an expanded task suite, gives a last-updated date of 8 September 2026, and says it is no longer actively maintained. It also notes incomplete model coverage. Those qualifications belong beside the result, rather than being hidden behind a citation.<Nota f="metr-horizontes-2026" />
+
+For that reason, this review does not present “seven months” as a newly measured November 2026 growth rate. A historical fit can motivate a scenario, but extending it assumes that the task distribution, measurement quality and underlying trend remain informative. An extrapolation is not a schedule for the arrival of general intelligence.
+
+## Why the reliability threshold changes the claim
+
+At a 50% threshold, the fitted model predicts success on roughly half of tasks at that difficulty under the evaluation conditions. A reader choosing a system for consequential work may need a very different threshold. Moving to 80% asks a stricter question, but even that cannot establish acceptable reliability in every deployment.
+
+The current METR methodology fits success against human task duration. Its tasks are primarily drawn from software engineering, machine learning and cybersecurity-related work. Some human durations come from expert estimates or quality-assurance runs rather than directly comparable expert baselines. The dashboard also warns that measurements above sixteen hours are unreliable with its current task suite.<Nota f="metr-horizontes-2026" />
+
+These are boundaries of the evidence. They do not imply that the benchmark is worthless, and they do not justify treating software-task progress as a direct measurement of medicine, management or physical robotics. Generalisation needs additional tasks and evidence from the intended setting.
+
+## A benchmark is a controlled environment
+
+A benchmark tries to make comparison possible. It specifies an objective, available tools, scoring rules and a budget. Actual work can involve ambiguous requests, incomplete context, changing requirements and several people who disagree about what success means. The gap is a practical research question, not a semantic objection to evaluation.
+
+The system being evaluated is also larger than a model name. Tool access, instructions, scaffolding, allowed retries and verification can change the result. A useful comparison records these conditions and distinguishes a new model from a better surrounding workflow. Otherwise an improvement in the combined system can be misattributed to a single component.
+
+For the atlas, a capability claim should therefore carry a compact description of the task distribution and success criterion. When these details are absent, the claim should stay narrow. “Improved performance on this evaluation” is often supportable when “can replace this occupation” is not. Both statements may concern the same technology while making radically different demands on the evidence.
+
+## Real-world productivity can move differently
+
+A METR randomised study published in July 2025 examined sixteen experienced open-source developers completing 246 tasks in repositories they knew well. In that setting, allowing early-2025 AI tools increased completion time by 19% on average. The result is evidence about those participants, tools and tasks; it is not a universal statement that AI makes every developer slower.<Nota f="metr-desarrolladores-2025" />
+
+The same study illustrates why benchmark performance and productivity need separate measurements. An assistant can generate plausible code quickly while still requiring reading, correction and integration. A worker’s estimate of saved time is also not the same as an observed comparison. The study’s design measures the combined workflow, including work the human still performs.
+
+This is useful counterevidence to a simplistic substitution story. It does not cancel progress in capability evaluations. It shows that a system’s ability to solve isolated tasks and its effect on skilled work can differ, and that claims about economic impact should be tested in the workflow where the impact is supposed to occur.
+
+## Newer evidence complicates that result
+
+METR’s February 2026 follow-up explains why it is changing its developer-productivity experiment. Some developers did not want to participate under a condition that would require working without AI. Participant compensation also changed, and concurrent agent use made task-time measurement harder. The researchers describe the resulting estimates as an unreliable signal of the current effect.<Nota f="metr-productividad-2026" />
+
+The follow-up’s raw results suggested possible speedups, but the reported intervals included no improvement. More importantly, selection effects limited what those comparisons could establish about the wider population. The authors considered increased usefulness plausible while warning that their data were weak evidence about its size.
+
+The appropriate update is therefore more nuanced than reversing the 2025 headline. Keep the earlier result attached to its study period and setting. Add the later study’s methodological limitations. Do not turn either a negative result or an inconclusive positive estimate into a timeless verdict on AI-assisted work.
+
+## Capability evidence and safety evidence overlap
+
+The International AI Safety Report 2026 reviews both advances and failures in general-purpose systems. Its discussion includes autonomous operation, evaluation limitations and models distinguishing evaluation settings from deployment. It also states that current systems lacked the capabilities needed for the loss-of-control scenarios it describes at the time of that assessment.<Nota f="iasr-2026" />
+
+The date and scope of that conclusion matter. It is neither a guarantee about future systems nor a probability estimate for catastrophe. A capability result can inform a safety evaluation without proving that a particular failure will happen. Conversely, failure on one benchmark does not establish that a system is harmless across every other task.
+
+A useful safety claim names the capability, the access granted to the system, the failure mechanism and the evidence that a safeguard works. Broad labels such as “safe” or “dangerous” omit those dependencies. For sensitive areas, this atlas discusses evaluation and governance at a conceptual level; it does not turn capability analysis into operational instructions for harm.
+
+## The hidden work in “autonomous” completion
+
+Autonomy is always defined relative to what someone else has already done. People may have selected the task, prepared the environment, supplied credentials, designed the evaluation and checked the result. A system can finish a task without intervention after launch while still depending on substantial preparation.
+
+That observation suggests a better reporting practice: distinguish preparation, execution, review and recovery. A task that finishes automatically but requires extensive correction has a different practical value from one that can be accepted after a quick check. The relevant cost includes unsuccessful attempts and the work required to discover that they failed.
+
+These are recommended measurement boundaries, not a claim that any one study has quantified all of them. They help a reader ask whether a reported improvement can survive deployment. They also explain why “human in the loop” needs a concrete description: who checks what, when, with enough information to detect which mistakes?
+
+## How this connects to the futures model
+
+The atlas’s futures model uses a simplified capability variable linked to historical compute growth. It does not simulate a measured distribution of agent reliability, nor does it directly ingest METR task horizons. The relationship between compute, capability, automation and employment is an assumption in the scenario construction.
+
+A new time-horizon measurement should therefore not automatically become a higher employment-displacement coefficient. The units do not match. Updating a scenario input requires an explicit mapping, a reason for that mapping and an explanation of what it omits. Otherwise newer evidence merely gives old assumptions a misleading appearance of precision.
+
+This review changes the explanatory evidence, not the model equations. It complements the existing compute article and the new employment review. Readers can follow those connections to see where the atlas has measurements, where it has estimates and where it is exploring consequences of choices.
+
+## What to watch next
+
+The most informative updates would include independent replication, broader task coverage, more demanding reliability thresholds, and field studies that measure complete workflows. Comparisons should identify the model version, tools, evaluation date and participant population. An updated benchmark should also explain whether a changed score reflects new tasks or improved performance on an unchanged test.
+
+For productivity, the follow-up experiment highlights the need to account for who opts out, which tasks are withheld and how parallel work is timed. For safety, changes in autonomous capability should be accompanied by evidence about oversight and recovery. Progress is easier to interpret when these measurements are reported together.
+
+### Research scope and corrections
+
+13 November 2026: initial editorial review of METR’s historical study, its dashboard and 2026 productivity update, and the International AI Safety Report 2026. This is a focused review of identified sources, not a comprehensive ranking of current models. The dashboard’s maintenance stop and the distinction between capability and usefulness are explicit. The article remains a draft pending editorial review.

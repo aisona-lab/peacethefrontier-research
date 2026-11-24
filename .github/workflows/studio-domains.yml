@@ -1,0 +1,95 @@
+name: Activate Research Studio domains (manual)
+on:
+  workflow_dispatch:
+    inputs:
+      activate:
+        description: 'Deploy the reviewed main revision to the five Studio domains'
+        required: true
+        type: boolean
+        default: false
+permissions:
+  contents: read
+concurrency:
+  group: CI-refs/heads/main
+  cancel-in-progress: false
+jobs:
+  prepare:
+    if: github.ref == 'refs/heads/main' && inputs.activate
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: Require persistent multi-domain deployment setting
+        env:
+          PTF_MULTISITE: ${{ vars.PTF_MULTISITE }}
+        run: |
+          if [ "$PTF_MULTISITE" != "1" ]; then
+            echo 'Set the PTF_MULTISITE repository variable to 1 before activation; this keeps future main deployments on the same five-domain architecture.'
+            exit 1
+          fi
+      - run: npm run check
+      - run: npm test
+      - run: npm run simulation:check
+      - run: npx playwright install --with-deps
+      - run: npm run build
+      - run: npm run test:csp
+      - run: npm run test:e2e
+      - run: npx lhci autorun
+      - run: npm run build:spaces
+      - uses: actions/upload-artifact@v7
+        with:
+          name: studio-domains
+          path: |
+            dist-studio/
+            dist-atlas/
+            dist-research/
+            dist-sim/
+            dist-open/
+          retention-days: 3
+  spaces:
+    needs: prepare
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        surface: [atlas, research, sim, open]
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - uses: actions/download-artifact@v8
+        with:
+          name: studio-domains
+      - name: Deploy space
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          node scripts/verificar-revision.mjs
+          npx wrangler deploy --config deploy/wrangler-${{ matrix.surface }}.jsonc
+  studio:
+    needs: spaces
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - uses: actions/download-artifact@v8
+        with:
+          name: studio-domains
+      - name: Activate primary-domain Studio after its spaces
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          node scripts/verificar-revision.mjs
+          npx wrangler deploy --config deploy/wrangler-studio.jsonc

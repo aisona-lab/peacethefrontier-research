@@ -1,0 +1,60 @@
+---
+// Ecuaciones en MathML, generadas al compilar (sin JS en el cliente).
+import temml from 'temml';
+import type { Idioma } from '../../i18n/rutas';
+import { ECUACIONES } from '../../lib/futuros/ecuaciones';
+
+interface Props {
+	lang: Idioma;
+}
+
+const { lang } = Astro.props;
+---
+
+<dl class="ecuaciones">
+	{
+		ECUACIONES.map((e) => (
+			<div class="ecuacion" id={`ecuacion-${e.id}`}>
+				<dt>{e.titulo[lang]}</dt>
+				<dd>
+					<div class="ecuacion-formula" tabindex="0" role="group" aria-label={e.titulo[lang]}>
+						<Fragment set:html={temml.renderToString(e.latex, { displayMode: true })} />
+					</div>
+					<p>{e.descripcion[lang]}</p>
+				</dd>
+			</div>
+		))
+	}
+</dl>
+
+<style>
+	.ecuaciones {
+		display: grid;
+		/* minmax(0, …): sin esto la fórmula más larga ensancha la rejilla y el desplazamiento horizontal no actúa. */
+		grid-template-columns: minmax(0, 1fr);
+		gap: 2rem;
+		margin: 1.5rem 0 0;
+	}
+
+	dt {
+		font-family: var(--fuente-sans);
+		font-size: var(--t-ui);
+		font-weight: 600;
+	}
+
+	dd {
+		margin: 0.5rem 0 0;
+	}
+
+	.ecuacion-formula {
+		overflow-x: auto;
+		padding: 0.75rem 1rem;
+		background: var(--superficie);
+		font-size: 1.125rem;
+	}
+
+	dd p {
+		margin-top: 0.6rem;
+		color: var(--tinta-suave);
+	}
+</style>

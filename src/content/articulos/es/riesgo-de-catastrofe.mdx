@@ -1,0 +1,46 @@
+---
+titulo: ¿Cuánto riesgo de catástrofe?
+resumen: Expertos y superpronosticadores dan a una catástrofe causada por la IA antes de 2100 probabilidades que difieren en un factor de cinco. Qué se preguntó, qué respondieron y por qué nadie puede medirlo.
+clave: riesgo
+temas: [riesgo, gobernanza, ia]
+evidencia: especulativo
+autor: Peace The Frontier
+publicado: 2026-10-02
+revisado: 2026-11-13
+fuentes: [xpt-2023, grace-2024, iasr-2026]
+sensible: true
+asistidoPorIA: true
+estado: borrador
+---
+
+import Nota from '../../../components/articulo/Nota.astro';
+
+## Qué es una catástrofe aquí
+
+Llamamos catástrofe a un suceso que mate al menos al 10 % de la humanidad en un periodo de 5 años. Es la definición que usó el torneo de pronósticos que citamos abajo y la que usa nuestro [modelo de futuros](/futuros/#ecuacion-riesgo). La extinción es otra pregunta, mucho más extrema.
+
+## Qué dicen los pronosticadores
+
+Entre junio y octubre de 2022, antes de que se publicara ChatGPT, un torneo reunió a expertos en cada riesgo y a superpronosticadores, personas con un historial probado de acierto, para estimar riesgos a largo plazo. Para una catástrofe por cualquier causa antes de 2100 (pandemias, guerra nuclear, IA y el resto), la mediana de los superpronosticadores fue del 9,05 % y la de los expertos, del 20 %. Para una catástrofe causada solo por la IA, la de los expertos en IA fue del 12 % y la de los superpronosticadores, del 2,13 %. Para la extinción causada por la IA, un 3 % y un 0,38 %.<Nota f="xpt-2023" />
+
+En la IA, los expertos dieron entre cinco y ocho veces más probabilidad que los superpronosticadores.
+
+## Qué dicen los investigadores
+
+Una encuesta de 2023 a 2.778 investigadores que publican en las principales conferencias de IA encontró que entre el 38 % y el 51 % daba al menos un 10 % de probabilidad a que la IA avanzada lleve a resultados tan malos como la extinción humana.<Nota f="grace-2024" />
+
+## Qué dice el informe internacional
+
+El Informe Internacional sobre la Seguridad de la IA, publicado en febrero de 2026 y encargado por más de 30 países, evaluó que los sistemas de aquel momento no tenían la capacidad de causar riesgos de pérdida de control, pero que mejoraban en áreas relacionadas, como actuar de forma autónoma. Advierte de que la evidencia sobre estos riesgos llega despacio y es difícil de evaluar, y de que algunos modelos distinguen cada vez mejor cuándo se les está evaluando.<Nota f="iasr-2026" />
+
+## En el modelo
+
+Nuestro modelo calcula el riesgo acumulado de catástrofe por cualquier causa, no solo por la IA: también pandemias, guerras y desastres naturales. Que Pausa quede por debajo del 9 % en 2100 y Carrera por encima del 20 % es una elección editorial, anclada en las medianas de catástrofe por cualquier causa: la de los superpronosticadores (9,05 %) y la de los expertos (20 %). En el centro de la matriz, el parámetro que más mueve la cifra es el riesgo que añade la concentración del poder, calibrado con estas estimaciones y no medido, como muestra el [análisis de sensibilidad](/futuros/#parametro-hConf). En los futuros con mucha paz pesa más el riesgo de base.
+
+## Lo que no sabemos
+
+Estas cifras son juicios, no medidas. Nadie ha visto una catástrofe global causada por la IA, así que no hay frecuencia que contar. Que grupos serios discrepen tanto es, quizá, el dato más honesto: la incertidumbre es enorme.
+
+## Corrección y límites de verificación — 13 de noviembre de 2026
+
+Se contrastó el resumen de la encuesta con la versión 3 de arXiv (octubre de 2025), que enlaza la publicación en revista de 2025. La afirmación del informe de seguridad queda fechada explícitamente en febrero de 2026 y no garantiza nada sobre sistemas posteriores o usos maliciosos. La página del instituto de pronósticos confirma el torneo de 2022 y el desacuerdo, pero aún no se ha vuelto a verificar su tabla detallada de probabilidades en esta actualización. Los porcentajes de XPT conservados arriba son citas históricas pendientes de esa comprobación, no estimaciones recién verificadas. La calibración del modelo y las bandas de sensibilidad condicional no miden una probabilidad objetiva de catástrofe.

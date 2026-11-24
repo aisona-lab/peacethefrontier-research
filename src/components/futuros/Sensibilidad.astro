@@ -1,0 +1,159 @@
+---
+// Tornado: los parámetros que más mueven un indicador, uno a uno, en el centro de la matriz.
+import temml from 'temml';
+import type { Idioma } from '../../i18n/rutas';
+import { ELECTRICIDAD } from '../../lib/futuros/procedencia';
+import { textos } from '../../i18n/ui';
+import { formatear } from '../../lib/futuros/formato';
+import { simular } from '../../lib/futuros/modelo';
+import { PARAMETROS, valoresCentrales } from '../../lib/futuros/parametros';
+import { sensibilidad } from '../../lib/futuros/sensibilidad';
+import { ANIO_INICIAL, type Indicador } from '../../lib/futuros/tipos';
+
+interface Props {
+	lang: Idioma;
+	indicador: Indicador;
+	anio: number;
+	filas?: number;
+}
+
+const { lang, indicador, anio, filas = 6 } = Astro.props;
+const t = textos(lang).futuros;
+const centro = { paz: 0.5, frontera: 0.5 };
+const base = simular(centro, valoresCentrales())[indicador][anio - ANIO_INICIAL];
+const efectos = sensibilidad(centro, indicador, anio).slice(0, filas);
+const valores = [base, ...efectos.flatMap((e) => [e.bajo, e.alto])];
+const [lo, hi] = [Math.min(...valores), Math.max(...valores)];
+const x = (v: number) => (hi === lo ? 50 : ((v - lo) / (hi - lo)) * 100);
+const tramo = (v: number) => `left:${Math.min(x(v), x(base))}%;width:${Math.abs(x(v) - x(base))}%`;
+---
+
+<figure class="sensibilidad ui">
+	<figcaption>{t.modelo.sensibilidad(indicador === 'energiaIA' ? ELECTRICIDAD[lang] : t.indicadores[indicador], anio, formatear(indicador, base, lang))}</figcaption>
+	<table>
+		<thead>
+			<tr>
+				<th scope="col">{t.modelo.parametro}</th>
+				<th scope="col"><span class="muestra muestra-min" aria-hidden="true"></span>{t.modelo.conMinimo}</th>
+				<th scope="col"><span class="muestra muestra-max" aria-hidden="true"></span>{t.modelo.conMaximo}</th>
+			</tr>
+		</thead>
+		<tbody>
+			{
+				efectos.map((e) => (
+					<tr>
+						<th scope="row">
+							<a href={`#parametro-${e.parametro}`}>
+								<Fragment set:html={temml.renderToString(PARAMETROS[e.parametro].simbolo)} />{' '}
+								<span class="descripcion">{PARAMETROS[e.parametro].descripcion[lang]}</span>
+							</a>
+							<span class="barra" aria-hidden="true">
+								<span class="tramo tramo-min" style={tramo(e.bajo)} />
+								<span class="tramo tramo-max" style={tramo(e.alto)} />
+								<span class="eje" style={`left:${x(base)}%`} />
+							</span>
+						</th>
+						<td>{formatear(indicador, e.bajo, lang)}</td>
+						<td>{formatear(indicador, e.alto, lang)}</td>
+					</tr>
+				))
+			}
+		</tbody>
+	</table>
+</figure>
+
+<style>
+	.sensibilidad {
+		margin-block: 2rem;
+		margin-inline: 0;
+	}
+
+	figcaption {
+		margin-bottom: 0.75rem;
+		font-weight: 600;
+	}
+
+	table {
+		width: 100%;
+		border-collapse: collapse;
+	}
+
+	th,
+	td {
+		padding: 0.6rem 0.5rem 0.6rem 0;
+		border-bottom: 1px solid var(--linea);
+		text-align: left;
+		vertical-align: top;
+	}
+
+	thead th {
+		color: var(--tinta-suave);
+		font-weight: 400;
+	}
+
+	/* Columnas de cifras al mínimo: el parámetro se queda con el resto del ancho. */
+	td,
+	thead th + th {
+		width: 1%;
+	}
+
+	@media (min-width: 40rem) {
+		thead th + th {
+			white-space: nowrap;
+		}
+	}
+
+	td {
+		white-space: nowrap;
+		font-variant-numeric: tabular-nums;
+	}
+
+	tbody th {
+		font-weight: 400;
+	}
+
+	/* A 320 px palabras como "Concentración" no caben en la columna: se parten con guion. */
+	.descripcion {
+		color: var(--tinta-suave);
+		hyphens: auto;
+		overflow-wrap: anywhere;
+	}
+
+	.barra {
+		position: relative;
+		display: block;
+		height: 0.5rem;
+		margin-top: 0.5rem;
+	}
+
+	.tramo,
+	.eje {
+		position: absolute;
+		inset-block: 0;
+	}
+
+	.tramo-min,
+	.muestra-min {
+		background: var(--regla);
+	}
+
+	.tramo-max,
+	.muestra-max {
+		background: var(--sodio);
+	}
+
+	.eje {
+		width: 2px;
+		margin-left: -1px;
+		inset-block: -0.2rem;
+		background: var(--tinta);
+	}
+
+	.muestra {
+		display: inline-block;
+		width: 0.7rem;
+		height: 0.7rem;
+		margin-right: 0.4rem;
+		vertical-align: -0.05rem;
+	}
+</style>

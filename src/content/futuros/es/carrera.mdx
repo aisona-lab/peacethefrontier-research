@@ -1,0 +1,107 @@
+---
+premisa: Ningún acuerdo frena la IA. Empresas y países compiten por llegar primero, sin reglas comunes ni pausas. El progreso es rápido y el poder se concentra en quien gana.
+supuestos:
+  - No hay tratados internacionales sobre IA avanzada ni límites al cómputo.
+  - La inversión en IA crece mientras dé ventaja económica o militar.
+  - La redistribución y las nuevas protecciones laborales llegan tarde o no llegan.
+  - Las tensiones entre bloques desatan crisis globales cada cierto tiempo.
+ganancias:
+  - Avances científicos y médicos muy rápidos en las primeras décadas.
+  - Abundancia material, porque robots y automatización abaratan casi todo lo que se fabrica.
+  - Una ventaja económica enorme para quien lidera la carrera.
+perdidas:
+  - El empleo y el ingreso se concentran y la desigualdad sube con fuerza.
+  - El poder queda en muy pocas manos, públicas o privadas.
+  - El riesgo de catástrofe es el más alto de los cuatro futuros.
+  - Las crisis recurrentes frenan la transición energética.
+---
+
+import Ambito from '../../../components/futuros/Ambito.astro';
+import Cifra from '../../../components/futuros/Cifra.astro';
+import Parada from '../../../components/futuros/Parada.astro';
+
+<Parada anio={2026} />
+
+<Parada anio={2036}>
+<Ambito id="humanidad">
+Una década de carrera basta para cambiar el trabajo. La IA ya puede hacer <Cifra v="automatizacion" anio={2036} /> de las tareas humanas y la proporción de la población en edad de trabajar con empleo baja a <Cifra v="empleo" anio={2036} />. Aparecen oficios nuevos, pero en otros lugares y para otra gente.
+</Ambito>
+<Ambito id="tecnologia">
+Hay <Cifra v="robots" anio={2036} /> de robots en funcionamiento, sobre todo en fábricas y almacenes. Los centros de datos consumen <Cifra v="energiaIA" anio={2036} /> al año, más electricidad que muchos países enteros.
+</Ambito>
+<Ambito id="ciencia">
+El ritmo de descubrimiento ya es <Cifra v="ciencia" anio={2036} /> el de 2026. Llegan fármacos diseñados por IA en tiempo récord, sobre todo donde hay dinero para pagarlos.
+</Ambito>
+<Ambito id="planeta">
+La energía limpia apenas sube al <Cifra v="energiaLimpia" anio={2036} />: la prioridad es el cómputo, no el clima. El calentamiento ronda <Cifra v="temperatura" anio={2036} />.
+</Ambito>
+<Ambito id="politica">
+Sin reglas comunes, el índice de concentración del poder sube a <Cifra v="poder" anio={2036} />. Las tensiones entre bloques desatan crisis globales. El riesgo acumulado de catástrofe es de <Cifra v="riesgo" anio={2036} />.
+</Ambito>
+</Parada>
+
+<Parada anio={2046} />
+
+<Parada anio={2056}>
+<Ambito id="humanidad">
+La automatización ya alcanza <Cifra v="automatizacion" anio={2056} /> de las tareas. Solo <Cifra v="empleo" anio={2056} /> de la población en edad de trabajar tiene empleo; el resto vive de rentas, ayudas privadas o trabajos que no aparecen en las estadísticas. La desigualdad llega a <Cifra v="desigualdad" anio={2056} />.
+</Ambito>
+<Ambito id="tecnologia">
+Hay <Cifra v="robots" anio={2056} /> de robots en fábricas, almacenes, campos y casas. Los centros de datos consumen <Cifra v="energiaIA" anio={2056} /> al año.
+</Ambito>
+<Ambito id="ciencia">
+La ciencia avanza <Cifra v="ciencia" anio={2056} /> respecto a 2026. Muchas enfermedades raras tienen tratamiento, pero el acceso depende de dónde vivas y de quién controle las patentes.
+</Ambito>
+<Ambito id="planeta">
+La energía limpia llega al <Cifra v="energiaLimpia" anio={2056} />, porque la demanda crece más rápido que la transición. El calentamiento alcanza <Cifra v="temperatura" anio={2056} />.
+</Ambito>
+<Ambito id="politica">
+El índice de concentración del poder llega a <Cifra v="poder" anio={2056} />: un puñado de empresas y Estados controla los modelos más capaces. El riesgo acumulado de catástrofe es de <Cifra v="riesgo" anio={2056} />.
+</Ambito>
+</Parada>
+
+<Parada anio={2066} />
+
+<Parada anio={2076} />
+
+<Parada anio={2086}>
+<Ambito id="humanidad">
+La automatización alcanza <Cifra v="automatizacion" anio={2086} /> de las tareas y el empleo se estabiliza en <Cifra v="empleo" anio={2086} />. Para mucha gente, la pregunta ya no es en qué trabajar sino de qué vivir y para qué. La desigualdad es de <Cifra v="desigualdad" anio={2086} />.
+</Ambito>
+<Ambito id="tecnologia">
+Hay <Cifra v="robots" anio={2086} /> de robots. Las máquinas hacen la mayor parte del trabajo físico, y su coste ha caído tanto que casi cualquier cosa fabricada es barata.
+</Ambito>
+<Ambito id="ciencia">
+El ritmo de la ciencia es <Cifra v="ciencia" anio={2086} /> el de 2026. La investigación la dirigen sistemas de IA que proponen y prueban hipótesis día y noche; los humanos revisan una parte cada vez menor.
+</Ambito>
+<Ambito id="planeta">
+La energía limpia llega al <Cifra v="energiaLimpia" anio={2086} />, empujada por su propio precio más que por acuerdos. El calentamiento ya es de <Cifra v="temperatura" anio={2086} />, con veranos que cambian dónde se puede vivir y cultivar.
+</Ambito>
+<Ambito id="politica">
+La concentración del poder llega a <Cifra v="poder" anio={2086} />: las decisiones que importan se toman en pocas salas. El riesgo acumulado de catástrofe es de <Cifra v="riesgo" anio={2086} />.
+</Ambito>
+</Parada>
+
+<Parada anio={2096} />
+
+<Parada anio={2106} />
+
+<Parada anio={2116} />
+
+<Parada anio={2126}>
+<Ambito id="humanidad">
+Un siglo después, <Cifra v="automatizacion" anio={2126} /> de las tareas son automatizables y <Cifra v="empleo" anio={2126} /> de la población en edad de trabajar tiene empleo. La abundancia material convive con una gran distancia entre quienes poseen las máquinas y quienes no: la desigualdad es de <Cifra v="desigualdad" anio={2126} />.
+</Ambito>
+<Ambito id="tecnologia">
+Hay <Cifra v="robots" anio={2126} /> de robots. La capacidad de la IA se acerca a su techo físico; lo que cambia ya no es cuánto pueden hacer las máquinas sino quién las dirige.
+</Ambito>
+<Ambito id="ciencia">
+La ciencia avanza <Cifra v="ciencia" anio={2126} /> respecto a 2026, pero gran parte de lo que se descubre ya no lo entiende por completo ningún ser humano.
+</Ambito>
+<Ambito id="planeta">
+La energía limpia llega al <Cifra v="energiaLimpia" anio={2126} /> y el calentamiento se estabiliza cerca de <Cifra v="temperatura" anio={2126} />. Una transición más temprana habría evitado buena parte del daño.
+</Ambito>
+<Ambito id="politica">
+La concentración del poder es de <Cifra v="poder" anio={2126} />. El riesgo acumulado de catástrofe, <Cifra v="riesgo" anio={2126} />, es el más alto de los cuatro futuros.
+</Ambito>
+</Parada>

@@ -1,0 +1,30 @@
+---
+// Número del modelo dentro del relato. Nunca se escribe a mano: la isla lo actualiza si el lector mueve los controles.
+import { datosFuturo } from '../../lib/futuros/contexto';
+import { formatear } from '../../lib/futuros/formato';
+import { AMBITO_DE, ANIO_INICIAL, INDICADORES, type Indicador } from '../../lib/futuros/tipos';
+
+interface Props {
+	v: Indicador;
+	anio: number;
+}
+
+const { v, anio } = Astro.props;
+const { resultado, lang } = datosFuturo(Astro.locals);
+const t = anio - ANIO_INICIAL;
+if (!INDICADORES.includes(v)) throw new Error(`<Cifra v="${v}">: indicador desconocido`);
+if (!(t >= 0 && t < resultado.anios.length)) throw new Error(`<Cifra anio={${anio}}>: debe estar entre 2026 y 2126`);
+---
+
+<span class="cifra" data-cifra={v} data-anio={anio} style={`--color: var(--ambito-${AMBITO_DE[v]})`}
+	>{formatear(v, resultado.p50[v][t], lang)}</span
+>
+
+<style>
+	.cifra {
+		color: var(--color);
+		font-weight: 600;
+		font-variant-numeric: tabular-nums;
+		white-space: nowrap;
+	}
+</style>

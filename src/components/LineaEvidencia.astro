@@ -1,0 +1,41 @@
+---
+// Muestra de línea por nivel de evidencia: continua, discontinua, punteada u ondulada.
+import type { NivelId } from '../lib/evidencia';
+
+interface Props {
+	nivel: NivelId;
+}
+
+const { nivel } = Astro.props;
+---
+
+<svg class="linea-evidencia" viewBox="0 0 48 8" aria-hidden="true">
+	{
+		nivel === 'escenario-ficcion' ? (
+			<path d="M1 4q3.5-4 7 0t7 0 7 0 7 0 7 0 7 0" />
+		) : (
+			<line
+				x1="1"
+				y1="4"
+				x2="47"
+				y2="4"
+				stroke-dasharray={
+					nivel === 'emergente' ? '7 4' : nivel === 'especulativo' ? '0.01 5.5' : undefined
+				}
+			/>
+		)
+	}
+</svg>
+
+<style>
+	.linea-evidencia {
+		width: 3rem;
+		height: 0.5rem;
+		flex: none;
+		overflow: visible;
+		fill: none;
+		stroke: currentColor;
+		stroke-width: 2;
+		stroke-linecap: round;
+	}
+</style>

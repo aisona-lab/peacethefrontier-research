@@ -1,0 +1,370 @@
+{
+  "date": "2026-11-14",
+  "branch": "feat/research-studio",
+  "baseline": "29b775d",
+  "scope": "Local implementation and generated artifacts; not editorial approval or live activation",
+  "environment": {
+    "node": "v24.19.0",
+    "fonts": "configured fallbacks; Fontsource API blocked",
+    "browsers": "workspace-installed Chromium, Firefox, WebKit and mobile project; user-owned shared libraries"
+  },
+  "checks": {
+    "types": {
+      "errors": 0,
+      "warnings": 0,
+      "hints": 0
+    },
+    "vitest": {
+      "files": 35,
+      "passed": 321
+    },
+    "nodeTests": {
+      "passed": 3
+    },
+    "playwright": {
+      "passed": 767,
+      "conditionalSkips": 9,
+      "failed": 0
+    },
+    "build": {
+      "htmlPages": 87,
+      "socialImages": 87,
+      "csp": "passed"
+    },
+    "simulation": {
+      "version": "1.0.0",
+      "rows": 2880,
+      "filesChecked": 8,
+      "synthetic": true,
+      "exactReproduction": true
+    },
+    "lighthouse": {
+      "urls": 15,
+      "configuredErrorBudgetsPassed": true,
+      "failedAssertions": 0,
+      "runs": [
+        {
+          "path": "/",
+          "scores": {
+            "performance": 1,
+            "accessibility": 1,
+            "best-practices": 0.96,
+            "seo": 1
+          },
+          "metrics": {
+            "lcpMs": 1401.8327000000002,
+            "cls": 0,
+            "tbtMs": 0
+          },
+          "expectedNoindex": false
+        },
+        {
+          "path": "/temas/ia/",
+          "scores": {
+            "performance": 1,
+            "accessibility": 1,
+            "best-practices": 0.96,
+            "seo": 1
+          },
+          "metrics": {
+            "lcpMs": 1554.9347,
+            "cls": 0,
+            "tbtMs": 0
+          },
+          "expectedNoindex": false
+        },
+        {
+          "path": "/metodologia/",
+          "scores": {
+            "performance": 1,
+            "accessibility": 1,
+            "best-practices": 0.96,
+            "seo": 1
+          },
+          "metrics": {
+            "lcpMs": 1398.6373999999998,
+            "cls": 0,
+            "tbtMs": 0
+          },
+          "expectedNoindex": false
+        },
+        {
+          "path": "/en/",
+          "scores": {
+            "performance": 1,
+            "accessibility": 1,
+            "best-practices": 0.96,
+            "seo": 1
+          },
+          "metrics": {
+            "lcpMs": 1401.6405,
+            "cls": 0,
+            "tbtMs": 0
+          },
+          "expectedNoindex": false
+        },
+        {
+          "path": "/en/about/",
+          "scores": {
+            "performance": 1,
+            "accessibility": 1,
+            "best-practices": 0.96,
+            "seo": 1
+          },
+          "metrics": {
+            "lcpMs": 1409.0150999999998,
+            "cls": 0,
+            "tbtMs": 0
+          },
+          "expectedNoindex": false
+        },
+        {
+          "path": "/futuros/carrera/",
+          "scores": {
+            "performance": 0.99,
+            "accessibility": 1,
+            "best-practices": 0.96,
+            "seo": 1
+          },
+          "metrics": {
+            "lcpMs": 1566.2801,
+            "cls": 0,
+            "tbtMs": 0
+          },
+          "expectedNoindex": false
+        },
+        {
+          "path": "/futuros/",
+          "scores": {
+            "performance": 1,
+            "accessibility": 1,
+            "best-practices": 0.96,
+            "seo": 1
+          },
+          "metrics": {
+            "lcpMs": 1574.6285,
+            "cls": 0,
+            "tbtMs": 0
+          },
+          "expectedNoindex": false
+        },
+        {
+          "path": "/caminos/",
+          "scores": {
+            "performance": 1,
+            "accessibility": 1,
+            "best-practices": 0.96,
+            "seo": 1
+          },
+          "metrics": {
+            "lcpMs": 1530.38425,
+            "cls": 0,
+            "tbtMs": 0
+          },
+          "expectedNoindex": false
+        },
+        {
+          "path": "/linea-del-tiempo/",
+          "scores": {
+            "performance": 1,
+            "accessibility": 1,
+            "best-practices": 0.96,
+            "seo": 1
+          },
+          "metrics": {
+            "lcpMs": 1425.4207000000001,
+            "cls": 0.0009425945174970326,
+            "tbtMs": 0
+          },
+          "expectedNoindex": false
+        },
+        {
+          "path": "/articulos/riesgo-de-catastrofe/",
+          "scores": {
+            "performance": 1,
+            "accessibility": 1,
+            "best-practices": 0.96,
+            "seo": 0.66
+          },
+          "metrics": {
+            "lcpMs": 1402.1319,
+            "cls": 0,
+            "tbtMs": 0
+          },
+          "expectedNoindex": true
+        },
+        {
+          "path": "/atlas/",
+          "scores": {
+            "performance": 1,
+            "accessibility": 1,
+            "best-practices": 0.96,
+            "seo": 1
+          },
+          "metrics": {
+            "lcpMs": 1402.33815,
+            "cls": 0,
+            "tbtMs": 0
+          },
+          "expectedNoindex": false
+        },
+        {
+          "path": "/research/",
+          "scores": {
+            "performance": 1,
+            "accessibility": 1,
+            "best-practices": 0.96,
+            "seo": 1
+          },
+          "metrics": {
+            "lcpMs": 1395.29405,
+            "cls": 0,
+            "tbtMs": 0
+          },
+          "expectedNoindex": false
+        },
+        {
+          "path": "/sim/",
+          "scores": {
+            "performance": 1,
+            "accessibility": 1,
+            "best-practices": 0.96,
+            "seo": 1
+          },
+          "metrics": {
+            "lcpMs": 1402.7558,
+            "cls": 0,
+            "tbtMs": 0
+          },
+          "expectedNoindex": false
+        },
+        {
+          "path": "/open/",
+          "scores": {
+            "performance": 1,
+            "accessibility": 1,
+            "best-practices": 0.96,
+            "seo": 1
+          },
+          "metrics": {
+            "lcpMs": 1398.4797999999998,
+            "cls": 0,
+            "tbtMs": 0
+          },
+          "expectedNoindex": false
+        },
+        {
+          "path": "/research/working-papers/procedencia-y-reproducibilidad-del-modelo/",
+          "scores": {
+            "performance": 1,
+            "accessibility": 1,
+            "best-practices": 0.96,
+            "seo": 0.66
+          },
+          "metrics": {
+            "lcpMs": 1411.07185,
+            "cls": 0,
+            "tbtMs": 0
+          },
+          "expectedNoindex": true
+        }
+      ]
+    }
+  },
+  "profiles": [
+    {
+      "id": "studio",
+      "pages": 87,
+      "indexed": 8,
+      "redirects": 79,
+      "auditedHtml": 88,
+      "headings": {
+        "es": "AI Research Studio independiente",
+        "en": "Independent AI Research Studio"
+      },
+      "rootCanonicalsAndAlternates": "passed",
+      "sitemapHostAndDraftExclusion": "passed"
+    },
+    {
+      "id": "atlas",
+      "pages": 87,
+      "indexed": 54,
+      "redirects": 19,
+      "auditedHtml": 87,
+      "headings": {
+        "es": "Un atlas de los futuros humanos, de la neurona al universo.",
+        "en": "An atlas of human futures, from the neuron to the universe."
+      },
+      "rootCanonicalsAndAlternates": "passed",
+      "sitemapHostAndDraftExclusion": "passed"
+    },
+    {
+      "id": "research",
+      "pages": 87,
+      "indexed": 2,
+      "redirects": 85,
+      "auditedHtml": 91,
+      "headings": {
+        "es": "Investigaciones y working papers",
+        "en": "Research and working papers"
+      },
+      "rootCanonicalsAndAlternates": "passed",
+      "sitemapHostAndDraftExclusion": "passed"
+    },
+    {
+      "id": "sim",
+      "pages": 87,
+      "indexed": 2,
+      "redirects": 85,
+      "auditedHtml": 87,
+      "headings": {
+        "es": "Simulaciones de resiliencia",
+        "en": "Resilience simulations"
+      },
+      "rootCanonicalsAndAlternates": "passed",
+      "sitemapHostAndDraftExclusion": "passed"
+    },
+    {
+      "id": "open",
+      "pages": 87,
+      "indexed": 2,
+      "redirects": 85,
+      "auditedHtml": 87,
+      "headings": {
+        "es": "Ciencia abierta",
+        "en": "Open science"
+      },
+      "rootCanonicalsAndAlternates": "passed",
+      "sitemapHostAndDraftExclusion": "passed"
+    }
+  ],
+  "macroCsvHashes": [
+    {
+      "future": "pausa",
+      "sha256": "fe90732d5187523f8a5a45917cd4e7d1c2d93e7ecc461ba732536e07aa0c013b",
+      "unchanged": true
+    },
+    {
+      "future": "frontera-en-paz",
+      "sha256": "96425d6f360f0ac397d028437416e34aace5cc72ac36e14e6417a72df8b8bca8",
+      "unchanged": true
+    },
+    {
+      "future": "carrera",
+      "sha256": "2ad7197e7a37bb90beb32a4969af73f6a91ee394edec8bcc9a4f1b671eba3a6a",
+      "unchanged": true
+    },
+    {
+      "future": "fractura",
+      "sha256": "d774b6d15de786296afb5e39f8ebf3579d2e44842b778f1261c4b85b99e753fa",
+      "unchanged": true
+    }
+  ],
+  "pending": [
+    "Preceding research-refresh PR and merge: GitHub API CONNECT 403; origin/main remains 2a11ae1",
+    "Studio PR/review/merge and live domain activation",
+    "Human working-paper approval and unresolved earlier source verification",
+    "Confirmed Hugging Face destination and optional contact email",
+    "Newsletter deferred to final phase by user"
+  ]
+}

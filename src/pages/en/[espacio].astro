@@ -1,0 +1,7 @@
+---
+import InicioEspacio from '../../components/studio/InicioEspacio.astro';
+import {ESPACIOS} from '../../lib/studio/espacios';
+export function getStaticPaths(){return ESPACIOS.filter(e=>e.id!=='studio').map(e=>({params:{espacio:e.id},props:{espacio:e.id}}));}
+const {espacio}=Astro.props;
+---
+<InicioEspacio lang="en" espacio={espacio}/>

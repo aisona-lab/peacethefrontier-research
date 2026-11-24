@@ -1,0 +1,115 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  verificar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: Tipos
+        run: npm run check
+      - name: Pruebas unitarias
+        run: npm test
+      - name: Artefactos sintéticos reproducibles
+        run: |
+          npm run simulation:check
+          npm run experiments:check
+      - name: Navegadores de Playwright
+        run: npx playwright install --with-deps
+      - name: Build (valida el contenido y genera las imágenes para redes)
+        run: npm run build
+      - name: CSP en todas las páginas
+        run: npm run test:csp
+      - name: E2E y accesibilidad
+        run: npm run test:e2e
+      - name: Lighthouse (presupuestos NF1)
+        run: npx lhci autorun
+      - name: Build de dominios activados
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main' && vars.PTF_MULTISITE == '1'
+        run: npm run build:spaces
+      - name: Guardar los cinco perfiles
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main' && vars.PTF_MULTISITE == '1'
+        uses: actions/upload-artifact@v7
+        with:
+          name: studio-domains
+          path: |
+            dist-studio/
+            dist-atlas/
+            dist-research/
+            dist-sim/
+            dist-open/
+          retention-days: 1
+      - name: Guardar el sitio verificado
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: actions/upload-artifact@v7
+        with:
+          name: dist
+          path: dist/
+          retention-days: 1
+      - name: Informe de Playwright
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 7
+
+  # Publica en Cloudflare solo lo que pasó todas las pruebas, y solo desde main.
+  # Necesita el secreto CLOUDFLARE_API_TOKEN (permiso "Workers Scripts: Edit"); sin él, el paso se salta y lo dice.
+  publicar:
+    needs: verificar
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - uses: actions/download-artifact@v8
+        with:
+          name: dist
+          path: dist/
+      - name: Sin token de Cloudflare
+        if: env.CLOUDFLARE_API_TOKEN == ''
+        run: echo "::notice::Falta el secreto CLOUDFLARE_API_TOKEN; no se publica."
+      - name: Publicar en Cloudflare Workers
+        if: env.CLOUDFLARE_API_TOKEN != '' && vars.PTF_MULTISITE != '1'
+        run: |
+          node scripts/verificar-revision.mjs
+          npx wrangler deploy
+      - uses: actions/download-artifact@v8
+        if: env.CLOUDFLARE_API_TOKEN != '' && vars.PTF_MULTISITE == '1'
+        with:
+          name: studio-domains
+      - name: Publicar espacios y después el dominio principal
+        if: env.CLOUDFLARE_API_TOKEN != '' && vars.PTF_MULTISITE == '1'
+        run: |
+          for surface in atlas research sim open; do
+            node scripts/verificar-revision.mjs || exit 1
+            npx wrangler deploy --config "deploy/wrangler-${surface}.jsonc" || exit 1
+          done
+          node scripts/verificar-revision.mjs
+          npx wrangler deploy --config deploy/wrangler-studio.jsonc
+

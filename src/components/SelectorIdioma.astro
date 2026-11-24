@@ -1,0 +1,62 @@
+---
+// ES / EN. Cada enlace lleva a la misma página en ese idioma.
+import { IDIOMAS, type Idioma } from '../i18n/rutas';
+import { textos } from '../i18n/ui';
+
+interface Props {
+	lang: Idioma;
+	alternativa: string;
+	clase?: string;
+}
+
+const { lang, alternativa, clase } = Astro.props;
+---
+
+<nav class:list={['idiomas ui', clase]} aria-label={textos(lang).nav.idioma}>
+	{
+		IDIOMAS.map((l) => (
+			<a
+				href={l === lang ? Astro.url.pathname : alternativa}
+				lang={l}
+				hreflang={l}
+				aria-current={l === lang ? 'true' : undefined}
+			>
+				{l.toUpperCase()}
+				{' '}
+				<span class="solo-lectores">{textos(l).nombreIdioma}</span>
+			</a>
+		))
+	}
+</nav>
+
+<style>
+	.idiomas {
+		display: inline-flex;
+		padding: 0.2rem;
+		border: 1px solid var(--linea);
+		border-radius: 999px;
+	}
+
+	.idiomas a {
+		display: inline-grid;
+		place-items: center;
+		min-width: 2.4rem;
+		min-height: 2rem;
+		padding-inline: 0.5rem;
+		border-radius: 999px;
+		color: var(--tinta);
+		font-size: var(--t-mini);
+		letter-spacing: 0.04em;
+		text-decoration: none;
+		transition: background-color var(--dur-rapida);
+	}
+
+	.idiomas a:hover {
+		background: var(--superficie);
+	}
+
+	.idiomas a[aria-current] {
+		background: var(--tinta);
+		color: var(--fondo);
+	}
+</style>

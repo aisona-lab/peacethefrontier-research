@@ -1,0 +1,77 @@
+---
+titulo: "Procedencia y reproducibilidad del modelo de futuros"
+resumen: "Una auditoría reproducible de la base 2026: qué demuestran 432 diferencias nulas y cuatro hashes, y qué sigue siendo un supuesto."
+clave: wp-procedencia-modelo
+tipoPublicacion: working-paper
+serie: PTF-WP
+numero: 1
+version: 0.1.0
+temas: [computo, energia, planeta]
+evidencia: emergente
+autor: Peace The Frontier
+publicado: 2026-11-14
+revisado: 2026-11-14
+fuentes: [aie-energia-ia, aie-ia-2026, epoch-computo, epoch-hardware]
+asistidoPorIA: true
+estado: borrador
+sensible: false
+---
+
+import Nota from '../../../components/articulo/Nota.astro';
+
+**PTF-WP 1 · v0.1.0 · Borrador del 14 de noviembre de 2026.** La revisión de fuentes utilizada corresponde al **13 de noviembre de 2026**. Estas fechas no son periodos de observación. Este documento se elaboró con asistencia de IA en la redacción, traducción y comprobación técnica. La interpretación, la traducción y la autorización editorial humana siguen pendientes; no se atribuye una aprobación a ninguna persona.
+
+## Pregunta
+
+¿Puede otra persona reconstruir lo que cambió y lo que permaneció igual en la actualización documental del modelo de futuros con base 2026? La cuestión concreta es si las aclaraciones de procedencia alteraron parámetros o series numéricas. Reproducir esos resultados permite detectar cambios de implementación; no demuestra que las ecuaciones representen correctamente el mundo ni que sus escenarios sean pronósticos fiables.
+
+El punto de partida es el [modelo existente](/futuros/) y su [metodología](/metodologia/). La auditoría distingue observaciones, estimaciones, transformaciones derivadas, calibraciones y supuestos. Una referencia puede contextualizar un parámetro sin determinar su valor. También distingue la base temporal del modelo, 2026, de los años de los datos que se trasladan a ella.
+
+## Método
+
+Se utiliza el registro de [procedencia y comparación](https://github.com/aisona-lab/peacethefrontier-atlas/blob/29b775d/docs/research/model-audit.md), no una reconstrucción basada en recordar cifras. El punto de comparación es el commit `2a11ae11b754f366a2135e93d87c8cea5ceb33de`. Los artefactos son [model-comparison.json](https://github.com/aisona-lab/peacethefrontier-atlas/blob/29b775d/docs/research/model-comparison.json), con parámetros y hashes, y [model-comparison.csv](https://github.com/aisona-lab/peacethefrontier-atlas/blob/29b775d/docs/research/model-comparison.csv), con valores antes, después y diferencias. El [README de investigación](https://github.com/aisona-lab/peacethefrontier-atlas/blob/29b775d/docs/research/README.md) delimita la revisión que los acompaña.
+
+La repetición técnica para este borrador cargó por separado los módulos históricos mediante `git show` y los módulos actuales, sin modificar archivos del modelo. En ambos casos se ejecutó `proyectar(presetDe(id), 2026, 200)` para los cuatro identificadores existentes: `pausa`, `frontera-en-paz`, `carrera` y `fractura`. La semilla fue 2026; las 200 corridas muestrearon uniformemente los rangos de parámetros establecidos. No se ajustaron entradas para conseguir coincidencia.
+
+Para repetir la comprobación, se comparan los 47 registros de parámetros, incluidos valor central, mínimo y máximo. Después se contrastan 12 indicadores, tres cuantiles y tres años —2035, 2050 y 2100— en los cuatro futuros. El producto es 432 comparaciones. Finalmente se exporta cada serie completa con `aCsv`, se calcula SHA-256 sobre su cadena UTF-8 y se contrasta con el registro. Debe conservarse el formato del exportador, incluida su precisión de seis cifras significativas y el salto de línea final; cambiarlo altera el hash aunque los valores sean equivalentes.
+
+## Hallazgos
+
+### Igualdad numérica y alcance de los hashes
+
+La repetición coincidió con los 47 registros y las 432 filas del registro: todas las diferencias fueron cero. Los cuatro hashes completos también coincidieron, antes y después. Cada CSV contiene 1.212 filas de datos: 12 indicadores por 101 años, de 2026 a 2126, ambos incluidos. Sus columnas siguen siendo `anio,indicador,unidad,p10,p50,p90`. Estos son los hashes SHA-256 registrados y reproducidos:
+
+| CSV existente | SHA-256 |
+| --- | --- |
+| [pausa](/datos/futuros-pausa.csv) | `fe90732d5187523f8a5a45917cd4e7d1c2d93e7ecc461ba732536e07aa0c013b` |
+| [frontera-en-paz](/datos/futuros-frontera-en-paz.csv) | `96425d6f360f0ac397d028437416e34aace5cc72ac36e14e6417a72df8b8bca8` |
+| [carrera](/datos/futuros-carrera.csv) | `2ad7197e7a37bb90beb32a4969af73f6a91ee394edec8bcc9a4f1b671eba3a6a` |
+| [fractura](/datos/futuros-fractura.csv) | `d774b6d15de786296afb5e39f8ebf3579d2e44842b778f1261c4b85b99e753fa` |
+
+Los hashes cubren las cadenas exportadas, no todos los textos o eventos de la interfaz. El registro documenta correcciones separadas: un umbral de automatización nunca alcanzado devuelve `null`, y el pico poblacional se identifica al final de la meseta máxima antes del descenso. La corrección del pico cambia su año de 2086 a 2085 en los cuatro futuros registrados, sin cambiar las series. Por eso igualdad de CSV no significa identidad de toda la presentación.
+
+### Qué respaldan la AIE y Epoch
+
+La AIE estimó 415 TWh de electricidad de centros de datos en 2024 en su informe de 2025. Es el conjunto de centros de datos, no solo IA. Esa estimación histórica ofrece contexto para la magnitud energética; no acredita una medición de 550 TWh en 2026.<Nota f="aie-energia-ia" />
+
+La actualización de abril de 2026 estima 485 TWh para 2025 y proyecta aproximadamente 950 TWh para 2030. La primera cifra es una estimación retrospectiva; la segunda, una proyección condicional. Ninguna sustituye automáticamente los 550 TWh heredados que el modelo usa como base estimada de todos los centros de datos en 2026. El repositorio no conserva una ecuación exacta de interpolación para esa base.<Nota f="aie-ia-2026" />
+
+Epoch describe un crecimiento histórico del cómputo de entrenamiento de aproximadamente cuatro a cinco veces por año, con una ventana de 2010 a mayo de 2024. Respalda una afirmación sobre cómputo en aquella muestra, no una observación de capacidad en noviembre de 2026. Convertir esa tendencia en capacidad del modelo exige un supuesto adicional.<Nota f="epoch-computo" />
+
+El estudio de hardware de Epoch de 2023 distingue rendimiento computacional, rendimiento por precio y eficiencia energética. La duplicación del rendimiento cada 2,3 años equivale aproximadamente a un factor anual de 1,35; la duplicación del rendimiento por precio cada 2,1 años mide otra cosa. No deben intercambiarse los denominadores ni tratarse ninguna de esas tendencias como una medición directa de inteligencia.<Nota f="epoch-hardware" />
+
+## Limitaciones
+
+La comparación verifica continuidad computacional respecto a un punto histórico concreto. No aporta validación científica, calibración independiente ni probabilidades medidas de los cuatro futuros. Las bandas p10–p90 representan sensibilidad condicional a rangos y distribuciones elegidos. Los objetivos y tolerancias de calibración son decisiones editoriales; satisfacerlos no establece la veracidad de las relaciones causales.
+
+Persisten problemas estructurales documentados: posible doble contabilización al sumar electricidad de centros de datos a energía primaria, cuota eléctrica fija y ausencia de redes locales o emisiones marginales. Las conexiones entre cómputo, capacidad, automatización y empleo son estilizadas. La población no responde a las catástrofes simuladas y su variación de ±10 % no es un intervalo oficial de Naciones Unidas.
+
+Una ejecución determinista tampoco resuelve esos problemas. Un lector debería separar tres preguntas: si puede repetir los cálculos, si cada entrada tiene procedencia suficiente y si la estructura sirve para su decisión. Esta versión responde a la primera y documenta límites de las otras dos. Resolverlos requeriría una revisión explícita del modelo, fuera del alcance de este documento.
+
+## Fuentes
+
+La AIE proporciona las fuentes oficiales de este documento; Epoch aporta análisis históricos con unidades y periodos delimitados. Los [pasajes registrados](https://github.com/aisona-lab/peacethefrontier-atlas/blob/29b775d/docs/research/passages.json), consultados el 13 de noviembre, permiten rastrear el alcance de las citas. Esa fecha no acredita una búsqueda exhaustiva ni una revisión completa de retractaciones. Las revisiones existentes de [cómputo, energía y clima](/articulos/computo-energia-y-clima/) y [cómputo de IA](/articulos/computo-de-la-ia/) desarrollan el contexto.
+
+## Historial de correcciones
+
+**v0.1.0 — 14 de noviembre de 2026:** primer borrador de trabajo; reúne el registro existente y su repetición técnica, separa igualdad numérica de validación y explicita periodos y supuestos. No modifica ecuaciones ni parámetros. Revisión de fuentes utilizada: 13 de noviembre de 2026. Asistencia de IA declarada; revisión y autorización humana pendientes.

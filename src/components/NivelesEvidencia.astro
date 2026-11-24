@@ -1,0 +1,82 @@
+---
+// Leyenda de niveles de evidencia. "rejilla" en la portada, "lista" en la metodología.
+import LineaEvidencia from './LineaEvidencia.astro';
+import type { Idioma } from '../i18n/rutas';
+import { NIVELES } from '../lib/evidencia';
+
+interface Props {
+	lang: Idioma;
+	variante?: 'rejilla' | 'lista';
+}
+
+const { lang, variante = 'lista' } = Astro.props;
+---
+
+<dl class:list={['niveles', `niveles-${variante}`]}>
+	{
+		NIVELES.map((n) => (
+			<div class="nivel">
+				<dt class="ui">
+					<LineaEvidencia nivel={n.id} />
+					{n.nombre[lang]}
+				</dt>
+				<dd>{n.descripcion[lang]}</dd>
+			</div>
+		))
+	}
+</dl>
+
+<style>
+	.niveles {
+		display: grid;
+		margin: 0;
+	}
+
+	.nivel dt {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		font-weight: 600;
+	}
+
+	.nivel dd {
+		margin: 0;
+		color: var(--tinta-suave);
+	}
+
+	.niveles-lista {
+		gap: 1.25rem;
+		margin-block: 1.75rem;
+	}
+
+	.niveles-lista dd {
+		margin: 0.35rem 0 0 3.75rem;
+	}
+
+	.niveles-rejilla {
+		gap: 2rem 3rem;
+	}
+
+	.niveles-rejilla .nivel {
+		padding-top: 1rem;
+		border-top: 1px solid var(--linea);
+	}
+
+	.niveles-rejilla dd {
+		margin-top: 0.6rem;
+		font-size: 1.0625rem;
+		line-height: 1.5;
+	}
+
+	@media (min-width: 48rem) {
+		.niveles-rejilla {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+
+	@media (min-width: 72rem) {
+		.niveles-rejilla {
+			grid-template-columns: repeat(4, minmax(0, 1fr));
+		}
+	}
+</style>

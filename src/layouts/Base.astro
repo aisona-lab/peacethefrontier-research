@@ -1,0 +1,111 @@
+---
+import { Font } from 'astro:assets';
+import { createHash } from 'node:crypto';
+import Cabecera from '../components/Cabecera.astro';
+import Pie from '../components/Pie.astro';
+import { otroIdioma, ruta, type Idioma } from '../i18n/rutas';
+import { textos } from '../i18n/ui';
+import { slugOg } from '../lib/og';
+import '../styles/global.css';
+import { PERFIL } from '../lib/studio/config';
+import { urlPublica, hrefPublico } from '../lib/studio/espacios';
+
+interface Props {
+	lang: Idioma;
+	/** Sin título = portada. */
+	titulo?: string;
+	descripcion: string;
+	/** La misma página en el otro idioma; sin ella no se emite hreflang. */
+	alternativa?: string;
+	jsonld?: Record<string, unknown>;
+	/** Para la 404 y similares. */
+	noIndexar?: boolean;
+}
+
+const NOMBRE = 'Peace The Frontier';
+const { lang, titulo, descripcion, alternativa, jsonld, noIndexar = false } = Astro.props;
+const t = textos(lang);
+const otro = otroIdioma(lang);
+const tituloCompleto = titulo ? `${titulo} | ${NOMBRE}` : `${NOMBRE}: ${t.sitio.lema}`;
+const canonica = new URL(urlPublica(Astro.url.pathname, PERFIL));
+const urlAbsoluta = (ruta: string) => new URL(ruta, Astro.site).href;
+const imagenOg = urlAbsoluta(`/og/${slugOg(Astro.url.pathname)}.png`);
+const versiones = alternativa ? { [lang]: canonica.href, [otro]: urlPublica(alternativa, PERFIL) } : undefined;
+
+// Antes del primer pintado: marca que hay JS (los controles de las islas se ven sin saltos) y aplica el tema guardado.
+const SCRIPT_TEMA = `document.documentElement.classList.add('js');try{var t=localStorage.getItem('tema');if(t==='claro'||t==='oscuro')document.documentElement.dataset.tema=t}catch(e){}`;
+Astro.csp?.insertScriptHash(`sha256-${createHash('sha256').update(SCRIPT_TEMA).digest('base64')}`);
+---
+
+<!doctype html>
+<html lang={lang}>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>{tituloCompleto}</title>
+		<meta name="description" content={descripcion} />
+		{noIndexar && <meta name="robots" content="noindex" />}
+		<link rel="canonical" href={canonica} />
+		{
+			versiones && (
+				<>
+					<link rel="alternate" hreflang="es" href={versiones.es} />
+					<link rel="alternate" hreflang="en" href={versiones.en} />
+					<link rel="alternate" hreflang="x-default" href={versiones.es} />
+				</>
+			)
+		}
+		<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+		<link rel="sitemap" href="/sitemap-index.xml" />
+		<link
+			rel="alternate"
+			type="application/rss+xml"
+			title={`Peace The Frontier (${lang.toUpperCase()})`}
+			href={lang === 'en' ? '/en/rss.xml' : '/rss.xml'}
+		/>
+		<meta name="theme-color" content="#eef2f3" media="(prefers-color-scheme: light)" />
+		<meta name="theme-color" content="#123a6b" media="(prefers-color-scheme: dark)" />
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content={NOMBRE} />
+		<meta property="og:locale" content={t.localeOg} />
+		{versiones && <meta property="og:locale:alternate" content={textos(otro).localeOg} />}
+		<meta property="og:title" content={titulo ?? tituloCompleto} />
+		<meta property="og:description" content={descripcion} />
+		<meta property="og:url" content={canonica} />
+		<meta property="og:image" content={imagenOg} />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:image:alt" content={titulo ?? tituloCompleto} />
+		<meta name="twitter:card" content="summary_large_image" />
+		<script is:inline set:html={SCRIPT_TEMA} />
+		<Font
+			cssVariable="--fuente-serif"
+			preload={[
+				{ weight: 200, style: 'normal' },
+				{ weight: 400, style: 'normal' },
+			]}
+		/>
+		<Font cssVariable="--fuente-sans" />
+		{
+			jsonld && (
+				<script
+					type="application/ld+json"
+					set:html={JSON.stringify(jsonld).replaceAll('<', '\\u003c')}
+				/>
+			)
+		}
+	</head>
+	<body>
+		<Cabecera lang={lang} alternativa={hrefPublico(alternativa ?? ruta(otro, 'inicio'), PERFIL)} />
+		<main id="contenido" tabindex="-1">
+			<slot />
+		</main>
+		<Pie lang={lang} />
+		{/* Cloudflare Web Analytics: sin cookies; token ligado al dominio (no secreto). */}
+		<script
+			defer
+			src="https://static.cloudflareinsights.com/beacon.min.js"
+			data-cf-beacon='{"token": "d4d508e1ea4b4a74beb54a89d9160c4d"}'
+		></script>
+	</body>
+</html>

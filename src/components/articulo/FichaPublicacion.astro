@@ -1,0 +1,103 @@
+---
+import type { Idioma } from '../../i18n/rutas';
+import { textos } from '../../i18n/ui';
+import type { Articulo } from '../../lib/articulos-coleccion';
+import { formatearDatosHasta } from '../../lib/editorial';
+import { NIVELES } from '../../lib/evidencia';
+import { textosTema, urlTema, type Tema } from '../../lib/temas';
+import { urlCodigoRepositorio } from '../../lib/studio/config';
+import LineaEvidencia from '../LineaEvidencia.astro';
+
+interface Props {
+	lang: Idioma;
+	data: Articulo['data'];
+	temas: Tema[];
+}
+
+const { lang, data, temas } = Astro.props;
+const t = textos(lang).articulo;
+const nivel = NIVELES.find((n) => n.id === data.evidencia)!;
+const locale = lang === 'es' ? 'es-ES' : 'en-US';
+const fecha = (d: Date) => new Intl.DateTimeFormat(locale, { dateStyle: 'long', timeZone: 'UTC' }).format(d);
+const iso = (d: Date) => d.toISOString().slice(0, 10);
+const borrador = data.estado === 'borrador';
+const urlCodigo = data.repositorioCodigo ? urlCodigoRepositorio(data.repositorioCodigo) : undefined;
+---
+
+<div class="articulo-meta ui">
+	{
+		data.tipoPublicacion === 'working-paper' && (
+			<p>
+				{data.serie} {data.numero} · Working paper · v{data.version}
+				{data.hipotesis ? ` · ${lang === 'es' ? 'Hipótesis' : 'Hypothesis'} ${data.hipotesis}` : ''}
+				{urlCodigo && (
+					<>
+						{' · '}
+						<a href={urlCodigo}>{lang === 'es' ? 'Código en GitHub' : 'Code on GitHub'}</a>
+					</>
+				)}
+			</p>
+		)
+	}
+	{data.tipoPublicacion === 'working-paper' && borrador && <p>{lang === 'es' ? 'Versión de trabajo asistida por IA; aprobación editorial humana pendiente.' : 'AI-assisted working draft; human editorial approval pending.'}</p>}
+	<p class="articulo-clasificacion">
+		<span>{t.estados[data.estado]}</span>
+		<span aria-hidden="true">·</span>
+		<span class="articulo-evidencia"><LineaEvidencia nivel={data.evidencia} /> {nivel.nombre[lang]}</span>
+	</p>
+	<p>
+		{t.por(data.autor)}. {t.publicado} <time datetime={iso(data.publicado)}>{fecha(data.publicado)}</time>.{' '}
+		{t.revisado} <time datetime={iso(data.revisado)}>{fecha(data.revisado)}</time>.
+	</p>
+	{
+		data.datosHasta && (
+			<p>{t.datosHasta}: <time datetime={data.datosHasta}>{formatearDatosHasta(data.datosHasta, lang)}</time>.</p>
+		)
+	}
+	{data.investigadoHasta && <p>{textos(lang).fuentes.investigadoHasta}: <time datetime={data.investigadoHasta}>{formatearDatosHasta(data.investigadoHasta, lang)}</time>.</p>}
+	<p>
+		{`${t.temas}: `}
+		{
+			temas.map((tema, i) => (
+				<>
+					{i > 0 && ', '}
+					<a href={urlTema(tema, lang)}>{textosTema(tema, lang).titulo}</a>
+				</>
+			))
+		}
+	</p>
+	{
+		(data.asistidoPorIA || borrador) && (
+			<p class="articulo-aviso">
+				{[data.asistidoPorIA && t.asistido, borrador && t.borrador, borrador && data.sensible && t.sensiblePendiente]
+					.filter(Boolean)
+					.join(' ')}
+			</p>
+		)
+	}
+</div>
+
+<style>
+	.articulo-meta {
+		display: grid;
+		gap: 0.35rem;
+		margin-block: 1.5rem 3rem;
+		color: var(--tinta-suave);
+		font-size: var(--t-mini);
+	}
+
+	.articulo-meta p {
+		margin: 0;
+	}
+
+	.articulo-clasificacion,
+	.articulo-evidencia {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
+
+	.articulo-aviso {
+		color: var(--tinta);
+	}
+</style>

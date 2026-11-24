@@ -1,0 +1,26 @@
+---
+import type {Idioma} from '../../i18n/rutas';
+import {textosStudio} from '../../lib/studio/textos';
+import {leerArtefacto} from '../../lib/studio/artefactos';
+interface Props {lang:Idioma;modo:'sim'|'open'}
+const {lang,modo}=Astro.props;const t=textosStudio(lang);const data=await leerArtefacto();
+const n=(v:number)=>new Intl.NumberFormat(lang==='es'?'es-ES':'en-US').format(v);
+const percent=(v:number)=>new Intl.NumberFormat(lang==='es'?'es-ES':'en-US',{style:'percent',maximumFractionDigits:2}).format(v);
+const labels=lang==='es'?{dataset:'Dataset CSV',schema:'Esquema y unidades','dataset-card':'Ficha del dataset',license:'Licencia','source-code':'Código del simulador'}:{dataset:'CSV dataset',schema:'Schema and units','dataset-card':'Dataset card',license:'Licence','source-code':'Simulator source'};
+const files=data.files.filter(f=>!f.language||f.language===lang);
+---
+<section class="datos-studio" aria-labelledby="titulo-dataset">
+ <p class="ui">{t.sintetico} · {t.modelo} · v{data.version}</p>
+ <h2 id="titulo-dataset">{data.title[lang]}</h2><p>{data.description[lang]}</p>
+ <p>{n(data.experiment.row_count)} {lang==='es'?'filas':'rows'} · {data.seeds.length} {lang==='es'?'semillas':'seeds'} · {data.experiment.hours_per_seed} {lang==='es'?'horas por escenario':'hours per scenario'} · {data.experiment.policy_count} {lang==='es'?'políticas':'policies'}.</p>
+ {modo==='sim'&&<>
+  <div class="tabla-desplazable" tabindex="0" role="group" aria-label={lang==='es'?'Resultados sintéticos por política':'Synthetic results by policy'}><table><caption>{lang==='es'?'Resultados del experimento v1.0.0; unidades de servicio abstractas':'Experiment v1.0.0 results; abstract service units'}</caption><thead><tr><th scope="col">{lang==='es'?'Política':'Policy'}</th><th scope="col">{lang==='es'?'Servicio atendido':'Demand served'}</th><th scope="col">{lang==='es'?'Demanda no atendida':'Unmet demand'}</th></tr></thead><tbody>{data.policies.map(p=><tr><th scope="row">{p.label[lang]}</th><td>{percent(p.metrics.service_ratio)}</td><td>{n(p.metrics.total_unmet_service_units)}</td></tr>)}</tbody></table></div>
+  <p class="ui">{lang==='es'?'Fracción de servicio = demanda total atendida / demanda total. Las políticas tienen presupuestos de capacidad y reparación distintos; esta comparación no estima costes ni una eficacia universal.':'Service fraction = total served demand / total demand. Policies have different capacity and repair budgets; this comparison estimates neither costs nor universal effectiveness.'}</p>
+ </>}
+ <ul class="descargas ui" role="list">{files.map(f=><li><a href={f.path} download>{labels[f.role]}</a> · {f.license}</li>)}</ul>
+ <p class="ui"><a href="/datos/studio/manifest.json" download>{lang==='es'?'Manifiesto, supuestos y métricas completas':'Manifest, assumptions and full metrics'} (JSON)</a></p>
+ <details><summary class="ui">{lang==='es'?'Integridad y trazabilidad de los archivos':'File integrity and provenance'}</summary><dl class="ui">{files.map(f=><div><dt>{f.path.split('/').at(-1)}</dt><dd>SHA-256: <code>{f.sha256}</code> · {n(f.bytes)} bytes</dd></div>)}</dl></details>
+</section>
+<style>
+ .datos-studio{margin-block:3rem;min-width:0;}.datos-studio p{margin-block:1rem;}.descargas{display:flex;flex-wrap:wrap;gap:.75rem 1.5rem;margin-block:1.5rem;}.datos-studio table{border-collapse:collapse;width:100%;}.datos-studio th,.datos-studio td{padding:.75rem;border-bottom:1px solid var(--linea);text-align:left;}.datos-studio caption{text-align:left;margin-bottom:1rem;color:var(--tinta-suave);}.tabla-desplazable{max-width:100%;overflow-x:auto;}.datos-studio td{font-variant-numeric:tabular-nums;}.datos-studio dd,.datos-studio code{overflow-wrap:anywhere;}.datos-studio details{margin-block:1.5rem;}.datos-studio dl>div{margin-block:1rem;}
+</style>

@@ -1,0 +1,21 @@
+// Despliegue en Cloudflare Workers con archivos estáticos (dist/ de Astro). Respeta public/_headers y _redirects.
+// El juego vive en otro Worker ("peace-the-frontier"); este nombre es distinto para no pisarlo.
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "peacethefrontier-atlas",
+	// Cuenta de Cloudflare (no es secreto); el token va en el secreto CLOUDFLARE_API_TOKEN del CI.
+	"account_id": "26af746418cfd72197d2efc50ca208d7",
+	"compatibility_date": "2026-09-01",
+	"assets": {
+		"directory": "./dist",
+		"not_found_handling": "404-page",
+		"html_handling": "auto-trailing-slash",
+	},
+	// El juego está en play.peacethefrontier.com (Worker "peace-the-frontier"); el atlas tiene el dominio principal.
+	// www sirve lo mismo; las canonical apuntan al dominio principal.
+	"routes": [
+		{ "pattern": "peacethefrontier.com", "custom_domain": true },
+		{ "pattern": "www.peacethefrontier.com", "custom_domain": true },
+		{ "pattern": "beta.peacethefrontier.com", "custom_domain": true },
+	],
+}

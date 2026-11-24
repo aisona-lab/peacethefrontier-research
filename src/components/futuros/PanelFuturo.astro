@@ -1,0 +1,194 @@
+---
+// Panel fijo de un futuro: año visible, mini matriz, controles y gráficos, calculados al compilar.
+// La isla <ptf-futuro> (panel-futuro.ts, tarea 10) los actualiza en el navegador.
+import { BANDAS } from '../../lib/futuros/procedencia';
+import Grafico from './Grafico.astro';
+import MatrizFuturos from './MatrizFuturos.astro';
+import type { Idioma } from '../../i18n/rutas';
+import { textos } from '../../i18n/ui';
+import { formatear, porcentaje } from '../../lib/futuros/formato';
+import type { CuadranteId } from '../../lib/futuros/posicion';
+import { GRAFICOS } from '../../lib/futuros/trazado';
+import { ANIO_INICIAL, type Posicion, type Resultado } from '../../lib/futuros/tipos';
+
+interface Props {
+	lang: Idioma;
+	id: CuadranteId;
+	resultado: Resultado;
+	posicion: Posicion;
+}
+
+const { lang, id, resultado, posicion } = Astro.props;
+const t = textos(lang).futuros;
+const BARRA = ['capacidad', 'temperatura', 'riesgo'] as const;
+const EJES = ['paz', 'frontera'] as const;
+---
+
+<div class="panel" data-panel data-abierto="false">
+	<button
+		class="panel-barra ui"
+		type="button"
+		aria-expanded="false"
+		aria-controls="panel-contenido"
+		data-barra
+		hidden
+	>
+		<span class="panel-barra-anio" data-anio-texto>{ANIO_INICIAL}</span>
+		{
+			BARRA.map((s) => (
+				<span class="panel-barra-cifra">
+					<span class="panel-barra-etiqueta" aria-hidden="true">{t.panel.barra[s]}</span>
+					<span class="solo-lectores">{t.indicadores[s]}: </span>
+					<span data-valor={s}>{formatear(s, resultado.p50[s][0], lang)}</span>
+				</span>
+			))
+		}
+		<span class="panel-barra-accion">{t.panel.abrir}</span>
+	</button>
+
+	<div class="panel-contenido" id="panel-contenido">
+		<p class="panel-anio" data-anio-texto>{ANIO_INICIAL}</p>
+		<MatrizFuturos lang={lang} variante="mini" actual={id} posicion={posicion} />
+		<fieldset class="controles ui" data-controles>
+			<legend class="solo-lectores">{t.panel.controles}</legend>
+			{
+				EJES.map((eje) => (
+					<label class="control-eje">
+						<span class="control-nombre">{t.matriz[eje]}</span>
+						<input
+							type="range"
+							name={eje}
+							min="0"
+							max="1"
+							step="0.05"
+							value={posicion[eje]}
+							aria-valuetext={eje === 'paz' ? t.panel.valorPaz(posicion.paz) : t.panel.valorFrontera(posicion.frontera)}
+						/>
+						<output data-salida={eje} aria-live="off">{porcentaje(lang, posicion[eje])}</output>
+					</label>
+				))
+			}
+			<button class="restablecer" type="button" data-restablecer>
+				{t.panel.restablecer(t.cuadrantes[id].nombre)}
+			</button>
+		</fieldset>
+		<p class="panel-estado ui" role="status" data-estado></p>
+		<p class="modelo-bandas ui">{BANDAS[lang]}</p>
+		<ul class="graficos">
+			{GRAFICOS.map((g) => <Grafico lang={lang} grafico={g} resultado={resultado} />)}
+		</ul>
+	</div>
+</div>
+
+<script>
+	import './panel-futuro';
+</script>
+
+<style>
+	.modelo-bandas { font-size: var(--t-mini); color: var(--tinta-suave); }
+	.panel-anio {
+		margin: 0 0 1rem;
+		font-size: clamp(2.25rem, 1.5rem + 2vw, 3rem);
+		font-weight: 200;
+		line-height: 1;
+		font-variant-numeric: tabular-nums;
+	}
+
+	.controles {
+		display: grid;
+		gap: 0.6rem;
+		margin: 1.25rem 0 0;
+		padding: 0;
+		border: 0;
+	}
+
+	/* Sin JS no hay recálculo: el espacio se reserva (sin salto de diseño) pero no se ve. */
+	:global(ptf-futuro:not([data-interactivo])) .controles {
+		visibility: hidden;
+	}
+
+	.control-eje {
+		display: grid;
+		grid-template-columns: 5.5rem 1fr 3.5rem;
+		align-items: center;
+		gap: 0.6rem;
+	}
+
+	input[type='range'] {
+		width: 100%;
+		min-height: 1.75rem;
+		accent-color: var(--tinta);
+	}
+
+	output {
+		text-align: end;
+		font-variant-numeric: tabular-nums;
+	}
+
+	.restablecer {
+		justify-self: start;
+		min-height: 2.25rem;
+		padding: 0.3rem 0.9rem;
+		border: 1px solid var(--linea);
+		border-radius: 999px;
+		background: none;
+		cursor: pointer;
+	}
+
+	.restablecer:hover {
+		background: var(--superficie);
+	}
+
+	.panel-estado:empty {
+		display: none;
+	}
+
+	.graficos {
+		display: grid;
+		gap: 1.1rem;
+		margin-top: 1.5rem;
+	}
+
+	.panel-barra {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.25rem 1rem;
+		width: 100%;
+		min-height: 3.25rem;
+		padding: 0.6rem var(--margen);
+		border: 0;
+		background: var(--fondo);
+		color: var(--tinta);
+		font-variant-numeric: tabular-nums;
+		cursor: pointer;
+	}
+
+	.panel-barra-anio {
+		font-weight: 600;
+	}
+
+	/* Nombre corto encima de cada cifra: sin él, «×1 1,4 °C 0,0 %» no se entiende. */
+	.panel-barra-cifra {
+		display: grid;
+		justify-items: start;
+		line-height: 1.15;
+	}
+
+	.panel-barra-etiqueta {
+		color: var(--tinta-suave);
+		font-size: 0.6875rem;
+	}
+
+	.panel-barra-accion {
+		margin-left: auto;
+		text-decoration: underline;
+		text-underline-offset: 0.2em;
+	}
+
+	@media (min-width: 64rem) {
+		.panel-barra {
+			display: none;
+		}
+	}
+</style>

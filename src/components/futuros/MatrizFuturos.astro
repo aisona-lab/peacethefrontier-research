@@ -1,0 +1,301 @@
+---
+// Matriz Paz × Frontera: cuatro puertas de igual peso. "portada" en la home y en /futuros/; "mini" en el panel.
+import { ruta, type Idioma } from '../../i18n/rutas';
+import { textos } from '../../i18n/ui';
+import { HOY } from '../../lib/futuros/hoy';
+import { urlFuturo, type CuadranteId } from '../../lib/futuros/posicion';
+import type { Posicion } from '../../lib/futuros/tipos';
+
+interface Props {
+	lang: Idioma;
+	variante: 'portada' | 'mini';
+	actual?: CuadranteId;
+	posicion?: Posicion;
+}
+
+/** Arriba paz alta, abajo paz baja; a la izquierda frontera lenta, a la derecha rápida. */
+const ORDEN: readonly CuadranteId[] = ['pausa', 'frontera-en-paz', 'fractura', 'carrera'];
+
+const { lang, variante, actual, posicion } = Astro.props;
+const t = textos(lang).futuros;
+const Titulo = variante === 'portada' ? 'h2' : 'p';
+const portada = variante === 'portada';
+---
+
+<div class:list={['matriz', `matriz-${variante}`]}>
+	<Titulo class="matriz-titulo">{portada ? t.matriz.titulo : t.matriz.etiqueta}</Titulo>
+	<p class="matriz-eje matriz-eje-x ui" aria-hidden={portada ? undefined : 'true'}>
+		{portada ? t.matriz.ejeFrontera : t.matriz.frontera} →
+	</p>
+	<p class="matriz-eje matriz-eje-y ui" aria-hidden={portada ? undefined : 'true'}>
+		{portada ? t.matriz.ejePaz : t.matriz.paz} →
+	</p>
+	<div
+		class="matriz-area"
+		style={portada
+			? [
+					`--x0:${HOY.frontera.min}`,
+					`--x1:${HOY.frontera.max}`,
+					`--y0:${1 - HOY.paz.max}`,
+					`--y1:${1 - HOY.paz.min}`,
+					`--x:${HOY.frontera.central}`,
+					`--y:${1 - HOY.paz.central}`,
+				].join(';')
+			: undefined}
+	>
+		<ul class="matriz-rejilla" aria-label={t.matriz.etiqueta}>
+			{
+				ORDEN.map((id) => (
+					<li class:list={['puerta', `puerta-${id}`]}>
+						<a href={urlFuturo(lang, id)} data-puerta={id} aria-current={actual === id ? 'page' : undefined}>
+							<span class="puerta-nombre">{t.cuadrantes[id].nombre}</span>
+							{portada && <span class="puerta-lema">{t.cuadrantes[id].lema}</span>}
+						</a>
+					</li>
+				))
+			}
+		</ul>
+		{
+			portada && (
+				<a class="matriz-hoy" data-hoy href={`${ruta(lang, 'futuros')}#hoy`}>
+					<span class="matriz-hoy-caja" aria-hidden="true" />
+					<span class="matriz-hoy-punto" aria-hidden="true" />
+					<span class="matriz-hoy-texto ui">{t.hoy.etiqueta}</span>
+					<span class="solo-lectores">{`: ${t.hoy.descripcion}`}</span>
+				</a>
+			)
+		}
+		{
+			posicion && (
+				<span
+					class="matriz-punto"
+					data-punto
+					style={`--x:${posicion.frontera};--y:${1 - posicion.paz}`}
+					aria-hidden="true"
+				/>
+			)
+		}
+	</div>
+</div>
+
+<style>
+	.matriz {
+		display: grid;
+		grid-template-columns: auto minmax(0, 1fr);
+		grid-template-areas: 'titulo titulo' '. eje-x' 'eje-y area';
+		gap: 0.6rem 0.75rem;
+	}
+
+	.matriz-titulo {
+		grid-area: titulo;
+		margin: 0 0 0.4rem;
+		font-size: var(--t-h3);
+		font-weight: 400;
+		line-height: 1.2;
+	}
+
+	.matriz-eje {
+		margin: 0;
+		color: var(--tinta-suave);
+		font-size: var(--t-mini);
+	}
+
+	.matriz-eje-x {
+		grid-area: eje-x;
+	}
+
+	/* Se lee de abajo arriba: la paz crece hacia arriba. */
+	.matriz-eje-y {
+		grid-area: eje-y;
+		writing-mode: vertical-rl;
+		rotate: 180deg;
+	}
+
+	.matriz-area {
+		grid-area: area;
+		position: relative;
+	}
+
+	/* Reinicio explícito: dentro de un MDX, .prosa da sangría y márgenes a las listas. */
+	.matriz-rejilla {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 1.5px;
+		border: 1.5px solid var(--tinta);
+		background: var(--tinta);
+	}
+
+	.puerta {
+		margin: 0;
+		display: flex;
+		background: var(--fondo);
+	}
+
+	.puerta a {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		gap: 0.35rem;
+		min-height: clamp(6.5rem, 4rem + 6vw, 9.5rem);
+		padding: clamp(0.75rem, 0.5rem + 1vw, 1.25rem);
+		color: var(--tinta);
+		text-decoration: none;
+		transition: background-color var(--dur-rapida);
+	}
+
+	/* Cada puerta se alinea a su esquina exterior, como los cuadrantes de un mapa. */
+	.puerta-frontera-en-paz a,
+	.puerta-carrera a {
+		align-items: flex-end;
+		text-align: end;
+	}
+
+	.puerta-fractura a,
+	.puerta-carrera a {
+		justify-content: flex-end;
+	}
+
+	/* En la portada, la franja de la derecha de Carrera es del punto de hoy: su texto se aparta.
+	   El padding en % es del ancho de la celda, la mitad de la matriz; de ahí el 200 %. */
+	.matriz-portada .puerta-carrera a {
+		padding-inline-end: calc((1 - var(--x0)) * 200% + 1.25rem);
+	}
+
+	.puerta a:hover,
+	.puerta a[aria-current='page'] {
+		background: var(--superficie);
+	}
+
+	.puerta a:hover .puerta-nombre {
+		text-decoration: underline 1px;
+		text-underline-offset: 0.2em;
+	}
+
+	.puerta a:focus-visible {
+		outline-offset: -4px;
+	}
+
+	.puerta-nombre {
+		font-size: clamp(1.25rem, 1rem + 1vw, 1.6rem);
+		line-height: 1.15;
+	}
+
+	.puerta a[aria-current='page'] .puerta-nombre {
+		font-weight: 600;
+	}
+
+	.puerta-lema {
+		color: var(--tinta-suave);
+		font-family: var(--fuente-sans);
+		font-size: var(--t-ui);
+		line-height: 1.35;
+	}
+
+	.matriz-mini {
+		gap: 0.35rem 0.5rem;
+	}
+
+	.matriz-mini .matriz-titulo {
+		margin: 0;
+		color: var(--tinta-suave);
+		font-family: var(--fuente-sans);
+		font-size: var(--t-mini);
+	}
+
+	.matriz-mini .puerta a {
+		min-height: 2.75rem;
+		padding: 0.4rem 0.55rem;
+	}
+
+	.matriz-mini .puerta-nombre {
+		font-family: var(--fuente-sans);
+		font-size: 0.75rem;
+	}
+
+	/* En la mini matriz el punto cae cerca de las esquinas exteriores: los nombres van hacia el centro. */
+	.matriz-mini .puerta-pausa a,
+	.matriz-mini .puerta-frontera-en-paz a {
+		justify-content: flex-end;
+	}
+
+	.matriz-mini .puerta-fractura a,
+	.matriz-mini .puerta-carrera a {
+		justify-content: flex-start;
+	}
+
+	.matriz-punto {
+		position: absolute;
+		left: calc(var(--x) * 100%);
+		top: calc(var(--y) * 100%);
+		width: 0.9rem;
+		height: 0.9rem;
+		translate: -50% -50%;
+		border-radius: 50%;
+		background: var(--sodio);
+		box-shadow:
+			0 0 0 1.5px var(--sobre-sodio),
+			0 0 0 3.5px var(--fondo);
+		pointer-events: none;
+	}
+
+	/* Hoy: la caja es la incertidumbre de la estimación; el punto, su centro. Medido sobre el interior del borde. */
+	.matriz-hoy {
+		position: absolute;
+		inset: 1.5px;
+		pointer-events: none;
+		color: var(--tinta);
+		text-decoration: none;
+	}
+
+	.matriz-hoy-caja {
+		position: absolute;
+		left: calc(var(--x0) * 100%);
+		width: calc((var(--x1) - var(--x0)) * 100%);
+		top: calc(var(--y0) * 100%);
+		height: calc((var(--y1) - var(--y0)) * 100%);
+		border: 1.5px dashed var(--tinta);
+	}
+
+	.matriz-hoy-punto {
+		position: absolute;
+		left: calc(var(--x) * 100%);
+		top: calc(var(--y) * 100%);
+		width: 0.8rem;
+		height: 0.8rem;
+		translate: -50% -50%;
+		border-radius: 50%;
+		background: var(--sodio);
+		box-shadow: 0 0 0 1.5px var(--sobre-sodio);
+		pointer-events: auto;
+	}
+
+	/* Encima de la caja, pegado al borde derecho. */
+	.matriz-hoy-texto {
+		position: absolute;
+		right: calc((1 - var(--x1)) * 100%);
+		bottom: calc((1 - var(--y0)) * 100% + 0.25rem);
+		padding: 0.15rem 0.45rem;
+		border-radius: 999px;
+		background: var(--fondo);
+		font-size: var(--t-mini);
+		font-weight: 600;
+		pointer-events: auto;
+	}
+
+	.matriz-hoy:hover .matriz-hoy-texto {
+		text-decoration: underline 1px;
+		text-underline-offset: 0.2em;
+	}
+
+	.matriz-hoy:focus-visible {
+		outline: none;
+	}
+
+	.matriz-hoy:focus-visible .matriz-hoy-texto {
+		outline: 2px solid var(--foco);
+		outline-offset: 2px;
+	}
+</style>

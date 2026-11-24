@@ -1,0 +1,18 @@
+// Prepared deployment profile; activation requires the project Cloudflare account.
+{
+  "$schema": "../node_modules/wrangler/config-schema.json",
+  "name": "peacethefrontier-sim-space",
+  "account_id": "26af746418cfd72197d2efc50ca208d7",
+  "compatibility_date": "2026-09-01",
+  "assets": {
+    "directory": "../dist-sim",
+    "not_found_handling": "404-page",
+    "html_handling": "auto-trailing-slash"
+  },
+  "routes": [
+    {
+      "pattern": "sim.peacethefrontier.com",
+      "custom_domain": true
+    }
+  ]
+}

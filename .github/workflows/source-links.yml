@@ -1,0 +1,37 @@
+name: Weekly source links
+
+on:
+  schedule:
+    - cron: '23 7 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: Check links (availability only)
+        run: npm run research:links
+      - name: Job summary
+        if: always()
+        run: |
+          if [ -f reports/source-links.md ]; then
+            cat reports/source-links.md >> "$GITHUB_STEP_SUMMARY"
+          fi
+      - name: Save report
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: source-links
+          path: reports/source-links.*
+          retention-days: 90
+# Independent of CI/deployment. Link outcomes never publish or rewrite conclusions.

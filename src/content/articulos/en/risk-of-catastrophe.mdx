@@ -1,0 +1,46 @@
+---
+titulo: How much risk of catastrophe?
+resumen: Experts and superforecasters give an AI-caused catastrophe before 2100 probabilities that differ by a factor of five. What was asked, what they answered and why nobody can measure it.
+clave: riesgo
+temas: [riesgo, gobernanza, ia]
+evidencia: especulativo
+autor: Peace The Frontier
+publicado: 2026-10-02
+revisado: 2026-11-13
+fuentes: [xpt-2023, grace-2024, iasr-2026]
+sensible: true
+asistidoPorIA: true
+estado: borrador
+---
+
+import Nota from '../../../components/articulo/Nota.astro';
+
+## What counts as a catastrophe here
+
+We call a catastrophe an event that kills at least 10% of humanity within a 5-year period. It is the definition used by the forecasting tournament cited below and by our [futures model](/en/futures/#ecuacion-riesgo). Extinction is a different, far more extreme question.
+
+## What forecasters say
+
+Between June and October 2022, before ChatGPT was released, a tournament brought together experts in each risk and superforecasters, people with a proven track record of accuracy, to estimate long-term risks. For a catastrophe from any cause before 2100 (pandemics, nuclear war, AI and the rest), the superforecasters’ median was 9.05% and the experts’ 20%. For a catastrophe caused by AI alone, the AI experts’ median was 12% and the superforecasters’ 2.13%. For AI-caused extinction, 3% and 0.38%.<Nota f="xpt-2023" />
+
+On AI, the experts gave five to eight times more probability than the superforecasters.
+
+## What researchers say
+
+A 2023 survey of 2,778 researchers who publish at the top AI conferences found that between 38% and 51% gave at least a 10% chance to advanced AI leading to outcomes as bad as human extinction.<Nota f="grace-2024" />
+
+## What the international report says
+
+The International AI Safety Report, published in February 2026 and commissioned by more than 30 countries, assessed that systems at that time lacked the capabilities to pose loss-of-control risks, but that they were improving in related areas such as operating autonomously. It warns that evidence on these risks is slow to emerge and hard to assess, and that some models are getting better at telling when they are being tested.<Nota f="iasr-2026" />
+
+## In the model
+
+Our model computes the cumulative risk of catastrophe from any cause, not just AI: pandemics, wars and natural disasters too. Keeping Pause below 9% in 2100 and Race above 20% is an editorial choice, anchored in the medians for a catastrophe from any cause: the superforecasters’ (9.05%) and the experts’ (20%). At the centre of the matrix, the parameter that moves the figure most is the risk added by power concentration, calibrated against these estimates rather than measured, as the [sensitivity analysis](/en/futures/#parametro-hConf) shows. In the futures with a lot of peace, the baseline risk weighs more.
+
+## What we do not know
+
+These figures are judgments, not measurements. Nobody has seen a global catastrophe caused by AI, so there is no frequency to count. That serious groups disagree so much is perhaps the most honest data point: the uncertainty is enormous.
+
+## Correction and verification limits — 13 November 2026
+
+The survey abstract was checked against arXiv version 3 (October 2025), which links to the 2025 journal publication. The safety report statement is explicitly dated to February 2026 and is not a guarantee about later systems or about misuse. The forecasting institute’s landing page confirms the 2022 tournament and disagreement, but its detailed probability table has not yet been re-verified in this refresh. The retained XPT percentages above are historical quotations pending that table check, not newly verified estimates. The model calibration and conditional sensitivity bands do not measure an objective probability of catastrophe.

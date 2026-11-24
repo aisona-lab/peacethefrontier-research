@@ -1,0 +1,71 @@
+---
+// Índice de artículos de un idioma.
+import Base from '../../layouts/Base.astro';
+import LineaEvidencia from '../LineaEvidencia.astro';
+import { otroIdioma, ruta, rutaArticulo, type Idioma } from '../../i18n/rutas';
+import { textos } from '../../i18n/ui';
+import { articulosDe, slugArticulo } from '../../lib/articulos-coleccion';
+import { NIVELES } from '../../lib/evidencia';
+
+interface Props {
+	lang: Idioma;
+}
+
+const { lang } = Astro.props;
+const t = textos(lang).articulo;
+const articulos = await articulosDe(lang);
+const nivel = (id: string) => NIVELES.find((n) => n.id === id)!.nombre[lang];
+---
+
+<Base lang={lang} titulo={t.indice} descripcion={t.indiceDescripcion} alternativa={ruta(otroIdioma(lang), 'articulos')}>
+	<div class="contenedor">
+		<section class="articulos prosa" aria-labelledby="titulo-articulos">
+			<h1 id="titulo-articulos">{t.indice}</h1>
+			<p class="entradilla">{t.indiceDescripcion}</p>
+			<ul class="lista-articulos">
+				{
+					articulos.map((a) => (
+						<li>
+							<h2>
+								<a href={rutaArticulo(lang, slugArticulo(a))}>{a.data.titulo}</a>
+							</h2>
+							<p>{a.data.resumen}</p>
+							<p class="ui lista-nivel">
+								<LineaEvidencia nivel={a.data.evidencia} /> {nivel(a.data.evidencia)}
+								<span>{` · ${t.estados[a.data.estado]}`}</span>
+							</p>
+						</li>
+					))
+				}
+			</ul>
+		</section>
+	</div>
+</Base>
+
+<style>
+	.articulos {
+		padding-top: clamp(3rem, 2rem + 4vw, 6rem);
+	}
+
+	.articulos h1 {
+		font-size: var(--t-titulo);
+	}
+
+	.lista-articulos {
+		display: grid;
+		gap: 2.5rem;
+		margin: 3rem 0 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.lista-articulos h2 {
+		margin: 0 0 0.5rem;
+		font-size: var(--t-h3);
+	}
+
+	.lista-nivel {
+		color: var(--tinta-suave);
+		font-size: var(--t-mini);
+	}
+</style>

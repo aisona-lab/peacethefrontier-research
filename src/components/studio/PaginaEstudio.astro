@@ -1,0 +1,292 @@
+---
+import Base from '../../layouts/Base.astro';
+import NivelesEvidencia from '../NivelesEvidencia.astro';
+import BitacoraInvestigacion from './BitacoraInvestigacion.astro';
+import DatosStudio from './DatosStudio.astro';
+import ExperimentosPortafolio from './ExperimentosPortafolio.astro';
+import MatrizHipotesis from './MatrizHipotesis.astro';
+import Papers from './Papers.astro';
+import { ESPACIOS, enlaceEspacio, rutaEspacio, type EspacioId } from '../../lib/studio/espacios';
+import { PERFIL, DIRECTOR, CONTACTO, REPOSITORIO, HUGGING_FACE } from '../../lib/studio/config';
+import { TESIS_CENTRAL } from '../../lib/programa/hipotesis';
+import { textosStudio } from '../../lib/studio/textos';
+import { ruta, otroIdioma, type Idioma } from '../../i18n/rutas';
+
+interface Props {
+	lang: Idioma;
+	espacio: Exclude<EspacioId, 'atlas'>;
+}
+
+const { lang, espacio } = Astro.props;
+const t = textosStudio(lang);
+const tesis = TESIS_CENTRAL[lang];
+const intro = espacio === 'studio' ? tesis.tesis : t.intro[espacio];
+const rssHref = lang === 'en' ? '/en/rss.xml' : '/rss.xml';
+---
+
+<Base
+	lang={lang}
+	titulo={t.titulos[espacio]}
+	descripcion={espacio === 'studio' ? t.descripcion : intro}
+	alternativa={rutaEspacio(espacio, otroIdioma(lang))}
+>
+	<div class="contenedor studio">
+		<header class="studio-hero">
+			<p class="ui studio-kicker">
+				{espacio === 'studio' ? tesis.kicker : `Peace The Frontier · ${DIRECTOR}`}
+			</p>
+			<h1>{t.titulos[espacio]}</h1>
+			<p class="entradilla">{intro}</p>
+			{
+				espacio === 'studio' && (
+					<>
+						<p class="studio-compromiso">{tesis.compromiso}</p>
+						<nav class="ui studio-acciones" aria-label={lang === 'es' ? 'Accesos rápidos del portafolio' : 'Portfolio quick links'}>
+							<a class="accion-destacada" href="#hipotesis">
+								{lang === 'es' ? 'Explorar las 3 hipótesis' : 'Explore the 3 hypotheses'} ↓
+							</a>
+							<a href={REPOSITORIO}>
+								{lang === 'es' ? 'Repositorio limpio en GitHub' : 'Clean GitHub repository'} →
+							</a>
+							<a href={ruta(lang, 'metodologia')}>{t.metodologia}</a>
+							<a href={rssHref}>RSS</a>
+						</nav>
+					</>
+				)
+			}
+		</header>
+
+		{
+			espacio === 'studio' && (
+				<>
+					<MatrizHipotesis lang={lang} />
+					<Papers lang={lang} />
+
+					<section class="studio-metodo" aria-labelledby="titulo-metodo">
+						<div class="metodo-cabecera">
+							<h2 id="titulo-metodo">{t.metodo}</h2>
+							<p>{t.metodoTexto}</p>
+						</div>
+						<NivelesEvidencia lang={lang} variante="rejilla" />
+						<p class="ui metodo-enlace">
+							<a href={ruta(lang, 'metodologia')}>{t.metodologia} →</a>
+						</p>
+					</section>
+
+					<BitacoraInvestigacion lang={lang} />
+
+					<section aria-labelledby="titulo-espacios">
+						<h2 id="titulo-espacios">{t.areas}</h2>
+						<ul class="studio-grid" role="list">
+							{ESPACIOS.filter((e) => e.id !== 'studio').map((e) => (
+								<li>
+									<p class="ui">
+										{e.id === 'atlas'
+											? 'Atlas'
+											: e.id === 'research'
+												? 'Research'
+												: e.id === 'sim'
+													? 'Sim'
+													: 'Open'}
+									</p>
+									<h3>
+										<a href={enlaceEspacio(e.id, lang, PERFIL)}>{e.nombre[lang]}</a>
+									</h3>
+									<p>{t.tarjetas[e.id as keyof typeof t.tarjetas]}</p>
+									<a class="ui studio-entrar" href={enlaceEspacio(e.id, lang, PERFIL)}>
+										{t.entrar}
+										<span class="solo-lectores"> {e.nombre[lang]}</span> →
+									</a>
+								</li>
+							))}
+						</ul>
+					</section>
+
+					<section class="studio-director" aria-labelledby="titulo-director">
+						<h2 id="titulo-director">{t.director}</h2>
+						<p>
+							<strong>{DIRECTOR}</strong> {t.directorTexto}
+						</p>
+						<p class="ui">
+							<a href={ruta(lang, 'sobre')}>{t.sobre} →</a>
+						</p>
+					</section>
+
+					<section class="studio-contacto" id="contacto" aria-labelledby="titulo-contacto">
+						<h2 id="titulo-contacto">{t.contacto}</h2>
+						<p>{t.contactoTexto}</p>
+						<p class="ui">
+							<a href={CONTACTO}>{t.contactoAccion} →</a>
+						</p>
+					</section>
+				</>
+			)
+		}
+
+		{
+			espacio === 'research' && (
+				<>
+					<MatrizHipotesis lang={lang} />
+					<Papers lang={lang} />
+					<section class="prosa">
+						<h2>{t.metodo}</h2>
+						<p>{t.metodoTexto}</p>
+						<p>
+							<a href={ruta(lang, 'metodologia')}>{t.metodologia}</a>
+						</p>
+					</section>
+					<BitacoraInvestigacion lang={lang} />
+				</>
+			)
+		}
+
+		{
+			espacio === 'sim' && (
+				<>
+					<section class="prosa">
+						<h2>{t.defensa}</h2>
+						<p>{t.defensaTexto}</p>
+					</section>
+					<ExperimentosPortafolio lang={lang} />
+					<DatosStudio lang={lang} modo="sim" />
+					<p class="ui">
+						<a href={enlaceEspacio('open', lang, PERFIL)}>{t.reproducir} →</a>
+					</p>
+				</>
+			)
+		}
+
+		{
+			espacio === 'open' && (
+				<>
+					<ExperimentosPortafolio lang={lang} />
+					<DatosStudio lang={lang} modo="open" />
+					<section class="prosa">
+						<h2>GitHub & Hugging Face</h2>
+						<p>
+							<a href={REPOSITORIO}>{t.codigo} ({REPOSITORIO.replace('https://', '')}) →</a>
+						</p>
+						{HUGGING_FACE ? (
+							<p>
+								<a href={HUGGING_FACE}>{t.hf}</a>
+							</p>
+						) : (
+							<p>{t.hfPendiente}</p>
+						)}
+						<h2>{t.licencias}</h2>
+						<p>{t.licenciasTexto}</p>
+					</section>
+				</>
+			)
+		}
+	</div>
+</Base>
+
+<style>
+	.studio {
+		padding-block: 3rem;
+	}
+
+	.studio-hero {
+		padding-block: 1rem 3rem;
+		border-bottom: 1px solid var(--linea);
+		margin-bottom: 3rem;
+	}
+
+	.studio-kicker {
+		color: var(--tinta-suave);
+		margin-bottom: 1rem;
+	}
+
+	.studio-hero h1 {
+		font-size: var(--t-titulo);
+		max-width: 21ch;
+		line-height: 1.06;
+		margin-bottom: 1.5rem;
+	}
+
+	.studio-hero .entradilla {
+		max-width: 48rem;
+	}
+
+	.studio-compromiso {
+		max-width: 46rem;
+		margin-top: 1rem;
+		color: var(--tinta-suave);
+	}
+
+	.studio-acciones {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.75rem 1.5rem;
+		margin-top: 1.75rem;
+	}
+
+	.accion-destacada {
+		font-weight: 600;
+	}
+
+	.studio section {
+		margin-block: 3rem;
+	}
+
+	.studio h2 {
+		margin-bottom: 1.25rem;
+	}
+
+	.metodo-cabecera {
+		max-width: 46rem;
+		margin-bottom: 2rem;
+	}
+
+	.metodo-cabecera p {
+		color: var(--tinta-suave);
+	}
+
+	.metodo-enlace {
+		margin-top: 1.75rem;
+	}
+
+	.studio-grid {
+		display: grid;
+		gap: 1.25rem;
+		margin-top: 1.5rem;
+	}
+
+	.studio-grid li {
+		padding: 1.5rem;
+		border: 1px solid var(--linea);
+		background: var(--superficie);
+		min-width: 0;
+	}
+
+	.studio-grid h3 {
+		margin-block: 0.5rem 1rem;
+	}
+
+	.studio-entrar {
+		display: inline-block;
+		margin-top: 1.5rem;
+	}
+
+	.studio-director,
+	.studio-contacto {
+		max-width: var(--medida);
+	}
+
+	.studio-director p,
+	.studio-contacto p {
+		margin-block: 1rem;
+	}
+
+	.studio a {
+		overflow-wrap: anywhere;
+	}
+
+	@media (min-width: 40rem) {
+		.studio-grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+</style>

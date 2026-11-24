@@ -1,0 +1,36 @@
+---
+// Un ámbito dentro de una década: humanidad, tecnología, ciencia, planeta o política.
+import { textos } from '../../i18n/ui';
+import { datosFuturo } from '../../lib/futuros/contexto';
+import type { Ambito } from '../../lib/futuros/tipos';
+
+interface Props {
+	id: Ambito;
+}
+
+const { id } = Astro.props;
+const { lang } = datosFuturo(Astro.locals);
+---
+
+<div class="ambito" style={`--color: var(--ambito-${id})`}>
+	<h3 class="ambito-nombre ui">{textos(lang).futuros.ambitos[id]}</h3>
+	<div class="ambito-texto"><slot /></div>
+</div>
+
+<style>
+	.ambito {
+		padding-left: 1rem;
+		border-left: 2px solid var(--color);
+	}
+
+	.ambito-nombre {
+		margin-bottom: 0.35rem;
+		color: var(--color);
+		font-size: var(--t-mini);
+		font-weight: 600;
+	}
+
+	.ambito-texto :global(p + p) {
+		margin-top: 0.8em;
+	}
+</style>

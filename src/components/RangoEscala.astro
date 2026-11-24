@@ -1,0 +1,17 @@
+---
+// "10⁻¹⁰ a 10⁻¹ metros". En una sola línea: la compresión de HTML borra los saltos entre elementos.
+import type { Idioma } from '../i18n/rutas';
+import { textos } from '../i18n/ui';
+import { exponente } from '../lib/escala';
+
+interface Props {
+	lang: Idioma;
+	desde: number;
+	hasta: number;
+}
+
+const { lang, desde, hasta } = Astro.props;
+const { rango, metros } = textos(lang).regla;
+---
+
+10<sup>{exponente(desde)}</sup>{` ${rango} `}10<sup>{exponente(hasta)}</sup>{` ${metros}`}

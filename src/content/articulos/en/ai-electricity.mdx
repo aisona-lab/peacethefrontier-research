@@ -1,0 +1,45 @@
+---
+titulo: AI’s electricity
+resumen: The IEA estimates 485 TWh for all data centres in 2025 and projects 950 TWh in 2030. How this differs from AI alone and the model’s assumptions.
+clave: electricidad
+temas: [energia, computo, planeta]
+evidencia: emergente
+autor: Peace The Frontier
+publicado: 2026-10-02
+revisado: 2026-11-13
+fuentes: [aie-energia-ia, aie-ia-2026, epoch-computo, epoch-hardware]
+asistidoPorIA: true
+estado: borrador
+---
+
+import Nota from '../../../components/articulo/Nota.astro';
+
+## How much electricity
+
+The International Energy Agency estimates that data centres used about 415 TWh in 2024, around 1.5% of the world’s electricity. In its base case they will reach about 945 TWh in 2030, just under 3% of the total.<Nota f="aie-energia-ia" />
+
+The April 2026 update estimates 485 TWh for 2025 and projects about 950 TWh in 2030. These are total data-centre figures, including non-AI workloads. The report estimates 17% growth for all data centres in 2025 and 50% for AI-focused data centres; these categories do not provide an exact global total for AI alone.<Nota f="aie-ia-2026" />
+
+## Why it grows less than compute
+
+Epoch’s 2024 analysis summarised historical frontier-training compute growth as 4 to 5 times a year,<Nota f="epoch-computo" /> but that figure measures the largest training run at any given time, not everything data centres do. Their electricity, which includes the web, video and everyday use of AI, grows by just under 15% a year in the IEA base case: from 415 TWh in 2024 to 945 in 2030.<Nota f="aie-energia-ia" /> They are different measures, and there is no reason to expect them to grow at the same pace.
+
+Epoch’s 2023 hardware sample estimated a doubling of energy efficiency every 3 years, about 26% more operations per unit of energy per year. This historical hardware trend is not a measured trend for the energy cost of every AI task.<Nota f="epoch-hardware" /> That explains only part of the gap.
+
+Efficiency, however, does not guarantee that consumption falls. Cheaper operations can encourage additional training and use; the size of this rebound is uncertain.
+
+## Clean or fossil
+
+The climate effect depends on both electricity demand and the emissions of its supply. The IEA discusses supply constraints and different generation sources.<Nota f="aie-ia-2026" /> Our [paths](/en/paths/) treat clean-energy deployment as a policy choice; they do not model a regional electricity grid.
+
+## In the model
+
+In the [futures model](/en/futures/), data-centre electricity starts at about 550 TWh in 2026, a model estimate between the IEA’s 2024 estimate and its older 2030 projection. The original repository did not document an exact interpolation formula. This is neither an observed 2026 value nor an AI-only baseline; the historical indicator ID remains unchanged. It grows with AI capability, is tempered by efficiency, and cannot exceed 20% of the world’s electricity. That ceiling is our assumption, not data. In the faster futures the ceiling rules: Peaceful frontier and Race end with similar modelled data-centre electricity, as the [energy](/en/topics/energy/) topic shows.
+
+## What we do not know
+
+The projections depend on how much compute keeps growing, how much chips improve and how much AI is used, not just how much is trained. The IEA also publishes scenarios beyond 2030, including 2035. These conditional projections are not observations or precise forecasts. The newer 2025 estimate and 2030 projection do not directly measure the model’s 2026 baseline, so this refresh changes its provenance labels rather than its numerical inputs.
+
+## Correction — 13 November 2026
+
+Replaced the undated “today” claim, added the IEA 2026 edition, distinguished all data centres from AI, and corrected the claim that no post-2030 scenarios exist. The 550 TWh baseline remains a model estimate.

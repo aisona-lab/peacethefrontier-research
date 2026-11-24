@@ -1,0 +1,312 @@
+---
+// Regla logarítmica de tamaños: el elemento memorable de la portada.
+// Cada marca es una potencia de diez; las bandas enlazan a sus temas.
+import type { Idioma } from '../i18n/rutas';
+import { textos } from '../i18n/ui';
+import { BANDAS, EXP_MAX, EXP_MIN, HITOS, exponente, posicion } from '../lib/escala';
+
+interface Props {
+	lang: Idioma;
+}
+
+const { lang } = Astro.props;
+const t = textos(lang);
+
+const marcas = Array.from({ length: EXP_MAX - EXP_MIN + 1 }, (_, i) => EXP_MIN + i);
+const mayores = marcas.filter((e) => e % 5 === 0);
+---
+
+<figure class="regla">
+	<div class="regla-lienzo">
+		<ul class="regla-hitos" aria-label={t.regla.hitos}>
+			{
+				HITOS.map((h) => (
+					<li
+						class:list={[
+							'hito',
+							`hito-${h.fila}`,
+							{
+								'hito-movil': h.movil,
+								'hito-tu': h.exp === 0,
+								'hito-inicio': h.exp === EXP_MIN,
+								'hito-fin': h.exp === EXP_MAX,
+							},
+						]}
+						style={`--x:${posicion(h.exp)}%`}
+					>
+						<span class="hito-nombre">
+							{h.corto ? (
+								<>
+									<span class="nombre-largo">{h.nombre[lang]}</span>
+									<span class="nombre-corto">{h.corto[lang]}</span>
+								</>
+							) : (
+								h.nombre[lang]
+							)}
+						</span>
+						<span class="hito-valor" aria-hidden="true">
+							10<sup>{exponente(h.exp)}</sup> m
+						</span>
+						<span class="solo-lectores">{t.regla.elevado(exponente(h.exp))}</span>
+					</li>
+				))
+			}
+		</ul>
+
+		<div class="regla-eje" aria-hidden="true">
+			{
+				marcas.map((e, i) => (
+					<span
+						class:list={['marca', { 'marca-mayor': e % 5 === 0 }]}
+						style={`--x:${posicion(e)}%;--i:${i}`}
+					/>
+				))
+			}
+			<span class="tu" style={`--x:${posicion(0)}%`}></span>
+		</div>
+
+		<ol class="regla-exponentes" aria-hidden="true">
+			{
+				mayores.map((e) => (
+					<li class:list={{ 'exp-movil': e % 10 === 0 }} style={`--x:${posicion(e)}%`}>
+						10<sup>{exponente(e)}</sup>
+					</li>
+				))
+			}
+		</ol>
+
+		<ul class="regla-bandas" aria-label={t.regla.bandas}>
+			{
+				BANDAS.map((b) => (
+					<li style={`--a:${posicion(b.desde)}%;--b:${posicion(b.hasta)}%`}>
+						<a href={`#banda-${b.id}`}>{b.nombre[lang]}</a>
+					</li>
+				))
+			}
+		</ul>
+	</div>
+	<figcaption class="ui">{t.regla.leyenda}</figcaption>
+</figure>
+
+<style>
+	.regla {
+		margin: 0;
+		font-family: var(--fuente-sans);
+	}
+
+	.regla-lienzo {
+		position: relative;
+	}
+
+	/* Hitos: dos filas de etiquetas sobre el eje, con líneas guía hasta su marca. */
+	.regla-hitos {
+		position: relative;
+		height: 5.75rem;
+	}
+
+	.hito {
+		position: absolute;
+		bottom: 0;
+		left: var(--x);
+		height: 3rem;
+		translate: -50% 0;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		white-space: nowrap;
+		line-height: 1.2;
+		animation: aparece 300ms 350ms var(--ease-salida) both;
+	}
+
+	.hito-alta {
+		height: 5.75rem;
+	}
+
+	.hito::after {
+		content: '';
+		flex: 1;
+		min-height: 0.5rem;
+		width: 1px;
+		margin-top: 0.3rem;
+		background: var(--regla);
+	}
+
+	.hito-inicio {
+		translate: 0 0;
+		align-items: flex-start;
+	}
+
+	.hito-fin {
+		translate: -100% 0;
+		align-items: flex-end;
+	}
+
+	.hito-nombre {
+		font-size: 1rem;
+	}
+
+	.hito-tu .hito-nombre {
+		font-weight: 600;
+	}
+
+	.hito-valor {
+		font-size: 0.75rem;
+		color: var(--tinta-suave);
+		font-variant-numeric: tabular-nums;
+	}
+
+	.nombre-corto {
+		display: none;
+	}
+
+	/* Eje: borde de regla con marcas colgando, como un instrumento. */
+	.regla-eje {
+		position: relative;
+		height: 1.6rem;
+		border-top: 2px solid var(--tinta);
+	}
+
+	.marca {
+		position: absolute;
+		top: 0;
+		left: var(--x);
+		width: 1px;
+		height: 0.7rem;
+		translate: -50% 0;
+		background: var(--regla);
+		transform-origin: top;
+		animation: crece 400ms var(--ease-salida) both;
+		animation-delay: calc(var(--i) * 10ms);
+	}
+
+	.marca-mayor {
+		width: 2px;
+		height: 1.5rem;
+		background: var(--tinta);
+	}
+
+	.tu {
+		position: absolute;
+		top: 0;
+		left: var(--x);
+		width: 1rem;
+		height: 1rem;
+		translate: -50% -50%;
+		border-radius: 50%;
+		background: var(--sodio);
+		box-shadow:
+			0 0 0 1.5px var(--sobre-sodio),
+			0 0 0 4px var(--fondo);
+		animation: aparece 300ms 450ms var(--ease-salida) both;
+	}
+
+	.regla-exponentes {
+		position: relative;
+		height: 1.4rem;
+		font-size: var(--t-mini);
+		color: var(--tinta-suave);
+		font-variant-numeric: tabular-nums;
+	}
+
+	.regla-exponentes li {
+		position: absolute;
+		left: var(--x);
+		translate: -50% 0;
+	}
+
+	.regla-exponentes li:first-child {
+		translate: 0 0;
+	}
+
+	/* Bandas: corchetes bajo el eje que agrupan los temas por escala. */
+	.regla-bandas {
+		position: relative;
+		height: 3.25rem;
+		margin-top: 0.75rem;
+	}
+
+	.regla-bandas li {
+		position: absolute;
+		top: 0;
+		left: calc(var(--a) + 2px);
+		width: calc(var(--b) - var(--a) - 4px);
+		height: 0.5rem;
+	}
+
+	.regla-bandas li::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		border: 1px solid var(--tinta);
+		border-top: 0;
+		transform-origin: left;
+		transition: border-color var(--dur-rapida);
+		animation: despliega 450ms 450ms var(--ease-salida) both;
+	}
+
+	.regla-bandas li:has(a:hover)::before {
+		border-color: var(--enlace);
+		border-width: 0 2px 2px;
+	}
+
+	.regla-bandas a {
+		position: absolute;
+		top: 0.75rem;
+		left: 50%;
+		translate: -50% 0;
+		padding: 0.3rem 0.4rem;
+		white-space: nowrap;
+		font-size: var(--t-ui);
+		animation: aparece 300ms 650ms var(--ease-salida) both;
+	}
+
+	figcaption {
+		max-width: var(--medida);
+		margin-top: 0.5rem;
+		color: var(--tinta-suave);
+	}
+
+	@keyframes crece {
+		from {
+			transform: scaleY(0);
+		}
+	}
+
+	@keyframes despliega {
+		from {
+			transform: scaleX(0);
+		}
+	}
+
+	@keyframes aparece {
+		from {
+			opacity: 0;
+		}
+	}
+
+	/* Pantallas estrechas: una fila de hitos, sin bandas (el índice de temas las muestra). */
+	@media (max-width: 47.99rem) {
+		.regla-hitos,
+		.hito-alta {
+			height: 3rem;
+		}
+
+		.hito:not(.hito-movil),
+		.regla-exponentes li:not(.exp-movil),
+		.regla-bandas {
+			display: none;
+		}
+
+		.nombre-largo {
+			display: none;
+		}
+
+		.nombre-corto {
+			display: inline;
+		}
+
+		figcaption {
+			margin-top: 1rem;
+		}
+	}
+</style>

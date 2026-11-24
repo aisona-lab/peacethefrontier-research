@@ -1,0 +1,113 @@
+---
+// Tabla de parámetros. Valida al compilar que cada fuente tenga ficha en fuentes.yaml.
+import Fuente from '../Fuente.astro';
+import { BANDAS, RELACIONES } from '../../lib/futuros/procedencia';
+import { getCollection } from 'astro:content';
+import temml from 'temml';
+import type { Idioma } from '../../i18n/rutas';
+import { textos } from '../../i18n/ui';
+import { OBJETIVOS } from '../../lib/futuros/calibracion';
+import { PARAMETROS, type Parametro } from '../../lib/futuros/parametros';
+import { validarParametros } from '../../lib/futuros/validar-parametros';
+
+interface Props {
+	lang: Idioma;
+}
+
+const { lang } = Astro.props;
+const t = textos(lang).futuros.modelo;
+validarParametros();
+const fuentes = new Map((await getCollection('fuentes')).map((f) => [f.id, f.data]));
+const parametros = Object.entries(PARAMETROS) as [string, Parametro][];
+const usadas = [...parametros.flatMap(([, p]) => (p.fuente ? [p.fuente] : [])), ...OBJETIVOS.map((o) => o.fuente)];
+const faltan = [...new Set(usadas)].filter((id) => !fuentes.has(id));
+if (faltan.length) throw new Error(`Fuentes sin ficha en src/content/fuentes.yaml: ${faltan.join(', ')}`);
+const numero = (v: number) =>
+	new Intl.NumberFormat(lang === 'es' ? 'es-ES' : 'en-US', { maximumSignificantDigits: 3 }).format(v);
+---
+
+<p class="modelo-bandas">{BANDAS[lang]}</p>
+<p>{lang === 'es'
+ ? 'Observado: medición directa; estimado: aproximación o inferencia; derivado: transformación explícita; calibrado: ajuste a un objetivo; supuesto: elección del modelo. Estas etiquetas no acreditan una nueva verificación externa.'
+ : 'Observed: direct measurement; estimated: approximation or inference; derived: explicit transformation; calibrated: fitted to a target; assumed: model choice. These labels do not establish fresh external verification.'}</p>
+
+<div class="tabla-desplazable" tabindex="0" role="group" aria-label={t.tabla}>
+	<table class="tabla-parametros ui">
+		<thead>
+			<tr>
+				<th scope="col">{t.simbolo}</th>
+				<th scope="col">{t.descripcion}</th>
+				<th scope="col">{t.central}</th>
+				<th scope="col">{t.rango}</th>
+				<th scope="col">{lang === 'es' ? 'Unidad' : 'Unit'}</th>
+				<th scope="col">{lang === 'es' ? 'Periodo de referencia' : 'Reference period'}</th>
+				<th scope="col">{lang === 'es' ? 'Derivación y límites' : 'Derivation and limitations'}</th>
+				<th scope="col">{t.fuente}</th>
+			</tr>
+		</thead>
+		<tbody>
+			{
+				parametros.map(([nombre, p]) => {
+					const fuente = p.fuente ? fuentes.get(p.fuente) : undefined;
+					return (
+						<tr id={`parametro-${nombre}`}>
+							<th scope="row">
+								<Fragment set:html={temml.renderToString(p.simbolo)} />
+							</th>
+							<td>{p.descripcion[lang]}</td>
+							<td>{numero(p.central)}</td>
+							<td>{p.min === p.max ? '—' : `${numero(p.min)} – ${numero(p.max)}`}</td>
+							<td>{p.unidad[lang]}</td>
+							<td>{p.periodo[lang]}</td>
+							<td>{p.notas[lang]}</td>
+							<td>
+								<span class:list={{ supuesto: p.relacion === 'supuesto' }}>{RELACIONES[lang][p.relacion]}</span>
+								{p.relacion === 'supuesto' && fuente && <span class="contexto">{` · ${t.contexto}: `}</span>}
+								{p.relacion !== 'supuesto' && fuente && ' · '}
+								{fuente && <Fuente fuente={fuente} lang={lang} compacta />}
+							</td>
+						</tr>
+					);
+				})
+			}
+		</tbody>
+	</table>
+</div>
+
+<style>
+	.tabla-desplazable {
+		overflow-x: auto;
+		margin-top: 1.5rem;
+	}
+
+	table {
+		width: 100%;
+		min-width: 70rem;
+		border-collapse: collapse;
+		font-size: var(--t-mini);
+	}
+
+	th,
+	td {
+		padding: 0.5rem 0.6rem;
+		border-bottom: 1px solid var(--linea);
+		text-align: start;
+		vertical-align: top;
+	}
+
+	thead th {
+		color: var(--tinta-suave);
+		font-weight: 600;
+	}
+
+	td:nth-child(3),
+	td:nth-child(4) {
+		white-space: nowrap;
+		font-variant-numeric: tabular-nums;
+	}
+
+	.supuesto {
+		color: var(--tinta-suave);
+		font-style: italic;
+	}
+</style>

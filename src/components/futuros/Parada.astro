@@ -1,0 +1,126 @@
+---
+// Una década del relato. Con texto (slot) muestra el relato; vacía (<Parada anio={2046} />), un resumen del modelo.
+// :global en los eventos porque la isla los recrea.
+import Cifra from './Cifra.astro';
+import { textos } from '../../i18n/ui';
+import { datosFuturo } from '../../lib/futuros/contexto';
+import { textoEvento } from '../../lib/futuros/eventos';
+
+interface Props {
+	anio: number;
+}
+
+const { anio } = Astro.props;
+const { resultado, lang } = datosFuturo(Astro.locals);
+const t = textos(lang).futuros;
+const hasta = anio === 2126 ? 2126 : anio + 9;
+const eventos = resultado.eventos.filter((e) => e.anio >= anio && e.anio <= hasta);
+const RESUMEN = ['capacidad', 'robots', 'empleo', 'temperatura', 'riesgo'] as const;
+---
+
+<section class="parada" id={String(anio)} data-anio={anio} aria-labelledby={`anio-${anio}`}>
+	<h2 class="parada-anio" id={`anio-${anio}`}>{anio}</h2>
+	{
+		Astro.slots.has('default') ? (
+			<div class="parada-relato">
+				<slot />
+			</div>
+		) : (
+			<div class="parada-resumen">
+				<p class="ui">{t.parada.resumen}</p>
+				<dl>
+					{RESUMEN.map((s) => (
+						<div>
+							<dt>{t.indicadores[s]}</dt>
+							<dd>
+								<Cifra v={s} anio={anio} />
+							</dd>
+						</div>
+					))}
+				</dl>
+			</div>
+		)
+	}
+	<div class="parada-eventos">
+		<h3 class="ui">{t.parada.eventos}</h3>
+		<ul data-eventos data-desde={anio} data-hasta={hasta}>
+			{
+				eventos.map((e) => (
+					<li>
+						<span class="evento-anio">{e.anio}</span>
+						{` ${textoEvento(e.id, lang)}`}
+					</li>
+				))
+			}
+		</ul>
+		<p class="ui parada-sin-eventos" data-sin-eventos hidden={eventos.length > 0}>{t.parada.sinEventos}</p>
+	</div>
+</section>
+
+<style>
+	.parada {
+		padding-block: clamp(2.5rem, 2rem + 3vw, 4.5rem);
+		border-top: 1px solid var(--linea);
+	}
+
+	.parada-anio {
+		margin-bottom: 1.5rem;
+		font-size: clamp(3rem, 2rem + 4vw, 5.5rem);
+		font-weight: 200;
+		line-height: 1;
+		font-variant-numeric: tabular-nums;
+	}
+
+	.parada-relato {
+		display: grid;
+		gap: 1.75rem;
+	}
+
+	.parada-resumen dl {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+		gap: 1rem 1.5rem;
+		margin: 1rem 0 0;
+	}
+
+	.parada-resumen dt {
+		color: var(--tinta-suave);
+		font-family: var(--fuente-sans);
+		font-size: var(--t-mini);
+	}
+
+	.parada-resumen dd {
+		margin: 0.2rem 0 0;
+		font-size: 1.375rem;
+	}
+
+	.parada-eventos {
+		margin-top: 2rem;
+		padding: 1rem 1.25rem;
+		background: var(--superficie);
+	}
+
+	.parada-eventos h3 {
+		margin-bottom: 0.6rem;
+		color: var(--tinta-suave);
+		font-size: var(--t-mini);
+		font-weight: 600;
+	}
+
+	.parada-eventos ul :global(li) {
+		padding-block: 0.3rem;
+		font-size: 1.0625rem;
+	}
+
+	.parada-eventos ul :global(.evento-anio) {
+		margin-right: 0.4rem;
+		font-family: var(--fuente-sans);
+		font-size: var(--t-mini);
+		font-weight: 600;
+		font-variant-numeric: tabular-nums;
+	}
+
+	.parada-sin-eventos {
+		color: var(--tinta-suave);
+	}
+</style>

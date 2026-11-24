@@ -1,0 +1,141 @@
+---
+import type { Idioma } from '../../i18n/rutas';
+import { papersDe, urlArticulo } from '../../lib/articulos-coleccion';
+import { textos } from '../../i18n/ui';
+import { NIVELES } from '../../lib/evidencia';
+import { textosStudio } from '../../lib/studio/textos';
+import { PERFIL, urlCodigoRepositorio } from '../../lib/studio/config';
+import { hrefPublico } from '../../lib/studio/espacios';
+import LineaEvidencia from '../LineaEvidencia.astro';
+
+interface Props {
+	lang: Idioma;
+}
+
+const { lang } = Astro.props;
+const t = textosStudio(lang);
+const papers = (await papersDe(lang)).toSorted((a, b) => (b.data.numero ?? 0) - (a.data.numero ?? 0));
+---
+
+<section class="papers" aria-labelledby="titulo-papers">
+	<h2 id="titulo-papers">{t.papeles}</h2>
+	{
+		papers.length ? (
+			<ul role="list">
+				{papers.map((a) => {
+					const nivel = NIVELES.find((n) => n.id === a.data.evidencia)!;
+					const urlCodigo = a.data.repositorioCodigo
+						? urlCodigoRepositorio(a.data.repositorioCodigo)
+						: undefined;
+					return (
+						<li>
+							<p class="ui paper-meta">
+								<span>
+									{a.data.serie} {a.data.numero} · v{a.data.version}
+								</span>
+								{a.data.hipotesis && (
+									<>
+										<span aria-hidden="true">·</span>
+										<strong>{a.data.hipotesis}</strong>
+									</>
+								)}
+								<span aria-hidden="true">·</span>
+								<span class="paper-evidencia">
+									<LineaEvidencia nivel={a.data.evidencia} /> {nivel.nombre[lang]}
+								</span>
+							</p>
+							<h3>
+								<a href={hrefPublico(urlArticulo(a), PERFIL)}>{a.data.titulo}</a>
+							</h3>
+							<p>{a.data.resumen}</p>
+							{urlCodigo && a.data.experimento && (
+								<p class="ui paper-codigo">
+									<a href={urlCodigo}>
+										{lang === 'es' ? 'Código en GitHub' : 'Code on GitHub'}
+										<span class="solo-lectores"> ({a.data.serie} {a.data.numero})</span> →
+									</a>
+									<span aria-hidden="true">·</span>
+									<a
+										href={`/datos/experimentos/${a.data.experimento}/dataset.csv`}
+										download={`${a.data.experimento}.csv`}
+									>
+										{lang === 'es' ? 'Descargar CSV' : 'Download CSV'}
+										<span class="solo-lectores"> ({a.data.serie} {a.data.numero})</span>
+									</a>
+								</p>
+							)}
+							<p class="ui paper-estado">
+								{a.data.estado === 'borrador' ? t.borrador : textos(lang).articulo.estados[a.data.estado]}
+							</p>
+						</li>
+					);
+				})}
+			</ul>
+		) : (
+			<p>{t.sinPapers}</p>
+		)
+	}
+</section>
+
+<style>
+	.papers {
+		margin-block: 3rem;
+	}
+
+	.papers h2 {
+		margin-bottom: 1.5rem;
+	}
+
+	.papers ul {
+		display: grid;
+		gap: 1.5rem;
+	}
+
+	.papers li {
+		padding: 1.5rem;
+		border: 1px solid var(--linea);
+		background: var(--superficie);
+		min-width: 0;
+	}
+
+	.paper-meta {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.45rem;
+		font-size: var(--t-mini);
+		color: var(--tinta-suave);
+	}
+
+	.paper-evidencia {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.4rem;
+	}
+
+	.papers h3 {
+		margin-block: 0.6rem;
+	}
+
+	.papers li p + p {
+		margin-top: 0.85rem;
+	}
+
+	.paper-codigo {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem 0.75rem;
+		font-size: var(--t-mini);
+	}
+
+	.paper-estado {
+		font-size: var(--t-mini);
+		color: var(--tinta-suave);
+	}
+
+	@media (min-width: 48rem) {
+		.papers ul {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+</style>

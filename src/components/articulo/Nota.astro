@@ -1,0 +1,33 @@
+---
+// Nota numerada (R2.3): el número es la posición de la fuente en el frontmatter del artículo.
+import { textos } from '../../i18n/ui';
+
+interface Props {
+	f: string;
+}
+
+const { f } = Astro.props;
+if (!Astro.locals.articulo) throw new Error('<Nota> fuera de un artículo: falta Astro.locals.articulo');
+const { fuentes, lang } = Astro.locals.articulo;
+const n = fuentes.indexOf(f) + 1;
+if (n === 0) throw new Error(`<Nota f="${f}">: la fuente no está en el frontmatter del artículo`);
+---
+
+<sup class="nota"><a href={`#fuente-${n}`}><span class="solo-lectores">{textos(lang).articulo.fuente} </span>{n}</a></sup>
+
+<style>
+	.nota {
+		font-family: var(--fuente-sans);
+		font-size: 0.7em;
+		line-height: 0;
+	}
+
+	.nota a {
+		padding-inline: 0.1em;
+		text-decoration: none;
+	}
+
+	.nota a:hover {
+		text-decoration: underline;
+	}
+</style>

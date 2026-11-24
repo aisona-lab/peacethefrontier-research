@@ -1,0 +1,106 @@
+---
+premisa: Sin reglas comunes, el mundo se divide en bloques rivales. Las crisis recurrentes rompen las cadenas de suministro y frenan la economía y la IA, que avanza a trompicones.
+supuestos:
+  - No hay acuerdos internacionales y la desconfianza entre bloques crece.
+  - Estallan crisis globales (guerras comerciales, conflictos, colapsos de suministro) cada quince años, aproximadamente.
+  - Los chips y la energía escasean y se usan como armas de presión.
+  - La redistribución es débil.
+ganancias:
+  - El trabajo humano se desplaza más despacio que en Carrera.
+  - Las comunidades locales y las economías regionales ganan peso y resiliencia.
+  - La IA más avanzada tarda más en llegar, lo que da algo de margen.
+perdidas:
+  - Las crisis destruyen riqueza y frenan la transición energética.
+  - La desigualdad y la concentración del poder suben década a década.
+  - El riesgo de catástrofe es alto por los conflictos, no solo por la IA.
+---
+
+import Ambito from '../../../components/futuros/Ambito.astro';
+import Cifra from '../../../components/futuros/Cifra.astro';
+import Parada from '../../../components/futuros/Parada.astro';
+
+<Parada anio={2026} />
+
+<Parada anio={2036}>
+<Ambito id="humanidad">
+Una crisis global frena la economía. La IA solo puede hacer <Cifra v="automatizacion" anio={2036} /> de las tareas y el empleo apenas cambia (<Cifra v="empleo" anio={2036} />), pero los precios y la inseguridad sí.
+</Ambito>
+<Ambito id="tecnologia">
+Los chips escasean y las cadenas de suministro están rotas. Hay <Cifra v="robots" anio={2036} /> de robots, concentrados en los bloques que controlan las fábricas.
+</Ambito>
+<Ambito id="ciencia">
+La ciencia se fragmenta: cada bloque investiga por su cuenta y comparte poco. El ritmo de descubrimiento es <Cifra v="ciencia" anio={2036} /> el de 2026.
+</Ambito>
+<Ambito id="planeta">
+La transición se estanca: la energía limpia apenas llega al <Cifra v="energiaLimpia" anio={2036} /> y el calentamiento ronda <Cifra v="temperatura" anio={2036} />.
+</Ambito>
+<Ambito id="politica">
+El mundo se divide en bloques rivales. La concentración del poder sube a <Cifra v="poder" anio={2036} /> y el riesgo acumulado de catástrofe es de <Cifra v="riesgo" anio={2036} />.
+</Ambito>
+</Parada>
+
+<Parada anio={2046} />
+
+<Parada anio={2056}>
+<Ambito id="humanidad">
+Tras otra crisis global, la desigualdad sigue subiendo (<Cifra v="desigualdad" anio={2056} />). Tiene empleo <Cifra v="empleo" anio={2056} /> de la población en edad de trabajar.
+</Ambito>
+<Ambito id="tecnologia">
+La recuperación trae robots: hay <Cifra v="robots" anio={2056} /> de robots en funcionamiento.
+</Ambito>
+<Ambito id="ciencia">
+Hay avances, pero regionales: el ritmo de la ciencia es <Cifra v="ciencia" anio={2056} /> el de 2026 y los bloques no comparten resultados.
+</Ambito>
+<Ambito id="planeta">
+Las crisis frenan la transición: la energía limpia llega al <Cifra v="energiaLimpia" anio={2056} />. El calentamiento alcanza <Cifra v="temperatura" anio={2056} />.
+</Ambito>
+<Ambito id="politica">
+Los conflictos elevan el riesgo acumulado de catástrofe a <Cifra v="riesgo" anio={2056} />. El poder sigue concentrándose (<Cifra v="poder" anio={2056} />).
+</Ambito>
+</Parada>
+
+<Parada anio={2066} />
+
+<Parada anio={2076} />
+
+<Parada anio={2086}>
+<Ambito id="humanidad">
+La automatización llega a <Cifra v="automatizacion" anio={2086} /> de las tareas, tarde y de forma desigual: la desigualdad es de <Cifra v="desigualdad" anio={2086} />.
+</Ambito>
+<Ambito id="tecnologia">
+Hay <Cifra v="robots" anio={2086} /> de robots, sobre todo en los bloques que ganaron las últimas crisis.
+</Ambito>
+<Ambito id="ciencia">
+La ciencia avanza dividida en bloques: <Cifra v="ciencia" anio={2086} /> respecto a 2026.
+</Ambito>
+<Ambito id="planeta">
+La energía limpia llega tarde (<Cifra v="energiaLimpia" anio={2086} />) y el calentamiento, <Cifra v="temperatura" anio={2086} />, ya supera al de los futuros con paz.
+</Ambito>
+<Ambito id="politica">
+El poder está muy concentrado (<Cifra v="poder" anio={2086} />). El riesgo acumulado de catástrofe es de <Cifra v="riesgo" anio={2086} />.
+</Ambito>
+</Parada>
+
+<Parada anio={2096} />
+
+<Parada anio={2106} />
+
+<Parada anio={2116} />
+
+<Parada anio={2126}>
+<Ambito id="humanidad">
+Un siglo después hay menos empleo (<Cifra v="empleo" anio={2126} />) y más desigualdad (<Cifra v="desigualdad" anio={2126} />) que en 2026.
+</Ambito>
+<Ambito id="tecnologia">
+La IA por fin madura, en pocas manos. Hay <Cifra v="robots" anio={2126} /> de robots.
+</Ambito>
+<Ambito id="ciencia">
+La ciencia va más despacio que en los futuros con paz: <Cifra v="ciencia" anio={2126} /> respecto a 2026.
+</Ambito>
+<Ambito id="planeta">
+El calentamiento llega a <Cifra v="temperatura" anio={2126} />, más que en los futuros con paz.
+</Ambito>
+<Ambito id="politica">
+Estalla otra crisis global. El riesgo acumulado de catástrofe, <Cifra v="riesgo" anio={2126} />, es de los más altos de los cuatro futuros, empujado por los conflictos más que por la IA.
+</Ambito>
+</Parada>

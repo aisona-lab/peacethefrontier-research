@@ -1,0 +1,106 @@
+---
+premisa: Countries sign a treaty that limits the development of the most advanced AI. Today's AI can still be researched and used, but training far more capable systems requires permits and international verification.
+supuestos:
+  - An international treaty caps the training compute of frontier models.
+  - A body verifies compliance, as happens with nuclear energy.
+  - The benefits of existing AI are shared through active policy.
+  - Cooperation prevents major crises between blocs.
+ganancias:
+  - Time to adapt education, jobs and laws.
+  - The risk of catastrophe is the lowest of the four futures.
+  - Power concentration barely rises and inequality falls.
+perdidas:
+  - Cures, materials and discoveries arrive decades later.
+  - Upholding the treaty requires monitoring compute, at a cost to freedom.
+  - There is constant pressure from those who want to break away to gain an edge.
+---
+
+import Ambito from '../../../components/futuros/Ambito.astro';
+import Cifra from '../../../components/futuros/Cifra.astro';
+import Parada from '../../../components/futuros/Parada.astro';
+
+<Parada anio={2026} />
+
+<Parada anio={2036}>
+<Ambito id="humanidad">
+The treaty buys time. AI can do only <Cifra v="automatizacion" anio={2036} /> of human tasks and employment barely changes: <Cifra v="empleo" anio={2036} /> of the working-age population has a job. Schools and universities use the pause to change what they teach.
+</Ambito>
+<Ambito id="tecnologia">
+AI is useful but bounded: training far more capable systems requires permission. There are <Cifra v="robots" anio={2036} /> robots in operation, almost all in factories, and data centers use <Cifra v="energiaIA" anio={2036} /> a year.
+</Ambito>
+<Ambito id="ciencia">
+Science speeds up more slowly than in the futures without brakes: the pace of discovery is <Cifra v="ciencia" anio={2036} /> that of 2026. Some drugs that could already exist are still waiting.
+</Ambito>
+<Ambito id="planeta">
+The energy transition moves steadily, without rushing: clean energy reaches <Cifra v="energiaLimpia" anio={2036} /> and warming is around <Cifra v="temperatura" anio={2036} />.
+</Ambito>
+<Ambito id="politica">
+An international body verifies the compute of large data centers, as is done with nuclear material, and some countries push to break away. The power concentration index holds at <Cifra v="poder" anio={2036} /> and the cumulative risk of catastrophe stands at <Cifra v="riesgo" anio={2036} />.
+</Ambito>
+</Parada>
+
+<Parada anio={2046} />
+
+<Parada anio={2056}>
+<Ambito id="humanidad">
+Automation grows gradually to <Cifra v="automatizacion" anio={2056} /> of tasks, with time for people to change trades. Inequality falls to <Cifra v="desigualdad" anio={2056} />, because the benefits of AI are shared through public policy.
+</Ambito>
+<Ambito id="tecnologia">
+Robots take off late, but they take off: there are <Cifra v="robots" anio={2056} /> robots in operation.
+</Ambito>
+<Ambito id="ciencia">
+Science moves <Cifra v="ciencia" anio={2056} /> compared with 2026. Cures that arrived a decade or two earlier in other futures are still in trials here.
+</Ambito>
+<Ambito id="planeta">
+Clean energy is now the majority: <Cifra v="energiaLimpia" anio={2056} />. Warming reaches <Cifra v="temperatura" anio={2056} /> and begins to slow.
+</Ambito>
+<Ambito id="politica">
+The central debate is when to lift the limits and how to know it is safe to do so. The cumulative risk of catastrophe holds at <Cifra v="riesgo" anio={2056} />.
+</Ambito>
+</Parada>
+
+<Parada anio={2066} />
+
+<Parada anio={2076} />
+
+<Parada anio={2086}>
+<Ambito id="humanidad">
+Automation reaches <Cifra v="automatizacion" anio={2086} /> of all tasks and <Cifra v="empleo" anio={2086} /> of the working-age population has a job. The transition was slow and, because of that, less traumatic.
+</Ambito>
+<Ambito id="tecnologia">
+There are <Cifra v="robots" anio={2086} /> robots. The technologies the pause delayed arrive, with rules tested over decades.
+</Ambito>
+<Ambito id="ciencia">
+The pace of science is <Cifra v="ciencia" anio={2086} /> that of 2026: slower than in the futures without brakes, but without anyone losing control of what is being researched.
+</Ambito>
+<Ambito id="planeta">
+Almost all energy is clean (<Cifra v="energiaLimpia" anio={2086} />) and warming levels off near <Cifra v="temperatura" anio={2086} />.
+</Ambito>
+<Ambito id="politica">
+Power concentration has barely changed (<Cifra v="poder" anio={2086} />). The cumulative risk of catastrophe, <Cifra v="riesgo" anio={2086} />, comes mostly from threats unrelated to AI.
+</Ambito>
+</Parada>
+
+<Parada anio={2096} />
+
+<Parada anio={2106} />
+
+<Parada anio={2116} />
+
+<Parada anio={2126}>
+<Ambito id="humanidad">
+A century later, <Cifra v="empleo" anio={2126} /> of the working-age population has a job: fewer than today, but with lower inequality (<Cifra v="desigualdad" anio={2126} />).
+</Ambito>
+<Ambito id="tecnologia">
+There are <Cifra v="robots" anio={2126} /> robots. The same technologies that other futures got earlier arrived here, only later.
+</Ambito>
+<Ambito id="ciencia">
+The pace of science is <Cifra v="ciencia" anio={2126} /> that of 2026.
+</Ambito>
+<Ambito id="planeta">
+Warming was held to around <Cifra v="temperatura" anio={2126} />.
+</Ambito>
+<Ambito id="politica">
+The cumulative risk of catastrophe, <Cifra v="riesgo" anio={2126} />, is among the lowest of the four futures. The cost was different: several generations waited for cures and advances that could have come sooner.
+</Ambito>
+</Parada>

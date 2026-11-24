@@ -1,0 +1,73 @@
+---
+titulo: Methodology
+descripcion: How we tell established facts, recent research, hypotheses, scenarios and opinion apart; which sources we use; and how we handle sensitive topics.
+---
+
+import NivelesEvidencia from '../../../components/NivelesEvidencia.astro';
+
+This atlas mixes established facts, recent research, scenarios about the future and the opinion of its author. So that they are never confused, every text states what kind of claim it makes and what it rests on.
+
+## Levels of evidence
+
+We use the convention of maps: a solid line marks what is certain and a dashed line what is uncertain. The line style always accompanies the name of the level, so it does not depend on color.
+
+<NivelesEvidencia lang="en" />
+
+## Opinion, kept apart from evidence
+
+When the author gives an opinion, the page says so. Opinions go in a block marked **The author’s point of view**, with the same yellow dot that marks “you” on the scale ruler. They are never mixed with the data and never change a text’s level of evidence.
+
+## Sources
+
+We prioritize official sources (international organizations, scientific agencies, governments) and peer-reviewed papers. Records support a link, authors, DOI and publication date, alongside access date and verification status. We add an archive link only when one exists and has been identified; we do not automatically create archived copies. Undated publications display “n.d.” and never receive the access year as their publication year.
+
+A text that is not a scenario needs at least one official or peer-reviewed source. Without one, it is not published.
+
+## Scenarios and paths
+
+A scenario describes a possible future built from concrete decisions. It always states its assumptions and the signals that would tell us we are heading toward it. In the interactive paths, every decision is labeled ethical, unethical or ambiguous, and we explain the reasoning each time.
+
+## Sensitive topics
+
+When we write about weapons, biology or surveillance, we stick to history, social impact, policy and governance. We do not publish procedures, protocols or technical details that could enable harm. Articles on these topics go through an extra review before they stop being drafts; until then they say so at the top and are not indexed by search engines.
+
+## Ancient knowledge
+
+We separate the archaeological record from popular theories without support. When a myth is widely known, we explain it and show what the evidence says.
+
+## Corrections
+
+If a text changes in a meaningful way, we note it at the end with the date and the reason. We do not quietly rewrite the past.
+
+## Privacy
+
+The site loads Cloudflare Web Analytics through an external script and sends usage measurements to Cloudflare. This integration does not use analytics cookies; that does not mean there are no third-party requests. The theme selector stores your preference in browser local storage. We do not make a guarantee here about all of the provider’s data processing; see [its Web Analytics documentation](https://developers.cloudflare.com/web-analytics/).
+
+## Review and maintenance
+
+The November 2026 update is an editorial review of selected sources, not a systematic review or a popularity ranking. The four featured areas are editorial priorities and all 17 topics remain available. An accessible link does not establish a claim’s accuracy: records distinguish passage verification, pending review and restricted access. “Reviewed” does not mean every possible correction or retraction has been ruled out.
+
+The versioned evidence ledger in `docs/research/` documents claims, passages, periods, uncertainty and outstanding checks. Publication date, substantive review, search cutoff and observation period are distinct fields. We display a research cutoff only when the declared search has completed. We retain historical editions and distinguish preprints, vendor analyses, estimates and forecasts.
+
+Planned maintenance checks links weekly, fast-changing research and policy monthly, and the full source inventory quarterly. Automation publishes issue reports; it does not modify conclusions or publish articles. New texts remain drafts, excluded from indexing, until editorial review.
+
+## Research Studio workflow
+
+1. The director defines a question and scope.
+2. Agents collect sources and prepare comparisons and drafts. Searches, versions, dates and passages are recorded.
+3. Calculations, references and translations are checked; contradictory evidence and limitations are sought.
+4. Human editorial review decides what is published and with which qualifications. Until then the document remains a draft with noindex.
+5. Corrections and new versions are documented publicly. Passing tests is neither scientific review nor editorial approval.
+
+Working papers follow Question → Method → Findings → Limitations → Sources and state their version, AI assistance and editorial status. Editorial synthesis is distinguished from a systematic review.
+
+Defensive simulations focus on continuity, detection and recovery. Synthetic data carries seeds, units, schema and provenance. An abstract experiment is not an observation of real infrastructure and does not by itself validate training defence models. New artifacts are available in [Sim](/en/sim/) and [Open](/en/open/).
+
+## From hypothesis to evidence: original research protocol
+
+Every original portfolio investigation (`PTF-WP 3` onward) follows four auditable steps:
+
+1. **Falsifiable hypothesis (`H1`–`H3`):** a time-bounded claim mapped to natural subtopics alongside an explicit empirical refutation criterion.
+2. **Formal model and public code (`experiments/`):** deterministic TypeScript implementation under `Apache-2.0`, with explicit PRNG seeds and unit tests covering mathematical invariants.
+3. **Reproducible data and checksums (`public/datos/experimentos/`):** CSV datasets (`CC BY 4.0`), JSON schemas and `SHA-256` manifests verified via `npm run experiments:check`.
+4. **Evidence grading and scope limits:** outputs from parameterized structural models are explicitly flagged `synthetic=true` and paired with official or peer-reviewed literature under the appropriate `emerging` or `speculative` evidence level, never conflating simulation with observational field data.

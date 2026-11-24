@@ -1,0 +1,88 @@
+---
+titulo: "Cómputo, energía y clima: qué miden realmente las cifras"
+resumen: "La actualización de la AIE de 2026, la diferencia entre IA y centros de datos, y las condiciones que determinan el impacto climático."
+clave: computo-energia-clima
+temas: [computo, energia, planeta]
+evidencia: emergente
+autor: Peace The Frontier
+publicado: 2026-11-13
+revisado: 2026-11-13
+fuentes: [aie-ia-2026, aie-energia-ia, epoch-computo, epoch-hardware]
+asistidoPorIA: true
+estado: borrador
+sensible: false
+---
+
+import Nota from '../../../components/articulo/Nota.astro';
+
+## Qué cambió en la evidencia
+
+La actualización de abril de 2026 de la Agencia Internacional de la Energía estima que los centros de datos consumieron 485 TWh de electricidad en 2025 y proyecta unos 950 TWh en 2030, cerca del 3 % de la demanda eléctrica mundial. Describe un crecimiento del 17 % del consumo total de los centros de datos durante 2025, con un aumento más rápido en las instalaciones enfocadas en IA. Son categorías diferentes: el total incluye servicios ajenos a la IA generativa.<Nota f="aie-ia-2026" />
+
+La revisión actualiza el informe de 2025, que estimaba 415 TWh para 2024 y proyectaba 945 TWh en su caso base de 2030. La pequeña diferencia entre las dos proyecciones para 2030 no significa que haya ocurrido poco. Cambiaron el año observado, la cartera de proyectos y la información disponible. Conservar ambas ediciones permite distinguir una evaluación actualizada de una predicción supuestamente precisa.<Nota f="aie-energia-ia" />
+
+La conclusión central es que crece la demanda y cambia su composición. Ni un titular sobre chips eficientes ni otro sobre un campus gigantesco resuelven por sí solos la cuestión ambiental. Importan los servicios informáticos útiles, la electricidad utilizada, el lugar y momento de su suministro y las emisiones dentro de un límite de análisis explícito.
+
+## Cuatro magnitudes que deben permanecer separadas
+
+El cómputo de entrenamiento cuenta operaciones utilizadas para desarrollar un modelo. La inferencia es el trabajo que realiza al responder o ejecutar tareas. La electricidad de los centros de datos incluye servidores, refrigeración e infraestructura para múltiples aplicaciones. La energía primaria es otro concepto contable. Una tendencia de una magnitud no se puede trasladar sin explicación a otra.
+
+El análisis de Epoch AI de mayo de 2024 describía un crecimiento anual de aproximadamente cuatro a cinco veces en el cómputo de entrenamiento de determinadas muestras históricas. Su ventana de observación termina en mayo de 2024. Es evidencia sobre esa tendencia, no una medición de la electricidad total de la IA en noviembre de 2026 ni una prueba de que la capacidad crezca en idéntica proporción.<Nota f="epoch-computo" />
+
+Un modelo puede emplear esa tendencia como entrada de un escenario si explica la relación que supone. También debe identificar qué invalidaría la extrapolación: financiación, disponibilidad de hardware, cambios de entrenamiento, tamaños distintos de modelos o desplazamiento del gasto hacia inferencia. Son mecanismos posibles, no contribuciones medidas a las que podamos asignar porcentajes sin más evidencia.
+
+## La eficiencia tiene varios denominadores
+
+El estudio de hardware de Epoch de 2023 encontraba tendencias diferentes según la métrica. En la muestra analizada, el rendimiento computacional se duplicaba aproximadamente cada 2,3 años, el rendimiento por precio cada 2,1 años y la eficiencia energética cada 3 años. No son cifras intercambiables: una operación más barata, un chip más rápido y una operación que consume menos energía responden a preguntas distintas.<Nota f="epoch-hardware" />
+
+La evaluación de la AIE de 2026 también describe grandes reducciones de energía por tarea de IA junto a más demanda y aplicaciones más intensivas. Eso no establece un coste energético universal para una «consulta de IA». Una respuesta breve, una secuencia larga de razonamiento, un vídeo y un agente que llama repetidamente a herramientas pueden consumir cantidades muy distintas.<Nota f="aie-ia-2026" />
+
+Una comparación honesta mantiene tan constantes como sea posible la tarea, la calidad, los límites del hardware y las condiciones de medición. De otro modo, cambiar la mezcla de tareas puede parecer una mejora o un empeoramiento de eficiencia. Abaratar un servicio también puede estimular su uso. Es una razón para medir demanda total y eficiencia juntas, no para suponer que todo ahorro queda necesariamente anulado por el efecto rebote.
+
+## Leer las proyecciones como afirmaciones condicionales
+
+El informe anterior de la AIE examinaba expresamente futuros alternativos. Su caso base para 2035 rondaba los 1.200 TWh; un caso de mayor eficiencia y otro de expansión más rápida daban resultados distintos. Esas alternativas muestran dependencias de la adopción, las mejoras de software y hardware y las restricciones de infraestructura. No son intervalos de confianza obtenidos observando repetidamente el futuro.<Nota f="aie-energia-ia" />
+
+La actualización de 2026 mantiene una trayectoria central cercana a corto plazo, pero enfatiza los cuellos de botella de las redes y cadenas de suministro. También considera posibilidades de mayor demanda después de 2030 si se alivian las restricciones y se extienden usos más intensivos. Ambas ideas caben juntas: las limitaciones actuales pueden frenar el despliegue sin fijar un techo permanente.<Nota f="aie-ia-2026" />
+
+Al comparar ediciones, conviene preguntar si usan la misma definición de centro de datos, cobertura geográfica, tratamiento de las instalaciones enfocadas en IA y horizonte temporal. Una cifra diferente no siempre revisa la misma medición. Este artículo emplea los totales mundiales de centros de datos de la agencia y señala los años observados.
+
+## La red es local aunque el titular sea mundial
+
+Una fracción moderada de la electricidad mundial puede representar una carga importante para una red concreta. El informe de la AIE de 2025 describe concentración geográfica y retrasos de conexión; estima que las restricciones de red podrían retrasar parte de los proyectos previstos. Los totales mundiales no permiten deducir por sí solos el efecto local sobre precios, fiabilidad o infraestructura pública.<Nota f="aie-energia-ia" />
+
+La actualización de 2026 aporta detalles sobre densidad de potencia, almacenamiento, conexiones y generación dentro de las instalaciones. Un proyecto anunciado no equivale a electricidad entregada a servidores. Entre el anuncio y la carga observada están los permisos, equipos, construcción, conexión y operación. Contar todos los anuncios como instalaciones en funcionamiento convertiría una cartera de inversión en una medición falsa.<Nota f="aie-ia-2026" />
+
+Para una decisión local, las preguntas útiles son quién paga las ampliaciones, cómo se comporta la instalación cuando escasea el suministro, si puede desplazar consumo y qué usuarios soportan los retrasos. Hace falta evidencia específica del proyecto. Un informe global ayuda a formular esas preguntas, pero no responde por todos los lugares.
+
+## Demanda eléctrica no equivale a huella de carbono
+
+El impacto climático depende del consumo y de las emisiones asociadas a su suministro. La evaluación de 2026 de la AIE proyecta que las emisiones de los centros de datos alcanzan unos 350 millones de toneladas en 2035, aproximadamente el 2 % de las emisiones del sector eléctrico en esa proyección. El denominador importa: no es el 2 % de todas las emisiones humanas de gases de efecto invernadero.<Nota f="aie-ia-2026" />
+
+La contratación de renovables aporta información, pero un contrato no describe por sí solo el suministro de cada hora. Tampoco un servidor eficiente determina las emisiones de su electricidad. Hacen falta límites de cálculo, periodo, geografía y supuestos. Los impactos de fabricar equipos y construir instalaciones no deben mezclarse silenciosamente con estimaciones de electricidad operativa.
+
+Los beneficios potenciales requieren límites igualmente claros. Optimizar un sistema energético mediante IA puede reducir recursos en una aplicación, pero el potencial técnico no demuestra ahorros ya realizados en toda una economía. La comparación debe incluir el coste computacional y la mejora medida, frente a una alternativa creíble sin ese sistema de IA.
+
+## Qué dice el modelo del atlas y qué no
+
+El atlas conserva una estimación inicial de 550 TWh para 2026, heredada de una interpolación de las cifras antiguas de la AIE. No es una observación de 2026 ni un total exclusivo de IA. Incorporar al artículo el informe nuevo no transforma aquella elección en una medición. La tabla de parámetros distingue ahora entradas estimadas, observadas, derivadas, calibradas y supuestas.
+
+El modelo también impone un techo equivalente a una fracción elegida de la electricidad mundial y relaciona la demanda con una variable abstracta de capacidad. Son supuestos de escenario. El techo puede dominar los resultados lejanos y hacer converger futuros distintos. Esa convergencia es una propiedad de las ecuaciones y los supuestos, no evidencia independiente de que el mundo vaya a converger.
+
+Existe además una limitación contable: el modelo suma electricidad convertida a exajulios a una base de energía primaria calculada por sustitución. Conciliar los límites y la posible doble contabilización requiere una revisión separada del modelo. Esta actualización documenta el problema y conserva las ecuaciones. Reconocer una limitación pendiente informa más que una recalibración que esconda la incompatibilidad.
+
+## Qué sigue siendo incierto
+
+Los datos públicos no ofrecen un desglose completo y uniforme de entrenamiento, inferencia y servicios ajenos a la IA. La utilización efectiva y la mezcla de tareas pueden importar tanto como las especificaciones máximas del hardware. Las empresas pueden declarar límites distintos, dificultando comparaciones aparentemente sencillas. La AIE pide mejores declaraciones y seguimiento continuo.<Nota f="aie-ia-2026" />
+
+Las proyecciones lejanas acumulan incertidumbre de demanda, suministro, tecnología y política. No por ello dejan de ser útiles; cambia su propósito. Sirven para identificar presiones ante las que prepararse y supuestos que conviene contrastar. Un escenario debería ayudar al lector a reconocer qué evidencia cambiaría sus conclusiones.
+
+El seguimiento de este atlas prioriza la próxima evaluación comparable de la AIE, capacidad operativa frente a anunciada, mediciones independientes de energía por tarea y cambios en suministro y restricciones de red. Hay que revisarlos conjuntamente: un nuevo resultado en una prueba de capacidades no actualiza por sí solo la demanda eléctrica de un país.
+
+## Cómo leer esta revisión
+
+Esta es una revisión editorial de informes primarios identificados, no una revisión sistemática de toda la investigación energética. Las ediciones de la AIE y los análisis de Epoch se consultaron el 13 de noviembre de 2026. Los resultados históricos conservan sus periodos originales. El artículo sigue como borrador editorial y la simulación continúa siendo un conjunto ilustrativo de futuros.
+
+### Correcciones e historial
+
+13 de noviembre de 2026: primera revisión. Se añade la evaluación de la AIE de abril de 2026, conservando la edición de 2025 para comparar. Se separan cómputo, electricidad y contabilidad climática, y se documentan la base heredada y el límite energético pendiente. Este artículo no cambia entradas numéricas ni ecuaciones del modelo.

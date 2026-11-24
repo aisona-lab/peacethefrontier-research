@@ -1,0 +1,43 @@
+---
+// Dónde cae un rango de la escala dentro de la regla completa (átomo → universo).
+import { posicion } from '../lib/escala';
+
+interface Props {
+	desde: number;
+	hasta: number;
+}
+
+const { desde, hasta } = Astro.props;
+---
+
+<span
+	class="mini-regla"
+	style={`--a:${posicion(desde)}%;--b:${posicion(hasta)}%`}
+	aria-hidden="true"></span>
+
+<style>
+	.mini-regla {
+		position: relative;
+		display: block;
+		width: 100%;
+		max-width: 14rem;
+		height: 0.6rem;
+		border-inline: 1px solid var(--regla);
+	}
+
+	.mini-regla::before {
+		content: '';
+		position: absolute;
+		inset: 50% 0 auto;
+		border-top: 1px solid var(--regla);
+	}
+
+	.mini-regla::after {
+		content: '';
+		position: absolute;
+		inset-block: 0.1rem;
+		left: var(--a);
+		width: max(3px, calc(var(--b) - var(--a)));
+		background: var(--tinta);
+	}
+</style>

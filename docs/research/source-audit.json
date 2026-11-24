@@ -1,0 +1,1765 @@
+{
+  "auditDate": "2026-11-13",
+  "baselineCommit": "2a11ae11b754f366a2135e93d87c8cea5ceb33de",
+  "scope": "All 56 original source records plus 7 additions. Availability, passage review, edition checks and full factual verification are separate. Unresolved records are outcomes, not completed verification.",
+  "sources": [
+    {
+      "id": "epoch-computo",
+      "url": "https://epoch.ai/publications/training-compute-of-frontier-ai-models-grows-by-4-5x-per-year",
+      "checkedAt": "2026-11-13T07:40:23.086290+00:00",
+      "verification": "reviewed-excerpt",
+      "publicationStatus": "Relevant passage or landing-page metadata read; type/edition recorded below.",
+      "correctionsRetractions": "No exhaustive retraction/database screen completed. See newerEditions for notices actually found; absence of a recorded notice is not clearance.",
+      "newerEditions": "No newer edition established in this targeted review; comprehensive update search remains pending.",
+      "access": "reachable",
+      "httpStatus": 200,
+      "finalUrl": "https://epoch.ai/publications/training-compute-of-frontier-ai-models-grows-by-4-5x-per-year",
+      "note": "Historical training-compute trend; not a 2026 capability measurement.",
+      "reviewOutcome": "Retain with passage-level evidence and stated applicability limits; editorial sign-off pending.",
+      "linkCheck": {
+        "checkedAt": "2026-11-13T12:43:51.000Z",
+        "outcome": "reachable",
+        "status": 200,
+        "finalUrl": "https://epoch.ai/publications/training-compute-of-frontier-ai-models-grows-by-4-5x-per-year"
+      },
+      "passages": [
+        "epoch-computo-passage"
+      ],
+      "metadata": {
+        "publicationYear": 2024,
+        "publicationDate": null,
+        "type": "analisis",
+        "doi": null
+      }
+    },
+    {
+      "id": "epoch-hardware",
+      "url": "https://epoch.ai/publications/trends-in-machine-learning-hardware",
+      "checkedAt": "2026-11-13T07:40:23.087088+00:00",
+      "verification": "reviewed-excerpt",
+      "publicationStatus": "Relevant passage or landing-page metadata read; type/edition recorded below.",
+      "correctionsRetractions": "No exhaustive retraction/database screen completed. See newerEditions for notices actually found; absence of a recorded notice is not clearance.",
+      "newerEditions": "No newer edition established in this targeted review; comprehensive update search remains pending.",
+      "access": "reachable",
+      "httpStatus": 200,
+      "finalUrl": "https://epoch.ai/publications/trends-in-machine-learning-hardware",
+      "note": "FLOP/s, FLOP/$ and energy efficiency have different denominators.",
+      "reviewOutcome": "Retain with passage-level evidence and stated applicability limits; editorial sign-off pending.",
+      "linkCheck": {
+        "checkedAt": "2026-11-13T12:43:51.017Z",
+        "outcome": "reachable",
+        "status": 200,
+        "finalUrl": "https://epoch.ai/publications/trends-in-machine-learning-hardware"
+      },
+      "passages": [
+        "epoch-hardware-passage"
+      ],
+      "metadata": {
+        "publicationYear": 2023,
+        "publicationDate": "2023-11-09",
+        "type": "analisis",
+        "doi": null
+      }
+    },
+    {
+      "id": "eloundou-2023",
+      "url": "https://arxiv.org/abs/2303.10130",
+      "checkedAt": "2026-11-13T07:40:23.087640+00:00",
+      "verification": "reviewed-excerpt",
+      "publicationStatus": "Relevant passage or landing-page metadata read; type/edition recorded below.",
+      "correctionsRetractions": "No exhaustive retraction/database screen completed. See newerEditions for notices actually found; absence of a recorded notice is not clearance.",
+      "newerEditions": "No newer edition established in this targeted review; comprehensive update search remains pending.",
+      "access": "reachable",
+      "httpStatus": 200,
+      "finalUrl": "https://arxiv.org/abs/2303.10130",
+      "note": "Exposure does not justify a measured 5% automation baseline.",
+      "reviewOutcome": "Retain with passage-level evidence and stated applicability limits; editorial sign-off pending.",
+      "linkCheck": {
+        "checkedAt": "2026-11-13T12:43:51.018Z",
+        "outcome": "reachable",
+        "status": 200,
+        "finalUrl": "https://arxiv.org/abs/2303.10130"
+      },
+      "passages": [
+        "eloundou-2023-passage"
+      ],
+      "metadata": {
+        "publicationYear": 2023,
+        "publicationDate": null,
+        "type": "preprint",
+        "doi": null
+      }
+    },
+    {
+      "id": "grace-2024",
+      "url": "https://arxiv.org/abs/2401.02843v1",
+      "checkedAt": "2026-11-13T07:40:23.088171+00:00",
+      "verification": "reviewed-excerpt",
+      "publicationStatus": "Relevant passage or landing-page metadata read; type/edition recorded below.",
+      "correctionsRetractions": "No exhaustive retraction/database screen completed. See newerEditions for notices actually found; absence of a recorded notice is not clearance.",
+      "newerEditions": "arXiv v3 dated 2025-10-08 links JAIR 84:9 (2025), DOI 10.1613/jair.1.19087. Abstract checked in v1 and v3; historical v1 retained.",
+      "access": "reachable",
+      "httpStatus": 200,
+      "finalUrl": "https://arxiv.org/abs/2401.02843",
+      "note": "Abstract reviewed; probabilities are judgments, not frequencies. Historical v1 retained in inventory.",
+      "reviewOutcome": "Retain with passage-level evidence and stated applicability limits; editorial sign-off pending.",
+      "previousUrl": "https://arxiv.org/abs/2401.02843",
+      "linkCheck": {
+        "checkedAt": "2026-11-13T12:43:51.254Z",
+        "outcome": "reachable",
+        "status": 200,
+        "finalUrl": "https://arxiv.org/abs/2401.02843v1"
+      },
+      "passages": [
+        "grace-2024-passage"
+      ],
+      "metadata": {
+        "publicationYear": 2024,
+        "publicationDate": "2024-01-05",
+        "type": "preprint",
+        "doi": "10.48550/arXiv.2401.02843"
+      }
+    },
+    {
+      "id": "oit-empleo",
+      "url": "https://ilostat.ilo.org/data/snapshots/employment-to-population-ratio/",
+      "checkedAt": "2026-11-13T07:40:23.088895+00:00",
+      "verification": "pending",
+      "publicationStatus": "Unresolved: full text or suitable metadata still required.",
+      "correctionsRetractions": "No exhaustive retraction/database screen completed. See newerEditions for notices actually found; absence of a recorded notice is not clearance.",
+      "newerEditions": "No newer edition established in this targeted review; comprehensive update search remains pending.",
+      "access": "reachable",
+      "httpStatus": 200,
+      "finalUrl": "https://ilostat.ilo.org/data/snapshots/employment-to-population-ratio/",
+      "note": "Retrieved, awaiting claim-level review. HTTP success alone does not establish accuracy.",
+      "reviewOutcome": "Unresolved: preserve historical reference and pending label; do not claim current verification.",
+      "linkCheck": {
+        "checkedAt": "2026-11-13T12:43:51.822Z",
+        "outcome": "reachable",
+        "status": 200,
+        "finalUrl": "https://ilostat.ilo.org/data/snapshots/employment-to-population-ratio/"
+      },
+      "passages": [],
+      "metadata": {
+        "publicationYear": 2025,
+        "publicationDate": null,
+        "type": "dataset",
+        "doi": null
+      }
+    },
+    {
+      "id": "acemoglu-restrepo-2019",
+      "url": "https://doi.org/10.1257/jep.33.2.3",
+      "checkedAt": "2026-11-13T07:40:23.089543+00:00",
+      "verification": "pending",
+      "publicationStatus": "Unresolved: full text or suitable metadata still required.",
+      "correctionsRetractions": "No exhaustive retraction/database screen completed. See newerEditions for notices actually found; absence of a recorded notice is not clearance.",
+      "newerEditions": "No newer edition established in this targeted review; comprehensive update search remains pending.",
+      "access": "restricted",
+      "note": "HTTP Error 403: Forbidden",
+      "reviewOutcome": "Unresolved: preserve historical reference and pending label; do not claim current verification.",
+      "linkCheck": {
+        "checkedAt": "2026-11-13T12:43:51.933Z",
+        "outcome": "restricted",
+        "status": 403,
+        "finalUrl": "https://pubs.aeaweb.org/doi/10.1257/jep.33.2.3"
+      },
+      "passages": [],
+      "metadata": {
+        "publicationYear": 2019,
+        "publicationDate": null,
+        "type": "revisado-por-pares",
+        "doi": "10.1257/jep.33.2.3"
+      }
+    },
+    {
+      "id": "milanovic-2024",
+      "url": "https://doi.org/10.1016/j.worlddev.2023.106516",
+      "checkedAt": "2026-11-13T07:40:23.094676+00:00",
+      "verification": "pending",
+      "publicationStatus": "Unresolved: full text or suitable metadata still required.",
+      "correctionsRetractions": "No exhaustive retraction/database screen completed. See newerEditions for notices actually found; absence of a recorded notice is not clearance.",
+      "newerEditions": "No newer edition established in this targeted review; comprehensive update search remains pending.",
+      "access": "restricted",
+      "note": "<urlopen error Tunnel connection failed: 403 Forbidden>",
+      "reviewOutcome": "Unresolved: preserve historical reference and pending label; do not claim current verification.",
+      "linkCheck": {
+        "checkedAt": "2026-11-13T12:43:54.167Z",
+        "outcome": "temporary",
+        "status": null
+      },
+      "passages": [],
+      "metadata": {
+        "publicationYear": 2024,
+        "publicationDate": null,
+        "type": "revisado-por-pares",
+        "doi": "10.1016/j.worlddev.2023.106516"
+      }
+    },
+    {
+      "id": "ifr-2024",
+      "url": "https://ifr.org/ifr-press-releases/news/record-of-4-million-robots-working-in-factories-worldwide",
+      "checkedAt": "2026-11-13T07:40:23.095851+00:00",
+      "verification": "reviewed-excerpt",
+      "publicationStatus": "Relevant passage or landing-page metadata read; type/edition recorded below.",
+      "correctionsRetractions": "No exhaustive retraction/database screen completed. See newerEditions for notices actually found; absence of a recorded notice is not clearance.",
+      "newerEditions": "No newer edition established in this targeted review; comprehensive update search remains pending.",
+      "access": "reachable",
+      "httpStatus": 200,
+      "finalUrl": "https://ifr.org/ifr-press-releases/news/record-of-4-million-robots-working-in-factories-worldwide",
+      "note": "Does not cover every type of robot; model carries estimate into 2026.",
+      "reviewOutcome": "Retain with passage-level evidence and stated applicability limits; editorial sign-off pending.",
+      "linkCheck": {
+        "checkedAt": "2026-11-13T12:43:52.479Z",
+        "outcome": "reachable",
+        "status": 200,
+        "finalUrl": "https://ifr.org/ifr-press-releases/news/record-of-4-million-robots-working-in-factories-worldwide"
+      },
+      "passages": [
+        "ifr-2024-passage"
+      ],
+      "metadata": {
+        "publicationYear": 2024,
+        "publicationDate": null,
+        "type": "dataset",
+        "doi": null
+      }
+    },
+    {
+      "id": "aie-energia-ia",
+      "url": "https://www.iea.org/reports/energy-and-ai",
+      "checkedAt": "2026-11-13T07:40:23.346999+00:00",
+      "verification": "reviewed-excerpt",
+      "publicationStatus": "Relevant passage or landing-page metadata read; type/edition recorded below.",
+      "correctionsRetractions": "No exhaustive retraction/database screen completed. See newerEditions for notices actually found; absence of a recorded notice is not clearance.",
+      "newerEditions": "2026 follow-up reviewed and added separately as aie-ia-2026; original retained.",
+      "access": "reachable",
+      "httpStatus": 200,
+      "finalUrl": "https://www.iea.org/reports/energy-and-ai",
+      "note": "All data centres, not AI alone; retain 2025 report edition.",
+      "reviewOutcome": "Retain with passage-level evidence and stated applicability limits; editorial sign-off pending.",
+      "linkCheck": {
+        "checkedAt": "2026-11-13T12:43:52.578Z",
+        "outcome": "reachable",
+        "status": 200,
+        "finalUrl": "https://www.iea.org/reports/energy-and-ai"
+      },
+      "passages": [
+        "aie-energia-ia-passage"
+      ],
+      "metadata": {
+        "publicationYear": 2025,
+        "publicationDate": null,
+        "type": "oficial",
+        "doi": null
+      }
+    },
+    {
+      "id": "aie-electricidad-2025",
+      "url": "https://www.iea.org/reports/electricity-2025",
+      "checkedAt": "2026-11-13T07:40:23.422029+00:00",
+      "verification": "reviewed-excerpt",
+      "publicationStatus": "Relevant passage or landing-page metadata read; type/edition recorded below.",
+      "correctionsRetractions": "No exhaustive retraction/database screen completed. See newerEditions for notices actually found; absence of a recorded notice is not clearance.",
+      "newerEditions": "No newer edition established in this targeted review; comprehensive update search remains pending.",
+      "access": "reachable",
+      "httpStatus": 200,
+      "finalUrl": "https://www.iea.org/reports/electricity-2025",
+      "note": "Not a direct observation of future global demand.",
+      "reviewOutcome": "Retain with passage-level evidence and stated applicability limits; editorial sign-off pending.",
+      "linkCheck": {
+        "checkedAt": "2026-11-13T12:43:52.739Z",
+        "outcome": "reachable",
+        "status": 200,
+        "finalUrl": "https://www.iea.org/reports/electricity-2025"
+      },
+      "passages": [
+        "aie-electricidad-2025-passage"
+      ],
+      "metadata": {
+        "publicationYear": 2025,
+        "publicationDate": null,
+        "type": "oficial",
+        "doi": null
+      }
+    },
+    {
+      "id": "ei-statistical-review",
+      "url": "https://www.energyinst.org/statistical-review",
+      "checkedAt": "2026-11-13T07:40:23.471405+00:00",
+      "verification": "pending",
+      "publicationStatus": "Unresolved: full text or suitable metadata still required.",
+      "correctionsRetractions": "No exhaustive retraction/database screen completed. See newerEditions for notices actually found; absence of a recorded notice is not clearance.",
+      "newerEditions": "Homepage is dynamic and no longer pins the 2024 edition. Archive/spreadsheet selection remains unresolved; retained calibration is explicitly historical.",
+      "access": "reachable",
+      "httpStatus": 200,
+      "finalUrl": "https://www.energyinst.org/statistical-review",
+      "note": "Retrieved, awaiting claim-level review. HTTP success alone does not establish accuracy.",
+      "reviewOutcome": "Unresolved: preserve historical reference and pending label; do not claim current verification.",
+      "linkCheck": {
+        "checkedAt": "2026-11-13T12:43:53.377Z",
+        "outcome": "reachable",
+        "status": 200,
+        "finalUrl": "https://www.energyinst.org/statistical-review"
+      },
+      "passages": [],
+      "metadata": {
+        "publicationYear": 2024,
+        "publicationDate": null,
+        "type": "dataset",
+        "doi": null
+      }
+    },
+    {
+      "id": "gcb-2024",
+      "url": "https://essd.copernicus.org/articles/17/965/2025/",
+      "checkedAt": "2026-11-13T07:40:23.624760+00:00",
+      "verification": "reviewed-excerpt",
+      "publicationStatus": "Relevant passage or landing-page metadata read; type/edition recorded below.",
+      "correctionsRetractions": "No exhaustive retraction/database screen completed. See newerEditions for notices actually found; absence of a recorded notice is not clearance.",
+      "newerEditions": "Old homepage now advertises GCB 2026. Historical ID now targets the 2024 edition published 2025-03-14; no numeric baseline changes.",
+      "access": "reachable",
+      "httpStatus": 200,
+      "finalUrl": "https://globalcarbonbudget.org/",
+      "note": "Retain edition ID; do not substitute latest homepage values.",
+      "reviewOutcome": "Retain with passage-level evidence and stated applicability limits; editorial sign-off pending.",
+      "previousUrl": "https://globalcarbonbudget.org/",
+      "linkCheck": {
+        "checkedAt": "2026-11-13T12:43:54.168Z",
+        "outcome": "reachable",
+        "status": 200,
+        "finalUrl": "https://essd.copernicus.org/articles/17/965/2025/"
+      },
+      "passages": [
+        "gcb-2024-passage"
+      ],
+      "metadata": {
+        "publicationYear": 2025,
+        "publicationDate": "2025-03-14",
+        "type": "revisado-por-pares",
+        "doi": "10.5194/essd-17-965-2025"
+      }
+    },
+    {
+      "id": "forster-2024",
+      "url": "https://doi.org/10.5194/essd-16-2625-2024",
+      "checkedAt": "2026-11-13T07:40:23.773581+00:00",
+      "verification": "reviewed-excerpt",
+      "publicationStatus": "Relevant passage or landing-page metadata read; type/edition recorded below.",
+      "correctionsRetractions": "No exhaustive retraction/database screen completed. See newerEditions for notices actually found; absence of a recorded notice is not clearance.",
+      "newerEditions": "No newer edition established in this targeted review; comprehensive update search remains pending.",
+      "access": "reachable",
+      "httpStatus": 200,
+      "finalUrl": "https://essd.copernicus.org/articles/16/2625/2024/",
+      "note": "Single-year and multiyear temperatures must not be interchanged.",
+      "reviewOutcome": "Retain with passage-level evidence and stated applicability limits; editorial sign-off pending.",
+      "linkCheck": {
+        "checkedAt": "2026-11-13T12:43:54.761Z",
+        "outcome": "reachable",
+        "status": 200,
+        "finalUrl": "https://essd.copernicus.org/articles/16/2625/2024/"
+      },
+      "passages": [
+        "forster-2024-passage"
+      ],
+      "metadata": {
+        "publicationYear": 2024,
+        "publicationDate": null,
+        "type": "revisado-por-pares",
+        "doi": "10.5194/essd-16-2625-2024"
+      }
+    },
+    {
+      "id": "ipcc-ar6-wg1",
+      "url": "https://www.ipcc.ch/report/ar6/wg1/",
+      "checkedAt": "2026-11-13T07:40:23.942721+00:00",
+      "verification": "reviewed-excerpt",
+      "publicationStatus": "Relevant passage or landing-page metadata read; type/edition recorded below.",
+      "correctionsRetractions": "No exhaustive retraction/database screen completed. See newerEditions for notices actually found; absence of a recorded notice is not clearance.",
+      "newerEditions": "No newer edition established in this targeted review; comprehensive update search remains pending.",
+      "access": "reachable",
+      "httpStatus": 200,
+      "finalUrl": "https://www.ipcc.ch/report/ar6/wg1/",
+      "note": "Foundational report retained; numerical TCRE table still needs direct verification.",
+      "reviewOutcome": "Retain with passage-level evidence and stated applicability limits; editorial sign-off pending.",
+      "linkCheck": {
+        "checkedAt": "2026-11-13T12:43:55.551Z",
+        "outcome": "reachable",
+        "status": 200,
+        "finalUrl": "https://www.ipcc.ch/report/ar6/wg1/"
+      },
+      "passages": [
+        "ipcc-ar6-wg1-passage"
+      ],
+      "metadata": {
+        "publicationYear": 2021,
+        "publicationDate": null,
+        "type": "oficial",
+        "doi": null
+      }
+    },
+    {
+      "id": "onu-wpp-2024",
+      "url": "https://population.un.org/wpp/",
+      "checkedAt": "2026-11-13T07:40:24.060429+00:00",
+      "verification": "pending",
+      "publicationStatus": "Unresolved: full text or suitable metadata still required.",
+      "correctionsRetractions": "No exhaustive retraction/database screen completed. See newerEditions for notices actually found; absence of a recorded notice is not clearance.",
+      "newerEditions": "No newer edition established in this targeted review; comprehensive update search remains pending.",
+      "access": "reachable",
+      "httpStatus": 200,
+      "finalUrl": "https://population.un.org/wpp/",
+      "note": "Retrieved, awaiting claim-level review. HTTP success alone does not establish accuracy.",
+      "reviewOutcome": "Unresolved: preserve historical reference and pending label; do not claim current verification.",
+      "linkCheck": {
+        "checkedAt": "2026-11-13T12:43:56.028Z",
+        "outcome": "reachable",
+        "status": 200,
+        "finalUrl": "https://population.un.org/wpp/"
+      },
+      "passages": [],
+      "metadata": {
+        "publicationYear": 2024,
+        "publicationDate": null,
+        "type": "oficial",
+        "doi": null
+      }
+    },
+    {
+      "id": "xpt-2023",
+      "url": "https://forecastingresearch.org/research/existential-risk-persuasion-tournament",
+      "checkedAt": "2026-11-13T07:40:24.063313+00:00",
+      "verification": "reviewed-excerpt",
+      "publicationStatus": "Relevant passage or landing-page metadata read; type/edition recorded below.",
+      "correctionsRetractions": "No exhaustive retraction/database screen completed. See newerEditions for notices actually found; absence of a recorded notice is not clearance.",
+      "newerEditions": "Landing page lists 2025 related publications and near-term-accuracy follow-up; numerical table and those follow-ups remain to review.",
+      "access": "reachable",
+      "httpStatus": 200,
+      "finalUrl": "https://forecastingresearch.org/research/existential-risk-persuasion-tournament",
+      "note": "Landing-page abstract only; detailed numerical probability table pending.",
+      "reviewOutcome": "Retain with passage-level evidence and stated applicability limits; editorial sign-off pending.",
+      "linkCheck": {
+        "checkedAt": "2026-11-13T12:43:56.275Z",
+        "outcome": "reachable",
+        "status": 200,
+        "finalUrl": "https://forecastingresearch.org/research/existential-risk-persuasion-tournament"
+      },
+      "passages": [
+        "xpt-2023-passage"
+      ],
+      "metadata": {
+        "publicationYear": 2023,
+        "publicationDate": "2023-07-10",
+        "type": "preprint",
+        "doi": null
+      }
+    },
+    {
+      "id": "coe-convenio-ia",
+      "url": "https://www.coe.int/en/web/artificial-intelligence/the-framework-convention-on-artificial-intelligence",
+      "checkedAt": "2026-11-13T07:40:24.195465+00:00",
+      "verification": "reviewed-excerpt",
+      "publicationStatus": "Relevant passage or landing-page metadata read; type/edition recorded below.",
+      "correctionsRetractions": "No exhaustive retraction/database screen completed. See newerEditions for notices actually found; absence of a recorded notice is not clearance.",
+      "newerEditions": "No newer edition established in this targeted review; comprehensive update search remains pending.",
+      "access": "reachable",
+      "httpStatus": 200,
+      "finalUrl": "https://www.coe.int/en/web/artificial-intelligence/the-framework-convention-on-artificial-intelligence",
+      "note": "Country ratifications and entry into force not independently verified.",
+      "reviewOutcome": "Retain with passage-level evidence and stated applicability limits; editorial sign-off pending.",
+      "linkCheck": {
+        "checkedAt": "2026-11-13T12:43:56.647Z",
+        "outcome": "reachable",
+        "status": 200,
+        "finalUrl": "https://www.coe.int/en/web/artificial-intelligence/the-framework-convention-on-artificial-intelligence"
+      },
+      "passages": [
+        "coe-convenio-ia-passage"
+      ],
+      "metadata": {
+        "publicationYear": 2024,
+        "publicationDate": null,
+        "type": "oficial",
+        "doi": null
+      }
+    },
+    {
+      "id": "onu-panel-ia",
+      "url": "https://www.un.org/independent-international-scientific-panel-ai/en/faq",
+      "checkedAt": "2026-11-13T07:40:24.643787+00:00",
+      "verification": "pending",
+      "publicationStatus": "Unresolved: full text or suitable metadata still required.",
+      "correctionsRetractions": "No exhaustive retraction/database screen completed. See newerEditions for notices actually found; absence of a recorded notice is not clearance.",
+      "newerEditions": "No newer edition established in this targeted review; comprehensive update search remains pending.",
+      "access": "restricted",
+      "note": "HTTP Error 403: Forbidden",
+      "reviewOutcome": "Unresolved: preserve historical reference and pending label; do not claim current verification.",
+      "linkCheck": {
+        "checkedAt": "2026-11-13T12:43:56.836Z",
+        "outcome": "restricted",
+        "status": 403,
+        "finalUrl": "https://www.un.org/independent-international-scientific-panel-ai/en/faq"
+      },
+      "passages": [],
+      "metadata": {
+        "publicationYear": 2025,
+        "publicationDate": null,
+        "type": "oficial",
+        "doi": null
+      }
+    },
+    {
+      "id": "cfr-chips-2026",
+      "url": "https://www.cfr.org/articles/new-ai-chip-export-policy-china-strategically-incoherent-and-unenforceable",
+      "checkedAt": "2026-11-13T07:40:24.663648+00:00",
+      "verification": "reviewed-excerpt",
+      "publicationStatus": "Relevant passage or landing-page metadata read; type/edition recorded below.",
+      "correctionsRetractions": "No exhaustive retraction/database screen completed. See newerEditions for notices actually found; absence of a recorded notice is not clearance.",
+      "newerEditions": "No newer edition established in this targeted review; comprehensive update search remains pending.",
+      "access": "reachable",
+      "httpStatus": 200,
+      "finalUrl": "https://www.cfr.org/articles/new-ai-chip-export-policy-china-strategically-incoherent-and-unenforceable",
+      "note": "Dated secondary policy account, not verification of current law.",
+      "reviewOutcome": "Retain with passage-level evidence and stated applicability limits; editorial sign-off pending.",
+      "linkCheck": {
+        "checkedAt": "2026-11-13T12:43:57.025Z",
+        "outcome": "reachable",
+        "status": 200,
+        "finalUrl": "https://www.cfr.org/articles/new-ai-chip-export-policy-china-strategically-incoherent-and-unenforceable"
+      },
+      "passages": [
+        "cfr-chips-2026-passage"
+      ],
+      "metadata": {
+        "publicationYear": 2026,
+        "publicationDate": "2026-01-14",
+        "type": "analisis",
+        "doi": null
+      }
+    },
+    {
+      "id": "brookings-delhi",
+      "url": "https://www.brookings.edu/articles/takeaways-from-the-india-ai-impact-summit/",
+      "checkedAt": "2026-11-13T07:40:24.906013+00:00",
+      "verification": "reviewed-excerpt",
+      "publicationStatus": "Relevant passage or landing-page metadata read; type/edition recorded below.",
+      "correctionsRetractions": "No exhaustive retraction/database screen completed. See newerEditions for notices actually found; absence of a recorded notice is not clearance.",
+      "newerEditions": "No newer edition established in this targeted review; comprehensive update search remains pending.",
+      "access": "reachable",
+      "httpStatus": 200,
+      "finalUrl": "https://www.brookings.edu/articles/takeaways-from-the-india-ai-impact-summit/",
+      "note": "Not operative legal text.",
+      "reviewOutcome": "Retain with passage-level evidence and stated applicability limits; editorial sign-off pending.",
+      "linkCheck": {
+        "checkedAt": "2026-11-13T12:43:57.671Z",
+        "outcome": "reachable",
+        "status": 200,
+        "finalUrl": "https://www.brookings.edu/articles/takeaways-from-the-india-ai-impact-summit/"
+      },
+      "passages": [
+        "brookings-delhi-passage"
+      ],
+      "metadata": {
+        "publicationYear": 2026,
+        "publicationDate": null,
+        "type": "analisis",
+        "doi": null
+      }
+    },
+    {
+      "id": "ue-ley-ia",
+      "url": "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai",
+      "checkedAt": "2026-11-13T07:40:24.945920+00:00",
+      "verification": "reviewed-excerpt",
+      "publicationStatus": "Relevant passage or landing-page metadata read; type/edition recorded below.",
+      "correctionsRetractions": "No exhaustive retraction/database screen completed. See newerEditions for notices actually found; absence of a recorded notice is not clearance.",
+      "newerEditions": "Commission overview updated 2026-10-19 describes Omnibus amendment; linked Official Journal text returned empty content. Guidance attribution only.",
+      "access": "reachable",
+      "httpStatus": 200,
+      "finalUrl": "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai",
+      "note": "Operative amendment text not readable; guidance attribution only.",
+      "reviewOutcome": "Retain with passage-level evidence and stated applicability limits; editorial sign-off pending.",
+      "linkCheck": {
+        "checkedAt": "2026-11-13T12:43:57.817Z",
+        "outcome": "reachable",
+        "status": 200,
+        "finalUrl": "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai"
+      },
+      "passages": [
+        "ue-ley-ia-passage"
+      ],
+      "metadata": {
+        "publicationYear": 2026,
+        "publicationDate": null,
+        "type": "oficial",
+        "doi": null
+      }
+    },
+    {
+      "id": "california-sb53",
+      "url": "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260SB53",
+      "checkedAt": "2026-11-13T07:40:25.001435+00:00",
+      "verification": "pending",
+      "publicationStatus": "Unresolved: full text or suitable metadata still required.",
+      "correctionsRetractions": "No exhaustive retraction/database screen completed. See newerEditions for notices actually found; absence of a recorded notice is not clearance.",
+      "newerEditions": "No newer edition established in this targeted review; comprehensive update search remains pending.",
+      "access": "restricted",
+      "note": "HTTP Error 403: Forbidden",
+      "reviewOutcome": "Unresolved: preserve historical reference and pending label; do not claim current verification.",
+      "linkCheck": {
+        "checkedAt": "2026-11-13T12:43:58.057Z",
+        "outcome": "restricted",
+        "status": 403,
+        "finalUrl": "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260SB53"
+      },
+      "passages": [],
+      "metadata": {
+        "publicationYear": 2025,
+        "publicationDate": null,
+        "type": "oficial",
+        "doi": null
+      }
+    },
+    {
+      "id": "eeuu-orden-14365",
+      "url": "https://www.federalregister.gov/documents/2025/12/16/2025-23092/ensuring-a-national-policy-framework-for-artificial-intelligence",
+      "checkedAt": "2026-11-13T07:40:25.101281+00:00",
+      "verification": "reviewed-excerpt",
+      "publicationStatus": "Relevant passage or landing-page metadata read; type/edition recorded below.",
+      "correctionsRetractions": "No exhaustive retraction/database screen completed. See newerEditions for notices actually found; absence of a recorded notice is not clearance.",
+      "newerEditions": "No newer edition established in this targeted review; comprehensive update search remains pending.",
+      "access": "reachable",
+      "httpStatus": 200,
+      "finalUrl": "https://www.federalregister.gov/documents/2025/12/16/2025-23092/ensuring-a-national-policy-framework-for-artificial-intelligence",
+      "note": "Published instrument; later litigation and effect not checked.",
+      "reviewOutcome": "Retain with passage-level evidence and stated applicability limits; editorial sign-off pending.",
+      "linkCheck": {
+        "checkedAt": "2026-11-13T12:43:58.187Z",
+        "outcome": "reachable",
+        "status": 200,
+        "finalUrl": "https://www.federalregister.gov/documents/2025/12/16/2025-23092/ensuring-a-national-policy-framework-for-artificial-intelligence"
+      },
+      "passages": [
+        "eeuu-orden-14365-passage"
+      ],
+      "metadata": {
+        "publicationYear": 2025,
+        "publicationDate": null,
+        "type": "oficial",
+        "doi": null
+      }
+    },
+    {
+      "id": "hrw-armas-autonomas-2026",
+      "url": "https://www.hrw.org/news/2026/09/07/un-talks-on-killer-robots-ends-with-calls-for-negotiations-growing",
+      "checkedAt": "2026-11-13T07:40:25.472104+00:00",
+      "verification": "reviewed-excerpt",
+      "publicationStatus": "Relevant passage or landing-page metadata read; type/edition recorded below.",
+      "correctionsRetractions": "No exhaustive retraction/database screen completed. See newerEditions for notices actually found; absence of a recorded notice is not clearance.",
+      "newerEditions": "No newer edition established in this targeted review; comprehensive update search remains pending.",
+      "access": "reachable",
+      "httpStatus": 200,
+      "finalUrl": "https://www.hrw.org/news/2026/09/07/un-talks-on-killer-robots-end-with-calls-for-negotiations-growing",
+      "note": "Attributed count; conference outcome requires follow-up.",
+      "reviewOutcome": "Retain with passage-level evidence and stated applicability limits; editorial sign-off pending.",
+      "linkCheck": {
+        "checkedAt": "2026-11-13T12:43:58.846Z",
+        "outcome": "reachable",
+        "status": 200,
+        "finalUrl": "https://www.hrw.org/news/2026/09/07/un-talks-on-killer-robots-end-with-calls-for-negotiations-growing"
+      },
+      "passages": [
+        "hrw-armas-autonomas-2026-passage"
+      ],
+      "metadata": {
+        "publicationYear": 2026,
+        "publicationDate": null,
+        "type": "analisis",
+        "doi": null
+      }
+    },
+    {
+      "id": "cfr-taiwan-2024",
+      "url": "https://www.cfr.org/articles/onshoring-semiconductor-production-national-security-versus-economic-efficiency",
+      "checkedAt": "2026-11-13T07:40:25.554283+00:00",
+      "verification": "reviewed-excerpt",
+      "publicationStatus": "Relevant passage or landing-page metadata read; type/edition recorded below.",
+      "correctionsRetractions": "No exhaustive retraction/database screen completed. See newerEditions for notices actually found; absence of a recorded notice is not clearance.",
+      "newerEditions": "No newer edition established in this targeted review; comprehensive update search remains pending.",
+      "access": "reachable",
+      "httpStatus": 200,
+      "finalUrl": "https://www.cfr.org/articles/onshoring-semiconductor-production-national-security-versus-economic-efficiency",
+      "note": "Secondary historical account; category of advanced chips matters.",
+      "reviewOutcome": "Retain with passage-level evidence and stated applicability limits; editorial sign-off pending.",
+      "linkCheck": {
+        "checkedAt": "2026-11-13T12:43:59.148Z",
+        "outcome": "reachable",
+        "status": 200,
+        "finalUrl": "https://www.cfr.org/articles/onshoring-semiconductor-production-national-security-versus-economic-efficiency"
+      },
+      "passages": [
+        "cfr-taiwan-2024-passage"
+      ],
+      "metadata": {
+        "publicationYear": 2024,
+        "publicationDate": null,
+        "type": "analisis",
+        "doi": null
+      }
+    },
+    {
+      "id": "ntia-pesos-2024",
+      "url": "https://www.ntia.gov/sites/default/files/publications/ntia-ai-open-model-report.pdf",
+      "checkedAt": "2026-11-13T07:40:25.795441+00:00",
+      "verification": "pending",
+      "publicationStatus": "Unresolved: full text or suitable metadata still required.",
+      "correctionsRetractions": "No exhaustive retraction/database screen completed. See newerEditions for notices actually found; absence of a recorded notice is not clearance.",
+      "newerEditions": "No newer edition established in this targeted review; comprehensive update search remains pending.",
+      "access": "reachable",
+      "httpStatus": 200,
+      "finalUrl": "https://www.ntia.gov/sites/default/files/publications/ntia-ai-open-model-report.pdf",
+      "note": "Retrieved, awaiting claim-level review. HTTP success alone does not establish accuracy.",
+      "reviewOutcome": "Unresolved: preserve historical reference and pending label; do not claim current verification.",
+      "linkCheck": {
+        "checkedAt": "2026-11-13T12:43:59.293Z",
+        "outcome": "reachable",
+        "status": 200,
+        "finalUrl": "https://www.ntia.gov/sites/default/files/publications/ntia-ai-open-model-report.pdf"
+      },
+      "passages": [],
+      "metadata": {
+        "publicationYear": 2024,
+        "publicationDate": null,
+        "type": "oficial",
+        "doi": null
+      }
+    },
+    {
+      "id": "seul-compromisos-2024",
+      "url": "https://www.gov.uk/government/publications/frontier-ai-safety-commitments-ai-seoul-summit-2024/frontier-ai-safety-commitments-ai-seoul-summit-2024",
+      "checkedAt": "2026-11-13T07:40:26.162130+00:00",
+      "verification": "pending",
+      "publicationStatus": "Unresolved: full text or suitable metadata still required.",
+      "correctionsRetractions": "No exhaustive retraction/database screen completed. See newerEditions for notices actually found; absence of a recorded notice is not clearance.",
+      "newerEditions": "No newer edition established in this targeted review; comprehensive update search remains pending.",
+      "access": "reachable",
+      "httpStatus": 200,
+      "finalUrl": "https://www.gov.uk/government/publications/frontier-ai-safety-commitments-ai-seoul-summit-2024/frontier-ai-safety-commitments-ai-seoul-summit-2024",
+      "note": "Retrieved, awaiting claim-level review. HTTP success alone does not establish accuracy.",
+      "reviewOutcome": "Unresolved: preserve historical reference and pending label; do not claim current verification.",
+      "linkCheck": {
+        "checkedAt": "2026-11-13T12:43:59.699Z",
+        "outcome": "reachable",
+        "status": 200,
+        "finalUrl": "https://www.gov.uk/government/publications/frontier-ai-safety-commitments-ai-seoul-summit-2024/frontier-ai-safety-commitments-ai-seoul-summit-2024"
+      },
+      "passages": [],
+      "metadata": {
+        "publicationYear": 2024,
+        "publicationDate": null,
+        "type": "oficial",
+        "doi": null
+      }
+    },
+    {
+      "id": "sevilla-2022",
+      "url": "https://doi.org/10.1109/IJCNN55064.2022.9891914",
+      "checkedAt": "2026-11-13T07:40:26.184236+00:00",
+      "verification": "pending",
+      "publicationStatus": "Unresolved: full text or suitable metadata still required.",
+      "correctionsRetractions": "No exhaustive retraction/database screen completed. See newerEditions for notices actually found; absence of a recorded notice is not clearance.",
+      "newerEditions": "No newer edition established in this targeted review; comprehensive update search remains pending.",
+      "access": "restricted",
+      "note": "<urlopen error Tunnel connection failed: 403 Forbidden>",
+      "reviewOutcome": "Unresolved: preserve historical reference and pending label; do not claim current verification.",
+      "linkCheck": {
+        "checkedAt": "2026-11-13T12:44:01.953Z",
+        "outcome": "temporary",
+        "status": null
+      },
+      "passages": [],
+      "metadata": {
+        "publicationYear": 2022,
+        "publicationDate": null,
+        "type": "revisado-por-pares",
+        "doi": "10.1109/IJCNN55064.2022.9891914"
+      }
+    },
+    {
+      "id": "iasr-2026",
+      "url": "https://internationalaisafetyreport.org/publication/international-ai-safety-report-2026",
+      "checkedAt": "2026-11-13T07:40:26.207730+00:00",
+      "verification": "reviewed-excerpt",
+      "publicationStatus": "Relevant passage or landing-page metadata read; type/edition recorded below.",
+      "correctionsRetractions": "No exhaustive retraction/database screen completed. See newerEditions for notices actually found; absence of a recorded notice is not clearance.",
+      "newerEditions": "No newer edition established in this targeted review; comprehensive update search remains pending.",
+      "access": "reachable",
+      "httpStatus": 200,
+      "finalUrl": "https://internationalaisafetyreport.org/publication/international-ai-safety-report-2026",
+      "note": "Loss of control distinguished from other harms; not a guarantee about later releases.",
+      "reviewOutcome": "Retain with passage-level evidence and stated applicability limits; editorial sign-off pending.",
+      "linkCheck": {
+        "checkedAt": "2026-11-13T12:43:59.881Z",
+        "outcome": "reachable",
+        "status": 200,
+        "finalUrl": "https://internationalaisafetyreport.org/publication/international-ai-safety-report-2026"
+      },
+      "passages": [
+        "iasr-2026-passage"
+      ],
+      "metadata": {
+        "publicationYear": 2026,
+        "publicationDate": null,
+        "type": "oficial",
+        "doi": null
+      }
+    },
+    {
+      "id": "archaeology-escritura-2016",
+      "url": "https://archaeology.org/collection/the-worlds-oldest-writing/",
+      "checkedAt": "2026-11-13T07:40:26.363643+00:00",
+      "verification": "pending",
+      "publicationStatus": "Unresolved: full text or suitable metadata still required.",
+      "correctionsRetractions": "No exhaustive retraction/database screen completed. See newerEditions for notices actually found; absence of a recorded notice is not clearance.",
+      "newerEditions": "No newer edition established in this targeted review; comprehensive update search remains pending.",
+      "access": "reachable",
+      "httpStatus": 200,
+      "finalUrl": "https://archaeology.org/collection/the-worlds-oldest-writing/",
+      "note": "Retrieved, awaiting claim-level review. HTTP success alone does not establish accuracy.",
+      "reviewOutcome": "Unresolved: preserve historical reference and pending label; do not claim current verification.",
+      "linkCheck": {
+        "checkedAt": "2026-11-13T12:44:00.717Z",
+        "outcome": "reachable",
+        "status": 200,
+        "finalUrl": "https://archaeology.org/collection/the-worlds-oldest-writing/"
+      },
+      "passages": [],
+      "metadata": {
+        "publicationYear": 2016,
+        "publicationDate": null,
+        "type": "prensa",
+        "doi": null
+      }
+    },
+    {
+      "id": "sep-copernico",
+      "url": "https://plato.stanford.edu/entries/copernicus/",
+      "checkedAt": "2026-11-13T07:40:26.428945+00:00",
+      "verification": "reviewed-excerpt",
+      "publicationStatus": "Relevant passage or landing-page metadata read; type/edition recorded below.",
+      "correctionsRetractions": "No exhaustive retraction/database screen completed. See newerEditions for notices actually found; absence of a recorded notice is not clearance.",
+      "newerEditions": "No newer edition established in this targeted review; comprehensive update search remains pending.",
+      "access": "reachable",
+      "httpStatus": 200,
+      "finalUrl": "https://plato.stanford.edu/entries/copernicus/",
+      "note": "Historical attribution; not a new scientific finding.",
+      "reviewOutcome": "Retain with passage-level evidence and stated applicability limits; editorial sign-off pending.",
+      "linkCheck": {
+        "checkedAt": "2026-11-13T12:44:01.937Z",
+        "outcome": "reachable",
+        "status": 200,
+        "finalUrl": "https://plato.stanford.edu/entries/copernicus/"
+      },
+      "passages": [
+        "sep-copernico-passage"
+      ],
+      "metadata": {
+        "publicationYear": 2023,
+        "publicationDate": null,
+        "type": "libro",
+        "doi": null
+      }
+    },
+    {
+      "id": "freeth-2006",
+      "url": "https://doi.org/10.1038/nature05357",
+      "checkedAt": "2026-11-13T07:40:26.439524+00:00",
+      "verification": "pending",
+      "publicationStatus": "Unresolved: full text or suitable metadata still required.",
+      "correctionsRetractions": "No exhaustive retraction/database screen completed. See newerEditions for notices actually found; absence of a recorded notice is not clearance.",
+      "newerEditions": "No newer edition established in this targeted review; comprehensive update search remains pending.",
+      "access": "restricted",
+      "note": "<urlopen error Tunnel connection failed: 403 Forbidden>",
+      "reviewOutcome": "Unresolved: preserve historical reference and pending label; do not claim current verification.",
+      "linkCheck": {
+        "checkedAt": "2026-11-13T12:44:05.300Z",
+        "outcome": "temporary",
+        "status": null
+      },
+      "passages": [],
+      "metadata": {
+        "publicationYear": 2006,
+        "publicationDate": null,
+        "type": "revisado-por-pares",
+        "doi": "10.1038/nature05357"
+      }
+    },
+    {
+      "id": "vesuvius-2024",
+      "url": "https://scrollprize.org/grandprize",
+      "checkedAt": "2026-11-13T07:40:26.753603+00:00",
+      "verification": "reviewed-excerpt",
+      "publicationStatus": "Relevant passage or landing-page metadata read; type/edition recorded below.",
+      "correctionsRetractions": "No exhaustive retraction/database screen completed. See newerEditions for notices actually found; absence of a recorded notice is not clearance.",
+      "newerEditions": "No newer edition established in this targeted review; comprehensive update search remains pending.",
+      "access": "reachable",
+      "httpStatus": 200,
+      "finalUrl": "https://scrollprize.org/grandprize",
+      "note": "Original project report; not independent replication.",
+      "reviewOutcome": "Retain with passage-level evidence and stated applicability limits; editorial sign-off pending.",
+      "linkCheck": {
+        "checkedAt": "2026-11-13T12:44:02.603Z",
+        "outcome": "reachable",
+        "status": 200,
+        "finalUrl": "https://scrollprize.org/grandprize"
+      },
+      "passages": [
+        "vesuvius-2024-passage"
+      ],
+      "metadata": {
+        "publicationYear": 2024,
+        "publicationDate": null,
+        "type": "analisis",
+        "doi": null
+      }
+    },
+    {
+      "id": "mit-hormigon-2023",
+      "url": "https://news.mit.edu/2023/roman-concrete-durability-lime-casts-0106",
+      "checkedAt": "2026-11-13T07:40:26.908947+00:00",
+      "verification": "reviewed-excerpt",
+      "publicationStatus": "Relevant passage or landing-page metadata read; type/edition recorded below.",
+      "correctionsRetractions": "No exhaustive retraction/database screen completed. See newerEditions for notices actually found; absence of a recorded notice is not clearance.",
+      "newerEditions": "No newer edition established in this targeted review; comprehensive update search remains pending.",
+      "access": "reachable",
+      "httpStatus": 200,
+      "finalUrl": "https://news.mit.edu/2023/roman-concrete-durability-lime-casts-0106",
+      "note": "Discovery source; original paper access restricted.",
+      "reviewOutcome": "Retain with passage-level evidence and stated applicability limits; editorial sign-off pending.",
+      "linkCheck": {
+        "checkedAt": "2026-11-13T12:44:02.739Z",
+        "outcome": "reachable",
+        "status": 200,
+        "finalUrl": "https://news.mit.edu/2023/roman-concrete-durability-lime-casts-0106"
+      },
+      "passages": [
+        "mit-hormigon-2023-passage"
+      ],
+      "metadata": {
+        "publicationYear": 2023,
+        "publicationDate": null,
+        "type": "prensa",
+        "doi": null
+      }
+    },
+    {
+      "id": "seymour-2023",
+      "url": "https://doi.org/10.1126/sciadv.add1602",
+      "checkedAt": "2026-11-13T07:40:27.255383+00:00",
+      "verification": "pending",
+      "publicationStatus": "Unresolved: full text or suitable metadata still required.",
+      "correctionsRetractions": "No exhaustive retraction/database screen completed. See newerEditions for notices actually found; absence of a recorded notice is not clearance.",
+      "newerEditions": "No newer edition established in this targeted review; comprehensive update search remains pending.",
+      "access": "restricted",
+      "note": "HTTP Error 403: Forbidden",
+      "reviewOutcome": "Unresolved: preserve historical reference and pending label; do not claim current verification.",
+      "linkCheck": {
+        "checkedAt": "2026-11-13T12:44:02.819Z",
+        "outcome": "restricted",
+        "status": 403,
+        "finalUrl": "https://www.science.org/doi/10.1126/sciadv.add1602"
+      },
+      "passages": [],
+      "metadata": {
+        "publicationYear": 2023,
+        "publicationDate": null,
+        "type": "revisado-por-pares",
+        "doi": "10.1126/sciadv.add1602"
+      }
+    },
+    {
+      "id": "palimpsesto-arquimedes",
+      "url": "https://www.archimedespalimpsest.org/about/history/",
+      "checkedAt": "2026-11-13T07:40:27.444429+00:00",
+      "verification": "reviewed-excerpt",
+      "publicationStatus": "Relevant passage or landing-page metadata read; type/edition recorded below.",
+      "correctionsRetractions": "No exhaustive retraction/database screen completed. See newerEditions for notices actually found; absence of a recorded notice is not clearance.",
+      "newerEditions": "No newer edition established in this targeted review; comprehensive update search remains pending.",
+      "access": "reachable",
+      "httpStatus": 200,
+      "finalUrl": "https://archimedespalimpsest.org/about/history/",
+      "note": "Undated project historical account.",
+      "metadataReview": "Removed consultation-year placeholder: original file documents access years for these undated pages.",
+      "reviewOutcome": "Retain with passage-level evidence and stated applicability limits; editorial sign-off pending.",
+      "linkCheck": {
+        "checkedAt": "2026-11-13T12:44:03.283Z",
+        "outcome": "reachable",
+        "status": 200,
+        "finalUrl": "https://archimedespalimpsest.org/about/history/"
+      },
+      "passages": [
+        "palimpsesto-arquimedes-passage"
+      ],
+      "metadata": {
+        "publicationYear": null,
+        "publicationDate": null,
+        "type": "analisis",
+        "doi": null
+      }
+    },
+    {
+      "id": "oms-viruela",
+      "url": "https://www.who.int/news-room/spotlight/history-of-vaccination/history-of-smallpox-vaccination",
+      "checkedAt": "2026-11-13T07:40:27.445584+00:00",
+      "verification": "reviewed-excerpt",
+      "publicationStatus": "Relevant passage or landing-page metadata read; type/edition recorded below.",
+      "correctionsRetractions": "No exhaustive retraction/database screen completed. See newerEditions for notices actually found; absence of a recorded notice is not clearance.",
+      "newerEditions": "No newer edition established in this targeted review; comprehensive update search remains pending.",
+      "access": "reachable",
+      "httpStatus": 200,
+      "finalUrl": "https://www.who.int/news-room/spotlight/history-of-vaccination/history-of-smallpox-vaccination",
+      "note": "Retain history only; no operational biological procedures reproduced.",
+      "metadataReview": "Removed consultation-year placeholder: original file documents access years for these undated pages.",
+      "reviewOutcome": "Retain with passage-level evidence and stated applicability limits; editorial sign-off pending.",
+      "linkCheck": {
+        "checkedAt": "2026-11-13T12:44:03.665Z",
+        "outcome": "reachable",
+        "status": 200,
+        "finalUrl": "https://www.who.int/news-room/spotlight/history-of-vaccination/history-of-smallpox-vaccination"
+      },
+      "passages": [
+        "oms-viruela-passage"
+      ],
+      "metadata": {
+        "publicationYear": null,
+        "publicationDate": null,
+        "type": "oficial",
+        "doi": null
+      }
+    },
+    {
+      "id": "chm-lovelace",
+      "url": "https://www.computerhistory.org/babbage/adalovelace/",
+      "checkedAt": "2026-11-13T07:40:27.796775+00:00",
+      "verification": "reviewed-excerpt",
+      "publicationStatus": "Relevant passage or landing-page metadata read; type/edition recorded below.",
+      "correctionsRetractions": "No exhaustive retraction/database screen completed. See newerEditions for notices actually found; absence of a recorded notice is not clearance.",
+      "newerEditions": "No newer edition established in this targeted review; comprehensive update search remains pending.",
+      "access": "reachable",
+      "httpStatus": 200,
+      "finalUrl": "https://www.computerhistory.org/babbage/adalovelace/",
+      "note": "Museum account; publication page undated.",
+      "metadataReview": "Removed consultation-year placeholder: original file documents access years for these undated pages.",
+      "reviewOutcome": "Retain with passage-level evidence and stated applicability limits; editorial sign-off pending.",
+      "linkCheck": {
+        "checkedAt": "2026-11-13T12:44:03.978Z",
+        "outcome": "reachable",
+        "status": 200,
+        "finalUrl": "https://www.computerhistory.org/babbage/adalovelace/"
+      },
+      "passages": [
+        "chm-lovelace-passage"
+      ],
+      "metadata": {
+        "publicationYear": null,
+        "publicationDate": null,
+        "type": "analisis",
+        "doi": null
+      }
+    },
+    {
+      "id": "gaynes-2017",
+      "url": "https://wwwnc.cdc.gov/eid/article/23/5/16-1556_article",
+      "checkedAt": "2026-11-13T07:40:28.084668+00:00",
+      "verification": "reviewed-excerpt",
+      "publicationStatus": "Relevant passage or landing-page metadata read; type/edition recorded below.",
+      "correctionsRetractions": "No exhaustive retraction/database screen completed. See newerEditions for notices actually found; absence of a recorded notice is not clearance.",
+      "newerEditions": "No newer edition established in this targeted review; comprehensive update search remains pending.",
+      "access": "reachable",
+      "httpStatus": 200,
+      "finalUrl": "https://wwwnc.cdc.gov/eid/article/23/5/16-1556_article",
+      "note": "Distinguish discovery from clinical application.",
+      "reviewOutcome": "Retain with passage-level evidence and stated applicability limits; editorial sign-off pending.",
+      "linkCheck": {
+        "checkedAt": "2026-11-13T12:44:04.641Z",
+        "outcome": "reachable",
+        "status": 200,
+        "finalUrl": "https://wwwnc.cdc.gov/eid/article/23/5/16-1556_article"
+      },
+      "passages": [
+        "gaynes-2017-passage"
+      ],
+      "metadata": {
+        "publicationYear": 2017,
+        "publicationDate": null,
+        "type": "revisado-por-pares",
+        "doi": null
+      }
+    },
+    {
+      "id": "ahf-trinity",
+      "url": "https://ahf.nuclearmuseum.org/ahf/history/trinity-test/",
+      "checkedAt": "2026-11-13T07:40:28.088011+00:00",
+      "verification": "pending",
+      "publicationStatus": "Unresolved: full text or suitable metadata still required.",
+      "correctionsRetractions": "No exhaustive retraction/database screen completed. See newerEditions for notices actually found; absence of a recorded notice is not clearance.",
+      "newerEditions": "No newer edition established in this targeted review; comprehensive update search remains pending.",
+      "access": "reachable",
+      "httpStatus": 200,
+      "finalUrl": "https://ahf.nuclearmuseum.org/ahf/history/trinity-test-1945/",
+      "note": "Retrieved, awaiting claim-level review. HTTP success alone does not establish accuracy.",
+      "metadataReview": "Removed consultation-year placeholder: original file documents access years for these undated pages.",
+      "reviewOutcome": "Unresolved: preserve historical reference and pending label; do not claim current verification.",
+      "linkCheck": {
+        "checkedAt": "2026-11-13T12:44:04.657Z",
+        "outcome": "reachable",
+        "status": 200,
+        "finalUrl": "https://ahf.nuclearmuseum.org/ahf/history/trinity-test-1945/"
+      },
+      "passages": [],
+      "metadata": {
+        "publicationYear": null,
+        "publicationDate": null,
+        "type": "analisis",
+        "doi": null
+      }
+    },
+    {
+      "id": "sep-turing",
+      "url": "https://plato.stanford.edu/entries/turing-test/",
+      "checkedAt": "2026-11-13T07:40:28.177146+00:00",
+      "verification": "reviewed-excerpt",
+      "publicationStatus": "Relevant passage or landing-page metadata read; type/edition recorded below.",
+      "correctionsRetractions": "No exhaustive retraction/database screen completed. See newerEditions for notices actually found; absence of a recorded notice is not clearance.",
+      "newerEditions": "No newer edition established in this targeted review; comprehensive update search remains pending.",
+      "access": "reachable",
+      "httpStatus": 200,
+      "finalUrl": "https://plato.stanford.edu/entries/turing-test/",
+      "note": "Not a validated test of consciousness.",
+      "reviewOutcome": "Retain with passage-level evidence and stated applicability limits; editorial sign-off pending.",
+      "linkCheck": {
+        "checkedAt": "2026-11-13T12:44:05.977Z",
+        "outcome": "reachable",
+        "status": 200,
+        "finalUrl": "https://plato.stanford.edu/entries/turing-test/"
+      },
+      "passages": [
+        "sep-turing-passage"
+      ],
+      "metadata": {
+        "publicationYear": 2021,
+        "publicationDate": null,
+        "type": "libro",
+        "doi": null
+      }
+    },
+    {
+      "id": "dartmouth-1955",
+      "url": "http://www-formal.stanford.edu/jmc/history/dartmouth/dartmouth.html",
+      "checkedAt": "2026-11-13T07:40:28.210437+00:00",
+      "verification": "reviewed-excerpt",
+      "publicationStatus": "Relevant passage or landing-page metadata read; type/edition recorded below.",
+      "correctionsRetractions": "No exhaustive retraction/database screen completed. See newerEditions for notices actually found; absence of a recorded notice is not clearance.",
+      "newerEditions": "No newer edition established in this targeted review; comprehensive update search remains pending.",
+      "access": "reachable",
+      "httpStatus": 200,
+      "finalUrl": "http://www-formal.stanford.edu/jmc/history/dartmouth/dartmouth.html",
+      "note": "Proposal is not a record of outcomes.",
+      "reviewOutcome": "Retain with passage-level evidence and stated applicability limits; editorial sign-off pending.",
+      "linkCheck": {
+        "checkedAt": "2026-11-13T12:44:09.548Z",
+        "outcome": "temporary",
+        "status": null
+      },
+      "passages": [
+        "dartmouth-1955-passage"
+      ],
+      "metadata": {
+        "publicationYear": 1955,
+        "publicationDate": null,
+        "type": "libro",
+        "doi": null
+      }
+    },
+    {
+      "id": "unoda-tnp",
+      "url": "https://disarmament.unoda.org/wmd/nuclear/npt/",
+      "checkedAt": "2026-11-13T07:40:28.565248+00:00",
+      "verification": "reviewed-excerpt",
+      "publicationStatus": "Relevant passage or landing-page metadata read; type/edition recorded below.",
+      "correctionsRetractions": "No exhaustive retraction/database screen completed. See newerEditions for notices actually found; absence of a recorded notice is not clearance.",
+      "newerEditions": "No newer edition established in this targeted review; comprehensive update search remains pending.",
+      "access": "reachable",
+      "httpStatus": 200,
+      "finalUrl": "https://disarmament.unoda.org/en/our-work/weapons-mass-destruction/nuclear-weapons/treaty-non-proliferation-nuclear-weapons",
+      "note": "Different legal events; dynamic membership totals not newly audited.",
+      "metadataReview": "Removed consultation-year placeholder: original file documents access years for these undated pages.",
+      "reviewOutcome": "Retain with passage-level evidence and stated applicability limits; editorial sign-off pending.",
+      "linkCheck": {
+        "checkedAt": "2026-11-13T12:44:06.710Z",
+        "outcome": "reachable",
+        "status": 200,
+        "finalUrl": "https://disarmament.unoda.org/en/our-work/weapons-mass-destruction/nuclear-weapons/treaty-non-proliferation-nuclear-weapons"
+      },
+      "passages": [
+        "unoda-tnp-passage"
+      ],
+      "metadata": {
+        "publicationYear": null,
+        "publicationDate": null,
+        "type": "oficial",
+        "doi": null
+      }
+    },
+    {
+      "id": "nasa-apolo-11",
+      "url": "https://www.nasa.gov/mission/apollo-11/",
+      "checkedAt": "2026-11-13T07:40:28.759541+00:00",
+      "verification": "reviewed-excerpt",
+      "publicationStatus": "Relevant passage or landing-page metadata read; type/edition recorded below.",
+      "correctionsRetractions": "No exhaustive retraction/database screen completed. See newerEditions for notices actually found; absence of a recorded notice is not clearance.",
+      "newerEditions": "No newer edition established in this targeted review; comprehensive update search remains pending.",
+      "access": "reachable",
+      "httpStatus": 200,
+      "finalUrl": "https://www.nasa.gov/mission/apollo-11/",
+      "note": "Historical mission source retained.",
+      "metadataReview": "Removed consultation-year placeholder: original file documents access years for these undated pages.",
+      "reviewOutcome": "Retain with passage-level evidence and stated applicability limits; editorial sign-off pending.",
+      "linkCheck": {
+        "checkedAt": "2026-11-13T12:44:06.845Z",
+        "outcome": "reachable",
+        "status": 200,
+        "finalUrl": "https://www.nasa.gov/mission/apollo-11/"
+      },
+      "passages": [
+        "nasa-apolo-11-passage"
+      ],
+      "metadata": {
+        "publicationYear": null,
+        "publicationDate": null,
+        "type": "oficial",
+        "doi": null
+      }
+    },
+    {
+      "id": "berg-1975",
+      "url": "https://doi.org/10.1073/pnas.72.6.1981",
+      "checkedAt": "2026-11-13T07:40:28.841193+00:00",
+      "verification": "pending",
+      "publicationStatus": "Unresolved: full text or suitable metadata still required.",
+      "correctionsRetractions": "No exhaustive retraction/database screen completed. See newerEditions for notices actually found; absence of a recorded notice is not clearance.",
+      "newerEditions": "No newer edition established in this targeted review; comprehensive update search remains pending.",
+      "access": "restricted",
+      "note": "<urlopen error Tunnel connection failed: 403 Forbidden>",
+      "reviewOutcome": "Unresolved: preserve historical reference and pending label; do not claim current verification.",
+      "linkCheck": {
+        "checkedAt": "2026-11-13T12:44:09.775Z",
+        "outcome": "temporary",
+        "status": null
+      },
+      "passages": [],
+      "metadata": {
+        "publicationYear": 1975,
+        "publicationDate": null,
+        "type": "revisado-por-pares",
+        "doi": "10.1073/pnas.72.6.1981"
+      }
+    },
+    {
+      "id": "imperiale-2025",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12188734/",
+      "checkedAt": "2026-11-13T07:40:28.971503+00:00",
+      "verification": "reviewed-excerpt",
+      "publicationStatus": "Relevant passage or landing-page metadata read; type/edition recorded below.",
+      "correctionsRetractions": "No exhaustive retraction/database screen completed. See newerEditions for notices actually found; absence of a recorded notice is not clearance.",
+      "newerEditions": "No newer edition established in this targeted review; comprehensive update search remains pending.",
+      "access": "reachable",
+      "httpStatus": 200,
+      "finalUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12188734/",
+      "note": "Secondary historical context, separate conference from treaty.",
+      "reviewOutcome": "Retain with passage-level evidence and stated applicability limits; editorial sign-off pending.",
+      "linkCheck": {
+        "checkedAt": "2026-11-13T12:44:08.073Z",
+        "outcome": "reachable",
+        "status": 200,
+        "finalUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12188734/"
+      },
+      "passages": [
+        "imperiale-2025-passage"
+      ],
+      "metadata": {
+        "publicationYear": 2025,
+        "publicationDate": null,
+        "type": "revisado-por-pares",
+        "doi": null
+      }
+    },
+    {
+      "id": "pnuma-montreal",
+      "url": "https://ozone.unep.org/treaties/montreal-protocol",
+      "checkedAt": "2026-11-13T07:40:29.002734+00:00",
+      "verification": "reviewed-excerpt",
+      "publicationStatus": "Relevant passage or landing-page metadata read; type/edition recorded below.",
+      "correctionsRetractions": "No exhaustive retraction/database screen completed. See newerEditions for notices actually found; absence of a recorded notice is not clearance.",
+      "newerEditions": "No newer edition established in this targeted review; comprehensive update search remains pending.",
+      "access": "reachable",
+      "httpStatus": 200,
+      "finalUrl": "https://ozone.unep.org/treaties/montreal-protocol",
+      "note": "Historical dates; not a quantitative evaluation of effectiveness.",
+      "metadataReview": "Removed consultation-year placeholder: original file documents access years for these undated pages.",
+      "reviewOutcome": "Retain with passage-level evidence and stated applicability limits; editorial sign-off pending.",
+      "linkCheck": {
+        "checkedAt": "2026-11-13T12:44:09.174Z",
+        "outcome": "reachable",
+        "status": 200,
+        "finalUrl": "https://ozone.unep.org/treaties/montreal-protocol"
+      },
+      "passages": [
+        "pnuma-montreal-passage"
+      ],
+      "metadata": {
+        "publicationYear": null,
+        "publicationDate": null,
+        "type": "oficial",
+        "doi": null
+      }
+    },
+    {
+      "id": "ipcc-historia",
+      "url": "https://www.ipcc.ch/about/history/",
+      "checkedAt": "2026-11-13T07:40:29.432537+00:00",
+      "verification": "reviewed-excerpt",
+      "publicationStatus": "Relevant passage or landing-page metadata read; type/edition recorded below.",
+      "correctionsRetractions": "No exhaustive retraction/database screen completed. See newerEditions for notices actually found; absence of a recorded notice is not clearance.",
+      "newerEditions": "No newer edition established in this targeted review; comprehensive update search remains pending.",
+      "access": "reachable",
+      "httpStatus": 200,
+      "finalUrl": "https://www.ipcc.ch/about/history/",
+      "note": "Official historical account.",
+      "metadataReview": "Removed consultation-year placeholder: original file documents access years for these undated pages.",
+      "reviewOutcome": "Retain with passage-level evidence and stated applicability limits; editorial sign-off pending.",
+      "linkCheck": {
+        "checkedAt": "2026-11-13T12:44:09.921Z",
+        "outcome": "reachable",
+        "status": 200,
+        "finalUrl": "https://www.ipcc.ch/about/history/"
+      },
+      "passages": [
+        "ipcc-historia-passage"
+      ],
+      "metadata": {
+        "publicationYear": null,
+        "publicationDate": null,
+        "type": "oficial",
+        "doi": null
+      }
+    },
+    {
+      "id": "cern-web",
+      "url": "https://home.cern/science/computing/the-birth-of-the-web/",
+      "checkedAt": "2026-11-13T07:40:29.563412+00:00",
+      "verification": "reviewed-excerpt",
+      "publicationStatus": "Relevant passage or landing-page metadata read; type/edition recorded below.",
+      "correctionsRetractions": "No exhaustive retraction/database screen completed. See newerEditions for notices actually found; absence of a recorded notice is not clearance.",
+      "newerEditions": "No newer edition established in this targeted review; comprehensive update search remains pending.",
+      "access": "reachable",
+      "httpStatus": 200,
+      "finalUrl": "https://home.cern/science/computing/the-birth-of-the-web/",
+      "note": "Distinguish invention from release.",
+      "metadataReview": "Removed consultation-year placeholder: original file documents access years for these undated pages.",
+      "reviewOutcome": "Retain with passage-level evidence and stated applicability limits; editorial sign-off pending.",
+      "linkCheck": {
+        "checkedAt": "2026-11-13T12:44:10.575Z",
+        "outcome": "reachable",
+        "status": 200,
+        "finalUrl": "https://home.cern/science/computing/the-birth-of-the-web/"
+      },
+      "passages": [
+        "cern-web-passage"
+      ],
+      "metadata": {
+        "publicationYear": null,
+        "publicationDate": null,
+        "type": "oficial",
+        "doi": null
+      }
+    },
+    {
+      "id": "nhgri-genoma",
+      "url": "https://www.genome.gov/human-genome-project",
+      "checkedAt": "2026-11-13T07:40:29.880948+00:00",
+      "verification": "reviewed-excerpt",
+      "publicationStatus": "Relevant passage or landing-page metadata read; type/edition recorded below.",
+      "correctionsRetractions": "No exhaustive retraction/database screen completed. See newerEditions for notices actually found; absence of a recorded notice is not clearance.",
+      "newerEditions": "No newer edition established in this targeted review; comprehensive update search remains pending.",
+      "access": "reachable",
+      "httpStatus": 200,
+      "finalUrl": "https://www.genome.gov/human-genome-project",
+      "note": "Project completion is not a claim of a gapless genome.",
+      "metadataReview": "Removed consultation-year placeholder: original file documents access years for these undated pages.",
+      "reviewOutcome": "Retain with passage-level evidence and stated applicability limits; editorial sign-off pending.",
+      "linkCheck": {
+        "checkedAt": "2026-11-13T12:44:10.639Z",
+        "outcome": "reachable",
+        "status": 200,
+        "finalUrl": "https://www.genome.gov/human-genome-project"
+      },
+      "passages": [
+        "nhgri-genoma-passage"
+      ],
+      "metadata": {
+        "publicationYear": null,
+        "publicationDate": null,
+        "type": "oficial",
+        "doi": null
+      }
+    },
+    {
+      "id": "krizhevsky-2012",
+      "url": "https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks",
+      "checkedAt": "2026-11-13T07:40:30.051846+00:00",
+      "verification": "reviewed-excerpt",
+      "publicationStatus": "Relevant passage or landing-page metadata read; type/edition recorded below.",
+      "correctionsRetractions": "No exhaustive retraction/database screen completed. See newerEditions for notices actually found; absence of a recorded notice is not clearance.",
+      "newerEditions": "No newer edition established in this targeted review; comprehensive update search remains pending.",
+      "access": "reachable",
+      "httpStatus": 200,
+      "finalUrl": "https://papers.nips.cc/paper_files/paper/2012/hash/c399862d3b9d6b76c8436e924a68c45b-Abstract.html",
+      "note": "Dataset-specific result, not general intelligence.",
+      "reviewOutcome": "Retain with passage-level evidence and stated applicability limits; editorial sign-off pending.",
+      "linkCheck": {
+        "checkedAt": "2026-11-13T12:44:11.619Z",
+        "outcome": "reachable",
+        "status": 200,
+        "finalUrl": "https://papers.nips.cc/paper_files/paper/2012/hash/c399862d3b9d6b76c8436e924a68c45b-Abstract.html"
+      },
+      "passages": [
+        "krizhevsky-2012-passage"
+      ],
+      "metadata": {
+        "publicationYear": 2012,
+        "publicationDate": null,
+        "type": "revisado-por-pares",
+        "doi": null
+      }
+    },
+    {
+      "id": "onu-paris",
+      "url": "https://www.un.org/en/climatechange/paris-agreement",
+      "checkedAt": "2026-11-13T07:40:30.182722+00:00",
+      "verification": "pending",
+      "publicationStatus": "Unresolved: full text or suitable metadata still required.",
+      "correctionsRetractions": "No exhaustive retraction/database screen completed. See newerEditions for notices actually found; absence of a recorded notice is not clearance.",
+      "newerEditions": "No newer edition established in this targeted review; comprehensive update search remains pending.",
+      "access": "restricted",
+      "note": "HTTP Error 403: Forbidden",
+      "metadataReview": "Removed consultation-year placeholder: original file documents access years for these undated pages.",
+      "reviewOutcome": "Unresolved: preserve historical reference and pending label; do not claim current verification.",
+      "linkCheck": {
+        "checkedAt": "2026-11-13T12:44:11.696Z",
+        "outcome": "restricted",
+        "status": 403,
+        "finalUrl": "https://www.un.org/en/climatechange/paris-agreement"
+      },
+      "passages": [],
+      "metadata": {
+        "publicationYear": null,
+        "publicationDate": null,
+        "type": "oficial",
+        "doi": null
+      }
+    },
+    {
+      "id": "vaswani-2017",
+      "url": "https://arxiv.org/abs/1706.03762",
+      "checkedAt": "2026-11-13T07:40:30.407728+00:00",
+      "verification": "reviewed-excerpt",
+      "publicationStatus": "Relevant passage or landing-page metadata read; type/edition recorded below.",
+      "correctionsRetractions": "No exhaustive retraction/database screen completed. See newerEditions for notices actually found; absence of a recorded notice is not clearance.",
+      "newerEditions": "No newer edition established in this targeted review; comprehensive update search remains pending.",
+      "access": "reachable",
+      "httpStatus": 200,
+      "finalUrl": "https://arxiv.org/abs/1706.03762",
+      "note": "Architecture and translation experiments; not current frontier performance.",
+      "reviewOutcome": "Retain with passage-level evidence and stated applicability limits; editorial sign-off pending.",
+      "linkCheck": {
+        "checkedAt": "2026-11-13T12:44:12.153Z",
+        "outcome": "reachable",
+        "status": 200,
+        "finalUrl": "https://arxiv.org/abs/1706.03762"
+      },
+      "passages": [
+        "vaswani-2017-passage"
+      ],
+      "metadata": {
+        "publicationYear": 2017,
+        "publicationDate": null,
+        "type": "preprint",
+        "doi": null
+      }
+    },
+    {
+      "id": "jumper-2021",
+      "url": "https://doi.org/10.1038/s41586-021-03819-2",
+      "checkedAt": "2026-11-13T07:40:30.447513+00:00",
+      "verification": "pending",
+      "publicationStatus": "Unresolved: full text or suitable metadata still required.",
+      "correctionsRetractions": "No exhaustive retraction/database screen completed. See newerEditions for notices actually found; absence of a recorded notice is not clearance.",
+      "newerEditions": "No newer edition established in this targeted review; comprehensive update search remains pending.",
+      "access": "restricted",
+      "note": "<urlopen error Tunnel connection failed: 403 Forbidden>",
+      "reviewOutcome": "Unresolved: preserve historical reference and pending label; do not claim current verification.",
+      "linkCheck": {
+        "checkedAt": "2026-11-13T12:44:15.925Z",
+        "outcome": "temporary",
+        "status": null
+      },
+      "passages": [],
+      "metadata": {
+        "publicationYear": 2021,
+        "publicationDate": null,
+        "type": "revisado-por-pares",
+        "doi": "10.1038/s41586-021-03819-2"
+      }
+    },
+    {
+      "id": "kva-nobel-2024",
+      "url": "https://www.kva.se/en/news/nobelpriset-i-kemi-2024/",
+      "checkedAt": "2026-11-13T07:40:30.513944+00:00",
+      "verification": "pending",
+      "publicationStatus": "Unresolved: full text or suitable metadata still required.",
+      "correctionsRetractions": "No exhaustive retraction/database screen completed. See newerEditions for notices actually found; absence of a recorded notice is not clearance.",
+      "newerEditions": "No newer edition established in this targeted review; comprehensive update search remains pending.",
+      "access": "reachable",
+      "httpStatus": 200,
+      "finalUrl": "https://www.kva.se/nyheter/nobelpriset-i-kemi-2024/",
+      "note": "Retrieved, awaiting claim-level review. HTTP success alone does not establish accuracy.",
+      "reviewOutcome": "Unresolved: preserve historical reference and pending label; do not claim current verification.",
+      "linkCheck": {
+        "checkedAt": "2026-11-13T12:44:13.027Z",
+        "outcome": "reachable",
+        "status": 200,
+        "finalUrl": "https://www.kva.se/nyheter/nobelpriset-i-kemi-2024/"
+      },
+      "passages": [],
+      "metadata": {
+        "publicationYear": 2024,
+        "publicationDate": null,
+        "type": "oficial",
+        "doi": null
+      }
+    },
+    {
+      "id": "onu-dialogo-ia",
+      "url": "https://www.un.org/global-dialogue-ai-governance/en/faq",
+      "checkedAt": "2026-11-13T07:40:30.656895+00:00",
+      "verification": "pending",
+      "publicationStatus": "Unresolved: full text or suitable metadata still required.",
+      "correctionsRetractions": "No exhaustive retraction/database screen completed. See newerEditions for notices actually found; absence of a recorded notice is not clearance.",
+      "newerEditions": "No newer edition established in this targeted review; comprehensive update search remains pending.",
+      "access": "restricted",
+      "note": "HTTP Error 403: Forbidden",
+      "reviewOutcome": "Unresolved: preserve historical reference and pending label; do not claim current verification.",
+      "linkCheck": {
+        "checkedAt": "2026-11-13T12:44:13.721Z",
+        "outcome": "restricted",
+        "status": 403,
+        "finalUrl": "https://www.un.org/global-dialogue-ai-governance/en/faq"
+      },
+      "passages": [],
+      "metadata": {
+        "publicationYear": 2026,
+        "publicationDate": null,
+        "type": "oficial",
+        "doi": null
+      }
+    },
+    {
+      "id": "aie-ia-2026",
+      "addedInRefresh": true,
+      "url": "https://www.iea.org/reports/key-questions-on-energy-and-ai/executive-summary",
+      "linkCheck": {
+        "checkedAt": "2026-11-13T12:44:14.482Z",
+        "outcome": "reachable",
+        "status": 200,
+        "finalUrl": "https://www.iea.org/reports/key-questions-on-energy-and-ai/executive-summary"
+      },
+      "passages": [
+        "aie-ia-2026-passage"
+      ],
+      "publicationStatus": "Relevant passage or landing-page metadata read; type/edition recorded below.",
+      "metadata": {
+        "publicationYear": 2026,
+        "publicationDate": "2026-04-16",
+        "type": "oficial",
+        "doi": null
+      },
+      "correctionsRetractions": "No exhaustive retraction/database screen completed. See newerEditions for notices actually found; absence of a recorded notice is not clearance.",
+      "newerEditions": "No newer edition established in this targeted review; comprehensive update search remains pending.",
+      "verification": "reviewed-excerpt",
+      "reviewOutcome": "Retain with passage-level evidence and stated applicability limits; editorial sign-off pending.",
+      "note": "All data centres; 950 TWh is a conditional projection."
+    },
+    {
+      "id": "metr-horizontes-2025",
+      "addedInRefresh": true,
+      "url": "https://metr.org/blog/2025-03-19-measuring-ai-ability-to-complete-long-tasks/",
+      "linkCheck": {
+        "checkedAt": "2026-11-13T12:44:14.609Z",
+        "outcome": "reachable",
+        "status": 200,
+        "finalUrl": "https://metr.org/blog/2025-03-19-measuring-ai-ability-to-complete-long-tasks/"
+      },
+      "passages": [],
+      "publicationStatus": "Unresolved: full text or suitable metadata still required.",
+      "metadata": {
+        "publicationYear": 2025,
+        "publicationDate": "2025-03-19",
+        "type": "analisis",
+        "doi": null
+      },
+      "correctionsRetractions": "No exhaustive retraction/database screen completed. See newerEditions for notices actually found; absence of a recorded notice is not clearance.",
+      "newerEditions": "Original site marks static text as outdated; current dashboard added separately.",
+      "verification": "pending",
+      "reviewOutcome": "Unresolved: preserve historical reference and pending label; do not claim current verification."
+    },
+    {
+      "id": "metr-horizontes-2026",
+      "addedInRefresh": true,
+      "url": "https://metr.org/time-horizons/",
+      "linkCheck": {
+        "checkedAt": "2026-11-13T12:44:15.242Z",
+        "outcome": "reachable",
+        "status": 200,
+        "finalUrl": "https://metr.org/time-horizons/"
+      },
+      "passages": [
+        "metr-horizontes-2026-passage"
+      ],
+      "publicationStatus": "Relevant passage or landing-page metadata read; type/edition recorded below.",
+      "metadata": {
+        "publicationYear": 2026,
+        "publicationDate": null,
+        "type": "dataset",
+        "doi": null
+      },
+      "correctionsRetractions": "No exhaustive retraction/database screen completed. See newerEditions for notices actually found; absence of a recorded notice is not clearance.",
+      "newerEditions": "Dashboard states it is no longer actively updated; last update 2026-09-08.",
+      "verification": "reviewed-excerpt",
+      "reviewOutcome": "Retain with passage-level evidence and stated applicability limits; editorial sign-off pending.",
+      "note": "Software task difficulty, not execution duration or general job autonomy."
+    },
+    {
+      "id": "metr-desarrolladores-2025",
+      "addedInRefresh": true,
+      "url": "https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/",
+      "linkCheck": {
+        "checkedAt": "2026-11-13T12:44:15.494Z",
+        "outcome": "reachable",
+        "status": 200,
+        "finalUrl": "https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/"
+      },
+      "passages": [
+        "metr-desarrolladores-2025-passage"
+      ],
+      "publicationStatus": "Relevant passage or landing-page metadata read; type/edition recorded below.",
+      "metadata": {
+        "publicationYear": 2025,
+        "publicationDate": "2025-07-10",
+        "type": "analisis",
+        "doi": null
+      },
+      "correctionsRetractions": "No exhaustive retraction/database screen completed. See newerEditions for notices actually found; absence of a recorded notice is not clearance.",
+      "newerEditions": "2026 follow-up reviewed and added separately; selection bias prevents reliable updated effect.",
+      "verification": "reviewed-excerpt",
+      "reviewOutcome": "Retain with passage-level evidence and stated applicability limits; editorial sign-off pending.",
+      "note": "16 experienced developers, 246 tasks; narrow population."
+    },
+    {
+      "id": "metr-productividad-2026",
+      "addedInRefresh": true,
+      "url": "https://metr.org/blog/2026-02-24-uplift-update/",
+      "linkCheck": {
+        "checkedAt": "2026-11-13T12:44:16.009Z",
+        "outcome": "reachable",
+        "status": 200,
+        "finalUrl": "https://metr.org/blog/2026-02-24-uplift-update/"
+      },
+      "passages": [
+        "metr-productividad-2026-passage"
+      ],
+      "publicationStatus": "Relevant passage or landing-page metadata read; type/edition recorded below.",
+      "metadata": {
+        "publicationYear": 2026,
+        "publicationDate": "2026-02-24",
+        "type": "analisis",
+        "doi": null
+      },
+      "correctionsRetractions": "No exhaustive retraction/database screen completed. See newerEditions for notices actually found; absence of a recorded notice is not clearance.",
+      "newerEditions": "No newer edition established in this targeted review; comprehensive update search remains pending.",
+      "verification": "reviewed-excerpt",
+      "reviewOutcome": "Retain with passage-level evidence and stated applicability limits; editorial sign-off pending.",
+      "note": "Selection and time-measurement biases prevent a reliable updated effect estimate."
+    },
+    {
+      "id": "oit-genai-2025",
+      "addedInRefresh": true,
+      "url": "https://www.ilo.org/publications/generative-ai-and-jobs-refined-global-index-occupational-exposure",
+      "linkCheck": {
+        "checkedAt": "2026-11-13T12:44:16.330Z",
+        "outcome": "reachable",
+        "status": 200,
+        "finalUrl": "https://www.ilo.org/publications/generative-ai-and-jobs-refined-global-index-occupational-exposure"
+      },
+      "passages": [
+        "oit-genai-2025-passage"
+      ],
+      "publicationStatus": "Relevant passage or landing-page metadata read; type/edition recorded below.",
+      "metadata": {
+        "publicationYear": 2025,
+        "publicationDate": "2025-05-20",
+        "type": "oficial",
+        "doi": "10.54394/HETP0387"
+      },
+      "correctionsRetractions": "No exhaustive retraction/database screen completed. See newerEditions for notices actually found; absence of a recorded notice is not clearance.",
+      "newerEditions": "No newer edition established in this targeted review; comprehensive update search remains pending.",
+      "verification": "reviewed-excerpt",
+      "reviewOutcome": "Retain with passage-level evidence and stated applicability limits; editorial sign-off pending.",
+      "note": "Task exposure, not job displacement."
+    },
+    {
+      "id": "nber-ia-trabajo-2023",
+      "addedInRefresh": true,
+      "url": "https://www.nber.org/papers/w31161",
+      "linkCheck": {
+        "checkedAt": "2026-11-13T12:44:16.920Z",
+        "outcome": "reachable",
+        "status": 200,
+        "finalUrl": "https://www.nber.org/papers/w31161"
+      },
+      "passages": [
+        "nber-ia-trabajo-2023-passage"
+      ],
+      "publicationStatus": "Relevant passage or landing-page metadata read; type/edition recorded below.",
+      "metadata": {
+        "publicationYear": 2023,
+        "publicationDate": "2023-04",
+        "type": "preprint",
+        "doi": "10.3386/w31161"
+      },
+      "correctionsRetractions": "No exhaustive retraction/database screen completed. See newerEditions for notices actually found; absence of a recorded notice is not clearance.",
+      "newerEditions": "NBER page links 2025 QJE publication. Retain 2023 working-paper results and distinguish versions; journal full-text comparison pending.",
+      "verification": "reviewed-excerpt",
+      "reviewOutcome": "Retain with passage-level evidence and stated applicability limits; editorial sign-off pending.",
+      "note": "Customer-support productivity; do not conflate with 2025 published version."
+    }
+  ],
+  "automatedLinkCheck": {
+    "checkedAt": "2026-11-13T12:44:21.344Z",
+    "counts": {
+      "temporary": 8,
+      "reachable": 53,
+      "restricted": 6
+    }
+  }
+}

@@ -1,0 +1,181 @@
+---
+// Un gráfico del panel: banda del 80 %, mediana, cursor del año y tabla equivalente ("Ver datos").
+// Los estilos de filas usan :global porque la isla recrea las filas (sin el atributo de alcance de Astro).
+import { ruta, type Idioma } from '../../i18n/rutas';
+import { ELECTRICIDAD, BASE_ELECTRICA } from '../../lib/futuros/procedencia';
+import { textos } from '../../i18n/ui';
+import { celdaConBanda, formatear, INDICES_DECADAS } from '../../lib/futuros/formato';
+import {
+	ALTO_GRAFICO,
+	ANCHO_GRAFICO,
+	ESCALAS,
+	rutaBanda,
+	rutaLinea,
+	type DefinicionGrafico,
+} from '../../lib/futuros/trazado';
+import type { Resultado } from '../../lib/futuros/tipos';
+
+interface Props {
+	lang: Idioma;
+	grafico: DefinicionGrafico;
+	resultado: Resultado;
+}
+
+const { lang, grafico, resultado } = Astro.props;
+const t = textos(lang).futuros;
+const titulo = grafico.id === 'energiaIA' ? ELECTRICIDAD[lang] : t.graficos[grafico.id];
+const variasSeries = grafico.series.length > 1;
+---
+
+<li class="grafico" data-grafico={grafico.id} style={`--color: var(--ambito-${grafico.ambito})`}>
+	<figure>
+		<figcaption>
+			<span class="grafico-titulo">
+				{grafico.id === 'riesgo' ? <a href={`${ruta(lang, 'futuros')}#ecuacion-riesgo`}>{titulo}</a> : titulo}
+			</span>
+			<span class="grafico-valores">
+				{
+					grafico.series.map((s) => (
+						<span class="grafico-valor">
+							{variasSeries && <span class="grafico-serie">{s === 'energiaIA' ? ELECTRICIDAD[lang] : t.indicadores[s]}</span>}
+							<span data-valor={s}>{formatear(s, resultado.p50[s][0], lang)}</span>
+						</span>
+					))
+				}
+			</span>
+		</figcaption>
+		<svg viewBox={`0 0 ${ANCHO_GRAFICO} ${ALTO_GRAFICO}`} preserveAspectRatio="none" aria-hidden="true">
+			{
+				grafico.series.map((s, i) => (
+					<g class:list={['serie', { 'serie-secundaria': i > 0 }]}>
+						<path class="banda" data-banda={s} d={rutaBanda(resultado.p10[s], resultado.p90[s], ESCALAS[s])} />
+						<path class="linea" data-linea={s} d={rutaLinea(resultado.p50[s], ESCALAS[s])} />
+					</g>
+				))
+			}
+			<line class="cursor" data-cursor x1="0" x2="0" y1="0" y2={ALTO_GRAFICO}></line>
+		</svg>
+		<details class="grafico-datos">
+			<summary class="ui">{t.panel.verDatos}</summary>
+			{grafico.id === 'energiaIA' && <p>{BASE_ELECTRICA[lang]}</p>}
+			<div class="tabla-desplazable" tabindex="0" role="group" aria-label={titulo}>
+				<table class="ui">
+					<caption class="solo-lectores">{titulo}</caption>
+					<thead>
+						<tr>
+							<th scope="col">{t.panel.anio}</th>
+							{grafico.series.map((s) => <th scope="col">{s === 'energiaIA' ? ELECTRICIDAD[lang] : t.indicadores[s]}</th>)}
+						</tr>
+					</thead>
+					<tbody data-tabla>
+						{
+							INDICES_DECADAS.map((i) => (
+								<tr>
+									<th scope="row">{resultado.anios[i]}</th>
+									{grafico.series.map((s) => (
+										<td>{celdaConBanda(s, resultado, i, lang)}</td>
+									))}
+								</tr>
+							))
+						}
+					</tbody>
+				</table>
+			</div>
+		</details>
+	</figure>
+</li>
+
+<style>
+	figure {
+		margin: 0;
+	}
+
+	figcaption {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: baseline;
+		justify-content: space-between;
+		gap: 0.25rem 0.75rem;
+		font-family: var(--fuente-sans);
+		font-size: var(--t-mini);
+	}
+
+	.grafico-titulo,
+	.grafico-serie {
+		color: var(--tinta-suave);
+	}
+
+	.grafico-valores {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.25rem 0.75rem;
+		color: var(--color);
+		font-weight: 600;
+		font-variant-numeric: tabular-nums;
+	}
+
+	.grafico-serie {
+		margin-right: 0.3rem;
+		font-weight: 400;
+	}
+
+	svg {
+		display: block;
+		width: 100%;
+		height: 2.75rem;
+		margin-top: 0.3rem;
+		overflow: visible;
+	}
+
+	.banda {
+		fill: var(--color);
+		opacity: 0.16;
+	}
+
+	.linea {
+		fill: none;
+		stroke: var(--color);
+		stroke-width: 1.75;
+		vector-effect: non-scaling-stroke;
+	}
+
+	.serie-secundaria .linea {
+		opacity: 0.55;
+	}
+
+	.serie-secundaria .banda {
+		opacity: 0.08;
+	}
+
+	.cursor {
+		stroke: var(--tinta);
+		stroke-width: 1;
+		vector-effect: non-scaling-stroke;
+	}
+
+	summary {
+		padding-block: 0.3rem;
+		color: var(--tinta-suave);
+		font-size: var(--t-mini);
+		cursor: pointer;
+	}
+
+	.tabla-desplazable {
+		overflow-x: auto;
+	}
+
+	table {
+		width: 100%;
+		border-collapse: collapse;
+		font-size: var(--t-mini);
+		font-variant-numeric: tabular-nums;
+	}
+
+	table :global(th),
+	table :global(td) {
+		padding: 0.2rem 0.35rem;
+		border-bottom: 1px solid var(--linea);
+		text-align: start;
+		white-space: nowrap;
+	}
+</style>

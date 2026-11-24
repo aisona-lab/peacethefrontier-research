@@ -1,0 +1,73 @@
+---
+titulo: Metodología
+descripcion: Cómo distinguimos hechos, investigación reciente, hipótesis, escenarios y opinión; qué fuentes usamos y cómo tratamos los temas sensibles.
+---
+
+import NivelesEvidencia from '../../../components/NivelesEvidencia.astro';
+
+Este atlas mezcla hechos establecidos, investigación reciente, escenarios sobre el futuro y la opinión de su autor. Para que nunca se confundan, cada texto declara qué tipo de afirmación hace y en qué se apoya.
+
+## Niveles de evidencia
+
+Usamos la convención de los mapas: la línea continua marca lo seguro y la discontinua lo incierto. El estilo de línea acompaña siempre al nombre del nivel, así que no depende del color.
+
+<NivelesEvidencia lang="es" />
+
+## Opinión, separada de la evidencia
+
+Cuando el autor opina, lo dice. Las opiniones van en un bloque marcado como **Punto de vista del autor**, con el mismo punto amarillo que señala “tú” en la regla de escala. Nunca se mezclan con los datos ni cambian el nivel de evidencia de un texto.
+
+## Fuentes
+
+Damos prioridad a las fuentes oficiales (organismos internacionales, agencias científicas, gobiernos) y a los artículos revisados por pares. Las fichas admiten enlace, autores, DOI y fecha de publicación, además de fecha de acceso y estado de verificación. Añadimos un enlace de archivo solo cuando existe y se ha identificado; no creamos automáticamente copias archivadas. Las publicaciones sin fecha se muestran como «s. f.» y nunca reciben el año de acceso como año de publicación.
+
+Un texto que no sea un escenario necesita al menos una fuente oficial o revisada por pares. Si no la tiene, no se publica.
+
+## Escenarios y caminos
+
+Un escenario describe un futuro posible a partir de decisiones concretas. Siempre indica sus supuestos y las señales que nos dirían que vamos hacia él. En los caminos interactivos, cada decisión se etiqueta como ética, no ética o ambigua, y explicamos el criterio en cada caso.
+
+## Temas sensibles
+
+Al hablar de armas, biología o vigilancia nos limitamos a la historia, el impacto social, la política y la gobernanza. No publicamos procedimientos, protocolos ni detalles técnicos que permitan causar daño. Los artículos sobre estos temas pasan una revisión adicional antes de dejar de ser borradores; mientras tanto lo dicen al principio y no se indexan en los buscadores.
+
+## Conocimiento antiguo
+
+Distinguimos el registro arqueológico de las teorías populares sin respaldo. Cuando un mito es muy conocido, lo explicamos y mostramos qué dice la evidencia.
+
+## Correcciones
+
+Si un texto cambia de forma relevante, lo indicamos al final con la fecha y el motivo. No reescribimos el pasado en silencio.
+
+## Privacidad
+
+El sitio carga Cloudflare Web Analytics mediante un script externo y envía mediciones de uso a Cloudflare. Esta integración no utiliza cookies de analítica; no equivale a ausencia de solicitudes a terceros. El selector de tema guarda tu preferencia en el almacenamiento local del navegador. No publicamos aquí una garantía sobre todos los tratamientos de datos del proveedor; puedes consultar [su documentación de Web Analytics](https://developers.cloudflare.com/web-analytics/).
+
+## Revisión y mantenimiento
+
+La actualización de noviembre de 2026 es una revisión editorial de fuentes seleccionadas, no una revisión sistemática ni un ranking de popularidad. Las cuatro áreas destacadas son prioridades editoriales y los 17 temas siguen disponibles. Un enlace accesible no demuestra la exactitud de una afirmación: las fichas distinguen verificación de pasajes, revisión pendiente y acceso limitado. «Revisada» no significa que se haya descartado toda corrección o retractación posible.
+
+El registro versionado de evidencia en `docs/research/` documenta afirmaciones, pasajes, periodos, incertidumbre y comprobaciones pendientes. La fecha de publicación, la revisión sustantiva, el límite de búsqueda y el periodo observado son campos distintos. Solo mostramos un límite de investigación cuando la búsqueda declarada se ha completado. Conservamos ediciones históricas y diferenciamos preprints, análisis de proveedores, estimaciones y pronósticos.
+
+El mantenimiento previsto comprende enlaces semanalmente, investigación y políticas de cambio rápido mensualmente, y el inventario completo de fuentes trimestralmente. La automatización publica informes de incidencias; no modifica conclusiones ni publica artículos. Los nuevos textos permanecen en borrador, sin indexación, hasta su revisión editorial.
+
+## Flujo del Research Studio
+
+1. El director define una pregunta y su alcance.
+2. Los agentes reúnen fuentes y preparan comparaciones y borradores. Se registran búsquedas, versiones, fechas y pasajes.
+3. Se comprueban cálculos, referencias y traducciones; se buscan contradicciones y límites.
+4. La revisión editorial humana decide qué se publica y con qué matices. Hasta entonces el documento permanece como borrador, con noindex.
+5. Las correcciones y nuevas versiones se documentan públicamente. Un test aprobado no constituye revisión científica ni aprobación editorial.
+
+Los working papers siguen la estructura Pregunta → Método → Hallazgos → Limitaciones → Fuentes e indican versión, asistencia de IA y estado editorial. La síntesis editorial se distingue de una revisión sistemática.
+
+Las simulaciones defensivas se orientan a continuidad, detección y recuperación. Sus datos sintéticos llevan semilla, unidades, esquema y procedencia. Un experimento abstracto no es una observación de infraestructura real ni valida por sí mismo el entrenamiento de modelos de defensa. Los nuevos artefactos están en [Sim](/sim/) y [Open](/open/).
+
+## De la hipótesis a la evidencia: protocolo de investigación original
+
+Cada pieza de investigación original del portafolio (`PTF-WP 3` en adelante) recorre cuatro etapas verificables:
+
+1. **Hipótesis falsable (`H1`–`H3`):** un enunciado acotado en horizonte temporal y subtemas naturales acompañado de una condición explícita de refutación empírica.
+2. **Modelo formal y código público (`experiments/`):** implementación determinista en TypeScript bajo licencia `Apache-2.0`, con semillas explícitas y pruebas unitarias de invariantes matemáticos.
+3. **Datos reproducibles e integridad (`public/datos/experimentos/`):** exportación de series en CSV (`CC BY 4.0`), esquema JSON y manifiesto `SHA-256` comprobable con `npm run experiments:check`.
+4. **Gradación de evidencia y límites:** los resultados de modelos estructurales parametrizados se etiquetan explícitamente como `synthetic=true` y se articulan con fuentes oficiales o revisadas por pares bajo el nivel `emergente` o `especulativo` que corresponda, sin presentar simulaciones como trabajo de campo observacional.

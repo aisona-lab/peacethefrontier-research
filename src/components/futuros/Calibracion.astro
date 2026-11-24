@@ -1,0 +1,82 @@
+---
+// Objetivos de calibración y si el modelo los cumple (los mismos que verifican las pruebas).
+import type { Idioma } from '../../i18n/rutas';
+import { textos } from '../../i18n/ui';
+import { evaluar, OBJETIVOS, type Objetivo } from '../../lib/futuros/calibracion';
+
+interface Props {
+	lang: Idioma;
+}
+
+const { lang } = Astro.props;
+const t = textos(lang).futuros.modelo;
+const locale = lang === 'es' ? 'es-ES' : 'en-US';
+const numero = (v: number, decimales = 2) => new Intl.NumberFormat(locale, { maximumFractionDigits: decimales }).format(v);
+const UNIDADES = {
+	celsius: (v: number) => `${numero(v)} °C`,
+	fraccion: (v: number) => new Intl.NumberFormat(locale, { style: 'percent', maximumFractionDigits: 1 }).format(v),
+	twh: (v: number) => `${numero(v, 0)} TWh`,
+	anio: (v: number) => String(Math.round(v)),
+	millones: (v: number) => `${numero(v)} ${lang === 'es' ? 'millones' : 'million'}`,
+	milmillones: (v: number) => `${numero(v)} ${lang === 'es' ? 'mil millones' : 'billion'}`,
+} satisfies Record<Objetivo['unidad'], (v: number) => string>;
+const formato = (o: Objetivo, v: number | null) => v === null
+	? (lang === 'es' ? 'No alcanzado en el horizonte simulado' : 'Not reached within the simulated horizon')
+	: UNIDADES[o.unidad](v);
+const rango = (o: Objetivo) =>
+	o.max === Number.POSITIVE_INFINITY || (o.unidad === 'fraccion' && o.max >= 1)
+		? t.masDe(formato(o, o.min))
+		: o.min <= 0 && o.unidad !== 'celsius'
+			? t.menosDe(formato(o, o.max))
+			: t.entre(formato(o, o.min), formato(o, o.max));
+---
+
+<p>{lang === 'es'
+ ? 'Cumplir estos objetivos comprueba la calibración elegida, no valida las ecuaciones ni las probabilidades. Las tolerancias son decisiones del modelo; varias referencias son escenarios o juicios de expertos.'
+ : 'Meeting these targets checks the chosen calibration; it does not validate the equations or probabilities. Tolerances are model choices; several references are scenarios or expert judgments.'}</p>
+<ul class="calibracion ui">
+	{
+		OBJETIVOS.map((o) => {
+			const { valor, cumple } = evaluar(o);
+			return (
+				<li class:list={['objetivo', { 'no-cumple': !cumple }]}>
+					<span class="objetivo-estado">{cumple ? t.cumple : t.noCumple}</span>
+					<span class="objetivo-texto">{o.descripcion[lang]}</span>
+					<span class="objetivo-valor">
+						{`${t.objetivo}: ${rango(o)} · ${t.valor}: ${formato(o, valor)} · ${t.tipos[o.tipo]}`}
+					</span>
+				</li>
+			);
+		})
+	}
+</ul>
+
+<style>
+	.calibracion {
+		display: grid;
+		gap: 0.75rem;
+		margin-top: 1.5rem;
+	}
+
+	.objetivo {
+		display: grid;
+		grid-template-columns: 6rem 1fr;
+		gap: 0.2rem 1rem;
+		padding-bottom: 0.75rem;
+		border-bottom: 1px solid var(--linea);
+	}
+
+	.objetivo-estado {
+		grid-row: span 2;
+		font-weight: 600;
+	}
+
+	.no-cumple .objetivo-estado {
+		text-decoration: underline 2px;
+	}
+
+	.objetivo-valor {
+		color: var(--tinta-suave);
+		font-variant-numeric: tabular-nums;
+	}
+</style>

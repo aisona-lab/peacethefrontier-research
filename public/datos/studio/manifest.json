@@ -1,0 +1,290 @@
+{
+  "manifest_version": 1,
+  "id": "ptf-synthetic-service-continuity",
+  "version": "1.0.0",
+  "release_date": "2026-11-14",
+  "title": {
+    "es": "Continuidad de servicio sintética",
+    "en": "Synthetic service continuity"
+  },
+  "description": {
+    "es": "Tres políticas de capacidad y recuperación sobre interrupciones abstractas exógenas.",
+    "en": "Three capacity and recovery policies under abstract exogenous interruptions."
+  },
+  "synthetic": true,
+  "status": "synthetic-toy-experiment",
+  "license": {
+    "id": "CC-BY-4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/",
+    "scope": "Only this newly generated synthetic dataset, schema, manifest, dataset cards and licence notice; excludes code, existing content and third-party sources.",
+    "attribution": "Peace The Frontier Research Studio (2026), Synthetic service continuity, v1.0.0"
+  },
+  "code_license": {
+    "id": "Apache-2.0",
+    "url": "https://www.apache.org/licenses/LICENSE-2.0",
+    "path": "/datos/studio/LICENSE-Apache-2.0.txt",
+    "scope": "Only new src/lib/studio/resilience.ts and its identical public/datos/studio/simulator.ts copy. No other repository code or data is relicensed."
+  },
+  "seeds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "experiment": {
+    "row_count": 2880,
+    "hours_per_seed": 48,
+    "policy_count": 3,
+    "rows_per_policy": 960,
+    "step_hours": 1,
+    "initial_unavailable_slots": 0,
+    "service_units_per_slot_hour": 1,
+    "prng": {
+      "algorithm": "LCG32",
+      "multiplier": 1664525,
+      "increment": 1013904223,
+      "modulus": 4294967296,
+      "draws_per_hour": 3
+    },
+    "input_schedule": "Daily baseline table in resilience.ts plus integer jitter [-8,8]; requested loss 20..45 slots at hours 8,24,36 and with probability 0.08 at other hours >=4; three draws every hour. All policies share inputs for a seed.",
+    "timing": [
+      "inherit previous end-of-hour loss",
+      "apply bounded exogenous interruption",
+      "serve demand for one hour",
+      "repair within hourly budget at interval end"
+    ],
+    "unmet_demand": "Discarded every hour; no backlog."
+  },
+  "policies": [
+    {
+      "id": "steady",
+      "label": {
+        "es": "Recuperación gradual",
+        "en": "Steady recovery"
+      },
+      "capacity_slots": 100,
+      "recovery_slots_per_hour": 4,
+      "metrics": {
+        "policy": "steady",
+        "rows": 960,
+        "scenarios": 20,
+        "total_demand_service_units": 79981,
+        "total_served_service_units": 54238,
+        "total_unmet_service_units": 25743,
+        "service_ratio": 0.6781360573136119,
+        "capacity_availability_ratio": 0.6481145833333333,
+        "shortage_hours": 639,
+        "recovered_slots": 2944,
+        "fully_recovered_events": 20,
+        "installed_capacity_slot_hours": 96000,
+        "unavailable_slot_hours": 33781,
+        "mean_final_unavailable_slots": 37.45
+      }
+    },
+    {
+      "id": "rapid-recovery",
+      "label": {
+        "es": "Recuperación rápida",
+        "en": "Rapid recovery"
+      },
+      "capacity_slots": 100,
+      "recovery_slots_per_hour": 12,
+      "metrics": {
+        "policy": "rapid-recovery",
+        "rows": 960,
+        "scenarios": 20,
+        "total_demand_service_units": 79981,
+        "total_served_service_units": 73514,
+        "total_unmet_service_units": 6467,
+        "service_ratio": 0.9191432965329266,
+        "capacity_availability_ratio": 0.9058020833333333,
+        "shortage_hours": 367,
+        "recovered_slots": 3869,
+        "fully_recovered_events": 90,
+        "installed_capacity_slot_hours": 96000,
+        "unavailable_slot_hours": 9043,
+        "mean_final_unavailable_slots": 3.65
+      }
+    },
+    {
+      "id": "extra-capacity",
+      "label": {
+        "es": "Capacidad adicional",
+        "en": "Extra capacity"
+      },
+      "capacity_slots": 125,
+      "recovery_slots_per_hour": 4,
+      "metrics": {
+        "policy": "extra-capacity",
+        "rows": 960,
+        "scenarios": 20,
+        "total_demand_service_units": 79981,
+        "total_served_service_units": 65793,
+        "total_unmet_service_units": 14188,
+        "service_ratio": 0.8226078693689751,
+        "capacity_availability_ratio": 0.7015750000000001,
+        "shortage_hours": 418,
+        "recovered_slots": 2944,
+        "fully_recovered_events": 20,
+        "installed_capacity_slot_hours": 120000,
+        "unavailable_slot_hours": 35811,
+        "mean_final_unavailable_slots": 43.65
+      }
+    }
+  ],
+  "files": [
+    {
+      "role": "dataset",
+      "path": "/datos/studio/continuidad-servicio-v1.csv",
+      "repository_path": "public/datos/studio/continuidad-servicio-v1.csv",
+      "sha256": "a908171f5c06311190336341c5410b910b3ec020a67ff526ec1831fa3b3dce8f",
+      "bytes": 239203,
+      "media_type": "text/csv",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "role": "schema",
+      "path": "/datos/studio/schema.json",
+      "repository_path": "public/datos/studio/schema.json",
+      "sha256": "51c48884f5ba4e6969184966ccd03c26e527780b2f5aec99f12c541bc5b47281",
+      "bytes": 6884,
+      "media_type": "application/schema+json",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "role": "dataset-card",
+      "path": "/datos/studio/dataset-card.es.md",
+      "repository_path": "public/datos/studio/dataset-card.es.md",
+      "sha256": "39345d3aaa6c8002e225b3c5f556dd0ec0059db9841ff48c01278658aad5136e",
+      "bytes": 6114,
+      "media_type": "text/markdown",
+      "license": "CC-BY-4.0",
+      "language": "es"
+    },
+    {
+      "role": "dataset-card",
+      "path": "/datos/studio/dataset-card.en.md",
+      "repository_path": "public/datos/studio/dataset-card.en.md",
+      "sha256": "4b65d0a420096ddc8ea765a8405401187433a500ef17a2c55f2785de37e6d687",
+      "bytes": 5585,
+      "media_type": "text/markdown",
+      "license": "CC-BY-4.0",
+      "language": "en"
+    },
+    {
+      "role": "license",
+      "path": "/datos/studio/LICENSE-CC-BY-4.0.txt",
+      "repository_path": "public/datos/studio/LICENSE-CC-BY-4.0.txt",
+      "sha256": "03f44ba5215643be085c408f6b6126138df1e471599fcd82cb0f459f9f569d41",
+      "bytes": 1608,
+      "media_type": "text/plain",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "role": "source-code",
+      "path": "/datos/studio/simulator.ts",
+      "repository_path": "public/datos/studio/simulator.ts",
+      "sha256": "78352bae748072714db786547fe40e6535f5e01e5d106c01d6fbc62af263d508",
+      "bytes": 7071,
+      "media_type": "text/plain",
+      "license": "Apache-2.0"
+    },
+    {
+      "role": "license",
+      "path": "/datos/studio/LICENSE-Apache-2.0.txt",
+      "repository_path": "public/datos/studio/LICENSE-Apache-2.0.txt",
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "bytes": 11358,
+      "media_type": "text/plain",
+      "license": "Apache-2.0"
+    }
+  ],
+  "metric_definitions": {
+    "policy": {
+      "unit": "identifier",
+      "description": "Policy id."
+    },
+    "rows": {
+      "unit": "row",
+      "description": "Number of one-hour rows."
+    },
+    "scenarios": {
+      "unit": "scenario",
+      "description": "Number of distinct seeds."
+    },
+    "total_demand_service_units": {
+      "unit": "service_unit",
+      "description": "Sum of demand across all seeds and hours."
+    },
+    "total_served_service_units": {
+      "unit": "service_unit",
+      "description": "Sum of served work across all seeds and hours."
+    },
+    "total_unmet_service_units": {
+      "unit": "service_unit",
+      "description": "Sum of discarded unmet work."
+    },
+    "service_ratio": {
+      "unit": "fraction",
+      "description": "Total served / total demand, or 1 for zero demand; demand weighted."
+    },
+    "capacity_availability_ratio": {
+      "unit": "fraction",
+      "description": "1 - unavailable slot-hours / installed slot-hours."
+    },
+    "shortage_hours": {
+      "unit": "hour",
+      "description": "Total intervals with positive unmet work across all seeds."
+    },
+    "recovered_slots": {
+      "unit": "slot",
+      "description": "Sum of repairs, including repeated repairs after separate losses."
+    },
+    "fully_recovered_events": {
+      "unit": "event",
+      "description": "Intervals ending with zero unavailable slots after a positive loss; not independent failures or MTTR."
+    },
+    "installed_capacity_slot_hours": {
+      "unit": "slot*hour",
+      "description": "Sum of installed slots times interval hours; not a financial cost."
+    },
+    "unavailable_slot_hours": {
+      "unit": "slot*hour",
+      "description": "Sum of unavailable slots during service times interval hours."
+    },
+    "mean_final_unavailable_slots": {
+      "unit": "slot",
+      "description": "Mean end-of-horizon unavailable slots across all seeds, including unfinished recoveries."
+    }
+  },
+  "reproduction": {
+    "command": "node scripts/generar-resiliencia.mjs",
+    "check_command": "node scripts/generar-resiliencia.mjs --check",
+    "source_files": [
+      "src/lib/studio/resilience.ts",
+      "scripts/generar-resiliencia.ts",
+      "scripts/generar-resiliencia.mjs"
+    ],
+    "manifest_checksum": "Manifest is excluded from its own checksum list to avoid self-reference. Checksums describe UTF-8 bytes, not authenticity or empirical validity."
+  },
+  "limitations": {
+    "es": "Experimento de juguete totalmente sintético, sin calibración empírica ni validación externa. No son datos reales de ciberseguridad, tráfico de red ni incidentes. No representa atacantes ni procedimientos ofensivos. No es un modelo entrenado, un entorno de entrenamiento validado ni evidencia de eficacia en producción. Las políticas usan recursos distintos y no comparan costes equivalentes.",
+    "en": "Entirely synthetic toy experiment without empirical calibration or external validation. These are not real cybersecurity, network traffic or incident data. No adversaries or offensive procedures are represented. This is not a trained model, a validated training environment or evidence of production effectiveness. Policies use different resources and are not a cost-equivalent comparison."
+  }
+}

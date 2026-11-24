@@ -1,0 +1,1096 @@
+{
+  "baselineCommit": "2a11ae11b754f366a2135e93d87c8cea5ceb33de",
+  "seed": 2026,
+  "runs": 200,
+  "parameters": [
+    {
+      "id": "gMax",
+      "before": {
+        "central": 0.6532125137753437,
+        "min": 0.6020599913279624,
+        "max": 0.6989700043360189
+      },
+      "after": {
+        "central": 0.6532125137753437,
+        "min": 0.6020599913279624,
+        "max": 0.6989700043360189
+      }
+    },
+    {
+      "id": "gMin",
+      "before": {
+        "central": 0.13033376849500614,
+        "min": 0.09691001300805642,
+        "max": 0.16136800223497488
+      },
+      "after": {
+        "central": 0.13033376849500614,
+        "min": 0.09691001300805642,
+        "max": 0.16136800223497488
+      }
+    },
+    {
+      "id": "lMax",
+      "before": {
+        "central": 12,
+        "min": 9,
+        "max": 15
+      },
+      "after": {
+        "central": 12,
+        "min": 9,
+        "max": 15
+      }
+    },
+    {
+      "id": "phi",
+      "before": {
+        "central": 0.7,
+        "min": 0.5,
+        "max": 0.9
+      },
+      "after": {
+        "central": 0.7,
+        "min": 0.5,
+        "max": 0.9
+      }
+    },
+    {
+      "id": "a0",
+      "before": {
+        "central": 0.05,
+        "min": 0.02,
+        "max": 0.1
+      },
+      "after": {
+        "central": 0.05,
+        "min": 0.02,
+        "max": 0.1
+      }
+    },
+    {
+      "id": "aMax",
+      "before": {
+        "central": 0.98,
+        "min": 0.98,
+        "max": 0.98
+      },
+      "after": {
+        "central": 0.98,
+        "min": 0.98,
+        "max": 0.98
+      }
+    },
+    {
+      "id": "n",
+      "before": {
+        "central": 2,
+        "min": 1.5,
+        "max": 3
+      },
+      "after": {
+        "central": 2,
+        "min": 1.5,
+        "max": 3
+      }
+    },
+    {
+      "id": "l50",
+      "before": {
+        "central": 6.5,
+        "min": 4.5,
+        "max": 9
+      },
+      "after": {
+        "central": 6.5,
+        "min": 4.5,
+        "max": 9
+      }
+    },
+    {
+      "id": "e0",
+      "before": {
+        "central": 0.58,
+        "min": 0.56,
+        "max": 0.6
+      },
+      "after": {
+        "central": 0.58,
+        "min": 0.56,
+        "max": 0.6
+      }
+    },
+    {
+      "id": "kMin",
+      "before": {
+        "central": 0.3,
+        "min": 0.2,
+        "max": 0.4
+      },
+      "after": {
+        "central": 0.3,
+        "min": 0.2,
+        "max": 0.4
+      }
+    },
+    {
+      "id": "kMax",
+      "before": {
+        "central": 0.8,
+        "min": 0.7,
+        "max": 0.9
+      },
+      "after": {
+        "central": 0.8,
+        "min": 0.7,
+        "max": 0.9
+      }
+    },
+    {
+      "id": "gini0",
+      "before": {
+        "central": 60,
+        "min": 57,
+        "max": 63
+      },
+      "after": {
+        "central": 60,
+        "min": 57,
+        "max": 63
+      }
+    },
+    {
+      "id": "aG",
+      "before": {
+        "central": 30,
+        "min": 20,
+        "max": 40
+      },
+      "after": {
+        "central": 30,
+        "min": 20,
+        "max": 40
+      }
+    },
+    {
+      "id": "bG",
+      "before": {
+        "central": 25,
+        "min": 15,
+        "max": 35
+      },
+      "after": {
+        "central": 25,
+        "min": 15,
+        "max": 35
+      }
+    },
+    {
+      "id": "r0",
+      "before": {
+        "central": 0.0051,
+        "min": 0.0047,
+        "max": 0.0056
+      },
+      "after": {
+        "central": 0.0051,
+        "min": 0.0047,
+        "max": 0.0056
+      }
+    },
+    {
+      "id": "rMin",
+      "before": {
+        "central": 0.12,
+        "min": 0.1,
+        "max": 0.14
+      },
+      "after": {
+        "central": 0.12,
+        "min": 0.1,
+        "max": 0.14
+      }
+    },
+    {
+      "id": "rMax",
+      "before": {
+        "central": 0.35,
+        "min": 0.3,
+        "max": 0.4
+      },
+      "after": {
+        "central": 0.35,
+        "min": 0.3,
+        "max": 0.4
+      }
+    },
+    {
+      "id": "rSat",
+      "before": {
+        "central": 10,
+        "min": 2,
+        "max": 20
+      },
+      "after": {
+        "central": 10,
+        "min": 2,
+        "max": 20
+      }
+    },
+    {
+      "id": "sigma",
+      "before": {
+        "central": 1,
+        "min": 0.5,
+        "max": 1.5
+      },
+      "after": {
+        "central": 1,
+        "min": 0.5,
+        "max": 1.5
+      }
+    },
+    {
+      "id": "eia0",
+      "before": {
+        "central": 550,
+        "min": 480,
+        "max": 620
+      },
+      "after": {
+        "central": 550,
+        "min": 480,
+        "max": 620
+      }
+    },
+    {
+      "id": "eps",
+      "before": {
+        "central": 0.2,
+        "min": 0.15,
+        "max": 0.3
+      },
+      "after": {
+        "central": 0.2,
+        "min": 0.15,
+        "max": 0.3
+      }
+    },
+    {
+      "id": "eTot0",
+      "before": {
+        "central": 29000,
+        "min": 28000,
+        "max": 30500
+      },
+      "after": {
+        "central": 29000,
+        "min": 28000,
+        "max": 30500
+      }
+    },
+    {
+      "id": "cuotaIA",
+      "before": {
+        "central": 0.2,
+        "min": 0.1,
+        "max": 0.35
+      },
+      "after": {
+        "central": 0.2,
+        "min": 0.1,
+        "max": 0.35
+      }
+    },
+    {
+      "id": "eta",
+      "before": {
+        "central": 0.02,
+        "min": 0.01,
+        "max": 0.04
+      },
+      "after": {
+        "central": 0.02,
+        "min": 0.01,
+        "max": 0.04
+      }
+    },
+    {
+      "id": "te0",
+      "before": {
+        "central": 620,
+        "min": 600,
+        "max": 640
+      },
+      "after": {
+        "central": 620,
+        "min": 600,
+        "max": 640
+      }
+    },
+    {
+      "id": "gammaMin",
+      "before": {
+        "central": 0.004,
+        "min": 0.001,
+        "max": 0.007
+      },
+      "after": {
+        "central": 0.004,
+        "min": 0.001,
+        "max": 0.007
+      }
+    },
+    {
+      "id": "gammaMax",
+      "before": {
+        "central": 0.016,
+        "min": 0.013,
+        "max": 0.019
+      },
+      "after": {
+        "central": 0.016,
+        "min": 0.013,
+        "max": 0.019
+      }
+    },
+    {
+      "id": "q0",
+      "before": {
+        "central": 0.19,
+        "min": 0.17,
+        "max": 0.21
+      },
+      "after": {
+        "central": 0.19,
+        "min": 0.17,
+        "max": 0.21
+      }
+    },
+    {
+      "id": "qRate",
+      "before": {
+        "central": 0.05,
+        "min": 0.03,
+        "max": 0.08
+      },
+      "after": {
+        "central": 0.05,
+        "min": 0.03,
+        "max": 0.08
+      }
+    },
+    {
+      "id": "lambda",
+      "before": {
+        "central": 0.3,
+        "min": 0.1,
+        "max": 0.5
+      },
+      "after": {
+        "central": 0.3,
+        "min": 0.1,
+        "max": 0.5
+      }
+    },
+    {
+      "id": "em0",
+      "before": {
+        "central": 37.4,
+        "min": 36,
+        "max": 39
+      },
+      "after": {
+        "central": 37.4,
+        "min": 36,
+        "max": 39
+      }
+    },
+    {
+      "id": "u0",
+      "before": {
+        "central": 4.2,
+        "min": 3.2,
+        "max": 5.2
+      },
+      "after": {
+        "central": 4.2,
+        "min": 3.2,
+        "max": 5.2
+      }
+    },
+    {
+      "id": "upsilon",
+      "before": {
+        "central": 0.02,
+        "min": 0.01,
+        "max": 0.04
+      },
+      "after": {
+        "central": 0.02,
+        "min": 0.01,
+        "max": 0.04
+      }
+    },
+    {
+      "id": "t0",
+      "before": {
+        "central": 1.4,
+        "min": 1.3,
+        "max": 1.5
+      },
+      "after": {
+        "central": 1.4,
+        "min": 1.3,
+        "max": 1.5
+      }
+    },
+    {
+      "id": "tcre",
+      "before": {
+        "central": 0.45,
+        "min": 0.27,
+        "max": 0.63
+      },
+      "after": {
+        "central": 0.45,
+        "min": 0.27,
+        "max": 0.63
+      }
+    },
+    {
+      "id": "zOnu",
+      "before": {
+        "central": 0,
+        "min": -1,
+        "max": 1
+      },
+      "after": {
+        "central": 0,
+        "min": -1,
+        "max": 1
+      }
+    },
+    {
+      "id": "mu",
+      "before": {
+        "central": 0.01,
+        "min": 0,
+        "max": 0.03
+      },
+      "after": {
+        "central": 0.01,
+        "min": 0,
+        "max": 0.03
+      }
+    },
+    {
+      "id": "pi0",
+      "before": {
+        "central": 50,
+        "min": 40,
+        "max": 60
+      },
+      "after": {
+        "central": 50,
+        "min": 40,
+        "max": 60
+      }
+    },
+    {
+      "id": "cPi",
+      "before": {
+        "central": 6,
+        "min": 3,
+        "max": 9
+      },
+      "after": {
+        "central": 6,
+        "min": 3,
+        "max": 9
+      }
+    },
+    {
+      "id": "cInst",
+      "before": {
+        "central": 1.5,
+        "min": 0.5,
+        "max": 3
+      },
+      "after": {
+        "central": 1.5,
+        "min": 0.5,
+        "max": 3
+      }
+    },
+    {
+      "id": "dPi",
+      "before": {
+        "central": 10,
+        "min": 5,
+        "max": 15
+      },
+      "after": {
+        "central": 10,
+        "min": 5,
+        "max": 15
+      }
+    },
+    {
+      "id": "tPi",
+      "before": {
+        "central": 10,
+        "min": 5,
+        "max": 20
+      },
+      "after": {
+        "central": 10,
+        "min": 5,
+        "max": 20
+      }
+    },
+    {
+      "id": "hNat",
+      "before": {
+        "central": 0.0008,
+        "min": 0.0005,
+        "max": 0.0011
+      },
+      "after": {
+        "central": 0.0008,
+        "min": 0.0005,
+        "max": 0.0011
+      }
+    },
+    {
+      "id": "hIa",
+      "before": {
+        "central": 0.01,
+        "min": 0.006,
+        "max": 0.014
+      },
+      "after": {
+        "central": 0.01,
+        "min": 0.006,
+        "max": 0.014
+      }
+    },
+    {
+      "id": "hConf",
+      "before": {
+        "central": 0.004,
+        "min": 0.002,
+        "max": 0.006
+      },
+      "after": {
+        "central": 0.004,
+        "min": 0.002,
+        "max": 0.006
+      }
+    },
+    {
+      "id": "theta",
+      "before": {
+        "central": 0.7,
+        "min": 0.6,
+        "max": 0.8
+      },
+      "after": {
+        "central": 0.7,
+        "min": 0.6,
+        "max": 0.8
+      }
+    },
+    {
+      "id": "dCrisis",
+      "before": {
+        "central": 5,
+        "min": 3,
+        "max": 8
+      },
+      "after": {
+        "central": 5,
+        "min": 3,
+        "max": 8
+      }
+    }
+  ],
+  "csvHashes": [
+    {
+      "future": "pausa",
+      "before": "fe90732d5187523f8a5a45917cd4e7d1c2d93e7ecc461ba732536e07aa0c013b",
+      "after": "fe90732d5187523f8a5a45917cd4e7d1c2d93e7ecc461ba732536e07aa0c013b",
+      "eventsBefore": [
+        {
+          "id": "supera-1-5",
+          "anio": 2031
+        },
+        {
+          "id": "ia-mas-que-japon",
+          "anio": 2034
+        },
+        {
+          "id": "limpia-50",
+          "anio": 2045
+        },
+        {
+          "id": "robots-mil-millones",
+          "anio": 2066
+        },
+        {
+          "id": "limpia-90",
+          "anio": 2069
+        },
+        {
+          "id": "ia-mitad-tareas",
+          "anio": 2072
+        },
+        {
+          "id": "pico-poblacion",
+          "anio": 2086
+        },
+        {
+          "id": "cero-neto",
+          "anio": 2109
+        },
+        {
+          "id": "riesgo-10",
+          "anio": 2120
+        },
+        {
+          "id": "ciencia-x10",
+          "anio": 2121
+        }
+      ],
+      "eventsAfter": [
+        {
+          "id": "supera-1-5",
+          "anio": 2031
+        },
+        {
+          "id": "ia-mas-que-japon",
+          "anio": 2034
+        },
+        {
+          "id": "limpia-50",
+          "anio": 2045
+        },
+        {
+          "id": "robots-mil-millones",
+          "anio": 2066
+        },
+        {
+          "id": "limpia-90",
+          "anio": 2069
+        },
+        {
+          "id": "ia-mitad-tareas",
+          "anio": 2072
+        },
+        {
+          "id": "pico-poblacion",
+          "anio": 2085
+        },
+        {
+          "id": "cero-neto",
+          "anio": 2109
+        },
+        {
+          "id": "riesgo-10",
+          "anio": 2120
+        },
+        {
+          "id": "ciencia-x10",
+          "anio": 2121
+        }
+      ]
+    },
+    {
+      "future": "frontera-en-paz",
+      "before": "96425d6f360f0ac397d028437416e34aace5cc72ac36e14e6417a72df8b8bca8",
+      "after": "96425d6f360f0ac397d028437416e34aace5cc72ac36e14e6417a72df8b8bca8",
+      "eventsBefore": [
+        {
+          "id": "ia-mas-que-japon",
+          "anio": 2029
+        },
+        {
+          "id": "supera-1-5",
+          "anio": 2031
+        },
+        {
+          "id": "ia-mitad-tareas",
+          "anio": 2043
+        },
+        {
+          "id": "limpia-50",
+          "anio": 2044
+        },
+        {
+          "id": "robots-mil-millones",
+          "anio": 2047
+        },
+        {
+          "id": "ciencia-x10",
+          "anio": 2060
+        },
+        {
+          "id": "limpia-90",
+          "anio": 2067
+        },
+        {
+          "id": "pico-poblacion",
+          "anio": 2086
+        },
+        {
+          "id": "cero-neto",
+          "anio": 2113
+        },
+        {
+          "id": "riesgo-10",
+          "anio": 2118
+        },
+        {
+          "id": "supera-2",
+          "anio": 2125
+        }
+      ],
+      "eventsAfter": [
+        {
+          "id": "ia-mas-que-japon",
+          "anio": 2029
+        },
+        {
+          "id": "supera-1-5",
+          "anio": 2031
+        },
+        {
+          "id": "ia-mitad-tareas",
+          "anio": 2043
+        },
+        {
+          "id": "limpia-50",
+          "anio": 2044
+        },
+        {
+          "id": "robots-mil-millones",
+          "anio": 2047
+        },
+        {
+          "id": "ciencia-x10",
+          "anio": 2060
+        },
+        {
+          "id": "limpia-90",
+          "anio": 2067
+        },
+        {
+          "id": "pico-poblacion",
+          "anio": 2085
+        },
+        {
+          "id": "cero-neto",
+          "anio": 2113
+        },
+        {
+          "id": "riesgo-10",
+          "anio": 2118
+        },
+        {
+          "id": "supera-2",
+          "anio": 2125
+        }
+      ]
+    },
+    {
+      "future": "carrera",
+      "before": "2ad7197e7a37bb90beb32a4969af73f6a91ee394edec8bcc9a4f1b671eba3a6a",
+      "after": "2ad7197e7a37bb90beb32a4969af73f6a91ee394edec8bcc9a4f1b671eba3a6a",
+      "eventsBefore": [
+        {
+          "id": "ia-mas-que-japon",
+          "anio": 2029
+        },
+        {
+          "id": "supera-1-5",
+          "anio": 2031
+        },
+        {
+          "id": "crisis",
+          "anio": 2035
+        },
+        {
+          "id": "riesgo-10",
+          "anio": 2042
+        },
+        {
+          "id": "ia-mitad-tareas",
+          "anio": 2047
+        },
+        {
+          "id": "robots-mil-millones",
+          "anio": 2047
+        },
+        {
+          "id": "crisis",
+          "anio": 2050
+        },
+        {
+          "id": "poder-concentrado",
+          "anio": 2053
+        },
+        {
+          "id": "supera-2",
+          "anio": 2057
+        },
+        {
+          "id": "limpia-50",
+          "anio": 2062
+        },
+        {
+          "id": "crisis",
+          "anio": 2065
+        },
+        {
+          "id": "crisis",
+          "anio": 2080
+        },
+        {
+          "id": "pico-poblacion",
+          "anio": 2086
+        },
+        {
+          "id": "crisis",
+          "anio": 2095
+        },
+        {
+          "id": "crisis",
+          "anio": 2110
+        },
+        {
+          "id": "limpia-90",
+          "anio": 2112
+        },
+        {
+          "id": "crisis",
+          "anio": 2125
+        }
+      ],
+      "eventsAfter": [
+        {
+          "id": "ia-mas-que-japon",
+          "anio": 2029
+        },
+        {
+          "id": "supera-1-5",
+          "anio": 2031
+        },
+        {
+          "id": "crisis",
+          "anio": 2035
+        },
+        {
+          "id": "riesgo-10",
+          "anio": 2042
+        },
+        {
+          "id": "ia-mitad-tareas",
+          "anio": 2047
+        },
+        {
+          "id": "robots-mil-millones",
+          "anio": 2047
+        },
+        {
+          "id": "crisis",
+          "anio": 2050
+        },
+        {
+          "id": "poder-concentrado",
+          "anio": 2053
+        },
+        {
+          "id": "supera-2",
+          "anio": 2057
+        },
+        {
+          "id": "limpia-50",
+          "anio": 2062
+        },
+        {
+          "id": "crisis",
+          "anio": 2065
+        },
+        {
+          "id": "crisis",
+          "anio": 2080
+        },
+        {
+          "id": "pico-poblacion",
+          "anio": 2085
+        },
+        {
+          "id": "crisis",
+          "anio": 2095
+        },
+        {
+          "id": "crisis",
+          "anio": 2110
+        },
+        {
+          "id": "limpia-90",
+          "anio": 2112
+        },
+        {
+          "id": "crisis",
+          "anio": 2125
+        }
+      ]
+    },
+    {
+      "future": "fractura",
+      "before": "d774b6d15de786296afb5e39f8ebf3579d2e44842b778f1261c4b85b99e753fa",
+      "after": "d774b6d15de786296afb5e39f8ebf3579d2e44842b778f1261c4b85b99e753fa",
+      "eventsBefore": [
+        {
+          "id": "supera-1-5",
+          "anio": 2031
+        },
+        {
+          "id": "ia-mas-que-japon",
+          "anio": 2034
+        },
+        {
+          "id": "crisis",
+          "anio": 2035
+        },
+        {
+          "id": "crisis",
+          "anio": 2050
+        },
+        {
+          "id": "riesgo-10",
+          "anio": 2051
+        },
+        {
+          "id": "supera-2",
+          "anio": 2061
+        },
+        {
+          "id": "limpia-50",
+          "anio": 2064
+        },
+        {
+          "id": "crisis",
+          "anio": 2065
+        },
+        {
+          "id": "robots-mil-millones",
+          "anio": 2067
+        },
+        {
+          "id": "crisis",
+          "anio": 2080
+        },
+        {
+          "id": "pico-poblacion",
+          "anio": 2086
+        },
+        {
+          "id": "ia-mitad-tareas",
+          "anio": 2089
+        },
+        {
+          "id": "crisis",
+          "anio": 2095
+        },
+        {
+          "id": "poder-concentrado",
+          "anio": 2104
+        },
+        {
+          "id": "crisis",
+          "anio": 2110
+        },
+        {
+          "id": "limpia-90",
+          "anio": 2115
+        },
+        {
+          "id": "crisis",
+          "anio": 2125
+        }
+      ],
+      "eventsAfter": [
+        {
+          "id": "supera-1-5",
+          "anio": 2031
+        },
+        {
+          "id": "ia-mas-que-japon",
+          "anio": 2034
+        },
+        {
+          "id": "crisis",
+          "anio": 2035
+        },
+        {
+          "id": "crisis",
+          "anio": 2050
+        },
+        {
+          "id": "riesgo-10",
+          "anio": 2051
+        },
+        {
+          "id": "supera-2",
+          "anio": 2061
+        },
+        {
+          "id": "limpia-50",
+          "anio": 2064
+        },
+        {
+          "id": "crisis",
+          "anio": 2065
+        },
+        {
+          "id": "robots-mil-millones",
+          "anio": 2067
+        },
+        {
+          "id": "crisis",
+          "anio": 2080
+        },
+        {
+          "id": "pico-poblacion",
+          "anio": 2085
+        },
+        {
+          "id": "ia-mitad-tareas",
+          "anio": 2089
+        },
+        {
+          "id": "crisis",
+          "anio": 2095
+        },
+        {
+          "id": "poder-concentrado",
+          "anio": 2104
+        },
+        {
+          "id": "crisis",
+          "anio": 2110
+        },
+        {
+          "id": "limpia-90",
+          "anio": 2115
+        },
+        {
+          "id": "crisis",
+          "anio": 2125
+        }
+      ]
+    }
+  ]
+}

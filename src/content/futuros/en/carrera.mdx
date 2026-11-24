@@ -1,0 +1,107 @@
+---
+premisa: No agreement slows AI down. Companies and countries race to get there first, with no shared rules and no pauses. Progress is fast and power concentrates with whoever wins.
+supuestos:
+  - There are no international treaties on advanced AI and no limits on compute.
+  - Investment in AI grows as long as it brings economic or military advantage.
+  - Redistribution and new labor protections arrive late or not at all.
+  - Tensions between blocs trigger global crises from time to time.
+ganancias:
+  - Very fast scientific and medical progress in the first decades.
+  - Material abundance, because robots and automation make almost everything manufactured cheap.
+  - A huge economic advantage for whoever leads the race.
+perdidas:
+  - Jobs and income concentrate and inequality rises sharply.
+  - Power ends up in very few hands, public or private.
+  - The risk of catastrophe is the highest of the four futures.
+  - Recurring crises slow down the energy transition.
+---
+
+import Ambito from '../../../components/futuros/Ambito.astro';
+import Cifra from '../../../components/futuros/Cifra.astro';
+import Parada from '../../../components/futuros/Parada.astro';
+
+<Parada anio={2026} />
+
+<Parada anio={2036}>
+<Ambito id="humanidad">
+A decade of racing is enough to change work. AI can already do <Cifra v="automatizacion" anio={2036} /> of human tasks, and the share of the working-age population in employment falls to <Cifra v="empleo" anio={2036} />. New trades appear, but in other places and for other people.
+</Ambito>
+<Ambito id="tecnologia">
+There are <Cifra v="robots" anio={2036} /> robots in operation, mostly in factories and warehouses. Data centers use <Cifra v="energiaIA" anio={2036} /> a year, more electricity than many entire countries.
+</Ambito>
+<Ambito id="ciencia">
+The pace of discovery is already <Cifra v="ciencia" anio={2036} /> that of 2026. AI-designed drugs arrive in record time, above all where there is money to pay for them.
+</Ambito>
+<Ambito id="planeta">
+Clean energy barely rises to <Cifra v="energiaLimpia" anio={2036} />: the priority is compute, not the climate. Warming is around <Cifra v="temperatura" anio={2036} />.
+</Ambito>
+<Ambito id="politica">
+Without shared rules, the power concentration index rises to <Cifra v="poder" anio={2036} />. Tensions between blocs trigger global crises. The cumulative risk of catastrophe stands at <Cifra v="riesgo" anio={2036} />.
+</Ambito>
+</Parada>
+
+<Parada anio={2046} />
+
+<Parada anio={2056}>
+<Ambito id="humanidad">
+Automation now reaches <Cifra v="automatizacion" anio={2056} /> of all tasks. Only <Cifra v="empleo" anio={2056} /> of the working-age population has a job; the rest live on rents, private aid or work that never shows up in the statistics. Inequality reaches <Cifra v="desigualdad" anio={2056} />.
+</Ambito>
+<Ambito id="tecnologia">
+There are <Cifra v="robots" anio={2056} /> robots in factories, warehouses, fields and homes. Data centers use <Cifra v="energiaIA" anio={2056} /> a year.
+</Ambito>
+<Ambito id="ciencia">
+Science moves <Cifra v="ciencia" anio={2056} /> compared with 2026. Many rare diseases have treatments, but access depends on where you live and on who controls the patents.
+</Ambito>
+<Ambito id="planeta">
+Clean energy reaches <Cifra v="energiaLimpia" anio={2056} />, because demand grows faster than the transition. Warming reaches <Cifra v="temperatura" anio={2056} />.
+</Ambito>
+<Ambito id="politica">
+The power concentration index reaches <Cifra v="poder" anio={2056} />: a handful of companies and states control the most capable models. The cumulative risk of catastrophe stands at <Cifra v="riesgo" anio={2056} />.
+</Ambito>
+</Parada>
+
+<Parada anio={2066} />
+
+<Parada anio={2076} />
+
+<Parada anio={2086}>
+<Ambito id="humanidad">
+Automation reaches <Cifra v="automatizacion" anio={2086} /> of tasks and employment settles at <Cifra v="empleo" anio={2086} />. For many people, the question is no longer what to work at but what to live on, and what for. Inequality stands at <Cifra v="desigualdad" anio={2086} />.
+</Ambito>
+<Ambito id="tecnologia">
+There are <Cifra v="robots" anio={2086} /> robots. Machines do most physical work, and their cost has fallen so far that almost anything manufactured is cheap.
+</Ambito>
+<Ambito id="ciencia">
+The pace of science is <Cifra v="ciencia" anio={2086} /> that of 2026. Research is led by AI systems that propose and test hypotheses day and night; humans review an ever smaller share.
+</Ambito>
+<Ambito id="planeta">
+Clean energy reaches <Cifra v="energiaLimpia" anio={2086} />, pushed more by its own price than by agreements. Warming is already <Cifra v="temperatura" anio={2086} />, with summers that change where people can live and farm.
+</Ambito>
+<Ambito id="politica">
+Power concentration reaches <Cifra v="poder" anio={2086} />: the decisions that matter are made in a few rooms. The cumulative risk of catastrophe stands at <Cifra v="riesgo" anio={2086} />.
+</Ambito>
+</Parada>
+
+<Parada anio={2096} />
+
+<Parada anio={2106} />
+
+<Parada anio={2116} />
+
+<Parada anio={2126}>
+<Ambito id="humanidad">
+A century later, <Cifra v="automatizacion" anio={2126} /> of tasks are automatable and <Cifra v="empleo" anio={2126} /> of the working-age population has a job. Material abundance coexists with a wide gap between those who own the machines and those who do not: inequality stands at <Cifra v="desigualdad" anio={2126} />.
+</Ambito>
+<Ambito id="tecnologia">
+There are <Cifra v="robots" anio={2126} /> robots. AI capability approaches its physical ceiling; what changes is no longer how much machines can do but who directs them.
+</Ambito>
+<Ambito id="ciencia">
+Science moves <Cifra v="ciencia" anio={2126} /> compared with 2026, but much of what is discovered is no longer fully understood by any human being.
+</Ambito>
+<Ambito id="planeta">
+Clean energy reaches <Cifra v="energiaLimpia" anio={2126} /> and warming levels off near <Cifra v="temperatura" anio={2126} />. An earlier transition would have avoided much of the damage.
+</Ambito>
+<Ambito id="politica">
+Power concentration stands at <Cifra v="poder" anio={2126} />. The cumulative risk of catastrophe, <Cifra v="riesgo" anio={2126} />, is the highest of the four futures.
+</Ambito>
+</Parada>

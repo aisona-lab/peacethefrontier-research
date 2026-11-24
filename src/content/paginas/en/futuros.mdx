@@ -1,0 +1,96 @@
+---
+titulo: Futures
+descripcion: Four futures 100 years out, depending on how much we regulate and cooperate and how fast AI advances. An open model, with its equations, sources and limits.
+---
+
+import Calibracion from '../../../components/futuros/Calibracion.astro';
+import Ecuaciones from '../../../components/futuros/Ecuaciones.astro';
+import LineaEvidencia from '../../../components/LineaEvidencia.astro';
+import MatrizFuturos from '../../../components/futuros/MatrizFuturos.astro';
+import SenalesHoy from '../../../components/futuros/SenalesHoy.astro';
+import Sensibilidad from '../../../components/futuros/Sensibilidad.astro';
+import TablaParametros from '../../../components/futuros/TablaParametros.astro';
+import Citar from '../../../components/Citar.astro';
+
+The world of 2126 depends, above all, on two decisions: how much we regulate and cooperate (peace) and how fast we let AI advance (the frontier). Crossing them gives four futures. None is a prediction, and the atlas does not advocate any of them.
+
+<p class="futuro-nivel ui"><LineaEvidencia nivel="escenario-ficcion" /> A scenario, not a prediction</p>
+
+<MatrizFuturos lang="en" variante="portada" />
+
+<h2 id="hoy">Where we are today</h2>
+
+The "Today" point on the matrix does not come from the model: the frontier is measured and peace is estimated.
+
+**Frontier.** The compute used to train the most advanced AI models grows 4 to 5 times a year, according to [Epoch AI](https://epoch.ai/publications/training-compute-of-frontier-ai-models-grows-by-4-5x-per-year). In the model that pace is the maximum frontier, so today we sit at the right edge of the matrix.
+
+**Peace.** There is no single measure of how much we regulate and cooperate. We estimate it from five public signals, each scored from 0 (nothing exists) to 1 (what the maximum-peace future assumes: binding, verified rules among all the powers). The scores are ours and debatable; that is why each one is a range, and the dashed box on the matrix shows it.
+
+<SenalesHoy lang="en" />
+
+With these signals, today falls in the Race quadrant: very fast AI and little cooperation. It is not a destiny. Peace is the axis that depends most on decisions, and several of these signals can change within months.
+
+## How the model works
+
+A small model simulates the century year by year. It takes two numbers between 0 and 1, peace and frontier, and computes twelve indicators: AI capability, robots, work, inequality, population, pace of science, energy, warming, power concentration and risk. It runs 200 times with parameters drawn at random within their ranges; that is why every chart shows a band, not a single line.
+
+Each future's page starts at its corner of the matrix, but you can move the controls and watch the numbers change.
+
+## Equations
+
+<Ecuaciones lang="en" />
+
+## Parameters
+
+Every parameter has a central value, a range and a source. When there is no direct source, we mark it as an assumption.
+
+<TablaParametros lang="en" />
+
+## Which parameters matter most
+
+To see which assumptions drive the figures, we move each parameter to its minimum and to its maximum, one at a time, with the rest at their central values and at the center of the matrix. The bars show how much the indicator changes; the vertical line is the value with every parameter at its center. This method misses interactions between parameters; the bands of each future capture them, because they move all parameters at once.
+
+<Sensibilidad lang="en" indicador="riesgo" anio={2100} />
+
+At the centre of the matrix, what moves the risk most is <a href="#parametro-hConf"><i>h</i><sub>conf</sub></a>, the annual risk that power concentration adds. It is calibrated against expert estimates, not measured: it is the most debatable figure in the model.
+
+<Sensibilidad lang="en" indicador="temperatura" anio={2100} />
+
+<Sensibilidad lang="en" indicador="empleo" anio={2100} />
+
+## Calibration
+
+Before publishing, the model is checked against published data and estimates: official figures, industry statistics and expert estimates (surveys and forecasting tournaments). The check uses the medians you see on each future. Some targets were also used to tune parameters, so meeting them shows consistency, not independent validation:
+
+<Calibracion lang="en" />
+
+The risk thresholds (Pause below 9%, Race above 20%) are an editorial choice, anchored in the estimates of superforecasters and experts in the XPT tournament.
+
+## Limits of the model
+
+- It does not predict: it links assumptions to consequences.
+- Temperature only counts CO₂ and does not model carbon removal, so it never falls; at most, it levels off.
+- Population does not react to catastrophes: risk is shown as a probability; the event itself is not simulated.
+- The power and inequality indices are illustrative.
+- The UN projects to 2100; after that we extend its last rate.
+- The costs of cooperation and regulation are only partly in the equations: the power index rises with institutional concentration, but the loss of freedom from verification, red tape or slower innovation appear only in the narrative. That is why, on almost every indicator, the futures with more peace come out ahead: it is a limitation of the model, not a conclusion.
+- In Fracture, AI's slowness is an input assumption (low frontier), not something the model produces. Race and Fracture share the same crisis calendar, because crises depend only on peace and power.
+- The 550 TWh electricity baseline in 2026 is a model estimate between historical references and IEA scenarios, not an observed or AI-only measurement. It represents all data centres; the historical `energiaIA` identifier is retained in CSV exports.
+- World electricity grows with total energy demand (constant electricity share), which underestimates electrification. AI cannot use more than a fixed share of that electricity.
+- 2026 robots count only IFR industrial robots; service robots and humanoids have no comparable statistic.
+- Many parameters are assumptions and several are calibrated against the same targets that are later checked: the table says which is which.
+- The 2026 baseline combines historical observations, estimates, derivations, calibrations and assumptions. They are not all 2026 measurements or the latest available data. Energy uses the substitution method of the 2024 edition of the Statistical Review (2023 data), which counts clean electricity by the fossil fuel it replaces. Since 2025 the Energy Institute measures energy by its physical content, and with that method the clean share of 2025 is about 14%, not 19%. We use substitution because the model compares sources by the service they provide.
+- The maximum frontier (f = 1) is today's growth rate of training compute: 4 to 5 times a year, according to Epoch AI. The model does not allow AI to go faster than today, for example if it speeds up its own research, and it does not count algorithmic improvements. That is why today sits at the maximum frontier and Race (f = 0.85) moves slightly slower than today.
+- The relationships between variables are simple on purpose, so they can be read and debated.
+
+## Data and citation
+
+The data for each future at its base position, year by year (median and 80% band), as CSV, computed with the model on this page (seed 2026, 200 simulations). The columns are `anio` (year), `indicador` (indicator), `unidad` (unit), `p10`, `p50` and `p90`, with indicator and unit names in Spanish, as the code uses them: [Pause](/datos/futuros-pausa.csv), [Peaceful frontier](/datos/futuros-frontera-en-paz.csv), [Race](/datos/futuros-carrera.csv) and [Fracture](/datos/futuros-fractura.csv).
+
+<Citar lang="en" titulo="Futures" ruta="/en/futures/" clave="futures" />
+
+## Reading bands and exports
+
+The p10–p90 bands show conditional sensitivity to the selected ranges, not empirical confidence intervals or probabilities of the four futures. Every CSV row is a scenario output, including 2026 rows; columns are preserved for compatibility. The parameter table documents units, periods and provenance.
+
+The model combines primary energy and data-centre electricity with accounting limitations: adding the latter can double-count part of demand. It does not resolve regional grids, marginal emissions or all climate uncertainty. These limitations need a separate redesign; this refresh retains the equations and numbers.

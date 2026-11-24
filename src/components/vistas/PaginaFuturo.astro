@@ -1,0 +1,234 @@
+---
+// Un futuro: cabecera (premisa, ganancias, pérdidas, supuestos), relato por décadas y panel fijo.
+import { getEntry, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Citar from '../Citar.astro';
+import LineaEvidencia from '../LineaEvidencia.astro';
+import PanelFuturo from '../futuros/PanelFuturo.astro';
+import { otroIdioma, ruta, type Idioma } from '../../i18n/rutas';
+import { textos } from '../../i18n/ui';
+import { proyectarGuardado } from '../../lib/futuros/montecarlo';
+import { presetDe, urlFuturo, type CuadranteId } from '../../lib/futuros/posicion';
+
+interface Props {
+	lang: Idioma;
+	id: CuadranteId;
+}
+
+const { lang, id } = Astro.props;
+const entrada = await getEntry('futuros', `${lang}/${id}`);
+if (!entrada) throw new Error(`Falta src/content/futuros/${lang}/${id}.mdx`);
+const posicion = presetDe(id);
+const resultado = proyectarGuardado(posicion);
+// Antes de render(): Parada, Ambito y Cifra lo leen al renderizar el MDX.
+Astro.locals.futuro = { resultado, lang };
+const { Content } = await render(entrada);
+const t = textos(lang).futuros;
+const cuadrante = t.cuadrantes[id];
+---
+
+<Base
+	lang={lang}
+	titulo={cuadrante.nombre}
+	descripcion={entrada.data.premisa}
+	alternativa={urlFuturo(otroIdioma(lang), id)}
+>
+	<ptf-futuro
+		class="contenedor futuro"
+		data-cuadrante={id}
+		data-lang={lang}
+		data-paz={posicion.paz}
+		data-frontera={posicion.frontera}
+	>
+		<header class="futuro-cabecera">
+			<nav class="ruta ui" aria-label={textos(lang).tema.ruta}>
+				<a href={ruta(lang, 'futuros')}>{t.todos}</a>
+			</nav>
+			<h1>{cuadrante.nombre}</h1>
+			<p class="futuro-lema">{cuadrante.lema}</p>
+			<p class="entradilla">{entrada.data.premisa}</p>
+			<p class="futuro-nivel ui"><LineaEvidencia nivel="escenario-ficcion" /> {t.escenario}</p>
+			<div class="futuro-balance">
+				<section aria-labelledby="titulo-ganancias">
+					<h2 id="titulo-ganancias">{t.ganancias}</h2>
+					<ul>{entrada.data.ganancias.map((g) => <li>{g}</li>)}</ul>
+				</section>
+				<section aria-labelledby="titulo-perdidas">
+					<h2 id="titulo-perdidas">{t.perdidas}</h2>
+					<ul>{entrada.data.perdidas.map((p) => <li>{p}</li>)}</ul>
+				</section>
+			</div>
+			<details class="futuro-supuestos">
+				<summary class="ui">{t.supuestos}</summary>
+				<ul>{entrada.data.supuestos.map((s) => <li>{s}</li>)}</ul>
+			</details>
+		</header>
+
+		<div class="futuro-cuerpo">
+			<div class="futuro-relato">
+				<p class="aviso-cuadrante ui" data-aviso role="status" hidden></p>
+				<Content />
+				<footer class="futuro-pie">
+					<p class="ui">
+						<a href={`/datos/futuros-${id}.csv`} download>{t.datos.descargar}</a>
+						<a href="/datos/procedencia.json" download>{lang === 'es' ? 'Procedencia y límites (JSON)' : 'Provenance and limitations (JSON)'}</a>
+						<span class="futuro-pie-nota">{t.datos.nota}</span>
+					</p>
+					<Citar lang={lang} titulo={`${t.titulo}: ${cuadrante.nombre}`} ruta={urlFuturo(lang, id)} clave={`futuro-${id}`} />
+				</footer>
+			</div>
+			<aside class="futuro-panel" aria-label={t.panel.etiqueta}>
+				<PanelFuturo lang={lang} id={id} resultado={resultado} posicion={posicion} />
+			</aside>
+		</div>
+	</ptf-futuro>
+</Base>
+
+<style>
+	ptf-futuro {
+		display: block;
+	}
+
+	.futuro-cabecera {
+		max-width: 46rem;
+		padding-top: clamp(2rem, 1rem + 3vw, 4rem);
+	}
+
+	.ruta {
+		color: var(--tinta-suave);
+	}
+
+	.futuro-cabecera h1 {
+		margin-top: 1.5rem;
+		font-size: var(--t-titulo);
+	}
+
+	.futuro-lema {
+		margin-top: 0.5rem;
+		color: var(--tinta-suave);
+		font-size: var(--t-h3);
+	}
+
+	.futuro-cabecera .entradilla {
+		margin-top: 1.5rem;
+	}
+
+	.futuro-nivel {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		margin-top: 1.25rem;
+		color: var(--tinta-suave);
+	}
+
+	.futuro-balance {
+		display: grid;
+		gap: 1.5rem 3rem;
+		margin-top: 2.5rem;
+	}
+
+	@media (min-width: 48rem) {
+		.futuro-balance {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+
+	.futuro-balance h2 {
+		margin-bottom: 0.75rem;
+		font-family: var(--fuente-sans);
+		font-size: var(--t-ui);
+		font-weight: 600;
+	}
+
+	.futuro-balance ul,
+	.futuro-supuestos ul {
+		display: grid;
+		gap: 0.5rem;
+		padding-left: 1.1rem;
+		list-style: disc;
+	}
+
+	.futuro-pie {
+		display: grid;
+		gap: 1.5rem;
+		margin-top: var(--espacio-seccion);
+	}
+
+	.futuro-pie p {
+		display: grid;
+		gap: 0.3rem;
+		max-width: var(--medida);
+	}
+
+	.futuro-pie-nota {
+		color: var(--tinta-suave);
+	}
+
+	.futuro-supuestos {
+		margin-top: 2rem;
+		padding-block: 0.75rem;
+		border-block: 1px solid var(--linea);
+	}
+
+	.futuro-supuestos summary {
+		cursor: pointer;
+	}
+
+	.futuro-supuestos ul {
+		margin-top: 0.75rem;
+	}
+
+	.futuro-cuerpo {
+		display: grid;
+		gap: 3rem;
+		margin-top: clamp(2.5rem, 2rem + 3vw, 4.5rem);
+	}
+
+	.aviso-cuadrante {
+		margin-bottom: 1.5rem;
+		padding: 1rem 1.25rem;
+		border-left: 2px solid var(--sodio);
+		background: var(--superficie);
+	}
+
+	@media (min-width: 64rem) {
+		.futuro-cuerpo {
+			grid-template-columns: minmax(0, 38rem) minmax(19rem, 1fr);
+			gap: clamp(2.5rem, 4vw, 5rem);
+			align-items: start;
+		}
+
+		.futuro-panel {
+			position: sticky;
+			top: calc(var(--alto-cabecera) + 1rem);
+			max-height: calc(100dvh - var(--alto-cabecera) - 2rem);
+			overflow-y: auto;
+			overscroll-behavior: contain;
+		}
+	}
+
+	/* Móvil con JS: el panel es una barra fija abajo que se despliega. */
+	@media (max-width: 63.99rem) {
+		ptf-futuro[data-interactivo] .futuro-panel {
+			position: fixed;
+			inset: auto 0 0;
+			z-index: 9;
+			max-height: 75dvh;
+			overflow-y: auto;
+			border-top: 1.5px solid var(--tinta);
+			background: var(--fondo);
+		}
+
+		ptf-futuro[data-interactivo] :global(.panel[data-abierto='false'] .panel-contenido) {
+			display: none;
+		}
+
+		ptf-futuro[data-interactivo] :global(.panel-contenido) {
+			padding: 0 var(--margen) 1.5rem;
+		}
+
+		ptf-futuro[data-interactivo] .futuro-relato {
+			padding-bottom: 4rem;
+		}
+	}
+</style>

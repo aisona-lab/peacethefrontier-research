@@ -1,0 +1,10 @@
+---
+import PaginaTema from '../../../components/vistas/PaginaTema.astro';
+import { rutasTemas } from '../../../lib/temas';
+
+export const getStaticPaths = () => rutasTemas('en');
+
+const { tema, anterior, siguiente } = Astro.props;
+---
+
+<PaginaTema lang="en" tema={tema} anterior={anterior} siguiente={siguiente} />

@@ -1,0 +1,12 @@
+---
+import PaginaArticulo from '../../../components/vistas/PaginaArticulo.astro';
+import { articulosDe, slugArticulo } from '../../../lib/articulos-coleccion';
+
+export async function getStaticPaths() {
+	return (await articulosDe('en')).map((articulo) => ({ params: { slug: slugArticulo(articulo) }, props: { articulo } }));
+}
+
+const { articulo } = Astro.props;
+---
+
+<PaginaArticulo lang="en" articulo={articulo} />

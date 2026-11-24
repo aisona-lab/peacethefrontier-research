@@ -1,0 +1,16 @@
+---
+import {ESPACIOS,enlaceEspacio,espacioDeRuta} from '../../lib/studio/espacios';
+import {PERFIL} from '../../lib/studio/config';
+import type {Idioma} from '../../i18n/rutas';
+interface Props {lang:Idioma;compacto?:boolean}
+const {lang,compacto=false}=Astro.props;
+const actual=espacioDeRuta(Astro.url.pathname,PERFIL.superficie);
+---
+<div class:list={['espacios-nav','ui',{'espacios-compacto':compacto}]} aria-label={lang==='es'?'Espacios del estudio':'Studio spaces'} role="group">
+ {ESPACIOS.filter(e=>!compacto||e.id!=='studio').map(e=><a href={enlaceEspacio(e.id,lang,PERFIL)} aria-current={e.id===actual?'location':undefined}>{compacto?e.id==='atlas'?'Atlas':e.id==='research'?'Research':e.id==='sim'?'Sim':'Open':e.nombre[lang]}</a>)}
+</div>
+<style>
+ .espacios-nav{display:flex;flex-wrap:wrap;gap:.75rem 1.25rem;margin-block:1.25rem;}
+ .espacios-compacto{display:none;margin:0;gap:.5rem;}
+ @media(min-width:64rem){.espacios-compacto{display:flex;}.espacios-compacto a{padding:.5rem;}}
+</style>

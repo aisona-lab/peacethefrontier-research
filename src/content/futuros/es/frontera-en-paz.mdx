@@ -1,0 +1,106 @@
+---
+premisa: Los países acuerdan reglas comunes y avanzan juntos. La IA se desarrolla rápido, pero con auditorías, límites de seguridad y mecanismos para repartir lo que produce.
+supuestos:
+  - Un organismo internacional audita los modelos más capaces antes de desplegarlos.
+  - Las ganancias de la automatización se reparten con impuestos, dividendos o servicios públicos.
+  - La ciencia se comparte entre países en lugar de competir en secreto.
+  - La cooperación evita las crisis entre bloques.
+ganancias:
+  - La ciencia y la medicina avanzan más rápido que en ningún otro futuro.
+  - La transición energética es la más rápida de los cuatro.
+  - La desigualdad baja aunque el empleo caiga.
+perdidas:
+  - Coordinar a todos es lento y caro, y las instituciones globales ganan mucho poder.
+  - Menos gente trabaja, y la pregunta por el sentido y el propósito se vuelve central.
+  - "El riesgo no desaparece: depende de que las reglas se sigan cumpliendo."
+---
+
+import Ambito from '../../../components/futuros/Ambito.astro';
+import Cifra from '../../../components/futuros/Cifra.astro';
+import Parada from '../../../components/futuros/Parada.astro';
+
+<Parada anio={2026} />
+
+<Parada anio={2036}>
+<Ambito id="humanidad">
+Una década de avance rápido con reglas compartidas. La IA ya puede hacer <Cifra v="automatizacion" anio={2036} /> de las tareas humanas y el empleo baja a <Cifra v="empleo" anio={2036} />, pero las ganancias se reparten: la desigualdad cae a <Cifra v="desigualdad" anio={2036} />.
+</Ambito>
+<Ambito id="tecnologia">
+Un organismo internacional audita cada modelo de frontera antes de desplegarlo. Hay <Cifra v="robots" anio={2036} /> de robots en funcionamiento y los centros de datos consumen <Cifra v="energiaIA" anio={2036} /> al año.
+</Ambito>
+<Ambito id="ciencia">
+La ciencia es la más rápida de los cuatro futuros: el ritmo de descubrimiento ya es <Cifra v="ciencia" anio={2036} /> el de 2026, y los resultados se comparten entre países.
+</Ambito>
+<Ambito id="planeta">
+La ciencia acelera la transición: la energía limpia llega al <Cifra v="energiaLimpia" anio={2036} /> y el calentamiento ronda <Cifra v="temperatura" anio={2036} />.
+</Ambito>
+<Ambito id="politica">
+El poder no se concentra (<Cifra v="poder" anio={2036} />), pero coordinar a todos es lento y caro. El riesgo acumulado de catástrofe es de <Cifra v="riesgo" anio={2036} />.
+</Ambito>
+</Parada>
+
+<Parada anio={2046} />
+
+<Parada anio={2056}>
+<Ambito id="humanidad">
+La IA ya puede hacer <Cifra v="automatizacion" anio={2056} /> de las tareas. Tiene empleo <Cifra v="empleo" anio={2056} /> de la población en edad de trabajar y, con ingresos garantizados, la pregunta deja de ser de qué vivir y pasa a ser para qué.
+</Ambito>
+<Ambito id="tecnologia">
+Hay <Cifra v="robots" anio={2056} /> de robots en casas, campos, hospitales y fábricas.
+</Ambito>
+<Ambito id="ciencia">
+La ciencia avanza <Cifra v="ciencia" anio={2056} /> respecto a 2026. Muchas enfermedades que hoy matan ya tienen tratamiento, y el acceso es amplio porque los avances se comparten.
+</Ambito>
+<Ambito id="planeta">
+La mayoría de la energía ya es limpia (<Cifra v="energiaLimpia" anio={2056} />) y el calentamiento llega a <Cifra v="temperatura" anio={2056} />.
+</Ambito>
+<Ambito id="politica">
+Las instituciones globales que vigilan la IA tienen ahora mucho poder, y la pregunta es quién las controla a ellas. El riesgo acumulado de catástrofe es de <Cifra v="riesgo" anio={2056} />.
+</Ambito>
+</Parada>
+
+<Parada anio={2066} />
+
+<Parada anio={2076} />
+
+<Parada anio={2086}>
+<Ambito id="humanidad">
+El trabajo es opcional para buena parte de la gente: tiene empleo <Cifra v="empleo" anio={2086} /> de la población en edad de trabajar y la desigualdad sigue baja (<Cifra v="desigualdad" anio={2086} />).
+</Ambito>
+<Ambito id="tecnologia">
+Hay <Cifra v="robots" anio={2086} /> de robots y la capacidad de la IA se acerca a su techo físico.
+</Ambito>
+<Ambito id="ciencia">
+La ciencia va <Cifra v="ciencia" anio={2086} /> respecto a 2026, más rápido que en ningún otro futuro.
+</Ambito>
+<Ambito id="planeta">
+Casi toda la energía es limpia (<Cifra v="energiaLimpia" anio={2086} />) y el calentamiento se estabiliza cerca de <Cifra v="temperatura" anio={2086} />.
+</Ambito>
+<Ambito id="politica">
+La coordinación sigue siendo costosa, pero estable: el poder se concentra despacio, en las instituciones y no en un ganador (<Cifra v="poder" anio={2086} />) y el riesgo acumulado es de <Cifra v="riesgo" anio={2086} />.
+</Ambito>
+</Parada>
+
+<Parada anio={2096} />
+
+<Parada anio={2106} />
+
+<Parada anio={2116} />
+
+<Parada anio={2126}>
+<Ambito id="humanidad">
+Un siglo después, la abundancia material se reparte de forma amplia (desigualdad de <Cifra v="desigualdad" anio={2126} />) y la gran pregunta es el sentido: qué hacer con una vida en la que trabajar ya no es necesario. Tiene empleo <Cifra v="empleo" anio={2126} /> de la población en edad de trabajar.
+</Ambito>
+<Ambito id="tecnologia">
+Hay <Cifra v="robots" anio={2126} /> de robots: las máquinas hacen casi todo el trabajo físico.
+</Ambito>
+<Ambito id="ciencia">
+Es la ciencia más rápida del siglo (<Cifra v="ciencia" anio={2126} /> respecto a 2026): la mayoría de las enfermedades de hoy tienen tratamiento.
+</Ambito>
+<Ambito id="planeta">
+El calentamiento quedó cerca de <Cifra v="temperatura" anio={2126} />, algo por encima del de Pausa por el mayor consumo de energía.
+</Ambito>
+<Ambito id="politica">
+El riesgo acumulado de catástrofe es de <Cifra v="riesgo" anio={2126} />. No desaparece: depende de que las reglas se sigan cumpliendo.
+</Ambito>
+</Parada>

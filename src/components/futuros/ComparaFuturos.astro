@@ -1,0 +1,175 @@
+---
+// Pequeños múltiplos: un indicador en los cuatro futuros, con la misma escala, para las páginas de tema.
+import type { Idioma } from '../../i18n/rutas';
+import { BANDAS, ELECTRICIDAD, BASE_ELECTRICA } from '../../lib/futuros/procedencia';
+import { textos } from '../../i18n/ui';
+import { formatear, INDICES_DECADAS } from '../../lib/futuros/formato';
+import { proyectarGuardado } from '../../lib/futuros/montecarlo';
+import { CUADRANTE_IDS, presetDe, urlFuturo } from '../../lib/futuros/posicion';
+import { ALTO_GRAFICO, ANCHO_GRAFICO, ESCALAS, rutaBanda, rutaLinea, xAnio } from '../../lib/futuros/trazado';
+import { AMBITO_DE, ANIO_INICIAL, ANIOS, type Indicador } from '../../lib/futuros/tipos';
+
+interface Props {
+	lang: Idioma;
+	indicador: Indicador;
+}
+
+/** 2100: el último año de las proyecciones de la ONU; después el modelo extrapola. */
+const ANIO_REFERENCIA = 2100;
+
+const { lang, indicador } = Astro.props;
+const t = textos(lang);
+const titulo = indicador === 'energiaIA' ? ELECTRICIDAD[lang] : t.futuros.indicadores[indicador];
+const escala = ESCALAS[indicador];
+const marca = xAnio(ANIO_REFERENCIA - ANIO_INICIAL, ANIOS);
+const futuros = CUADRANTE_IDS.map((id) => ({ id, resultado: proyectarGuardado(presetDe(id)) }));
+---
+
+<figure class="compara" style={`--color: var(--ambito-${AMBITO_DE[indicador]})`}>
+	<figcaption>{titulo}</figcaption>
+	<ol>
+		{
+			futuros.map(({ id, resultado }) => (
+				<li>
+					<a href={urlFuturo(lang, id)}>{t.futuros.cuadrantes[id].nombre}</a>
+					<span class="compara-valor">
+						{t.tema.futurosValor(
+							formatear(indicador, resultado.p50[indicador][ANIO_REFERENCIA - ANIO_INICIAL], lang),
+							ANIO_REFERENCIA,
+						)}
+					</span>
+					<svg
+						viewBox={`0 0 ${ANCHO_GRAFICO} ${ALTO_GRAFICO}`}
+						preserveAspectRatio="none"
+						aria-hidden="true"
+						data-escala={`${escala.min}–${escala.max}`}
+					>
+						<path class="banda" d={rutaBanda(resultado.p10[indicador], resultado.p90[indicador], escala)} />
+						<path class="linea" d={rutaLinea(resultado.p50[indicador], escala)} />
+						<line class="marca" x1={marca} x2={marca} y1="0" y2={ALTO_GRAFICO} />
+					</svg>
+				</li>
+			))
+		}
+	</ol>
+	<p class="modelo-bandas ui">{BANDAS[lang]}</p>
+	{indicador === 'energiaIA' && <p class="modelo-bandas ui">{BASE_ELECTRICA[lang]}</p>}
+	<details>
+		<summary class="ui">{t.futuros.panel.verDatos}</summary>
+		<div class="tabla-desplazable" tabindex="0" role="group" aria-label={titulo}>
+			<table class="ui">
+				<thead>
+					<tr>
+						<th scope="col">{t.futuros.panel.anio}</th>
+						{futuros.map(({ id }) => <th scope="col">{t.futuros.cuadrantes[id].nombre}</th>)}
+					</tr>
+				</thead>
+				<tbody>
+					{
+						INDICES_DECADAS.map((i) => (
+							<tr>
+								<th scope="row">{ANIO_INICIAL + i}</th>
+								{futuros.map(({ resultado }) => <td>{formatear(indicador, resultado.p50[indicador][i], lang)}</td>)}
+							</tr>
+						))
+					}
+				</tbody>
+			</table>
+		</div>
+	</details>
+</figure>
+
+<style>
+	.modelo-bandas { font-size: var(--t-mini); color: var(--tinta-suave); }
+	.compara {
+		margin: 0 0 2.5rem;
+	}
+
+	figcaption {
+		margin-bottom: 0.75rem;
+		font-weight: 600;
+	}
+
+	ol {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 1.25rem 1.5rem;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	@media (min-width: 48rem) {
+		ol {
+			grid-template-columns: repeat(4, minmax(0, 1fr));
+		}
+	}
+
+	li {
+		display: grid;
+		align-content: start;
+		gap: 0.15rem;
+		font-size: var(--t-mini);
+	}
+
+	.compara-valor {
+		color: var(--color);
+		font-weight: 600;
+		font-variant-numeric: tabular-nums;
+	}
+
+	svg {
+		display: block;
+		width: 100%;
+		height: 2.75rem;
+		margin-top: 0.35rem;
+		overflow: visible;
+		border-bottom: 1px solid var(--linea);
+	}
+
+	.banda {
+		fill: var(--color);
+		opacity: 0.16;
+	}
+
+	.linea {
+		fill: none;
+		stroke: var(--color);
+		stroke-width: 1.75;
+		vector-effect: non-scaling-stroke;
+	}
+
+	.marca {
+		stroke: var(--regla);
+		stroke-width: 1;
+		stroke-dasharray: 2 2;
+		vector-effect: non-scaling-stroke;
+	}
+
+	summary {
+		margin-top: 0.75rem;
+		padding-block: 0.3rem;
+		color: var(--tinta-suave);
+		font-size: var(--t-mini);
+		cursor: pointer;
+	}
+
+	.tabla-desplazable {
+		overflow-x: auto;
+	}
+
+	table {
+		width: 100%;
+		border-collapse: collapse;
+		font-size: var(--t-mini);
+		font-variant-numeric: tabular-nums;
+	}
+
+	th,
+	td {
+		padding: 0.2rem 0.35rem;
+		border-bottom: 1px solid var(--linea);
+		text-align: start;
+		white-space: nowrap;
+	}
+</style>

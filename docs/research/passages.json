@@ -1,0 +1,436 @@
+{
+  "reviewDate": "2026-11-13",
+  "scope": "Selected passages actually read; neither whole-source endorsement nor exhaustive corrections/retractions screening.",
+  "passages": [
+    {
+      "id": "epoch-computo-passage",
+      "source": "epoch-computo",
+      "accessDate": "2026-11-13",
+      "locator": "Visible page text around: 4.1",
+      "quote": "order. In short, we find that the amount of compute used to train notable models has grown about 4.1x/year (90% CI: 3.7x to 4.6x) between 2010 to May 2024. 3 If we look at the trend since our last update in Feb 2022, we find that training compute has grown about 4.4x per year (90% CI: 1.5x to 11.8x) – note the wide confidence interval. Both estimates are consistent with our previous estimate, suggesting that the trend has held. For context, a notable model is one that meets our notability criteria: either a) be presented in a highly cited paper (>1000 citations), b) demonstrate a state-of-the-art result in a well-recognized benchmark, c) be of historical importance or d) be deployed in a product with significant use. Our database of notab",
+      "observationPeriod": "2010–May 2024",
+      "verification": "passage-read",
+      "limitation": "Historical training-compute trend; not a 2026 capability measurement."
+    },
+    {
+      "id": "epoch-hardware-passage",
+      "source": "epoch-hardware",
+      "accessDate": "2026-11-13",
+      "locator": "Visible page text around: doubling every 2.3",
+      "quote": "trics and their improvement rates found in the analysis include: computational performance [FLOP/s] doubling every 2.3 years for both ML and general GPUs; computational price-performance [FLOP per $] doubling every 2.1 years for ML GPUs and 2.5 years for general GPUs; and energy efficiency [FLOP/s per Watt] doubling every 3.0 years for ML GPUs and 2.7 years for general GPUs. Specification and unit Growth rate Doubling time 10x time OOMs per year Datapoint of highest performance Metric prefix Scientific notation N Computational Performance FLOP/s (FP32) 2x every 2.3 [2.1; 2.6] years 10x every 7.7 [6.9; 8.6] years 0.13 [0.15; 0.12] OOMs per year ~90 TFLOP/s ~9e13 FLOP/s (NVIDIA L40) 45 FLOP/s (tensor-FP32) NA 1 ~495 TFLOP/s ~4.95e14 FLOP/s",
+      "observationPeriod": "2023 hardware-study sample",
+      "verification": "passage-read",
+      "limitation": "FLOP/s, FLOP/$ and energy efficiency have different denominators."
+    },
+    {
+      "id": "aie-energia-ia-passage",
+      "source": "aie-energia-ia",
+      "accessDate": "2026-11-13",
+      "locator": "Visible page text around: 415",
+      "quote": "y demand. Data centres accounted for around 1.5% of the world’s electricity consumption in 2024, or 415 terawatt-hours (TWh). The United States accounted for the largest share of global data centre electricity consumption in 2024 (45%), followed by China (25%) and Europe (15%). Globally, data centre electricity consumption has grown by around 12% per year since 2017, more than four times faster than the rate of total electricity consumption. AI-focused data centres can draw as much electricity as power-intensive factories such as aluminium smelters, but they are much more geographically concentrated. Nearly half of data centre capacity in the United States is in five regional clusters. The sector accounts for substantial shares of electricity",
+      "observationPeriod": "2024 estimate; 2030 scenario",
+      "verification": "passage-read",
+      "limitation": "All data centres, not AI alone; retain 2025 report edition."
+    },
+    {
+      "id": "aie-ia-2026-passage",
+      "source": "aie-ia-2026",
+      "accessDate": "2026-11-13",
+      "locator": "Visible page text around: 485",
+      "quote": "report. Our updated projections see electricity consumption from data centres roughly doubling from 485 TWh in 2025 to 950 TWh in 2030, accounting for around 3% of global electricity demand by that date. Electricity consumption from AI-focused data centres grows much faster than overall data centre electricity consumption, tripling in this period. Bottlenecks across the value chain, however, are reducing the likelihood of more aggressive near-term scenarios, despite booming investment and surging project pipelines. The mid- to longer-term outlook for data centre electricity demand sees a possible upside. Investments in relieving bottlenecks across energy equipment and chip manufacturing, and rapid uptake of energy-intensive use cases of AI, ra",
+      "observationPeriod": "2025 estimate; 2030 scenario",
+      "verification": "passage-read",
+      "limitation": "All data centres; 950 TWh is a conditional projection."
+    },
+    {
+      "id": "metr-horizontes-2026-passage",
+      "source": "metr-horizontes-2026",
+      "accessDate": "2026-11-13",
+      "locator": "Visible page text around: September 8",
+      "quote": "horizons for public frontier language models. This page is no longer actively updated. LAST UPDATED September 8, 2026 SHARE Copy Link arXiv Citation BibTeX Citation × @misc { metr-2026-time-horizons , title = {Task-Completion Time Horizons of Frontier AI Models} , author = {METR} , howpublished = {\\url{https://metr.org/time-horizons/}} , year = {2026} , month = {09} , } Copy The task-completion time horizon is the task duration (measured by human expert completion time) at which an AI agent is predicted to succeed with a given level of reliability. For example, the 50%-time horizon is the duration at which an agent is predicted to succeed half the time. The graph below shows the 50%- and 80%-time horizons for frontier AI agents, calculated using their",
+      "observationPeriod": "Dashboard last updated September 2026",
+      "verification": "passage-read",
+      "limitation": "Software task difficulty, not execution duration or general job autonomy."
+    },
+    {
+      "id": "metr-desarrolladores-2025-passage",
+      "source": "metr-desarrolladores-2025",
+      "accessDate": "2026-11-13",
+      "locator": "Visible page text around: 19%",
+      "quote": "rking on their own repositories. Surprisingly, we find that when developers use AI tools, they take 19% longer than without—AI makes them slower. We view this result as a snapshot of early-2025 AI capabilities in one relevant setting; as these systems continue to rapidly evolve, we plan on continuing to use this methodology to help estimate AI acceleration from AI R&D automation. Update: In February 2026, we published new data on the productivity impact of late-2025 AI tools. CONTRIBUTORS Joel Becker , Nate Rush , Beth Barnes , and David Rein DATE July 10, 2025 SHARE Copy Link arXiv Citation BibTeX Citation × @misc { metr-2025-early-2025-ai-experienced-os-dev-study , title = {Measuring the Impact of Early-2025 AI on Experienced Open-Source Dev",
+      "observationPeriod": "Early 2025 experiment",
+      "verification": "passage-read",
+      "limitation": "16 experienced developers, 246 tasks; narrow population."
+    },
+    {
+      "id": "metr-productividad-2026-passage",
+      "source": "metr-productividad-2026",
+      "accessDate": "2026-11-13",
+      "locator": "Visible page text around: selection",
+      "quote": "ikely biases downwards our estimate of AI-assisted speedup. We additionally believe there have been selection effects due to a lower pay rate (we reduced the pay from $150/hr to $50/hr), and that our measurements of time-spent on each task are unreliable for the fraction of developers who use multiple AI agents concurrently. Based on conversations with study participants, we believe it is likely that developers are more sped up from AI tools now — in early 2026 — compared to our estimates from early 2025. However, because of the selection effects in our experiment, our data is only very weak evidence for the size of this increase. Our raw results show some evidence for speedup. Our early 2025 study found the use of AI causes tasks to take 19% longer",
+      "observationPeriod": "February 2026 follow-up",
+      "verification": "passage-read",
+      "limitation": "Selection and time-measurement biases prevent a reliable updated effect estimate."
+    },
+    {
+      "id": "oit-genai-2025-passage",
+      "source": "oit-genai-2025",
+      "accessDate": "2026-11-13",
+      "locator": "Visible page text around: 25",
+      "quote": "may impact jobs across countries and sectors. Facebook X Linkedin Publication details Date 20 May 2025 Files for download PDF 4.02 MB EPUB 13.4 MB Read online Read online This study updates the ILO’s 2023 Global Index of Occupational Exposure to Generative AI (GenAI), incorporating recent advances in the technology and increasing user familiarity with GenAI tools. Using a representative sample from the 29,753 tasks in the Polish occupational classification system and a survey of 1,640 people employed in each 1-digit ISCO-08 groups, we collect 52,558 data points regarding perceive potential of automation for 2,861 tasks. We then compare this input with a survey and several rounds of Delphi-style discussions among a smaller group of internation",
+      "observationPeriod": "2025 exposure index",
+      "verification": "passage-read",
+      "limitation": "Task exposure, not job displacement."
+    },
+    {
+      "id": "nber-ia-trabajo-2023-passage",
+      "source": "nber-ia-trabajo-2023",
+      "accessDate": "2026-11-13",
+      "locator": "Visible page text around: 14",
+      "quote": "port agents. Access to the tool increases productivity, as measured by issues resolved per hour, by 14% on average, including a 34% improvement for novice and low-skilled workers but with minimal impact on experienced and highly skilled workers. We provide suggestive evidence that the AI model disseminates the best practices of more able workers and helps newer workers move down the experience curve. In addition, we find that AI assistance improves customer sentiment, increases employee retention, and may lead to worker learning. Our results suggest that access to generative AI can increase productivity, with large heterogeneity in effects across workers. Acknowledgements and Disclosures We are grateful to Daron Acemoglu, David Autor, Amittai",
+      "observationPeriod": "2023 working-paper revision",
+      "verification": "passage-read",
+      "limitation": "Customer-support productivity; do not conflate with 2025 published version."
+    },
+    {
+      "id": "iasr-2026-passage",
+      "source": "iasr-2026",
+      "accessDate": "2026-11-13",
+      "locator": "Visible page text around: lack the capabilities",
+      "quote": "stems operate outside of anyone’s control, with no clear path to regaining control. Current systems lack the capabilities to pose such risks, but they are improving in relevant areas such as autonomous operation. Since the last Report, it has become more common for models to distinguish between test settings and real-world deployment and to find loopholes in evaluations, which could allow dangerous capabilities to go undetected before deployment. Systemic risks Labour market impacts: General-purpose AI will likely automate a wide range of cognitive tasks, especially in knowledge work. Economists disagree on the magnitude of future impacts: some expect job losses to be offset by new job creation, while others argue that widespread automation could significan",
+      "observationPeriod": "February 2026 assessment",
+      "verification": "passage-read",
+      "limitation": "Loss of control distinguished from other harms; not a guarantee about later releases."
+    },
+    {
+      "id": "ue-ley-ia-passage",
+      "source": "ue-ley-ia",
+      "accessDate": "2026-11-13",
+      "locator": "Visible page text around: 2 December 2027",
+      "quote": "tion of justice and democratic processes (e.g. AI solutions to prepare court rulings) Starting on 2 December 2027, high-risk AI systems will be subject to strict obligations before they can be put on the market: adequate risk assessment and mitigation systems high-quality of the datasets feeding the system to minimise risks of discriminatory outcomes logging of activity to ensure traceability of results detailed documentation providing all information necessary on the system and its purpose for authorities to assess its compliance clear and adequate information to the deployer appropriate human oversight measures high level of robustness, cybersecurity and accuracy Transparency risk This refers to the risks associated with a need for t",
+      "observationPeriod": "Commission guidance read 2026-11-13",
+      "verification": "passage-read",
+      "limitation": "Operative amendment text not readable; guidance attribution only."
+    },
+    {
+      "id": "coe-convenio-ia-passage",
+      "source": "coe-convenio-ia",
+      "accessDate": "2026-11-13",
+      "locator": "Visible page text around: 5 September 2024",
+      "quote": "f law is the first-ever international legally binding treaty in this field. Opened for signature on 5 September 2024, it aims to ensure that activities within the lifecycle of artificial intelligence systems are fully consistent with human rights, democracy and the rule of law, while being conducive to technological progress and innovation. Framework Convention and its Explanatory Report The Framework Convention complements existing international standards on human rights, democracy and the rule of law, and aims to fill any legal gaps that may result from rapid technological advances . In order to stand the test of time, the Framework Convention does not regulate technology and is essentially technology-neutral . Official text of the Convention",
+      "observationPeriod": "Signature opening 2024",
+      "verification": "passage-read",
+      "limitation": "Country ratifications and entry into force not independently verified."
+    },
+    {
+      "id": "grace-2024-passage",
+      "source": "grace-2024",
+      "accessDate": "2026-11-13",
+      "locator": "Visible page text around: 2,778",
+      "quote": "and 6 other authors View PDF HTML (experimental) Abstract: In the largest survey of its kind, 2,778 researchers who had published in top-tier artificial intelligence (AI) venues gave predictions on the pace of AI progress and the nature and impacts of advanced AI systems The aggregate forecasts give at least a 50% chance of AI systems achieving several milestones by 2028, including autonomously constructing a payment processing site from scratch, creating a song indistinguishable from a new song by a popular musician, and autonomously downloading and fine-tuning a large language model. If science continues undisrupted, the chance of unaided machines outperforming humans in every possible task was estimated at 10% by 2027, and 50% by 2047.",
+      "observationPeriod": "2023 survey; 2024 preprint; v3/2025 journal link",
+      "verification": "passage-read",
+      "limitation": "Abstract reviewed; probabilities are judgments, not frequencies. Historical v1 retained in inventory."
+    },
+    {
+      "id": "xpt-2023-passage",
+      "source": "xpt-2023",
+      "accessDate": "2026-11-13",
+      "locator": "Visible page text around: 80 experts",
+      "quote": "next century and beyond? In 2022, the Existential Risk Persuasion Tournament (XPT) brought together 80 experts and 89 superforecasters to predict the risks to humanity posed by artificial intelligence, nuclear war, pandemics, and other causes. Ezra Karger †,* , Josh Rosenberg * , Zachary Jacobs * , Molly Hickman * , Rose Hadshar * , Kayla Gamin * , Taylor Smith * , Bridget Williams * , Tegan McCaslin * , Stephen Thomas * , Philip E. Tetlock ‡,* , † Federal Reserve Bank of Chicago * Forecasting Research Institute ‡ Wharton School of the University of Pennsylvania Published: Jul 10, 2023 Revised: Aug 8, 2023 Share View PDF X (Twitter) LinkedIn mail Copy URL Ezra Karger †,* , Josh Rosenberg * , Zachary Jacobs * , Molly Hickman *",
+      "observationPeriod": "2022 tournament; 2023 working paper",
+      "verification": "passage-read",
+      "limitation": "Landing-page abstract only; detailed numerical probability table pending."
+    },
+    {
+      "id": "cfr-taiwan-2024-passage",
+      "source": "cfr-taiwan-2024",
+      "accessDate": "2026-11-13",
+      "locator": "Visible page text around: 90 percent",
+      "quote": "iwan’s dominance of the global semiconductor market: 60 percent of all semiconductors and more than 90 percent of the most advanced chips are manufactured in Taiwan. The supply chain for semiconductors is a model of efficiency, with companies hyper-specializing in one area and leaving other parts to their peers. Although semiconductors were invented in the United States—at one point it produced nearly 40 percent of the world’s chips—U.S. companies decided to focus on chip design, which has the highest margins, and outsource actual production. Foundries such as Taiwan Semiconductor Manufacturing Company (TSMC), which dominates semiconductor manufacturing, produce chips designed by firms such as Apple, Intel, Nvidia, and Qualcomm. Once a chip is mad",
+      "observationPeriod": "2024 analysis",
+      "verification": "passage-read",
+      "limitation": "Secondary historical account; category of advanced chips matters."
+    },
+    {
+      "id": "cfr-chips-2026-passage",
+      "source": "cfr-chips-2026",
+      "accessDate": "2026-11-13",
+      "locator": "Visible page text around: On January 13",
+      "quote": "2026 9:22 a.m. Chris McGuire CFR Expert Senior Fellow for China and Emerging Technologies Share On January 13, the Department of Commerce published a new regulation permitting the sale of advanced AI chips to China, codifying the major policy change that President Trump announced on December 8. The regulation loosens restrictions on the export of Nvidia H200 chips, as well as the AMD MI325X and equivalent chips from other companies, which had previously been banned for export to China. The regulation acknowledges that exporting advanced AI chips to China poses serious national security risks, while simultaneously creating a pathway to permit their sale. The result is a framework that is strategically incoherent. If implemented faithfully, it likel",
+      "observationPeriod": "January 2026 analysis",
+      "verification": "passage-read",
+      "limitation": "Dated secondary policy account, not verification of current law."
+    },
+    {
+      "id": "gcb-2024-passage",
+      "source": "gcb-2024",
+      "accessDate": "2026-11-13",
+      "locator": "Visible page text around: 14 Mar 2025",
+      "quote": "| Volume 17, issue 3 Article Assets Peer review Metrics Related articles Data description article | 14 Mar 2025 Data description article | | 14 Mar 2025 Global Carbon Budget 2024 Global Carbon Budget 2024 Global Carbon Budget 2024 Pierre Friedlingstein et al. Pierre Friedlingstein , Michael O'Sullivan , Matthew W. Jones , Robbie M. Andrew , Judith Hauck , Peter Landschützer , Corinne Le Quéré , Hongmei Li , Ingrid T. Luijkx , Are Olsen , Glen P. Peters , Wouter Peters , Julia Pongratz , Clemens Schwingshackl , Stephen Sitch , Josep G. Canadell , Philippe Ciais , Robert B. Jackson , Simone R. Alin , Almut Arneth , Vivek Arora , Nicholas R. Bates , Meike Becker , Nicolas Bellouin , Carla F. Berghoff , Henry C. Bittig , Laurent Bopp , Patricia Cadule , K",
+      "observationPeriod": "2024 budget edition, published March 2025",
+      "verification": "passage-read",
+      "limitation": "Retain edition ID; do not substitute latest homepage values."
+    },
+    {
+      "id": "eloundou-2023-passage",
+      "source": "eloundou-2023",
+      "accessDate": "2026-11-13",
+      "locator": "Visible page text around: around 80%",
+      "quote": "capabilities, integrating both human expertise and GPT-4 classifications. Our findings reveal that around 80% of the U.S. workforce could have at least 10% of their work tasks affected by the introduction of LLMs, while approximately 19% of workers may see at least 50% of their tasks impacted. We do not make predictions about the development or adoption timeline of such LLMs. The projected effects span all wage levels, with higher-income jobs potentially facing greater exposure to LLM capabilities and LLM-powered software. Significantly, these impacts are not restricted to industries with higher recent productivity growth. Our analysis suggests that, with access to an LLM, about 15% of all worker tasks in the US could be completed significantly fast",
+      "observationPeriod": "2023 US task-exposure study",
+      "verification": "passage-read",
+      "limitation": "Exposure does not justify a measured 5% automation baseline."
+    },
+    {
+      "id": "ifr-2024-passage",
+      "source": "ifr-2024",
+      "accessDate": "2026-11-13",
+      "locator": "Visible page text around: 4,281,585",
+      "quote": "Federation of Robotics released Frankfurt, Sep 24, 2024 — The new World Robotics report recorded 4,281,585 units operating in factories worldwide - an increase of 10%. Annual installations exceeded half a million units for the third consecutive year. By region, 70% of all newly deployed robots 2023 were installed in Asia, 17% in Europe and 10% in the Americas. Worldwide operational robots reach 4 million in 2023 © World Robotics 2024 “The new World Robotics statistics show an all-time high in the number of industrial robots automating production around the world,” says Marina Bill, President of the International Federation of Robotics. “The annual installation figure of 541,302 units in 2023 is the second highest in history. It is only 2% low",
+      "observationPeriod": "2023 industrial-robot stock",
+      "verification": "passage-read",
+      "limitation": "Does not cover every type of robot; model carries estimate into 2026."
+    },
+    {
+      "id": "aie-electricidad-2025-passage",
+      "source": "aie-electricidad-2025",
+      "accessDate": "2026-11-13",
+      "locator": "Visible page text around: 4.3%",
+      "quote": "ing electrification, and the expansion of data centres worldwide. Global electricity demand rose by 4.3% in 2024 and is forecast to continue to grow at close to 4% out to 2027. Over the next three years, global electricity consumption is forecast to rise by an unprecedented 3 500 TWh. This corresponds to adding more than the equivalent of a Japan to the world’s electricity consumption each year. This is also a sharp acceleration over the 2.5% increase in 2023, when strong gains in China, India and Southeast Asia were tempered by declines in advanced economies. Emerging and developing economies, led by China, are the main drivers of electricity demand growth Most of the additional demand for electricity through 2027 will come from emerging econo",
+      "observationPeriod": "2024 demand; forecast to 2027",
+      "verification": "passage-read",
+      "limitation": "Not a direct observation of future global demand."
+    },
+    {
+      "id": "forster-2024-passage",
+      "source": "forster-2024",
+      "accessDate": "2026-11-13",
+      "locator": "Visible page text around: 1.43",
+      "quote": "7] °C in 2023 relative to 1850–1900. The best estimate is below the 2023-observed warming record of 1.43 [1.32 to 1.53] °C, indicating a substantial contribution of internal variability in the 2023 record. Human-induced warming has been increasing at a rate that is unprecedented in the instrumental record, reaching 0.26 [0.2–0.4] °C per decade over 2014–2023. This high rate of warming is caused by a combination of net greenhouse gas emissions being at a persistent high of 53±5.4 Gt CO 2 e yr −1 over the last decade, as well as reductions in the strength of aerosol cooling. Despite this, there is evidence that the rate of increase in CO 2 emissions over the last decade has slowed compared to the 2000s, and depending on societal choices, a conti",
+      "observationPeriod": "2023 climate indicators",
+      "verification": "passage-read",
+      "limitation": "Single-year and multiyear temperatures must not be interchanged."
+    },
+    {
+      "id": "ipcc-ar6-wg1-passage",
+      "source": "ipcc-ar6-wg1",
+      "accessDate": "2026-11-13",
+      "locator": "Visible page text around: Climate Change 2021",
+      "quote": "Climate Change 2021: The Physical Science Basis | Climate Change 2021: The Physical Science Basis Menu IPCC Sixth Assessment Report Working Group 1: The Physical Science Basis About Report Resources Download Artwork credits Climate Change 2021: The Physical Science Basis The Working Group I contribution to the Sixth Assessment Report addresses the most up-to-date physical understanding of the climate system and climate change, bringing together the latest advances in climate science. Summary for Policymakers The Summary for Policymakers provides a high-level summary of the current state of the climate, how it is changing, the role of human influence, an",
+      "observationPeriod": "2021 assessment",
+      "verification": "passage-read",
+      "limitation": "Foundational report retained; numerical TCRE table still needs direct verification."
+    },
+    {
+      "id": "sep-copernico-passage",
+      "source": "sep-copernico",
+      "accessDate": "2026-11-13",
+      "locator": "Visible page text around: Aristarchus",
+      "quote": "hagoreans suggested that the earth moved around a central fire (not the sun). Archimedes wrote that Aristarchus of Samos actually proposed that the earth rotated daily and revolved around the sun. [ 3 ] During the European Middle Ages, the Islamic world was the center of astronomical thought and activity. During the ninth century several aspects of Ptolemy’s solar theory were recalculated. Ibn al-Haytham in the tenth-eleventh century wrote a scathing critique of Ptolemy’s work: “Ptolemy assumed an arrangement that cannot exist, and the fact that this arrangement produces in his imagination the motions that belong to the planets does not free him from the error he committed in his assumed arrangement, for the existing motions of the planets cannot be",
+      "observationPeriod": "Historical account, revised 2023",
+      "verification": "passage-read",
+      "limitation": "Historical attribution; not a new scientific finding."
+    },
+    {
+      "id": "vesuvius-2024-passage",
+      "source": "vesuvius-2024",
+      "accessDate": "2026-11-13",
+      "locator": "Visible page text around: February 2024",
+      "quote": "munity Projects Past prize rounds On this page HISTORICAL MILESTONE This announcement is from February 2024. The 2023 Grand Prize it describes has been awarded; see Prizes for what is open today. Vesuvius Challenge 2023 Grand Prize awarded: we can read the first scroll! The 2000-year-old scroll discusses music, food, and how to enjoy life’s pleasures. February 5th, 2024 We’re announcing the winners of the Vesuvius Challenge 2023 Grand Prize. We’ll look at how they did it, what the scrolls say, and what comes next. Join us for a celebration at the Getty Villa Museum in Los Angeles on March 16th, 4pm. More information here . Looking for the original 2023 Grand Prize rules? See the Grand Prize page . Victory ​ Two thousand years ago,",
+      "observationPeriod": "2023 prize announced February 2024",
+      "verification": "passage-read",
+      "limitation": "Original project report; not independent replication."
+    },
+    {
+      "id": "mit-hormigon-2023-passage",
+      "source": "mit-hormigon-2023",
+      "accessDate": "2026-11-13",
+      "locator": "Visible page text around: lime clast",
+      "quote": "concrete (right) collected from the archaeological site of Privernum, Italy (left). A calcium-rich lime clast (in red), which is responsible for the unique self-healing properties in this ancient material, is clearly visible in the lower region of the image. Credits : Courtesy of the researchers ↓ Download Image Caption : A calcium-rich lime clast (in red), which is responsible for the unique self-healing properties in this ancient material, is clearly visible in the lower region of the large-area elemental map (Calcium: red, Silicon: blue, Aluminum: green) of a 2 cm fragment of ancient Roman concrete. Credits : Courtesy of the researchers *Terms of Use: Images for download on the MIT News office website are made available to non-c",
+      "observationPeriod": "January 2023 research news",
+      "verification": "passage-read",
+      "limitation": "Discovery source; original paper access restricted."
+    },
+    {
+      "id": "palimpsesto-arquimedes-passage",
+      "source": "palimpsesto-arquimedes",
+      "accessDate": "2026-11-13",
+      "locator": "Visible page text around: Heiberg visited",
+      "quote": "Cylinder, and that this was a previously unreported manuscript of Archimedes that he needed to see. Heiberg visited the Metochion in 1906, and discovered the truth, that this book contained seven treatises by Archimedes, including the unique source for The Method , The Stomachion, and On Floating Bodies in Greek. Heiberg took photographs of the manuscript (right), and used these extensively for his work on the book. Heiberg incorporated his findings into an entirely new edition of the complete works of Archimedes, which he published between 1910 and 1915. It is not known how the Palimpsest left the Metochion after Heiberg last studied it in 1908. It was auctioned at Christie's in New York on the 28th October 1998, and advertised as from a private Fren",
+      "observationPeriod": "1906 recovery",
+      "verification": "passage-read",
+      "limitation": "Undated project historical account."
+    },
+    {
+      "id": "oms-viruela-passage",
+      "source": "oms-viruela",
+      "accessDate": "2026-11-13",
+      "locator": "Visible page text around: May 1796",
+      "quote": "argued for its use in response to a 1721 outbreak of smallpox in Massachusetts. It wasn’t until May 1796 that the world’s first vaccine was demonstrated, using the same principle as variolation but with a less dangerous viral source, cowpox. Having heard of local beliefs and practices in rural communities that cowpox protected against smallpox, Dr Edward Jenner inoculated 8-year-old James Phipps with matter from a cowpox sore on the hand of Sarah Nelmes, a local milkmaid. Phipps reacted to the cowpox matter and felt unwell for several days but made a full recovery. Two months later, in July 1796, Jenner took matter from a human smallpox sore and inoculated Phipps with it to test his resistance. Phipps remained in perfect health, the first",
+      "observationPeriod": "1796 historical event",
+      "verification": "passage-read",
+      "limitation": "Retain history only; no operational biological procedures reproduced."
+    },
+    {
+      "id": "chm-lovelace-passage",
+      "source": "chm-lovelace",
+      "accessDate": "2026-11-13",
+      "locator": "Visible page text around: In 1843 she published",
+      "quote": "tted her mathematical studies for marriage and motherhood but resumed when domestic duties allowed. In 1843 she published a translation from the French of an article on the Analytical Engine by an Italian engineer, Luigi Menabrea, to which Ada added extensive notes of her own. The Notes included the first published description of a stepwise sequence of operations for solving certain mathematical problems and Ada is often referred to as 'the first programmer'. The collaboration with Babbage was close and biographers debate the extent and originality of Ada's contribution. Perhaps more importantly, the article contained statements by Ada that from a modern perspective are visionary. She speculated that the Engine 'might act upon other things besides number... t",
+      "observationPeriod": "1843 historical event",
+      "verification": "passage-read",
+      "limitation": "Museum account; publication page undated."
+    },
+    {
+      "id": "gaynes-2017-passage",
+      "source": "gaynes-2017",
+      "accessDate": "2026-11-13",
+      "locator": "Visible page text around: In 1928",
+      "quote": "5 years of penicillin’s clinical use, the world can see that its impact was immediate and profound. In 1928, a chance event in Alexander Fleming’s London laboratory changed the course of medicine. However, the purification and first clinical use of penicillin would take more than a decade. Unprecedented United States/Great Britain cooperation to produce penicillin was incredibly successful by 1943. This success overshadowed efforts to produce penicillin during World War II in Europe, particularly in the Netherlands. Information about these efforts, available only in the last 10–15 years, provides new insights into the story of the first antibiotic. Researchers in the Netherlands produced penicillin using their own production methods and marketed i",
+      "observationPeriod": "1928 discovery; clinical use later",
+      "verification": "passage-read",
+      "limitation": "Distinguish discovery from clinical application."
+    },
+    {
+      "id": "sep-turing-passage",
+      "source": "sep-turing",
+      "accessDate": "2026-11-13",
+      "locator": "Visible page text around: Turing (1950)",
+      "quote": "Mon Oct 4, 2021 The phrase “The Turing Test” is most properly used to refer to a proposal made by Turing (1950) as a way of dealing with the question whether machines can think. According to Turing, the question whether machines can think is itself “too meaningless” to deserve discussion (442). However, if we consider the more precise—and somehow related—question whether a digital computer can do well in a certain kind of game that Turing describes (“The Imitation Game”), then—at least in Turing’s eyes—we do have a question that admits of precise discussion. Moreover, as we shall see, Turing himself thought that it would not be too long before we did have digital computers that could “do well” in the Imitation Game. The phrase “The Turing Test” is so",
+      "observationPeriod": "1950 proposal",
+      "verification": "passage-read",
+      "limitation": "Not a validated test of consciousness."
+    },
+    {
+      "id": "dartmouth-1955-passage",
+      "source": "dartmouth-1955",
+      "accessDate": "2026-11-13",
+      "locator": "Visible page text around: summer of 1956",
+      "quote": "1955 We propose that a 2 month, 10 man study of artificial intelligence be carried out during the summer of 1956 at Dartmouth College in Hanover, New Hampshire. The study is to proceed on the basis of the conjecture that every aspect of learning or any other feature of intelligence can in principle be so precisely described that a machine can be made to simulate it. An attempt will be made to find how to make machines use language, form abstractions and concepts, solve kinds of problems now reserved for humans, and improve themselves. We think that a significant advance can be made in one or more of these problems if a carefully selected group of scientists work on it together for a summer. The following are some aspects of the artificial intelligence",
+      "observationPeriod": "1955 proposal for 1956 workshop",
+      "verification": "passage-read",
+      "limitation": "Proposal is not a record of outcomes."
+    },
+    {
+      "id": "unoda-tnp-passage",
+      "source": "unoda-tnp",
+      "accessDate": "2026-11-13",
+      "locator": "Visible page text around: Opened for signature in 1968",
+      "quote": "inding commitment in a multilateral treaty to the goal of disarmament by the nuclear-weapon States. Opened for signature in 1968, the Treaty entered into force in 1970. On 11 May 1995, the Treaty was extended indefinitely. A total of 191 States have joined the Treaty, including the five nuclear-weapon States. More countries have ratified the NPT than any other arms limitation and disarmament agreement, a testament to the Treaty’s significance. The Treaty is regarded as the cornerstone of the global nuclear non-proliferation regime and an essential foundation for the pursuit of nuclear disarmament. It was designed to prevent the spread of nuclear weapons, to further the goals of nuclear disarmament and general and complete disarmament, and to promote cooperation in",
+      "observationPeriod": "1968 signature; 1970 entry into force",
+      "verification": "passage-read",
+      "limitation": "Different legal events; dynamic membership totals not newly audited."
+    },
+    {
+      "id": "nasa-apolo-11-passage",
+      "source": "nasa-apolo-11",
+      "accessDate": "2026-11-13",
+      "locator": "Visible page text around: July 20, 1969",
+      "quote": "ng Neil Armstrong, Michael Collins and Edwin “Buzz” Aldrin for the first crewed… Read the Story July 20, 1969: One Giant Leap For Mankind July 1969. It’s a little over eight years since the flights of Gagarin and Shepard, followed quickly by President Kennedy’s challenge to put a man on the moon before the decade is out. Learn More JOHNSON SPACE CENTER, HOUSTON, TEXAS – With a half-Earth in the background, the Lunar Module ascent stage with Moon-walking astronauts Neil Armstrong and Edwin Aldrin Jr. approaches for a rendezvous with the Apollo Command Module manned by Michael Collins. The Apollo 11 liftoff from the Moon came early, ending a 22-hour stay on the Moon by Armstrong and Aldrin. NASA Multimedia Apollo 11 HD Videos Watch Apollo",
+      "observationPeriod": "July 1969 mission",
+      "verification": "passage-read",
+      "limitation": "Historical mission source retained."
+    },
+    {
+      "id": "imperiale-2025-passage",
+      "source": "imperiale-2025",
+      "accessDate": "2026-11-13",
+      "locator": "Visible page text around: 24–27 February 1975",
+      "quote": "March of this year, we marked the 50th anniversaries of the Asilomar meeting about recombinant DNA (24–27 February 1975) and the date the Biological Weapons Convention (BWC) came into effect (26 March 1975). The Asilomar meeting was organized by individual scientists, while the BWC was an international treaty organized by nation states. Both had in common the restriction of certain activities in biological research with the goal of increasing safety and reducing human suffering. However, they differed in that Asilomar was focused on concerns about possible harm from unknowns in future research, while the BWC sought to prevent the use of known and future agents and toxins in biological warfare. “Asilomar,” which in the parlance of the scientific community ha",
+      "observationPeriod": "1975 events; 2025 retrospective",
+      "verification": "passage-read",
+      "limitation": "Secondary historical context, separate conference from treaty."
+    },
+    {
+      "id": "pnuma-montreal-passage",
+      "source": "pnuma-montreal",
+      "accessDate": "2026-11-13",
+      "locator": "Visible page text around: signed in 1987",
+      "quote": "ludes both the production and consumption of ozone-depleting substances. The landmark agreement was signed in 1987 and entered into force in 1989. The parties to the Protocol meet once a year to make decisions aimed at ensuring the successful implementation of the agreement. These include adjusting or amending the Protocol, which has been done six times since its creation. The most recent amendment, the Kigali Amendment, called for the phase-down of hydrofluorocarbons (HFCs) in 2016. These HFCs were used as replacements for a batch of ozone-depleting substances eliminated by the original Montreal Protocol. Although they do not deplete the ozone layer, they are known to be powerful greenhouse gases and, thus, contributors to climate change. The Montre",
+      "observationPeriod": "1987 signature; 1989 entry into force",
+      "verification": "passage-read",
+      "limitation": "Historical dates; not a quantitative evaluation of effectiveness."
+    },
+    {
+      "id": "ipcc-historia-passage",
+      "source": "ipcc-historia",
+      "accessDate": "2026-11-13",
+      "locator": "Visible page text around: established in 1988",
+      "quote": "Contact About History of the IPCC The Intergovernmental Panel on Climate Change (IPCC) was established in 1988 to provide policymakers with regular scientific assessments on the current state of knowledge about climate change. Overview History Structure Preparing Reports Elections Gender Ad-hoc and Task Groups Future Work Code of Conduct Scholarship Observers Engage Vacancies Contact Learn more The Intergovernmental Panel on Climate Change (IPCC) was established by the United Nations Environment Programme (UNEP) and the World Meteorological Organization (WMO) in 1988. The establishment of the IPCC was endorsed by UN General Assembly in 1988 . Its initial task, as outlined in UN General Assembly Resolution 43/53 of 6 D",
+      "observationPeriod": "1988 founding",
+      "verification": "passage-read",
+      "limitation": "Official historical account."
+    },
+    {
+      "id": "cern-web-passage",
+      "source": "cern-web",
+      "accessDate": "2026-11-13",
+      "locator": "Visible page text around: in 1989 while",
+      "quote": "nçais The birth of the Web The World Wide Web was invented by British scientist Tim Berners-Lee in 1989 while working at CERN Tim Berners-Lee, a British scientist, invented the World Wide Web (WWW) in 1989, while working at CERN. The web was originally conceived and developed to meet the demand for automated information-sharing between scientists in universities and institutes around the world. Screenshot of the recreated page of the first website (Image: CERN). The first website at CERN – and in the world – was dedicated to the World Wide Web project itself and was hosted on Berners-Lee’s NeXT computer. In 2013, CERN launched a project to restore this first ever website : info.cern.ch . On 30 April 1993, CERN put the World Wide Web software",
+      "observationPeriod": "1989 invention; 1993 public release",
+      "verification": "passage-read",
+      "limitation": "Distinguish invention from release."
+    },
+    {
+      "id": "nhgri-genoma-passage",
+      "source": "nhgri-genoma",
+      "accessDate": "2026-11-13",
+      "locator": "Visible page text around: completed in April 2003",
+      "quote": "study all of the DNA (known as a genome) of a select set of organisms. Launched in October 1990 and completed in April 2003, the Human Genome Project’s signature accomplishment – generating the first sequence of the human genome – provided fundamental information about the human blueprint, which has since accelerated the study of human biology and improved the practice of medicine. Learn more about the Human Genome Project below. \"The Human Genome Project is simply a bad idea\" A virtual exhibit exploring the 1990 letter writing campaign to oppose the HGP. Video: 20 Years after the Human Genome Project: G5 Leaders Reunite A virtual discussion with the leaders of the five genome-sequencing centers that provides the untold story on how they got the HGP acr",
+      "observationPeriod": "1990–2003 project",
+      "verification": "passage-read",
+      "limitation": "Project completion is not a claim of a gapless genome."
+    },
+    {
+      "id": "krizhevsky-2012-passage",
+      "source": "krizhevsky-2012",
+      "accessDate": "2026-11-13",
+      "locator": "Visible page text around: We trained a large",
+      "quote": "ral Information Processing Systems 25 (NIPS 2012) Bibtex Metadata Paper Supplemental Abstract We trained a large, deep convolutional neural network to classify the 1.3 million high-resolution images in the LSVRC-2010 ImageNet training set into the 1000 different classes. On the test data, we achieved top-1 and top-5 error rates of 39.7\\% and 18.9\\% which is considerably better than the previous state-of-the-art results. The neural network, which has 60 million parameters and 500,000 neurons, consists of five convolutional layers, some of which are followed by max-pooling layers, and two globally connected layers with a final 1000-way softmax. To make training faster, we used non-saturating neurons and a very efficient GPU implementation of convolutiona",
+      "observationPeriod": "2012 paper; specified ImageNet datasets",
+      "verification": "passage-read",
+      "limitation": "Dataset-specific result, not general intelligence."
+    },
+    {
+      "id": "vaswani-2017-passage",
+      "source": "vaswani-2017",
+      "accessDate": "2026-11-13",
+      "locator": "Visible page text around: We propose a new",
+      "quote": "on. The best performing models also connect the encoder and decoder through an attention mechanism. We propose a new simple network architecture, the Transformer, based solely on attention mechanisms, dispensing with recurrence and convolutions entirely. Experiments on two machine translation tasks show these models to be superior in quality while being more parallelizable and requiring significantly less time to train. Our model achieves 28.4 BLEU on the WMT 2014 English-to-German translation task, improving over the existing best results, including ensembles by over 2 BLEU. On the WMT 2014 English-to-French translation task, our model establishes a new single-model state-of-the-art BLEU score of 41.8 after training for 3.5 days on eight GPUs, a small fra",
+      "observationPeriod": "2017 paper",
+      "verification": "passage-read",
+      "limitation": "Architecture and translation experiments; not current frontier performance."
+    },
+    {
+      "id": "brookings-delhi-passage",
+      "source": "brookings-delhi",
+      "accessDate": "2026-11-13",
+      "locator": "Visible page text around: voluntary, nonbinding",
+      "quote": "ereign” capabilities, and U.S. endorsement of the Delhi Declaration suggests Washington may support voluntary, nonbinding cooperation even as it opposes formal global AI governance structures. India's Prime Minister Narendra Modi delivers a speech at the AI Impact Summit in New Delhi on February 19, 2026. (Photo by Ludovic MARIN / AFP via Getty Images) 9 min read Bluesky Streamline Icon: https://streamlinehq.com Bluesky Print Sections Toggle section navigation Sections Contact Governance Studies Media Office [email protected] 202.540.7724 Print TechTank Read more from TechTank Follow the authors Cameron F. Kerry See More More On International Affairs Sub-Topics Democracy, Conflict, & Governance Diplomacy & Multilateralism U.",
+      "observationPeriod": "March 2026 secondary account",
+      "verification": "passage-read",
+      "limitation": "Not operative legal text."
+    },
+    {
+      "id": "eeuu-orden-14365-passage",
+      "source": "eeuu-orden-14365",
+      "accessDate": "2026-11-13",
+      "locator": "Visible page text around: December 11, 2025",
+      "quote": "EO 14365 EO Notes See: EO 14179 , January 23, 2025 President Donald J. Trump Signing Date December 11, 2025 Reader Aids - Executive Order Details PDF Official Content View printed version (PDF) Official Content Document Details Published Content - Document Details Agency Executive Office of the President Document Citation 90 FR 58499 Document Number 2025-23092 Document Type Presidential Document Presidential Document Type Executive Order EO Citation EO 14365 Pages 58499-58501 (3 pages) Publication Date 12/16/2025 Published Content - Document Details Executive Order Details Reader Aids - Executive Order Details Executive order notes are compiled and maintained by the Office of the Federal Register editors",
+      "observationPeriod": "December 2025 order",
+      "verification": "passage-read",
+      "limitation": "Published instrument; later litigation and effect not checked."
+    },
+    {
+      "id": "hrw-armas-autonomas-2026-passage",
+      "source": "hrw-armas-autonomas-2026",
+      "accessDate": "2026-11-13",
+      "locator": "Visible page text around: 76 states",
+      "quote": "ations of a legally binding instrument, which would govern the use of autonomous weapons. In total, 76 states have now expressed their support for moving to negotiations. As reported by Stop Killer Robots , 70 of these states are High Contracting Parties, meaning they are voting members of the CCW. This makes up a majority of the Convention’s Parties, marking the strongest political momentum yet for a CCW treaty process. The UN’s final report has some positive elements. It includes a characterization of lethal autonomous weapons systems, affirms that human control and judgment are required for compliance with international law, and incorporates restrictions on systems that cannot comply with that law. The final report does not, however, fully",
+      "observationPeriod": "2026 advocacy report before November conference",
+      "verification": "passage-read",
+      "limitation": "Attributed count; conference outcome requires follow-up."
+    }
+  ]
+}

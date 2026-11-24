@@ -1,0 +1,112 @@
+---
+// Un artículo (R2): nivel de evidencia, fechas, temas, notas numeradas, fuentes, cita y apoyo.
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import BotonApoyo from '../BotonApoyo.astro';
+import Citar from '../Citar.astro';
+import FichaCodigoDatos from '../articulo/FichaCodigoDatos.astro';
+import FichaPublicacion from '../articulo/FichaPublicacion.astro';
+import Fuente from '../Fuente.astro';
+import { otroIdioma, type Idioma } from '../../i18n/rutas';
+import { textos } from '../../i18n/ui';
+import { publicacionesDe, urlArticulo, type Articulo } from '../../lib/articulos-coleccion';
+import { DIRECTOR } from '../../lib/studio/config';
+
+interface Props {
+	lang: Idioma;
+	articulo: Articulo;
+}
+
+const { lang, articulo } = Astro.props;
+const { data } = articulo;
+const t = textos(lang).articulo;
+const otro = (await publicacionesDe(otroIdioma(lang))).find((a) => a.data.clave === data.clave);
+if (!otro) throw new Error(`Falta la traducción de ${articulo.id}`);
+// Antes de render(): Nota lee el orden de las fuentes.
+Astro.locals.articulo = { fuentes: data.fuentes.map((f) => f.id), lang };
+const { Content } = await render(articulo);
+const fuentes = new Map((await getCollection('fuentes')).map((f) => [f.id, f.data]));
+const temas = (await getCollection('temas')).filter((tema) => data.temas.includes(tema.id));
+const iso = (d: Date) => d.toISOString().slice(0, 10);
+const jsonld = {
+	'@context': 'https://schema.org',
+	'@type': data.tipoPublicacion === 'working-paper' ? 'ScholarlyArticle' : 'Article',
+	headline: data.titulo,
+	description: data.resumen,
+	inLanguage: lang,
+	datePublished: iso(data.publicado),
+	dateModified: iso(data.revisado),
+	author: { '@type': data.autor === DIRECTOR ? 'Person' : 'Organization', name: data.autor },
+};
+---
+
+<!-- Los borradores se sirven para revisarlos, pero no se indexan. -->
+<Base
+	lang={lang}
+	titulo={data.titulo}
+	descripcion={data.resumen}
+	alternativa={urlArticulo(otro)}
+	jsonld={jsonld}
+	noIndexar={data.estado === 'borrador'}
+>
+	<div class="contenedor">
+		<article class="articulo prosa">
+			<header>
+				<h1>{data.titulo}</h1>
+				<p class="entradilla">{data.resumen}</p>
+				<FichaPublicacion lang={lang} data={data} temas={temas} />
+			</header>
+
+			<FichaCodigoDatos lang={lang} data={data} />
+
+			<Content />
+
+			<section class="articulo-fuentes" aria-labelledby="titulo-fuentes">
+				<h2 id="titulo-fuentes">{t.fuentes}</h2>
+				<ol class="ui">
+					{
+						data.fuentes.map(({ id }, i) => {
+							const f = fuentes.get(id)!;
+							return (
+								<li id={`fuente-${i + 1}`}>
+									<Fuente fuente={f} lang={lang} />
+								</li>
+							);
+						})
+					}
+				</ol>
+			</section>
+
+			<footer class="articulo-pie">
+				<BotonApoyo lang={lang} />
+				<Citar lang={lang} titulo={data.titulo} ruta={urlArticulo(articulo)} clave={data.clave} />
+			</footer>
+		</article>
+	</div>
+</Base>
+
+<style>
+	.articulo {
+		padding-top: clamp(3rem, 2rem + 4vw, 6rem);
+		overflow-wrap: anywhere;
+	}
+
+	.articulo h1 {
+		font-size: var(--t-titulo);
+	}
+
+	.articulo-fuentes ol {
+		font-size: var(--t-mini);
+		overflow-wrap: anywhere;
+	}
+
+	.articulo-fuentes li:target {
+		background: var(--superficie);
+	}
+
+	.articulo-pie {
+		display: grid;
+		gap: 2rem;
+		margin-top: var(--espacio-seccion);
+	}
+</style>

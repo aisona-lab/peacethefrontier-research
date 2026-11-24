@@ -1,0 +1,7 @@
+# El juego vivía en este dominio; ahora está en play.peacethefrontier.com (spec R9.2).
+/js/* https://play.peacethefrontier.com/js/:splat 301
+/css/* https://play.peacethefrontier.com/css/:splat 301
+/img/* https://play.peacethefrontier.com/img/:splat 301
+/api/* https://play.peacethefrontier.com/api/:splat 301
+/juego https://play.peacethefrontier.com/ 301
+/play https://play.peacethefrontier.com/ 301

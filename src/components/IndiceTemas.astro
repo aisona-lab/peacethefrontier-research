@@ -1,0 +1,213 @@
+---
+// Índice de los temas agrupados por banda de escala.
+// "completo": portada y página de temas (con pregunta guía). "compacto": menú de la cabecera.
+import MiniRegla from './MiniRegla.astro';
+import RangoEscala from './RangoEscala.astro';
+import type { Idioma } from '../i18n/rutas';
+import { BANDAS } from '../lib/escala';
+import { temasOrdenados, textosTema, urlTema } from '../lib/temas';
+
+interface Props {
+	lang: Idioma;
+	variante: 'completo' | 'compacto';
+	/** Nivel de encabezado de cada banda; el menú no usa encabezados. */
+	encabezado?: 'h2' | 'h3';
+}
+
+const { lang, variante, encabezado } = Astro.props;
+const Encabezado = encabezado ?? 'p';
+const temas = await temasOrdenados();
+const actual = Astro.url.pathname;
+---
+
+<div class:list={['indice', `indice-${variante}`]}>
+	{
+		BANDAS.map((banda) => {
+			const idTitulo = `${variante}-banda-${banda.id}`;
+			return (
+				<div class="banda" id={variante === 'completo' ? `banda-${banda.id}` : undefined}>
+					<div class="banda-cabecera">
+						<Encabezado id={idTitulo} class="banda-nombre">
+							{banda.nombre[lang]}
+						</Encabezado>
+						<p class="banda-rango ui">
+							<RangoEscala lang={lang} desde={banda.desde} hasta={banda.hasta} />
+						</p>
+						<MiniRegla desde={banda.desde} hasta={banda.hasta} />
+						{variante === 'completo' && <p class="banda-descripcion">{banda.descripcion[lang]}</p>}
+					</div>
+					<ul class="banda-temas" aria-labelledby={idTitulo}>
+						{temas
+							.filter((tema) => tema.data.banda === banda.id)
+							.map((tema) => {
+								const texto = textosTema(tema, lang);
+								const url = urlTema(tema, lang);
+								return (
+									<li>
+										<a
+											class="tema-enlace"
+											href={url}
+											aria-current={actual === url ? 'page' : undefined}
+										>
+											{texto.titulo}
+										</a>
+										{variante === 'completo' && <p class="tema-pregunta">{texto.pregunta}</p>}
+									</li>
+								);
+							})}
+					</ul>
+				</div>
+			);
+		})
+	}
+</div>
+
+<style>
+	.banda-nombre {
+		margin: 0;
+		font-size: var(--t-h3);
+		font-weight: 400;
+		line-height: 1.15;
+	}
+
+	.banda-rango {
+		margin-top: 0.3rem;
+		color: var(--tinta-suave);
+	}
+
+	.banda-cabecera :global(.mini-regla) {
+		margin-top: 0.75rem;
+	}
+
+	.banda-descripcion {
+		margin-top: 1rem;
+		max-width: 22rem;
+		color: var(--tinta-suave);
+	}
+
+	/* Completo: cada banda es una fila de índice, cabecera fija a la izquierda. */
+	.indice-completo .banda {
+		display: grid;
+		gap: 1.5rem 3rem;
+		padding-block: 2.5rem;
+		border-top: 1px solid var(--linea);
+	}
+
+	.indice-completo .banda:target .banda-nombre {
+		text-decoration: underline 2px var(--foco);
+		text-underline-offset: 0.25em;
+	}
+
+	@media (min-width: 56rem) {
+		.indice-completo .banda {
+			grid-template-columns: minmax(15rem, 1fr) 2fr;
+		}
+
+		.indice-completo .banda-cabecera {
+			position: sticky;
+			top: calc(var(--alto-cabecera) + 1.5rem);
+			align-self: start;
+		}
+	}
+
+	.indice-completo .banda-temas li {
+		position: relative;
+		--sangria: clamp(0.75rem, 2vw, 1.25rem);
+		padding: 1rem var(--sangria);
+		margin-inline: calc(-1 * var(--sangria));
+		border-radius: 3px;
+		transition: background-color var(--dur-rapida);
+	}
+
+	.indice-completo .banda-temas li + li {
+		box-shadow: 0 -1px 0 var(--linea);
+	}
+
+	.indice-completo .tema-enlace {
+		font-size: 1.375rem;
+		line-height: 1.25;
+		color: var(--tinta);
+		text-decoration: none;
+	}
+
+	/* Toda la fila es clicable; el enlace conserva un nombre corto. */
+	.indice-completo .tema-enlace::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+	}
+
+	.indice-completo .tema-enlace:focus-visible {
+		outline: none;
+	}
+
+	.indice-completo li:has(.tema-enlace:hover),
+	.indice-completo li:has(.tema-enlace:focus-visible) {
+		background: var(--superficie);
+	}
+
+	.indice-completo li:has(.tema-enlace:hover) .tema-enlace,
+	.indice-completo li:has(.tema-enlace:focus-visible) .tema-enlace {
+		text-decoration: underline 1px;
+		text-underline-offset: 0.2em;
+	}
+
+	.indice-completo li:has(.tema-enlace:focus-visible) {
+		outline: 2px solid var(--foco);
+		outline-offset: -2px;
+	}
+
+	.tema-pregunta {
+		margin-top: 0.3rem;
+		max-width: var(--medida);
+		color: var(--tinta-suave);
+		font-size: 1.0625rem;
+		line-height: 1.45;
+	}
+
+	/* Compacto: columnas por banda dentro del menú. */
+	.indice-compacto {
+		display: grid;
+		gap: 2rem 3rem;
+	}
+
+	@media (min-width: 40rem) {
+		.indice-compacto {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+
+	@media (min-width: 64rem) {
+		.indice-compacto {
+			grid-template-columns: 1fr 1.2fr 1.2fr 0.8fr;
+		}
+	}
+
+	.indice-compacto .banda-nombre {
+		font-size: 1.25rem;
+	}
+
+	.indice-compacto .banda-temas {
+		margin-top: 0.75rem;
+	}
+
+	.indice-compacto .tema-enlace {
+		display: block;
+		padding-block: 0.45rem;
+		color: var(--tinta);
+		font-size: 1.0625rem;
+		line-height: 1.3;
+		text-decoration: none;
+	}
+
+	.indice-compacto .tema-enlace:hover,
+	.indice-compacto .tema-enlace[aria-current='page'] {
+		text-decoration: underline 1px;
+		text-underline-offset: 0.2em;
+	}
+
+	.indice-compacto .tema-enlace[aria-current='page'] {
+		text-decoration-color: var(--foco);
+		text-decoration-thickness: 2px;
+	}
+</style>

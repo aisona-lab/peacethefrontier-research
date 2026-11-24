@@ -1,0 +1,326 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+import Fuente from '../Fuente.astro';
+import Citar from '../Citar.astro';
+import ComparaFuturos from '../futuros/ComparaFuturos.astro';
+import MiniRegla from '../MiniRegla.astro';
+import RangoEscala from '../RangoEscala.astro';
+import { otroIdioma, ruta, rutaArticulo, type Idioma } from '../../i18n/rutas';
+import { textos } from '../../i18n/ui';
+import { articulosDe, papersDe, urlArticulo, slugArticulo } from '../../lib/articulos-coleccion';
+import { PERFIL } from '../../lib/studio/config';
+import { hrefPublico } from '../../lib/studio/espacios';
+import { bandaPorId } from '../../lib/escala';
+import { EVENTOS, textoAnio } from '../../lib/linea/eventos';
+import { textosTema, urlTema, type Tema } from '../../lib/temas';
+
+interface Props {
+	lang: Idioma;
+	tema: Tema;
+	anterior?: Tema;
+	siguiente?: Tema;
+}
+
+const { lang, tema, anterior, siguiente } = Astro.props;
+const t = textos(lang);
+const texto = textosTema(tema, lang);
+const banda = bandaPorId(tema.data.banda);
+const rutaTemas = ruta(lang, 'temas');
+const articulos = (await articulosDe(lang)).filter((a) => a.data.temas.includes(tema.id));
+const papers = (await papersDe(lang)).filter((a) => a.data.temas.includes(tema.id));
+const eventos = EVENTOS.filter((e) => e.temas.includes(tema.id));
+const fuentes = new Map((await getCollection('fuentes')).map((f) => [f.id, f.data]));
+for (const ref of tema.data.fuentes) if (!fuentes.has(ref.id)) throw new Error(`Fuente de tema inexistente: ${ref.id}`);
+---
+
+<Base
+	lang={lang}
+	titulo={texto.titulo}
+	descripcion={texto.pregunta}
+	alternativa={urlTema(tema, otroIdioma(lang))}
+>
+	<article class="contenedor tema">
+		<nav class="ruta ui" aria-label={t.tema.ruta}>
+			<ol>
+				<li><a href={rutaTemas}>{t.nav.temas}</a></li>
+				<li><a href={`${rutaTemas}#banda-${banda.id}`}>{banda.nombre[lang]}</a></li>
+			</ol>
+		</nav>
+
+		<div class="tema-arriba">
+		<header class="tema-cabecera">
+			<h1>{texto.titulo}</h1>
+			<p class="entradilla">{texto.intro}</p>
+			<div class="tema-escala ui">
+				<MiniRegla desde={banda.desde} hasta={banda.hasta} />
+				<p>
+					{`${t.tema.escala(banda.nombre[lang])} `}<RangoEscala lang={lang} desde={banda.desde} hasta={banda.hasta} />
+				</p>
+			</div>
+		</header>
+
+		<section class="tema-seccion" aria-labelledby="titulo-preguntas">
+			<h2 id="titulo-preguntas">{t.tema.preguntas}</h2>
+			<ul class="preguntas">
+				{texto.preguntas.map((p) => <li>{p}</li>)}
+			</ul>
+		</section>
+		</div>
+
+		<section class="tema-seccion tema-futuros" aria-labelledby="titulo-futuros">
+			<h2 id="titulo-futuros">{t.tema.futurosTitulo}</h2>
+			{
+				tema.data.indicadores.length > 0 ? (
+					<>
+						<p class="vacio">{t.tema.futurosTexto}</p>
+						{tema.data.indicadores.map((indicador) => (
+							<ComparaFuturos lang={lang} indicador={indicador} />
+						))}
+					</>
+				) : (
+					<p class="vacio">{t.tema.sinIndicador}</p>
+				)
+			}
+			<p class="ui"><a href={ruta(lang, 'futuros')}>{t.tema.comoFunciona}</a></p>
+		</section>
+
+		<section class="tema-seccion tema-linea" aria-labelledby="titulo-linea">
+			<h2 id="titulo-linea">{t.tema.lineaTitulo}</h2>
+			{
+				eventos.length > 0 ? (
+					<ol class="tema-eventos">
+						{eventos.map((e) => (
+							<li>
+								<span class="tema-evento-anio ui">{textoAnio(e, lang)}</span>
+								<a href={`${ruta(lang, 'linea')}?tema=${tema.id}#e-${e.id}`}>{e.titulo[lang]}</a>
+							</li>
+						))}
+					</ol>
+				) : (
+					<p class="vacio">{t.tema.lineaVacia}</p>
+				)
+			}
+		</section>
+
+		<section class="tema-seccion" aria-labelledby="titulo-articulos">
+			<h2 id="titulo-articulos">{t.tema.articulos}</h2>
+			{
+				articulos.length > 0 ? (
+					<ul class="tema-articulos">
+						{articulos.map((a) => (
+							<li>
+								<a href={rutaArticulo(lang, slugArticulo(a))}>{a.data.titulo}</a>
+								<p>{a.data.resumen}</p>
+							</li>
+						))}
+					</ul>
+				) : (
+					<p class="vacio">
+						{t.tema.vacioAntes} <a href={ruta(lang, 'metodologia')}>{t.tema.vacioEnlace}</a>.
+					</p>
+				)
+			}
+		</section>
+
+		{papers.length > 0 && <section class="tema-seccion" aria-labelledby="titulo-working-papers">
+			<h2 id="titulo-working-papers">Working papers</h2>
+			<ul class="tema-papers">{papers.map((a) => <li><a href={hrefPublico(urlArticulo(a), PERFIL)}>{a.data.titulo}</a><p class="ui">{a.data.serie} {a.data.numero} · v{a.data.version} · {t.articulo.estados[a.data.estado]}</p></li>)}</ul>
+		</section>}
+
+		<div class="tema-seccion">
+			<h2>{t.fuentes.fuentesTema}</h2>
+			{tema.data.revisado && <p class="ui">{t.fuentes.revisionEditorial}: <time datetime={tema.data.revisado.toISOString().slice(0, 10)}>{tema.data.revisado.toISOString().slice(0, 10)}</time>.</p>}
+			{tema.data.verificacion === 'pendiente' && <p>{t.fuentes.temaPendiente}</p>}
+			<ul class="ui">{tema.data.fuentes.map((f) => <li><Fuente fuente={fuentes.get(f.id)!} lang={lang} /></li>)}</ul>
+		</div>
+
+		<div class="tema-seccion">
+			<Citar lang={lang} titulo={texto.titulo} ruta={urlTema(tema, lang)} clave={texto.slug} />
+		</div>
+
+		<nav class="vecinos" aria-label={t.tema.vecinos}>
+			{
+				anterior && (
+					<a class="vecino" rel="prev" href={urlTema(anterior, lang)}>
+						<span class="ui">{t.tema.haciaPequeno}</span>
+						<span class="vecino-titulo">{textosTema(anterior, lang).titulo}</span>
+					</a>
+				)
+			}
+			{
+				siguiente && (
+					<a class="vecino vecino-siguiente" rel="next" href={urlTema(siguiente, lang)}>
+						<span class="ui">{t.tema.haciaGrande}</span>
+						<span class="vecino-titulo">{textosTema(siguiente, lang).titulo}</span>
+					</a>
+				)
+			}
+		</nav>
+	</article>
+</Base>
+
+<style>
+	.tema {
+		padding-top: clamp(2rem, 1rem + 3vw, 4rem);
+	}
+	.tema-papers { display: grid; gap: 1rem; }
+
+	.ruta ol {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.25rem 0.6rem;
+		color: var(--tinta-suave);
+	}
+
+	.ruta li + li::before {
+		content: '/';
+		margin-right: 0.6rem;
+		color: var(--regla);
+	}
+
+	.tema-cabecera {
+		margin-top: clamp(2rem, 1rem + 3vw, 4rem);
+	}
+
+	.tema-cabecera h1 {
+		max-width: 18ch;
+		font-size: var(--t-titulo);
+	}
+
+	.tema-cabecera .entradilla {
+		margin-top: 1.75rem;
+	}
+
+	.tema-escala {
+		display: grid;
+		gap: 0.5rem;
+		margin-top: 2rem;
+		color: var(--tinta-suave);
+	}
+
+	.tema-seccion {
+		max-width: var(--medida);
+		margin-top: clamp(3rem, 2rem + 4vw, 5.5rem);
+	}
+
+	.preguntas {
+		margin-top: 1.5rem;
+		border-top: 1px solid var(--linea);
+	}
+
+	.preguntas li {
+		padding-block: 1rem;
+		border-bottom: 1px solid var(--linea);
+		font-size: 1.3125rem;
+		line-height: 1.4;
+	}
+
+	/* Los cuatro futuros en fila necesitan más que la medida de lectura. */
+	/* En escritorio, las preguntas ocupan la columna derecha junto a la introducción. */
+	@media (min-width: 64rem) {
+		.tema-arriba {
+			display: grid;
+			grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+			gap: 4rem;
+			align-items: start;
+		}
+
+		.tema-arriba > .tema-seccion {
+			margin-top: clamp(2rem, 1rem + 3vw, 4rem);
+		}
+	}
+
+	.tema-eventos {
+		display: grid;
+		gap: 0.6rem;
+		margin: 1rem 0 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.tema-eventos li {
+		display: grid;
+		grid-template-columns: 6.5rem minmax(0, 1fr);
+		gap: 1rem;
+		align-items: baseline;
+	}
+
+	.tema-evento-anio {
+		color: var(--tinta-suave);
+		font-size: var(--t-mini);
+		font-variant-numeric: tabular-nums;
+	}
+
+	.tema-futuros {
+		max-width: none;
+	}
+
+	.tema-futuros > p {
+		max-width: var(--medida);
+		margin-bottom: 2rem;
+	}
+
+	.tema-articulos {
+		display: grid;
+		gap: 1.25rem;
+		margin: 1rem 0 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.tema-articulos a {
+		font-size: var(--t-entradilla);
+	}
+
+	.tema-articulos p {
+		margin-top: 0.25rem;
+		color: var(--tinta-suave);
+	}
+
+	.vacio {
+		margin-top: 1rem;
+		color: var(--tinta-suave);
+	}
+
+	.vecinos {
+		display: grid;
+		gap: 1rem;
+		margin-top: clamp(4rem, 3rem + 4vw, 7rem);
+		padding-top: 1.5rem;
+		border-top: 1.5px solid var(--tinta);
+	}
+
+	@media (min-width: 40rem) {
+		.vecinos {
+			grid-template-columns: 1fr 1fr;
+		}
+
+		.vecino-siguiente {
+			grid-column: 2;
+			text-align: right;
+		}
+	}
+
+	.vecino {
+		display: grid;
+		gap: 0.25rem;
+		padding-block: 0.5rem;
+		color: var(--tinta);
+		text-decoration: none;
+	}
+
+	.vecino .ui {
+		color: var(--tinta-suave);
+	}
+
+	.vecino-titulo {
+		font-size: 1.3125rem;
+		line-height: 1.3;
+	}
+
+	.vecino:hover .vecino-titulo {
+		text-decoration: underline 1px;
+		text-underline-offset: 0.2em;
+	}
+</style>

@@ -1,0 +1,77 @@
+---
+titulo: "Provenance and reproducibility of the futures model"
+resumen: "A reproducible audit of the 2026 baseline: what 432 zero deltas and four hashes establish, and what remains an assumption."
+clave: wp-procedencia-modelo
+tipoPublicacion: working-paper
+serie: PTF-WP
+numero: 1
+version: 0.1.0
+temas: [computo, energia, planeta]
+evidencia: emergente
+autor: Peace The Frontier
+publicado: 2026-11-14
+revisado: 2026-11-14
+fuentes: [aie-energia-ia, aie-ia-2026, epoch-computo, epoch-hardware]
+asistidoPorIA: true
+estado: borrador
+sensible: false
+---
+
+import Nota from '../../../components/articulo/Nota.astro';
+
+**PTF-WP 1 · v0.1.0 · Draft dated 14 November 2026.** The source review used here dates to **13 November 2026**. These dates are not observation periods. This document used AI assistance for drafting, translation and technical checking. Human review of interpretation and translation, and human editorial sign-off, remain pending; no approval is attributed to any person.
+
+## Question
+
+Can another person reconstruct what changed and what stayed the same during the documentation update of the futures model with its 2026 baseline? The specific question is whether provenance clarifications altered parameters or numerical series. Reproducing those results can detect implementation changes; it does not establish that the equations correctly represent the world or that the scenarios are reliable forecasts.
+
+The starting point is the [existing model](/en/futures/) and its [methodology](/en/methodology/). The audit distinguishes observations, estimates, derived transformations, calibrations and assumptions. A reference can contextualise a parameter without determining its value. It also separates the model's baseline year, 2026, from the years of the data carried into that baseline.
+
+## Method
+
+The analysis uses the [provenance and comparison record](https://github.com/aisona-lab/peacethefrontier-atlas/blob/29b775d/docs/research/model-audit.md), rather than reconstructing remembered figures. The comparison point is commit `2a11ae11b754f366a2135e93d87c8cea5ceb33de`. The artifacts are [model-comparison.json](https://github.com/aisona-lab/peacethefrontier-atlas/blob/29b775d/docs/research/model-comparison.json), containing parameters and hashes, and [model-comparison.csv](https://github.com/aisona-lab/peacethefrontier-atlas/blob/29b775d/docs/research/model-comparison.csv), containing before and after values and deltas. The [research README](https://github.com/aisona-lab/peacethefrontier-atlas/blob/29b775d/docs/research/README.md) defines the accompanying review's boundaries.
+
+The technical rerun for this draft loaded historical modules separately through `git show`, alongside the current modules, without modifying model files. Both versions ran `proyectar(presetDe(id), 2026, 200)` for the four existing identifiers: `pausa`, `frontera-en-paz`, `carrera` and `fractura`. The seed was 2026; the 200 runs sampled uniformly within the established parameter ranges. Inputs were not adjusted to obtain agreement.
+
+To repeat the check, compare the 47 parameter records, including central, minimum and maximum values. Then compare 12 indicators, three quantiles and three years—2035, 2050 and 2100—across four futures. Their product is 432 comparisons. Finally export each complete series with `aCsv`, calculate SHA-256 over its UTF-8 string and compare it with the record. Preserve the exporter's formatting, including its precision of six significant digits and final newline; changing these changes the hash even when values are equivalent.
+
+## Findings
+
+### Numerical equality and the scope of the hashes
+
+The rerun matched the 47 records and all 432 ledger rows: every delta was zero. All four complete hashes also matched, before and after. Each CSV contains 1,212 data rows: 12 indicators across 101 years, from 2026 through 2126 inclusive. Its columns remain `anio,indicador,unidad,p10,p50,p90`. These are the recorded and reproduced SHA-256 hashes:
+
+| Existing CSV | SHA-256 |
+| --- | --- |
+| [pausa](/datos/futuros-pausa.csv) | `fe90732d5187523f8a5a45917cd4e7d1c2d93e7ecc461ba732536e07aa0c013b` |
+| [frontera-en-paz](/datos/futuros-frontera-en-paz.csv) | `96425d6f360f0ac397d028437416e34aace5cc72ac36e14e6417a72df8b8bca8` |
+| [carrera](/datos/futuros-carrera.csv) | `2ad7197e7a37bb90beb32a4969af73f6a91ee394edec8bcc9a4f1b671eba3a6a` |
+| [fractura](/datos/futuros-fractura.csv) | `d774b6d15de786296afb5e39f8ebf3579d2e44842b778f1261c4b85b99e753fa` |
+
+The hashes cover exported strings, not every interface text or event. The ledger documents separate corrections: an automation threshold never reached returns `null`, and the population peak is identified at the end of the maximum plateau before decline. The peak correction changes its year from 2086 to 2085 in all four recorded futures, without changing the series. CSV equality therefore does not mean the entire presentation is identical.
+
+### What the IEA and Epoch support
+
+The IEA's 2025 report estimated 415 TWh of data-centre electricity consumption in 2024. This covers all data centres, not AI alone. That historical estimate provides context for the energy magnitude; it does not establish a measurement of 550 TWh in 2026.<Nota f="aie-energia-ia" />
+
+The April 2026 update estimates 485 TWh for 2025 and projects approximately 950 TWh for 2030. The first figure is a retrospective estimate; the second is a conditional projection. Neither automatically replaces the inherited 550 TWh that the model uses as its estimated 2026 baseline for all data centres. The repository does not retain an exact interpolation equation for that baseline.<Nota f="aie-ia-2026" />
+
+Epoch describes historical growth in training compute of approximately four to five times per year, over a window from 2010 to May 2024. It supports a claim about compute in that sample, not a capability observation in November 2026. Turning that trend into model capability requires an additional assumption.<Nota f="epoch-computo" />
+
+Epoch's 2023 hardware study distinguishes computational performance, price-performance and energy efficiency. Performance doubling every 2.3 years corresponds to an annual factor of approximately 1.35; price-performance doubling every 2.1 years measures something different. The denominators should not be interchanged, and none of these trends should be treated as a direct measurement of intelligence.<Nota f="epoch-hardware" />
+
+## Limitations
+
+The comparison verifies computational continuity against a specific historical point. It supplies no scientific validation, independent calibration or measured probabilities of the four futures. The p10–p90 bands represent sensitivity conditional on chosen ranges and distributions. Calibration targets and tolerances are editorial choices; meeting them does not establish the truth of the causal relationships.
+
+Documented structural problems persist: possible double counting when adding data-centre electricity to primary energy, a fixed electricity share, and the absence of local grids or marginal emissions. Connections between compute, capability, automation and employment are stylised. Population does not respond to simulated catastrophes, and its ±10% variation is not an official United Nations interval.
+
+A deterministic run cannot resolve those problems either. A reader should separate three questions: whether the calculations can be repeated, whether each input has adequate provenance, and whether the structure serves their decision. This version answers the first and documents limits to the other two. Resolving them would require an explicit model revision beyond this document's scope.
+
+## Sources
+
+The IEA provides this paper's official sources; Epoch contributes historical analyses with bounded units and periods. The [recorded passages](https://github.com/aisona-lab/peacethefrontier-atlas/blob/29b775d/docs/research/passages.json), consulted on 13 November, allow the scope of citations to be traced. That date does not establish an exhaustive search or complete retractions screening. The existing reviews of [compute, energy and climate](/en/articles/compute-energy-and-climate/) and [AI compute](/en/articles/compute-behind-ai/) develop the context.
+
+## Correction history
+
+**v0.1.0 — 14 November 2026:** first working draft; brings together the existing record and its technical rerun, separates numerical equality from validation, and makes periods and assumptions explicit. No equations or parameters are changed. Source review used: 13 November 2026. AI assistance declared; human review and sign-off pending.

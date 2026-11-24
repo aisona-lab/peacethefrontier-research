@@ -1,0 +1,43 @@
+# build output
+dist/
+# generated types
+.astro/
+
+# dependencies
+node_modules/
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+
+# environment variables
+.env
+.env.production
+
+# macOS-specific files
+.DS_Store
+
+# jetbrains setting folder
+.idea/
+
+# pruebas
+playwright-report/
+test-results/
+.lighthouseci/
+
+# cloudflare
+.wrangler/
+
+# Generated weekly availability reports (uploaded as workflow artifacts).
+/reports/
+
+# Isolated static deployment profiles
+/dist-studio/
+/dist-atlas/
+/dist-research/
+/dist-sim/
+/dist-open/
+/studio-build-report.json

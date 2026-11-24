@@ -1,0 +1,17 @@
+---
+import { getCollection } from 'astro:content';
+import PaginaFuturo from '../../../components/vistas/PaginaFuturo.astro';
+import { CUADRANTES, type CuadranteId } from '../../../lib/futuros/posicion';
+
+export async function getStaticPaths() {
+	const relatos = await getCollection('futuros', (e) => e.id.startsWith('en/'));
+	return relatos.map((e) => {
+		const id = e.id.slice('en/'.length) as CuadranteId;
+		return { params: { slug: CUADRANTES[id].slug.en }, props: { id } };
+	});
+}
+
+const { id } = Astro.props;
+---
+
+<PaginaFuturo lang="en" id={id} />

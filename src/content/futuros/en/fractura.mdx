@@ -1,0 +1,106 @@
+---
+premisa: Without shared rules, the world splits into rival blocs. Recurring crises break supply chains and slow the economy and AI, which advances in fits and starts.
+supuestos:
+  - There are no international agreements and distrust between blocs grows.
+  - Global crises (trade wars, conflicts, supply collapses) break out roughly every fifteen years.
+  - Chips and energy are scarce and used as leverage.
+  - Redistribution is weak.
+ganancias:
+  - Human work is displaced more slowly than in Race.
+  - Local communities and regional economies gain weight and resilience.
+  - The most advanced AI takes longer to arrive, which buys some margin.
+perdidas:
+  - Crises destroy wealth and slow the energy transition.
+  - Inequality and the concentration of power rise decade after decade.
+  - The risk of catastrophe is high because of conflict, not just AI.
+---
+
+import Ambito from '../../../components/futuros/Ambito.astro';
+import Cifra from '../../../components/futuros/Cifra.astro';
+import Parada from '../../../components/futuros/Parada.astro';
+
+<Parada anio={2026} />
+
+<Parada anio={2036}>
+<Ambito id="humanidad">
+A global crisis slows the economy. AI can do only <Cifra v="automatizacion" anio={2036} /> of tasks and employment barely changes (<Cifra v="empleo" anio={2036} />), but prices and insecurity do.
+</Ambito>
+<Ambito id="tecnologia">
+Chips are scarce and supply chains are broken. There are <Cifra v="robots" anio={2036} /> robots, concentrated in the blocs that control the factories.
+</Ambito>
+<Ambito id="ciencia">
+Science fragments: each bloc researches on its own and shares little. The pace of discovery is <Cifra v="ciencia" anio={2036} /> that of 2026.
+</Ambito>
+<Ambito id="planeta">
+The transition stalls: clean energy barely reaches <Cifra v="energiaLimpia" anio={2036} /> and warming is around <Cifra v="temperatura" anio={2036} />.
+</Ambito>
+<Ambito id="politica">
+The world splits into rival blocs. Power concentration rises to <Cifra v="poder" anio={2036} /> and the cumulative risk of catastrophe stands at <Cifra v="riesgo" anio={2036} />.
+</Ambito>
+</Parada>
+
+<Parada anio={2046} />
+
+<Parada anio={2056}>
+<Ambito id="humanidad">
+After another global crisis, inequality keeps rising (<Cifra v="desigualdad" anio={2056} />). <Cifra v="empleo" anio={2056} /> of the working-age population has a job.
+</Ambito>
+<Ambito id="tecnologia">
+The recovery brings robots: there are <Cifra v="robots" anio={2056} /> robots in operation.
+</Ambito>
+<Ambito id="ciencia">
+There is progress, but regional: the pace of science is <Cifra v="ciencia" anio={2056} /> that of 2026 and the blocs do not share results.
+</Ambito>
+<Ambito id="planeta">
+Crises slow the transition: clean energy reaches <Cifra v="energiaLimpia" anio={2056} />. Warming reaches <Cifra v="temperatura" anio={2056} />.
+</Ambito>
+<Ambito id="politica">
+Conflict raises the cumulative risk of catastrophe to <Cifra v="riesgo" anio={2056} />. Power keeps concentrating (<Cifra v="poder" anio={2056} />).
+</Ambito>
+</Parada>
+
+<Parada anio={2066} />
+
+<Parada anio={2076} />
+
+<Parada anio={2086}>
+<Ambito id="humanidad">
+Automation reaches <Cifra v="automatizacion" anio={2086} /> of all tasks, late and unevenly: inequality stands at <Cifra v="desigualdad" anio={2086} />.
+</Ambito>
+<Ambito id="tecnologia">
+There are <Cifra v="robots" anio={2086} /> robots, mostly in the blocs that won the latest crises.
+</Ambito>
+<Ambito id="ciencia">
+Science advances divided into blocs: <Cifra v="ciencia" anio={2086} /> compared with 2026.
+</Ambito>
+<Ambito id="planeta">
+Clean energy arrives late (<Cifra v="energiaLimpia" anio={2086} />) and warming, at <Cifra v="temperatura" anio={2086} />, already exceeds that of the futures with peace.
+</Ambito>
+<Ambito id="politica">
+Power is highly concentrated (<Cifra v="poder" anio={2086} />). The cumulative risk of catastrophe stands at <Cifra v="riesgo" anio={2086} />.
+</Ambito>
+</Parada>
+
+<Parada anio={2096} />
+
+<Parada anio={2106} />
+
+<Parada anio={2116} />
+
+<Parada anio={2126}>
+<Ambito id="humanidad">
+A century later there is less employment (<Cifra v="empleo" anio={2126} />) and more inequality (<Cifra v="desigualdad" anio={2126} />) than in 2026.
+</Ambito>
+<Ambito id="tecnologia">
+AI finally matures, in few hands. There are <Cifra v="robots" anio={2126} /> robots.
+</Ambito>
+<Ambito id="ciencia">
+Science moves more slowly than in the futures with peace: <Cifra v="ciencia" anio={2126} /> compared with 2026.
+</Ambito>
+<Ambito id="planeta">
+Warming reaches <Cifra v="temperatura" anio={2126} />, more than in the futures with peace.
+</Ambito>
+<Ambito id="politica">
+Another global crisis breaks out. The cumulative risk of catastrophe, <Cifra v="riesgo" anio={2126} />, is among the highest of the four futures, driven more by conflict than by AI.
+</Ambito>
+</Parada>

@@ -1,0 +1,7 @@
+---
+import PaginaArticulo from '../../../../components/vistas/PaginaArticulo.astro';
+import { papersDe, slugArticulo } from '../../../../lib/articulos-coleccion';
+export async function getStaticPaths(){return (await papersDe('en')).map(articulo=>({params:{slug:slugArticulo(articulo)},props:{articulo}}));}
+const {articulo}=Astro.props;
+---
+<PaginaArticulo lang="en" articulo={articulo}/>

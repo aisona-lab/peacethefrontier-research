@@ -1,0 +1,57 @@
+---
+// Opinión del autor, separada de la evidencia. El punto de sodio es el mismo que marca "tú" en la regla:
+// en todo el atlas, el sodio señala la mirada humana.
+import type { Idioma } from '../i18n/rutas';
+import { textos } from '../i18n/ui';
+
+interface Props {
+	lang: Idioma;
+}
+
+const { lang } = Astro.props;
+---
+
+<aside class="pdv" aria-label={textos(lang).pdv.etiqueta}>
+	<p class="pdv-etiqueta ui" aria-hidden="true">{textos(lang).pdv.etiqueta}</p>
+	<div class="pdv-cuerpo">
+		<slot />
+	</div>
+</aside>
+
+<style>
+	.pdv {
+		position: relative;
+		margin-block: 2rem;
+		padding: 1.25rem 0 1.25rem 1.75rem;
+		border-left: 2px solid var(--tinta);
+	}
+
+	.pdv::before {
+		content: '';
+		position: absolute;
+		top: 1.45rem;
+		left: -0.5rem;
+		width: 0.9rem;
+		height: 0.9rem;
+		border-radius: 50%;
+		background: var(--sodio);
+		box-shadow:
+			0 0 0 1.5px var(--sobre-sodio),
+			0 0 0 4px var(--fondo);
+	}
+
+	.pdv-etiqueta {
+		margin-bottom: 0.6rem;
+		color: var(--tinta-suave);
+		font-weight: 600;
+	}
+
+	.pdv-cuerpo {
+		font-size: var(--t-entradilla);
+		line-height: 1.55;
+	}
+
+	.pdv-cuerpo :global(p + p) {
+		margin-top: 0.9em;
+	}
+</style>

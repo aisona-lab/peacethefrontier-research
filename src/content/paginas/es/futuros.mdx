@@ -1,0 +1,96 @@
+---
+titulo: Futuros
+descripcion: Cuatro futuros a 100 años según cuánto regulemos y cooperemos y a qué velocidad avance la IA. Un modelo abierto, con sus ecuaciones, fuentes y límites.
+---
+
+import Calibracion from '../../../components/futuros/Calibracion.astro';
+import Ecuaciones from '../../../components/futuros/Ecuaciones.astro';
+import LineaEvidencia from '../../../components/LineaEvidencia.astro';
+import MatrizFuturos from '../../../components/futuros/MatrizFuturos.astro';
+import SenalesHoy from '../../../components/futuros/SenalesHoy.astro';
+import Sensibilidad from '../../../components/futuros/Sensibilidad.astro';
+import TablaParametros from '../../../components/futuros/TablaParametros.astro';
+import Citar from '../../../components/Citar.astro';
+
+El mundo de 2126 depende, sobre todo, de dos decisiones: cuánto regulamos y cooperamos (la paz) y a qué velocidad dejamos avanzar la IA (la frontera). Cruzarlas da cuatro futuros. Ninguno es una predicción y el atlas no defiende ninguno.
+
+<p class="futuro-nivel ui"><LineaEvidencia nivel="escenario-ficcion" /> Escenario, no predicción</p>
+
+<MatrizFuturos lang="es" variante="portada" />
+
+<h2 id="hoy">Dónde estamos hoy</h2>
+
+El punto «Hoy» de la matriz no sale del modelo: la frontera se mide y la paz se estima.
+
+**Frontera.** El cómputo con el que se entrenan los modelos de IA más avanzados crece entre 4 y 5 veces al año, según [Epoch AI](https://epoch.ai/publications/training-compute-of-frontier-ai-models-grows-by-4-5x-per-year). En el modelo, ese ritmo es la frontera máxima, así que hoy estamos en el borde derecho de la matriz.
+
+**Paz.** No hay una medida única de cuánto regulamos y cooperamos. La estimamos con cinco señales públicas, cada una puntuada de 0 (no existe nada) a 1 (lo que supone el futuro de paz máxima: reglas vinculantes y verificadas entre todas las potencias). Las puntuaciones son nuestras y discutibles; por eso cada una es un rango, y la caja discontinua de la matriz lo muestra.
+
+<SenalesHoy lang="es" />
+
+Con estas señales, hoy caemos en el cuadrante de Carrera: IA muy rápida y poca cooperación. No es un destino. La paz es el eje que más depende de decisiones, y varias de estas señales pueden cambiar en meses.
+
+## Cómo funciona el modelo
+
+Un modelo pequeño simula el siglo año a año. Recibe dos números entre 0 y 1, paz y frontera, y calcula doce indicadores: capacidad de la IA, robots, trabajo, desigualdad, población, ritmo de la ciencia, energía, calentamiento, concentración del poder y riesgo. Corre 200 veces con parámetros al azar dentro de sus rangos; por eso cada gráfico muestra una banda, no una línea única.
+
+Cada página de un futuro arranca en su esquina de la matriz, pero puedes mover los controles y ver cómo cambian las cifras.
+
+## Ecuaciones
+
+<Ecuaciones lang="es" />
+
+## Parámetros
+
+Cada parámetro tiene un valor central, un rango y una fuente. Cuando no hay fuente directa, lo marcamos como supuesto.
+
+<TablaParametros lang="es" />
+
+## Qué parámetros pesan más
+
+Para saber qué supuestos deciden las cifras, movemos cada parámetro a su mínimo y a su máximo, de uno en uno, con el resto en su valor central y en el centro de la matriz. Las barras muestran cuánto cambia el indicador; la línea vertical es el valor con todos los parámetros centrales. Este método no recoge las interacciones entre parámetros; las bandas de cada futuro sí, porque mueven todos a la vez.
+
+<Sensibilidad lang="es" indicador="riesgo" anio={2100} />
+
+En el centro de la matriz, lo que más mueve el riesgo es <a href="#parametro-hConf"><i>h</i><sub>conf</sub></a>, el riesgo anual que añade la concentración del poder. Está calibrado con estimaciones de expertos, no medido: es la cifra más discutible del modelo.
+
+<Sensibilidad lang="es" indicador="temperatura" anio={2100} />
+
+<Sensibilidad lang="es" indicador="empleo" anio={2100} />
+
+## Calibración
+
+Antes de publicar, el modelo se contrasta con datos y estimaciones publicadas: cifras oficiales, estadísticas de la industria y estimaciones de expertos (encuestas y torneos de pronósticos). Se comprueba sobre las medianas que ves en cada futuro. Algunos objetivos sirvieron también para ajustar parámetros, así que cumplirlos indica coherencia, no una validación independiente:
+
+<Calibracion lang="es" />
+
+Los umbrales de riesgo (Pausa por debajo del 9 %, Carrera por encima del 20 %) son una elección editorial, anclada en las estimaciones de superpronosticadores y expertos del torneo XPT.
+
+## Límites del modelo
+
+- No predice: enlaza supuestos con consecuencias.
+- La temperatura solo cuenta el CO₂ y no modela la captura de carbono, así que nunca baja; como mucho, se estabiliza.
+- La población no reacciona a las catástrofes: el riesgo se muestra como probabilidad, no se simula el evento.
+- Los índices de poder y desigualdad son ilustrativos.
+- La ONU proyecta hasta 2100; después prolongamos su última tasa.
+- Los costes de la cooperación y la regulación solo están en parte en las ecuaciones: el índice de poder sube con la concentración institucional, pero la pérdida de libertad por la verificación, la burocracia o el freno a la innovación aparecen solo en el relato. Por eso, en casi todos los indicadores, los futuros con más paz salen mejor parados: es una limitación del modelo, no una conclusión.
+- En Fractura, la lentitud de la IA es un supuesto de entrada (frontera baja), no algo que el modelo produzca. Carrera y Fractura comparten el mismo calendario de crisis, porque las crisis solo dependen de la paz y del poder.
+- La base eléctrica de 550 TWh en 2026 es una estimación del modelo entre referencias históricas y escenarios de la AIE, no una medición observada ni exclusiva de IA. Representa todos los centros de datos; el identificador histórico `energiaIA` se conserva en el CSV.
+- La electricidad mundial crece al ritmo de la demanda total de energía (cuota eléctrica constante), lo que subestima la electrificación. La IA no puede usar más de una cuota fija de esa electricidad.
+- Los robots de 2026 solo cuentan los robots industriales de la IFR; los de servicio y los humanoides no tienen una estadística comparable.
+- Muchos parámetros son supuestos y varios están calibrados con los mismos objetivos que luego se comprueban: la tabla dice cuál es cuál.
+- Los valores base de 2026 mezclan observaciones históricas, estimaciones, derivaciones, calibraciones y supuestos. No son todos mediciones de 2026 ni los últimos datos disponibles. La energía usa el método de sustitución de la edición 2024 del Statistical Review (datos de 2023), que cuenta la electricidad limpia por el combustible fósil que sustituye. Desde 2025, el Energy Institute mide la energía por su contenido físico, y con ese método la parte limpia de 2025 es de un 14 %, no un 19 %. Usamos la sustitución porque el modelo compara fuentes por el servicio que dan.
+- La frontera máxima (f = 1) es el ritmo actual de crecimiento del cómputo de entrenamiento: entre 4 y 5 veces al año, según Epoch AI. El modelo no contempla que la IA vaya más rápido que hoy, por ejemplo si acelera su propia investigación, ni cuenta las mejoras de los algoritmos. Por eso hoy está en la frontera máxima y Carrera (f = 0,85) avanza algo más despacio que hoy.
+- Las relaciones entre variables son simples a propósito, para que se puedan leer y discutir.
+
+## Datos y cita
+
+Los datos de cada futuro en su posición base, año a año (mediana y banda del 80 %), en CSV, calculados con el modelo de esta página (semilla 2026, 200 simulaciones). Las columnas son `anio`, `indicador`, `unidad`, `p10`, `p50` y `p90`, con los nombres de los indicadores y las unidades tal como los usa el código: [Pausa](/datos/futuros-pausa.csv), [Frontera en paz](/datos/futuros-frontera-en-paz.csv), [Carrera](/datos/futuros-carrera.csv) y [Fractura](/datos/futuros-fractura.csv).
+
+<Citar lang="es" titulo="Futuros" ruta="/futuros/" clave="futuros" />
+
+## Lectura de las bandas y exportaciones
+
+Las bandas p10–p90 son sensibilidad condicional a los rangos elegidos, no intervalos empíricos de confianza ni probabilidades de los cuatro futuros. Todas las filas CSV son resultados del escenario, incluidas las de 2026; las columnas se conservan para compatibilidad. La tabla de parámetros documenta unidades, periodos y procedencia.
+
+El modelo combina energía primaria y electricidad de centros de datos con límites contables: sumar la segunda puede contar dos veces parte de la demanda. No resuelve redes regionales, emisiones marginales ni toda la incertidumbre climática. Estos límites requieren un rediseño separado; esta actualización conserva las ecuaciones y las cifras.

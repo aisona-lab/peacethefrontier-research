@@ -1,0 +1,298 @@
+@import './tokens.css';
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	-webkit-text-size-adjust: none;
+	text-size-adjust: none;
+	scroll-padding-top: calc(var(--alto-cabecera) + 1rem);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	html {
+		scroll-behavior: smooth;
+	}
+
+	/* Transición entre páginas del mismo sitio: la cabecera se queda y el contenido funde. */
+	@view-transition {
+		navigation: auto;
+	}
+
+	::view-transition-old(root),
+	::view-transition-new(root) {
+		animation-duration: var(--dur);
+	}
+}
+
+body {
+	margin: 0;
+	min-height: 100dvh;
+	display: flex;
+	flex-direction: column;
+	background: var(--fondo);
+	color: var(--tinta);
+	font-family: var(--fuente-serif);
+	font-size: var(--t-base);
+	line-height: 1.6;
+	font-optical-sizing: auto;
+	text-rendering: optimizeLegibility;
+}
+
+/* Grano de papel de cianotipo; en el tema claro --grano es transparente. */
+body::before {
+	content: '';
+	position: fixed;
+	inset: 0;
+	z-index: -1;
+	pointer-events: none;
+	background-color: var(--grano);
+	mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2.2 -1'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+main {
+	flex: 1;
+}
+
+h1,
+h2,
+h3 {
+	margin: 0;
+	font-weight: 400;
+	line-height: 1.1;
+	text-wrap: balance;
+}
+
+h1 {
+	font-weight: 200;
+	letter-spacing: -0.02em;
+}
+
+h2 {
+	font-size: var(--t-h2);
+	font-weight: 200;
+	letter-spacing: -0.01em;
+}
+
+h3 {
+	font-size: var(--t-h3);
+}
+
+p {
+	margin: 0;
+	text-wrap: pretty;
+}
+
+ul,
+ol {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+sup {
+	font-size: 0.68em;
+	line-height: 0;
+	vertical-align: 0.5em;
+}
+
+a {
+	color: var(--enlace);
+	text-decoration-thickness: 1px;
+	text-underline-offset: 0.2em;
+	transition: text-decoration-thickness var(--dur-rapida);
+}
+
+a:hover {
+	text-decoration-thickness: 2px;
+}
+
+:focus-visible {
+	outline: 2px solid var(--foco);
+	outline-offset: 3px;
+	border-radius: 2px;
+}
+
+::selection {
+	background: var(--sodio);
+	color: var(--sobre-sodio);
+}
+
+button {
+	font: inherit;
+	color: inherit;
+}
+
+/* `hidden` gana siempre, aunque un componente declare display (p. ej. .control usa inline-flex). */
+[hidden] {
+	display: none !important;
+}
+
+.contenedor {
+	width: 100%;
+	max-width: calc(var(--ancho) + 2 * var(--margen));
+	margin-inline: auto;
+	padding-inline: var(--margen);
+}
+
+.ui {
+	font-family: var(--fuente-sans);
+	font-size: var(--t-ui);
+	line-height: 1.4;
+	font-variant-numeric: tabular-nums;
+}
+
+.entradilla {
+	font-size: var(--t-entradilla);
+	line-height: 1.55;
+	max-width: var(--medida);
+}
+
+.prosa {
+	max-width: var(--medida);
+}
+
+.prosa > * + * {
+	margin-top: 1.1em;
+}
+
+.prosa h2 {
+	margin-top: 2.2em;
+}
+
+.prosa h2 + * {
+	margin-top: 0.8em;
+}
+
+.prosa ul {
+	padding-left: 1.25rem;
+	list-style: disc;
+}
+
+.prosa li + li {
+	margin-top: 0.6em;
+}
+
+.prosa li::marker {
+	color: var(--regla);
+}
+
+.prosa code {
+	font-family: var(--fuente-sans);
+	font-size: 0.9em;
+	background: var(--superficie);
+	padding: 0.1em 0.35em;
+	border-radius: 2px;
+}
+
+.prosa table {
+	width: 100%;
+	border-collapse: collapse;
+	font-family: var(--fuente-sans);
+	font-size: var(--t-mini);
+	line-height: 1.35;
+	font-variant-numeric: tabular-nums;
+}
+
+.prosa th,
+.prosa td {
+	padding: 0.5rem 0.4rem;
+	border-bottom: 1px solid var(--linea);
+	text-align: left;
+	vertical-align: top;
+}
+
+.prosa th {
+	font-weight: 600;
+	color: var(--tinta);
+}
+
+/* Solo en pantallas de 40rem o más (cabecera). */
+@media (max-width: 39.99rem) {
+	.solo-ancho {
+		display: none !important;
+	}
+}
+
+/* Solo en pantallas de menos de 40rem (el botón del menú dice «Menú» en vez de «Temas»). */
+@media (min-width: 40rem) {
+	.solo-estrecho {
+		display: none !important;
+	}
+}
+
+/* Solo en pantallas de 56rem o más (Línea del tiempo y Artículos en la cabecera; debajo están en el menú). */
+@media (max-width: 55.99rem) {
+	.solo-amplio {
+		display: none !important;
+	}
+}
+
+/* Marca de nivel de evidencia junto a un texto (páginas de futuros). */
+.futuro-nivel {
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+	color: var(--tinta-suave);
+}
+
+.solo-lectores {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip-path: inset(50%);
+	white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-delay: 0ms !important;
+		transition-duration: 0.01ms !important;
+	}
+}
+
+main:focus {
+	outline: none;
+}
+
+/* Impresión: el texto y sus fuentes, sin navegación ni controles. */
+@media print {
+	:root {
+		color-scheme: light;
+	}
+
+	body::before,
+	.cabecera,
+	.pie,
+	.vecinos,
+	.citar-copiar,
+	.orientacion {
+		display: none !important;
+	}
+
+	body {
+		font-size: 11pt;
+	}
+
+	a {
+		color: inherit;
+	}
+
+	.prosa a[href^='http']::after {
+		content: ' (' attr(href) ')';
+		font-size: 0.85em;
+	}
+
+	h1,
+	h2,
+	h3 {
+		break-after: avoid;
+	}
+}
