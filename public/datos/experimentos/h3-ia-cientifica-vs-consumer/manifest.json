@@ -1,0 +1,111 @@
+{
+  "manifest_version": 1,
+  "id": "h3-ia-cientifica-vs-consumer",
+  "hypothesis": "H3",
+  "version": "1.0.0",
+  "release_date": "2026-11-24",
+  "synthetic": true,
+  "title": {
+    "es": "Embudos de descubrimiento con oráculo verificable frente a IA consumer",
+    "en": "Verifiable-oracle discovery funnels versus consumer AI"
+  },
+  "description": {
+    "es": "Ley de Amdahl del descubrimiento y excedente acumulado por PFLOP-día en materiales, triaje preclínico abstracto, clima y física frente a consumo.",
+    "en": "Amdahl discovery bottlenecks and cumulative surplus per PFLOP-day across materials, abstract preclinical triage, climate and physics vs consumer AI."
+  },
+  "code_repository_path": "experiments/h3-ia-cientifica-vs-consumer",
+  "paper_slug": {
+    "es": "ia-cientifica-frente-a-ia-consumo",
+    "en": "scientific-ai-versus-consumer-ai"
+  },
+  "row_count": 1500,
+  "seed_count": 25,
+  "reproduction_command": "npm run experiments:generate",
+  "check_command": "npm run experiments:check",
+  "summary": [
+    {
+      "domain": "materials-discovery",
+      "domain_class": "scientific-oracle",
+      "runs": 25,
+      "mean_pipeline_speedup_2035": 8.249318,
+      "mean_physical_bottleneck_2035": 0.888966,
+      "mean_cumulative_surplus_2035": 871.016294,
+      "mean_surplus_per_pflop_2035": 15.429561
+    },
+    {
+      "domain": "therapeutics-preclinical-triage",
+      "domain_class": "scientific-oracle",
+      "runs": 25,
+      "mean_pipeline_speedup_2035": 4.384113,
+      "mean_physical_bottleneck_2035": 0.936084,
+      "mean_cumulative_surplus_2035": 584.996011,
+      "mean_surplus_per_pflop_2035": 8.882463
+    },
+    {
+      "domain": "climate-earth-systems",
+      "domain_class": "scientific-oracle",
+      "runs": 25,
+      "mean_pipeline_speedup_2035": 9.385173,
+      "mean_physical_bottleneck_2035": 0.817763,
+      "mean_cumulative_surplus_2035": 937.637122,
+      "mean_surplus_per_pflop_2035": 12.859131
+    },
+    {
+      "domain": "fundamental-physics",
+      "domain_class": "scientific-oracle",
+      "runs": 25,
+      "mean_pipeline_speedup_2035": 7.80098,
+      "mean_physical_bottleneck_2035": 0.805118,
+      "mean_cumulative_surplus_2035": 804.559376,
+      "mean_surplus_per_pflop_2035": 13.155982
+    },
+    {
+      "domain": "consumer-assistant",
+      "domain_class": "consumer-attention",
+      "runs": 25,
+      "mean_pipeline_speedup_2035": 13.087247,
+      "mean_physical_bottleneck_2035": 0.826864,
+      "mean_cumulative_surplus_2035": 99.887815,
+      "mean_surplus_per_pflop_2035": 1.179637
+    },
+    {
+      "domain": "digital-media",
+      "domain_class": "consumer-attention",
+      "runs": 25,
+      "mean_pipeline_speedup_2035": 17.578035,
+      "mean_physical_bottleneck_2035": 0.818752,
+      "mean_cumulative_surplus_2035": 73.662464,
+      "mean_surplus_per_pflop_2035": 0.921098
+    }
+  ],
+  "files": [
+    {
+      "role": "dataset",
+      "path": "/datos/experimentos/h3-ia-cientifica-vs-consumer/dataset.csv",
+      "repository_path": "public/datos/experimentos/h3-ia-cientifica-vs-consumer/dataset.csv",
+      "sha256": "f00395b0cd60310544000e365f02db0c45d72b6e02e076e08c8dc5a1a218714e",
+      "bytes": 195326,
+      "license": "CC-BY-4.0"
+    },
+    {
+      "role": "schema",
+      "path": "/datos/experimentos/h3-ia-cientifica-vs-consumer/schema.json",
+      "repository_path": "public/datos/experimentos/h3-ia-cientifica-vs-consumer/schema.json",
+      "sha256": "78e374f519530d3492bb589854887422ecb3baae3aee0fabee6e225fe34e2b52",
+      "bytes": 2719,
+      "license": "CC-BY-4.0"
+    },
+    {
+      "role": "source-code",
+      "path": "/datos/experimentos/h3-ia-cientifica-vs-consumer/model.ts",
+      "repository_path": "public/datos/experimentos/h3-ia-cientifica-vs-consumer/model.ts",
+      "sha256": "b825270206ab3425a8fac6ff381060d507dc75d95218ffd5492d0fb85275de68",
+      "bytes": 7826,
+      "license": "Apache-2.0"
+    }
+  ],
+  "limitations": {
+    "es": "Simulación estructural de embudos agregados (100 % sintética); conforme a R10 no modela moléculas ni protocolos experimentales.",
+    "en": "Aggregate pipeline simulation (100% synthetic); per R10 it models no molecules or experimental protocols."
+  }
+}

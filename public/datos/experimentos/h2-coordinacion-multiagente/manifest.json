@@ -1,0 +1,237 @@
+{
+  "manifest_version": 1,
+  "id": "h2-coordinacion-multiagente",
+  "hypothesis": "H2",
+  "version": "1.0.0",
+  "release_date": "2026-11-24",
+  "synthetic": true,
+  "title": {
+    "es": "Juego multi-agente de coordinación y distorsión de benchmarks",
+    "en": "Multi-agent coordination and benchmark-distortion game"
+  },
+  "description": {
+    "es": "Simulación estratégica de 8 actores en 40 rondas comparando carrera no coordinada, umbrales estáticos y compromisos verificables.",
+    "en": "8-actor, 40-round strategic simulation comparing uncoordinated racing, static benchmark gates and verifiable commitments."
+  },
+  "code_repository_path": "experiments/h2-coordinacion-multiagente",
+  "paper_slug": {
+    "es": "superinteligencia-como-coordinacion",
+    "en": "superintelligence-as-coordination"
+  },
+  "row_count": 500,
+  "seed_count": 25,
+  "reproduction_command": "npm run experiments:generate",
+  "check_command": "npm run experiments:check",
+  "summary": [
+    {
+      "regime": "uncoordinated-race",
+      "capability_multiplier": 1,
+      "scenarios": 25,
+      "mean_safety_margin": 0.205441,
+      "mean_goodhart_divergence": 0.036,
+      "mean_incident_rate": 0.055,
+      "mean_net_welfare": 207.343395
+    },
+    {
+      "regime": "uncoordinated-race",
+      "capability_multiplier": 2,
+      "scenarios": 25,
+      "mean_safety_margin": 0.177232,
+      "mean_goodhart_divergence": 0.045,
+      "mean_incident_rate": 0.1,
+      "mean_net_welfare": 323.954684
+    },
+    {
+      "regime": "uncoordinated-race",
+      "capability_multiplier": 5,
+      "scenarios": 25,
+      "mean_safety_margin": 0.140804,
+      "mean_goodhart_divergence": 0.056897,
+      "mean_incident_rate": 0.19,
+      "mean_net_welfare": 530.255972
+    },
+    {
+      "regime": "uncoordinated-race",
+      "capability_multiplier": 10,
+      "scenarios": 25,
+      "mean_safety_margin": 0.1123,
+      "mean_goodhart_divergence": 0.065897,
+      "mean_incident_rate": 0.28,
+      "mean_net_welfare": 668.323847
+    },
+    {
+      "regime": "uncoordinated-race",
+      "capability_multiplier": 25,
+      "scenarios": 25,
+      "mean_safety_margin": 0.076011,
+      "mean_goodhart_divergence": 0.077795,
+      "mean_incident_rate": 0.492,
+      "mean_net_welfare": 168.676804
+    },
+    {
+      "regime": "static-benchmark-gate",
+      "capability_multiplier": 1,
+      "scenarios": 25,
+      "mean_safety_margin": 0.277203,
+      "mean_goodhart_divergence": 0.035165,
+      "mean_incident_rate": 0.038,
+      "mean_net_welfare": 180.487161
+    },
+    {
+      "regime": "static-benchmark-gate",
+      "capability_multiplier": 2,
+      "scenarios": 25,
+      "mean_safety_margin": 0.244906,
+      "mean_goodhart_divergence": 0.078607,
+      "mean_incident_rate": 0.07,
+      "mean_net_welfare": 265.295338
+    },
+    {
+      "regime": "static-benchmark-gate",
+      "capability_multiplier": 5,
+      "scenarios": 25,
+      "mean_safety_margin": 0.202764,
+      "mean_goodhart_divergence": 0.186482,
+      "mean_incident_rate": 0.133,
+      "mean_net_welfare": 394.743954
+    },
+    {
+      "regime": "static-benchmark-gate",
+      "capability_multiplier": 10,
+      "scenarios": 25,
+      "mean_safety_margin": 0.170382,
+      "mean_goodhart_divergence": 0.314144,
+      "mean_incident_rate": 0.183,
+      "mean_net_welfare": 467.897194
+    },
+    {
+      "regime": "static-benchmark-gate",
+      "capability_multiplier": 25,
+      "scenarios": 25,
+      "mean_safety_margin": 0.12831,
+      "mean_goodhart_divergence": 0.518818,
+      "mean_incident_rate": 0.292,
+      "mean_net_welfare": 147.81533
+    },
+    {
+      "regime": "verifiable-audit-commitment",
+      "capability_multiplier": 1,
+      "scenarios": 25,
+      "mean_safety_margin": 0.451454,
+      "mean_goodhart_divergence": 0.0054,
+      "mean_incident_rate": 0.011,
+      "mean_net_welfare": 160.953038
+    },
+    {
+      "regime": "verifiable-audit-commitment",
+      "capability_multiplier": 2,
+      "scenarios": 25,
+      "mean_safety_margin": 0.463624,
+      "mean_goodhart_divergence": 0.00486,
+      "mean_incident_rate": 0.012,
+      "mean_net_welfare": 260.27247
+    },
+    {
+      "regime": "verifiable-audit-commitment",
+      "capability_multiplier": 5,
+      "scenarios": 25,
+      "mean_safety_margin": 0.479657,
+      "mean_goodhart_divergence": 0.004146,
+      "mean_incident_rate": 0.02,
+      "mean_net_welfare": 483.496699
+    },
+    {
+      "regime": "verifiable-audit-commitment",
+      "capability_multiplier": 10,
+      "scenarios": 25,
+      "mean_safety_margin": 0.491269,
+      "mean_goodhart_divergence": 0.003606,
+      "mean_incident_rate": 0.022,
+      "mean_net_welfare": 776.037431
+    },
+    {
+      "regime": "verifiable-audit-commitment",
+      "capability_multiplier": 25,
+      "scenarios": 25,
+      "mean_safety_margin": 0.507297,
+      "mean_goodhart_divergence": 0.002892,
+      "mean_incident_rate": 0.048,
+      "mean_net_welfare": 1336.34953
+    },
+    {
+      "regime": "adaptive-interoperability",
+      "capability_multiplier": 1,
+      "scenarios": 25,
+      "mean_safety_margin": 0.494142,
+      "mean_goodhart_divergence": 0.003888,
+      "mean_incident_rate": 0.003,
+      "mean_net_welfare": 155.131169
+    },
+    {
+      "regime": "adaptive-interoperability",
+      "capability_multiplier": 2,
+      "scenarios": 25,
+      "mean_safety_margin": 0.532354,
+      "mean_goodhart_divergence": 0.00288,
+      "mean_incident_rate": 0.008,
+      "mean_net_welfare": 236.838884
+    },
+    {
+      "regime": "adaptive-interoperability",
+      "capability_multiplier": 5,
+      "scenarios": 25,
+      "mean_safety_margin": 0.582535,
+      "mean_goodhart_divergence": 0.001768,
+      "mean_incident_rate": 0.005,
+      "mean_net_welfare": 417.070336
+    },
+    {
+      "regime": "adaptive-interoperability",
+      "capability_multiplier": 10,
+      "scenarios": 25,
+      "mean_safety_margin": 0.620517,
+      "mean_goodhart_divergence": 0.001095,
+      "mean_incident_rate": 0.002,
+      "mean_net_welfare": 636.650668
+    },
+    {
+      "regime": "adaptive-interoperability",
+      "capability_multiplier": 25,
+      "scenarios": 25,
+      "mean_safety_margin": 0.670557,
+      "mean_goodhart_divergence": 0.000425,
+      "mean_incident_rate": 0.006,
+      "mean_net_welfare": 1068.134464
+    }
+  ],
+  "files": [
+    {
+      "role": "dataset",
+      "path": "/datos/experimentos/h2-coordinacion-multiagente/dataset.csv",
+      "repository_path": "public/datos/experimentos/h2-coordinacion-multiagente/dataset.csv",
+      "sha256": "155a8a8da4f777f206be78b943d07815ed55c9b40e48ca21edea8c0393a06e69",
+      "bytes": 56449,
+      "license": "CC-BY-4.0"
+    },
+    {
+      "role": "schema",
+      "path": "/datos/experimentos/h2-coordinacion-multiagente/schema.json",
+      "repository_path": "public/datos/experimentos/h2-coordinacion-multiagente/schema.json",
+      "sha256": "43e63243b7c2457849aaf3ac3ec12b9c49a16f4d9f69c5f16bf62c125128cc13",
+      "bytes": 2746,
+      "license": "CC-BY-4.0"
+    },
+    {
+      "role": "source-code",
+      "path": "/datos/experimentos/h2-coordinacion-multiagente/model.ts",
+      "repository_path": "public/datos/experimentos/h2-coordinacion-multiagente/model.ts",
+      "sha256": "1a8016339a25e5501d02293b390833b41aca5a8b5788773a0b74ee478e3f81c8",
+      "bytes": 7592,
+      "license": "Apache-2.0"
+    }
+  ],
+  "limitations": {
+    "es": "Juego estilizado con funciones de pago explícitas (100 % sintético); ilustra mecanismos de incentivos y Goodhart, no predice tratados reales.",
+    "en": "Stylized game with explicit payoff functions (100% synthetic); illustrates incentive and Goodhart mechanisms rather than predicting real treaties."
+  }
+}

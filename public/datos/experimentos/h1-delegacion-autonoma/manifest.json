@@ -1,0 +1,207 @@
+{
+  "manifest_version": 1,
+  "id": "h1-delegacion-autonoma",
+  "hypothesis": "H1",
+  "version": "1.0.0",
+  "release_date": "2026-11-24",
+  "synthetic": true,
+  "title": {
+    "es": "Economía de delegación y fiabilidad compuesta (2026–2036)",
+    "en": "Delegation economics and compound reliability (2026–2036)"
+  },
+  "description": {
+    "es": "Umbrales de transición de copiloto a infraestructura autónoma en ciencia, educación, gobierno, gestión sanitaria y red eléctrica.",
+    "en": "Copilot-to-autonomous infrastructure crossover thresholds across science, education, government, health admin and grid dispatch."
+  },
+  "code_repository_path": "experiments/h1-delegacion-autonoma",
+  "paper_slug": {
+    "es": "de-copilotos-a-agentes-autonomos",
+    "en": "from-copilots-to-autonomous-agents"
+  },
+  "row_count": 3300,
+  "seed_count": 20,
+  "reproduction_command": "npm run experiments:generate",
+  "check_command": "npm run experiments:check",
+  "summary": [
+    {
+      "regime": "conservative",
+      "sector": "computational-science",
+      "runs": 20,
+      "adoption_share_2031": 0.7,
+      "adoption_share_2036": 1,
+      "median_crossover_year": 2031,
+      "mean_net_saving_2036": 54.752238,
+      "mean_tail_risk_2036": 0.011476
+    },
+    {
+      "regime": "conservative",
+      "sector": "education-tutoring",
+      "runs": 20,
+      "adoption_share_2031": 0.65,
+      "adoption_share_2036": 1,
+      "median_crossover_year": 2031,
+      "mean_net_saving_2036": 30.557837,
+      "mean_tail_risk_2036": 0.014516
+    },
+    {
+      "regime": "conservative",
+      "sector": "public-administration",
+      "runs": 20,
+      "adoption_share_2031": 0,
+      "adoption_share_2036": 1,
+      "median_crossover_year": 2034,
+      "mean_net_saving_2036": 43.782336,
+      "mean_tail_risk_2036": 0.013845
+    },
+    {
+      "regime": "conservative",
+      "sector": "health-workflow-admin",
+      "runs": 20,
+      "adoption_share_2031": 0,
+      "adoption_share_2036": 0,
+      "median_crossover_year": null,
+      "mean_net_saving_2036": 77.289219,
+      "mean_tail_risk_2036": 0.020818
+    },
+    {
+      "regime": "conservative",
+      "sector": "energy-grid-dispatch",
+      "runs": 20,
+      "adoption_share_2031": 0,
+      "adoption_share_2036": 0,
+      "median_crossover_year": null,
+      "mean_net_saving_2036": 95.840564,
+      "mean_tail_risk_2036": 0.020761
+    },
+    {
+      "regime": "baseline-coevolution",
+      "sector": "computational-science",
+      "runs": 20,
+      "adoption_share_2031": 1,
+      "adoption_share_2036": 1,
+      "median_crossover_year": 2028,
+      "mean_net_saving_2036": 55.682774,
+      "mean_tail_risk_2036": 0.001125
+    },
+    {
+      "regime": "baseline-coevolution",
+      "sector": "education-tutoring",
+      "runs": 20,
+      "adoption_share_2031": 1,
+      "adoption_share_2036": 1,
+      "median_crossover_year": 2028,
+      "mean_net_saving_2036": 31.21297,
+      "mean_tail_risk_2036": 0.001399
+    },
+    {
+      "regime": "baseline-coevolution",
+      "sector": "public-administration",
+      "runs": 20,
+      "adoption_share_2031": 1,
+      "adoption_share_2036": 1,
+      "median_crossover_year": 2029,
+      "mean_net_saving_2036": 45.027012,
+      "mean_tail_risk_2036": 0.001327
+    },
+    {
+      "regime": "baseline-coevolution",
+      "sector": "health-workflow-admin",
+      "runs": 20,
+      "adoption_share_2031": 0,
+      "adoption_share_2036": 1,
+      "median_crossover_year": 2033,
+      "mean_net_saving_2036": 82.241782,
+      "mean_tail_risk_2036": 0.002003
+    },
+    {
+      "regime": "baseline-coevolution",
+      "sector": "energy-grid-dispatch",
+      "runs": 20,
+      "adoption_share_2031": 0,
+      "adoption_share_2036": 1,
+      "median_crossover_year": 2034,
+      "mean_net_saving_2036": 102.493227,
+      "mean_tail_risk_2036": 0.001988
+    },
+    {
+      "regime": "verifier-infrastructure",
+      "sector": "computational-science",
+      "runs": 20,
+      "adoption_share_2031": 1,
+      "adoption_share_2036": 1,
+      "median_crossover_year": 2028,
+      "mean_net_saving_2036": 55.722305,
+      "mean_tail_risk_2036": 0.000112
+    },
+    {
+      "regime": "verifier-infrastructure",
+      "sector": "education-tutoring",
+      "runs": 20,
+      "adoption_share_2031": 1,
+      "adoption_share_2036": 1,
+      "median_crossover_year": 2028,
+      "mean_net_saving_2036": 31.248253,
+      "mean_tail_risk_2036": 0.000139
+    },
+    {
+      "regime": "verifier-infrastructure",
+      "sector": "public-administration",
+      "runs": 20,
+      "adoption_share_2031": 1,
+      "adoption_share_2036": 1,
+      "median_crossover_year": 2028,
+      "mean_net_saving_2036": 45.096338,
+      "mean_tail_risk_2036": 0.000132
+    },
+    {
+      "regime": "verifier-infrastructure",
+      "sector": "health-workflow-admin",
+      "runs": 20,
+      "adoption_share_2031": 1,
+      "adoption_share_2036": 1,
+      "median_crossover_year": 2030,
+      "mean_net_saving_2036": 82.595508,
+      "mean_tail_risk_2036": 0.000199
+    },
+    {
+      "regime": "verifier-infrastructure",
+      "sector": "energy-grid-dispatch",
+      "runs": 20,
+      "adoption_share_2031": 1,
+      "adoption_share_2036": 1,
+      "median_crossover_year": 2031,
+      "mean_net_saving_2036": 102.962331,
+      "mean_tail_risk_2036": 0.000197
+    }
+  ],
+  "files": [
+    {
+      "role": "dataset",
+      "path": "/datos/experimentos/h1-delegacion-autonoma/dataset.csv",
+      "repository_path": "public/datos/experimentos/h1-delegacion-autonoma/dataset.csv",
+      "sha256": "7c5f61abc34a5e895f0fe4ccdf4768f471cf79f7378e80683987c22a0b8ad679",
+      "bytes": 428634,
+      "license": "CC-BY-4.0"
+    },
+    {
+      "role": "schema",
+      "path": "/datos/experimentos/h1-delegacion-autonoma/schema.json",
+      "repository_path": "public/datos/experimentos/h1-delegacion-autonoma/schema.json",
+      "sha256": "be780e74a2f4aa177be239864ec0e3b89914d6ba62bfd2272b4586556dc255d7",
+      "bytes": 2814,
+      "license": "CC-BY-4.0"
+    },
+    {
+      "role": "source-code",
+      "path": "/datos/experimentos/h1-delegacion-autonoma/model.ts",
+      "repository_path": "public/datos/experimentos/h1-delegacion-autonoma/model.ts",
+      "sha256": "512c692eceab96fc0f2fb64280b7a49c1864c482115eb6fedda9bc55d3331f1d",
+      "bytes": 9091,
+      "license": "Apache-2.0"
+    }
+  ],
+  "limitations": {
+    "es": "Modelo estructural parametrizado (100 % sintético); no es un ensayo clínico ni una medición observacional de plantillas laborales reales.",
+    "en": "Parameterized structural model (100% synthetic); not a clinical trial or an observational measurement of real workforces."
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "h2-coordinacion-multiagente synthetic dataset v1.0.0",
+  "type": "object",
+  "required": [
+    "synthetic",
+    "dataset_version",
+    "seed",
+    "regime",
+    "capability_multiplier",
+    "actors",
+    "rounds",
+    "mean_safety_margin",
+    "mean_proxy_gaming",
+    "benchmark_score",
+    "goodhart_divergence",
+    "systemic_incident_rate",
+    "gross_output",
+    "externality_damage",
+    "net_social_welfare"
+  ],
+  "properties": {
+    "synthetic": {
+      "description": "Column synthetic of reproducible experiment h2-coordinacion-multiagente (synthetic=true)."
+    },
+    "dataset_version": {
+      "description": "Column dataset_version of reproducible experiment h2-coordinacion-multiagente (synthetic=true)."
+    },
+    "seed": {
+      "description": "Column seed of reproducible experiment h2-coordinacion-multiagente (synthetic=true)."
+    },
+    "regime": {
+      "description": "Column regime of reproducible experiment h2-coordinacion-multiagente (synthetic=true)."
+    },
+    "capability_multiplier": {
+      "description": "Column capability_multiplier of reproducible experiment h2-coordinacion-multiagente (synthetic=true)."
+    },
+    "actors": {
+      "description": "Column actors of reproducible experiment h2-coordinacion-multiagente (synthetic=true)."
+    },
+    "rounds": {
+      "description": "Column rounds of reproducible experiment h2-coordinacion-multiagente (synthetic=true)."
+    },
+    "mean_safety_margin": {
+      "description": "Column mean_safety_margin of reproducible experiment h2-coordinacion-multiagente (synthetic=true)."
+    },
+    "mean_proxy_gaming": {
+      "description": "Column mean_proxy_gaming of reproducible experiment h2-coordinacion-multiagente (synthetic=true)."
+    },
+    "benchmark_score": {
+      "description": "Column benchmark_score of reproducible experiment h2-coordinacion-multiagente (synthetic=true)."
+    },
+    "goodhart_divergence": {
+      "description": "Column goodhart_divergence of reproducible experiment h2-coordinacion-multiagente (synthetic=true)."
+    },
+    "systemic_incident_rate": {
+      "description": "Column systemic_incident_rate of reproducible experiment h2-coordinacion-multiagente (synthetic=true)."
+    },
+    "gross_output": {
+      "description": "Column gross_output of reproducible experiment h2-coordinacion-multiagente (synthetic=true)."
+    },
+    "externality_damage": {
+      "description": "Column externality_damage of reproducible experiment h2-coordinacion-multiagente (synthetic=true)."
+    },
+    "net_social_welfare": {
+      "description": "Column net_social_welfare of reproducible experiment h2-coordinacion-multiagente (synthetic=true)."
+    }
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "h3-ia-cientifica-vs-consumer synthetic dataset v1.0.0",
+  "type": "object",
+  "required": [
+    "synthetic",
+    "dataset_version",
+    "seed",
+    "domain",
+    "domain_class",
+    "year",
+    "in_silico_speedup",
+    "physical_validation_speedup",
+    "amdahl_pipeline_speedup",
+    "bottleneck_share_physical",
+    "validated_output_units",
+    "annual_structural_surplus",
+    "cumulative_surplus",
+    "cumulative_surplus_per_pflop"
+  ],
+  "properties": {
+    "synthetic": {
+      "description": "Column synthetic of reproducible experiment h3-ia-cientifica-vs-consumer (synthetic=true)."
+    },
+    "dataset_version": {
+      "description": "Column dataset_version of reproducible experiment h3-ia-cientifica-vs-consumer (synthetic=true)."
+    },
+    "seed": {
+      "description": "Column seed of reproducible experiment h3-ia-cientifica-vs-consumer (synthetic=true)."
+    },
+    "domain": {
+      "description": "Column domain of reproducible experiment h3-ia-cientifica-vs-consumer (synthetic=true)."
+    },
+    "domain_class": {
+      "description": "Column domain_class of reproducible experiment h3-ia-cientifica-vs-consumer (synthetic=true)."
+    },
+    "year": {
+      "description": "Column year of reproducible experiment h3-ia-cientifica-vs-consumer (synthetic=true)."
+    },
+    "in_silico_speedup": {
+      "description": "Column in_silico_speedup of reproducible experiment h3-ia-cientifica-vs-consumer (synthetic=true)."
+    },
+    "physical_validation_speedup": {
+      "description": "Column physical_validation_speedup of reproducible experiment h3-ia-cientifica-vs-consumer (synthetic=true)."
+    },
+    "amdahl_pipeline_speedup": {
+      "description": "Column amdahl_pipeline_speedup of reproducible experiment h3-ia-cientifica-vs-consumer (synthetic=true)."
+    },
+    "bottleneck_share_physical": {
+      "description": "Column bottleneck_share_physical of reproducible experiment h3-ia-cientifica-vs-consumer (synthetic=true)."
+    },
+    "validated_output_units": {
+      "description": "Column validated_output_units of reproducible experiment h3-ia-cientifica-vs-consumer (synthetic=true)."
+    },
+    "annual_structural_surplus": {
+      "description": "Column annual_structural_surplus of reproducible experiment h3-ia-cientifica-vs-consumer (synthetic=true)."
+    },
+    "cumulative_surplus": {
+      "description": "Column cumulative_surplus of reproducible experiment h3-ia-cientifica-vs-consumer (synthetic=true)."
+    },
+    "cumulative_surplus_per_pflop": {
+      "description": "Column cumulative_surplus_per_pflop of reproducible experiment h3-ia-cientifica-vs-consumer (synthetic=true)."
+    }
+  }
+}

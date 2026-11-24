@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "h1-delegacion-autonoma synthetic dataset v1.0.0",
+  "type": "object",
+  "required": [
+    "synthetic",
+    "dataset_version",
+    "seed",
+    "regime",
+    "sector",
+    "year",
+    "steps",
+    "step_reliability",
+    "chain_reliability",
+    "verifier_detection_rate",
+    "undetected_tail_risk",
+    "copilot_cost",
+    "agent_expected_cost",
+    "net_cost_saving",
+    "passes_safety_threshold",
+    "autonomous_dominates"
+  ],
+  "properties": {
+    "synthetic": {
+      "description": "Column synthetic of reproducible experiment h1-delegacion-autonoma (synthetic=true)."
+    },
+    "dataset_version": {
+      "description": "Column dataset_version of reproducible experiment h1-delegacion-autonoma (synthetic=true)."
+    },
+    "seed": {
+      "description": "Column seed of reproducible experiment h1-delegacion-autonoma (synthetic=true)."
+    },
+    "regime": {
+      "description": "Column regime of reproducible experiment h1-delegacion-autonoma (synthetic=true)."
+    },
+    "sector": {
+      "description": "Column sector of reproducible experiment h1-delegacion-autonoma (synthetic=true)."
+    },
+    "year": {
+      "description": "Column year of reproducible experiment h1-delegacion-autonoma (synthetic=true)."
+    },
+    "steps": {
+      "description": "Column steps of reproducible experiment h1-delegacion-autonoma (synthetic=true)."
+    },
+    "step_reliability": {
+      "description": "Column step_reliability of reproducible experiment h1-delegacion-autonoma (synthetic=true)."
+    },
+    "chain_reliability": {
+      "description": "Column chain_reliability of reproducible experiment h1-delegacion-autonoma (synthetic=true)."
+    },
+    "verifier_detection_rate": {
+      "description": "Column verifier_detection_rate of reproducible experiment h1-delegacion-autonoma (synthetic=true)."
+    },
+    "undetected_tail_risk": {
+      "description": "Column undetected_tail_risk of reproducible experiment h1-delegacion-autonoma (synthetic=true)."
+    },
+    "copilot_cost": {
+      "description": "Column copilot_cost of reproducible experiment h1-delegacion-autonoma (synthetic=true)."
+    },
+    "agent_expected_cost": {
+      "description": "Column agent_expected_cost of reproducible experiment h1-delegacion-autonoma (synthetic=true)."
+    },
+    "net_cost_saving": {
+      "description": "Column net_cost_saving of reproducible experiment h1-delegacion-autonoma (synthetic=true)."
+    },
+    "passes_safety_threshold": {
+      "description": "Column passes_safety_threshold of reproducible experiment h1-delegacion-autonoma (synthetic=true)."
+    },
+    "autonomous_dominates": {
+      "description": "Column autonomous_dominates of reproducible experiment h1-delegacion-autonoma (synthetic=true)."
+    }
+  }
+}
