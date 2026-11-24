@@ -49,7 +49,7 @@ const rssHref = lang === 'en' ? '/en/rss.xml' : '/rss.xml';
 								{lang === 'es' ? 'Repositorio limpio en GitHub' : 'Clean GitHub repository'} →
 							</a>
 							<a href={ruta(lang, 'metodologia')}>{t.metodologia}</a>
-							<a href={rssHref}>RSS</a>
+							<a href={rssHref}>{lang === 'es' ? 'Feed RSS' : 'RSS feed'}</a>
 						</nav>
 					</>
 				)
@@ -219,8 +219,14 @@ const rssHref = lang === 'en' ? '/en/rss.xml' : '/rss.xml';
 		display: flex;
 		flex-wrap: wrap;
 		align-items: center;
-		gap: 0.75rem 1.5rem;
+		gap: 0.65rem 1.5rem;
 		margin-top: 1.75rem;
+	}
+
+	.studio-acciones a {
+		display: inline-block;
+		padding-block: 0.25rem;
+		min-height: 1.5rem;
 	}
 
 	.accion-destacada {
