@@ -9,6 +9,7 @@ const idiomas = [
 for (const idioma of idiomas) {
 	test(`${idioma.lang}: cuatro investigaciones antes del atlas; artículos, temas y traducciones navegables`, async ({ page }) => {
 		test.setTimeout(60_000);
+		await page.emulateMedia({ reducedMotion: 'reduce' });
 		await page.setViewportSize({ width: 1280, height: 900 });
 		await page.goto(idioma.inicio);
 		const destacados = page.locator('main').getByRole('region', { name: idioma.titulo });
