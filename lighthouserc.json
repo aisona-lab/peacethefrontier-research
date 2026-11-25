@@ -19,7 +19,7 @@
         "http://localhost/research/working-papers/procedencia-y-reproducibilidad-del-modelo/",
         "http://localhost/research/working-papers/de-copilotos-a-agentes-autonomos/"
       ],
-      "numberOfRuns": 3,
+      "numberOfRuns": 1,
       "staticDistDir": "./dist"
     },
     "assert": {
