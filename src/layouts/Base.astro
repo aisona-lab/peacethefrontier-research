@@ -83,9 +83,13 @@ Astro.csp?.insertScriptHash(`sha256-${createHash('sha256').update(SCRIPT_TEMA).d
 			preload={[
 				{ weight: 200, style: 'normal' },
 				{ weight: 400, style: 'normal' },
+				{ weight: 600, style: 'normal' },
 			]}
 		/>
-		<Font cssVariable="--fuente-sans" />
+		<Font
+			cssVariable="--fuente-sans"
+			preload={[{ weight: 400, style: 'normal' }]}
+		/>
 		{
 			jsonld && (
 				<script
