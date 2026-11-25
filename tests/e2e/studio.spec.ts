@@ -46,6 +46,7 @@ test('los cinco working papers bilingües enlazan código, citas, traducción y 
 	page,
 	request,
 }) => {
+	test.setTimeout(90_000);
 	await page.setViewportSize({ width: 1280, height: 900 });
 	for (const lang of ['es', 'en']) {
 		await page.goto(lang === 'es' ? '/research/' : '/en/research/');

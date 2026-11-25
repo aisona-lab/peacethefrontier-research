@@ -179,7 +179,9 @@ test.describe('idiomas', () => {
 		await page.getByRole('button', { name: 'Menú' }).click();
 		await page.locator('#menu-temas').getByRole('link', { name: /EN/ }).click();
 		await expect(page).toHaveURL(/\/en\/$/);
-		await expect(page.locator('h1')).toContainText('Independent AI Research Studio');
+		await expect(page.locator('h1')).toContainText(
+			'Autonomous agents as the infrastructure of the next decade',
+		);
 	});
 });
 

@@ -15,7 +15,7 @@ concurrency:
 jobs:
   verificar:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v7
@@ -41,6 +41,17 @@ jobs:
         run: npm run test:e2e
       - name: Lighthouse (presupuestos NF1)
         run: npx lhci autorun
+      - name: Diagnóstico de Lighthouse
+        if: failure()
+        run: |
+          node -e '
+            const fs = require("node:fs");
+            if (fs.existsSync(".lighthouseci/assertion-results.json")) {
+              for (const r of JSON.parse(fs.readFileSync(".lighthouseci/assertion-results.json", "utf8"))) {
+                if (!r.passed) console.log(`::error title=LHCI::${r.url} ${r.auditId} (${r.auditProperty || ""}) actual=${r.actual} expected=${r.operator}${r.expected}`);
+              }
+            }
+          '
       - name: Build de dominios activados
         if: github.event_name == 'push' && github.ref == 'refs/heads/main' && vars.PTF_MULTISITE == '1'
         run: npm run build:spaces

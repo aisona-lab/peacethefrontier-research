@@ -121,10 +121,18 @@ const papers = (await papersDe(lang)).toSorted((a, b) => (b.data.numero ?? 0) - 
 		margin-top: 0.85rem;
 	}
 
+	.papers h3 a,
+	.paper-codigo a {
+		display: inline-block;
+		padding-block: 0.25rem;
+		min-height: 1.5rem;
+	}
+
 	.paper-codigo {
 		display: flex;
 		flex-wrap: wrap;
-		gap: 0.5rem 0.75rem;
+		align-items: center;
+		gap: 0.35rem 0.75rem;
 		font-size: var(--t-mini);
 	}
 

@@ -102,14 +102,11 @@ const ui =
 						</dl>
 
 						<p class="hipotesis-temas ui">
-							<span>{ui.temasAtlas}</span>{' '}
-							{temasEnlazados.map((tema, i) => (
-								<>
-									{i > 0 && ', '}
-									<a href={hrefPublico(urlTema(tema, lang), PERFIL)}>
-										{textosTema(tema, lang).titulo}
-									</a>
-								</>
+							<span>{ui.temasAtlas}</span>
+							{temasEnlazados.map((tema) => (
+								<a href={hrefPublico(urlTema(tema, lang), PERFIL)}>
+									{textosTema(tema, lang).titulo}
+								</a>
 							))}
 						</p>
 
@@ -235,13 +232,24 @@ const ui =
 		border-top: 1px solid var(--linea);
 		font-size: var(--t-mini);
 		color: var(--tinta-suave);
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.25rem 0.65rem;
+	}
+
+	.hipotesis-temas a,
+	.hipotesis-acciones a {
+		display: inline-block;
+		padding-block: 0.25rem;
+		min-height: 1.5rem;
 	}
 
 	.hipotesis-acciones {
 		display: flex;
 		flex-wrap: wrap;
-		gap: 0.65rem 1.35rem;
-		margin-top: 1rem;
+		gap: 0.5rem 1.35rem;
+		margin-top: 0.85rem;
 		font-size: var(--t-mini);
 	}
 

@@ -137,8 +137,14 @@ const t =
 	.ficha-codigo-enlaces {
 		display: flex;
 		flex-wrap: wrap;
-		gap: 0.55rem 1.15rem;
+		gap: 0.45rem 1.15rem;
 		margin-top: 0.85rem;
+	}
+
+	.ficha-codigo-enlaces a {
+		display: inline-block;
+		padding-block: 0.25rem;
+		min-height: 1.5rem;
 	}
 
 	.ficha-codigo-repo {
@@ -157,6 +163,8 @@ const t =
 	.ficha-codigo-detalles summary {
 		cursor: pointer;
 		color: var(--tinta-suave);
+		padding-block: 0.25rem;
+		min-height: 1.5rem;
 	}
 
 	.ficha-codigo-detalles dl {
