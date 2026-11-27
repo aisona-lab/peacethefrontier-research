@@ -33,14 +33,14 @@ function svgEl<K extends keyof SVGElementTagNameMap>(
 }
 
 class PtfH1Explorable extends HTMLElement {
-	private lang: 'es' | 'en' = 'es';
+	private idioma: 'es' | 'en' = 'es';
 	private params: H1InteractiveParams = defaultParamsForSector();
 	private csvText: string | null = null;
 	private raf = 0;
 	private urlTimer = 0;
 
 	connectedCallback() {
-		this.lang = this.dataset.lang === 'en' ? 'en' : 'es';
+		this.idioma = this.dataset.lang === 'en' ? 'en' : 'es';
 		this.params = leerParametrosH1(new URLSearchParams(location.search));
 		this.dataset.interactivo = '';
 		this.syncInputs();
@@ -50,7 +50,7 @@ class PtfH1Explorable extends HTMLElement {
 	}
 
 	private get t() {
-		return this.lang === 'es'
+		return this.idioma === 'es'
 			? {
 					sinCruce: 'Sin cruce (copiloto domina hasta 2036)',
 					sinCruceCorto: 'Sin cruce',
@@ -175,7 +175,7 @@ class PtfH1Explorable extends HTMLElement {
 	}
 
 	private renderAll() {
-		const loc = this.lang === 'es' ? 'es-ES' : 'en-US';
+		const loc = this.idioma === 'es' ? 'es-ES' : 'en-US';
 		const fmtPct = (v: number, digits = 1) =>
 			new Intl.NumberFormat(loc, { style: 'percent', minimumFractionDigits: digits, maximumFractionDigits: digits }).format(v);
 		const fmtNum = (v: number, digits = 1) =>
@@ -212,7 +212,7 @@ class PtfH1Explorable extends HTMLElement {
 					if (row.isSelected) tr.dataset.selected = 'true';
 					const th = document.createElement('th');
 					th.scope = 'row';
-					th.textContent = H1_SECTOR_LABELS[row.sectorId][this.lang];
+					th.textContent = H1_SECTOR_LABELS[row.sectorId][this.idioma];
 					const tdYear = document.createElement('td');
 					tdYear.textContent = row.crossoverYear ? String(row.crossoverYear) : this.t.sinCruceCorto;
 					const tdRisk = document.createElement('td');
