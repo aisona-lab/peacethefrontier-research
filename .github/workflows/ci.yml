@@ -24,9 +24,26 @@ jobs:
           cache: npm
       - run: npm ci
       - name: Tipos
-        run: npm run check
+        run: |
+          set -o pipefail
+          npm run check 2>&1 | tee /tmp/check.log || {
+            grep -E "error|Error|✖|ts\(|Invalid" /tmp/check.log | head -n 30 | while IFS= read -r line; do
+              echo "::error title=Tipos::${line}"
+            done
+            tail -n 20 /tmp/check.log | while IFS= read -r line; do
+              echo "::error title=TiposTail::${line}"
+            done
+            exit 1
+          }
       - name: Pruebas unitarias
-        run: npm test
+        run: |
+          set -o pipefail
+          npm test 2>&1 | tee /tmp/test.log || {
+            grep -E "FAIL|AssertionError|Error:|×" /tmp/test.log | head -n 30 | while IFS= read -r line; do
+              echo "::error title=Tests::${line}"
+            done
+            exit 1
+          }
       - name: Artefactos sintéticos y empíricos reproducibles
         run: |
           npm run simulation:check
@@ -35,11 +52,25 @@ jobs:
       - name: Navegadores de Playwright
         run: npx playwright install --with-deps
       - name: Build (valida el contenido y genera las imágenes para redes)
-        run: npm run build
+        run: |
+          set -o pipefail
+          npm run build 2>&1 | tee /tmp/build.log || {
+            tail -n 25 /tmp/build.log | while IFS= read -r line; do
+              echo "::error title=Build::${line}"
+            done
+            exit 1
+          }
       - name: CSP en todas las páginas
         run: npm run test:csp
       - name: E2E y accesibilidad
-        run: npm run test:e2e
+        run: |
+          set -o pipefail
+          npm run test:e2e 2>&1 | tee /tmp/e2e.log || {
+            grep -E "Error:|✘|failed|Expected|Received" /tmp/e2e.log | head -n 30 | while IFS= read -r line; do
+              echo "::error title=E2E::${line}"
+            done
+            exit 1
+          }
       - name: Lighthouse (presupuestos NF1)
         run: npx lhci autorun
       - name: Diagnóstico de Lighthouse
