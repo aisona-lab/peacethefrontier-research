@@ -5,16 +5,16 @@ clave: wp-ia-cientifica-vs-consumer
 tipoPublicacion: working-paper
 serie: PTF-WP
 numero: 5
-version: 1.0.0
+version: 0.2.0
 hipotesis: H3
 experimento: h3-ia-cientifica-vs-consumer
 repositorioCodigo: experiments/h3-ia-cientifica-vs-consumer
 comandoReproduccion: npm run experiments:check
 temas: [tecnologias, espacio, salud, planeta, energia]
-evidencia: emergente
+evidencia: escenario-ficcion
 autor: Carlos Nicolás Soto
 publicado: 2026-11-24
-revisado: 2026-11-24
+revisado: 2026-11-26
 fuentes: [jumper-2021, kva-nobel-2024, iasr-2026, ipcc-ar6-wg1, aie-ia-2026]
 asistidoPorIA: true
 estado: borrador
@@ -23,7 +23,7 @@ sensible: false
 
 import Nota from '../../../components/articulo/Nota.astro';
 
-**PTF-WP 5 · v1.0.0 · Investigación original sobre H3 · 24 de noviembre de 2026.** Este documento presenta un modelo comparativo de embudos de descubrimiento y un experimento computacional reproducible (`experiments/h3-ia-cientifica-vs-consumer`) desarrollado por Carlos Nicolás Soto con asistencia de IA en programación y edición bilingüe. El dataset (`1.500` filas, `synthetic=true`) modela transiciones agregadas de etapas; conforme a la política R10, el dominio biomédico se restringe a métricas estadísticas abstractas de triaje preclínico sin protocolos experimentales ni rutas químicas.
+**PTF-WP 5 · v0.2.0 · Escenario simulado sobre H3 (congelado) · Revisado el 26 de noviembre de 2026.** Los resultados cuantitativos de este texto provienen únicamente de una simulación parametrizada con datos propios (`experiments/h3-ia-cientifica-vs-consumer`, `1.500` filas, `synthetic=true`), **no de datos observados**. Conforme a la política R10, el dominio biomédico se restringe a métricas agregadas abstractas de triaje preclínico. H3 permanece congelada en estado de *Escenario* hasta calibrar y revisar externamente H1.
 
 ## Pregunta e hipótesis (H3)
 
@@ -69,4 +69,6 @@ Los resultados aportan tres pruebas analíticas sobre **H3**:
 
 ## Historial de versiones
 
-**v1.0.0 — 24 de noviembre de 2026:** primera publicación con modelo de Ley de Amdahl de descubrimiento, `1.500` filas sintéticas verificadas con `SHA-256` y código público en `experiments/h3-ia-cientifica-vs-consumer`.
+**v0.2.0 — 26 de noviembre de 2026:** rebaja deliberada de `v1.0.0` / `evidencia emergente` a `v0.2.0` / `Escenario` y congelación de H3 hasta calibrar y revisar externamente H1.
+
+**v0.1.0 (publicado inicialmente como v1.0.0) — 24 de noviembre de 2026:** primera versión con modelo de Ley de Amdahl de descubrimiento, `1.500` filas sintéticas verificadas con `SHA-256` y código público en `experiments/h3-ia-cientifica-vs-consumer`.

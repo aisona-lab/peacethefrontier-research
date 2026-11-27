@@ -191,6 +191,36 @@ Los 10 primeros vienen del brief; los marcados con ➕ se añaden porque los otr
   próximas investigaciones sin inventar fechas históricas.
 - R20.2 EL SISTEMA DEBERÁ ofrecer feeds RSS 2.0 válidos en español (`/rss.xml`) e inglés (`/en/rss.xml`).
 
+### R21. Honestidad epistémica, conflicto de interés y congelación de alcance
+- R21.1 MIENTRAS una hipótesis (`H1`, `H2`, `H3`) se apoye únicamente en simulaciones con datos propios y no
+  en mediciones empíricas observadas, EL SISTEMA DEBERÁ clasificarla como `escenario-ficcion` («Escenario») y
+  versionar sus working papers en `v0.x`.
+- R21.2 La portada (`/`, `/en/`), `/research/` y cada working paper experimental DEBERÁN mostrar una nota
+  visible indicando que los resultados actuales proceden de simulaciones parametrizadas, no de datos observados.
+- R21.3 La página «Sobre el estudio» DEBERÁ declarar explícitamente el conflicto de interés del autor
+  (construcción de productos con agentes autónomos en `aisona-lab`).
+- R21.4 `H2` y `H3` permanecerán congeladas en estado de escenario (sin papers, simuladores ni temas nuevos)
+  hasta completar la calibración empírica y revisión externa de `H1`.
+
+### R22. Explorable interactivo de H1 y reproducibilidad en un clic
+- R22.1 El working paper de `H1` (`PTF-WP 3`) DEBERÁ incrustar un explorable interactivo en cliente sin
+  backend (`<ptf-h1-explorable>`) con sliders de fiabilidad por paso, longitud de cadena y coste/detección de
+  verificación, actualizando en vivo el año de cruce y una URL compartible.
+- R22.2 El explorable DEBERÁ incluir un mapa de calor del espacio de parámetros marcando la frontera donde se
+  invierte la conclusión, contrastado con el CSV real (`dataset.csv`) y con fallback accesible sin JS.
+- R22.3 EL SISTEMA DEBERÁ ofrecer un notebook Jupyter/Colab reproducible en un clic (`h1_reproducir.ipynb`).
+
+### R23. Pieza empírica honesta y compuerta de revisión externa para v1.0
+- R23.1 EL SISTEMA DEBERÁ proveer un protocolo pre-registrado, esquema validador y panel público de
+  procedencia de datos observados (`/research/datos-h1/`, `/en/research/h1-data/`) sin datos inventados.
+- R23.2 SI un working paper asociado a una hipótesis declara `version >= 1.0.0` sin `calibradoConDatosReales: true`
+  y al menos `2` registros en `revisoresExternos` ENTONCES el build DEBERÁ fallar.
+
+### R24. Registro público de predicciones
+- R24.1 EL SISTEMA DEBERÁ publicar un registro de predicciones (`/predicciones/`, `/en/predictions/`) con
+  probabilidades, criterios verificables y fechas cortas de resolución (en meses), calculando Brier score al
+  resolverse.
+
 ## 5. Requisitos no funcionales
 
 | ID | Requisito | Meta |

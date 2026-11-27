@@ -6,6 +6,9 @@ import BotonApoyo from '../BotonApoyo.astro';
 import Citar from '../Citar.astro';
 import FichaCodigoDatos from '../articulo/FichaCodigoDatos.astro';
 import FichaPublicacion from '../articulo/FichaPublicacion.astro';
+import RevisionExterna from '../articulo/RevisionExterna.astro';
+import AvisoSimulacion from '../studio/AvisoSimulacion.astro';
+import ExplorableH1 from '../studio/ExplorableH1.astro';
 import Fuente from '../Fuente.astro';
 import { otroIdioma, type Idioma } from '../../i18n/rutas';
 import { textos } from '../../i18n/ui';
@@ -57,9 +60,23 @@ const jsonld = {
 				<FichaPublicacion lang={lang} data={data} temas={temas} />
 			</header>
 
+			{
+				Boolean(data.experimento) && (
+					<AvisoSimulacion
+						lang={lang}
+						contexto="paper"
+						congelada={data.hipotesis === 'H2' || data.hipotesis === 'H3'}
+					/>
+				)
+			}
+
 			<FichaCodigoDatos lang={lang} data={data} />
 
+			{data.experimento === 'h1-delegacion-autonoma' && <ExplorableH1 lang={lang} />}
+
 			<Content />
+
+			<RevisionExterna lang={lang} data={data} />
 
 			<section class="articulo-fuentes" aria-labelledby="titulo-fuentes">
 				<h2 id="titulo-fuentes">{t.fuentes}</h2>

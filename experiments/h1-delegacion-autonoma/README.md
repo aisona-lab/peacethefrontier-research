@@ -1,8 +1,10 @@
 # Experimento H1 — Economía de delegación y fiabilidad compuesta (2026–2036)
 
 - **Hipótesis evaluada (`H1`):** *«Los agentes autónomos reemplazarán las herramientas de apoyo en 5–10 años»*
-- **Working paper asociado:** `PTF-WP 3` (`/research/working-papers/de-copilotos-a-agentes-autonomos/`)
-- **Código fuente:** [`model.ts`](./model.ts) (Apache-2.0) · **Tests:** [`model.test.ts`](./model.test.ts)
+- **Estado epistemológico:** **Escenario (`v0.2.0`)** — simulación parametrizada (`synthetic=true`), pendiente de calibración empírica real ([`../h1-empirico/PROTOCOL.md`](../h1-empirico/PROTOCOL.md)) y revisión técnica externa (≥ 2 revisores) antes de promover a `v1.0.0`.
+- **Working paper y explorable interactivo:** `PTF-WP 3` (`/research/working-papers/de-copilotos-a-agentes-autonomos/#explorable-h1`)
+- **Reproducir en 1 clic (Google Colab):** [Abrir `h1_reproducir.ipynb` en Colab](https://colab.research.google.com/github/aisona-lab/peacethefrontier-research/blob/main/experiments/h1-delegacion-autonoma/h1_reproducir.ipynb)
+- **Código fuente:** [`model.ts`](./model.ts) (Apache-2.0) · **Tests:** [`model.test.ts`](./model.test.ts) · **Notebook:** [`h1_reproducir.ipynb`](./h1_reproducir.ipynb)
 - **Artefactos generados:** `/public/datos/experimentos/h1-delegacion-autonoma/` (CC BY 4.0)
 
 ## Formulación matemática
@@ -26,6 +28,7 @@ El agente autónomo reemplaza racionalmente al copiloto cuando $\mathbb{E}[C_{\t
 ## Reproducción local
 
 ```bash
-npm test -- experiments/h1-delegacion-autonoma/model.test.ts
+npm test -- experiments/h1-delegacion-autonoma/model.test.ts src/lib/programa/h1-explorable.test.ts
 npm run experiments:check
+npm run empirical:check
 ```

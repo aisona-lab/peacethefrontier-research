@@ -1,0 +1,119 @@
+---
+import type { Idioma } from '../../i18n/rutas';
+import type { Articulo } from '../../lib/articulos-coleccion';
+import { REPOSITORIO } from '../../lib/studio/config';
+
+interface Props {
+	lang: Idioma;
+	data: Articulo['data'];
+}
+
+const { lang, data } = Astro.props;
+const locale = lang === 'es' ? 'es-ES' : 'en-US';
+const fmtFecha = (d: Date) =>
+	new Intl.DateTimeFormat(locale, { dateStyle: 'medium', timeZone: 'UTC' }).format(d);
+const revisores = data.revisoresExternos ?? [];
+const issueUrl = `${REPOSITORIO}/issues/new?title=${encodeURIComponent(
+	`[Revisión técnica ${data.serie ?? 'WP'} ${data.numero ?? ''}] `,
+)}`;
+
+const ui =
+	lang === 'es'
+		? {
+				titulo: 'Revisión técnica externa y requisitos para v1.0',
+				pendiente:
+					`Revisión externa pendiente (${revisores.length}/2 revisores técnicos independientes). ` +
+					`Calibración con datos observados: ${data.calibradoConDatosReales ? 'completada' : 'pendiente'}. ` +
+					'La validación del build bloquea subir este documento a v1.0.0 hasta publicar al menos dos críticas externas y los cambios aplicados por ellas.',
+				invitar: 'Enviar crítica técnica en GitHub (cuanto más crítica, mejor)',
+				critica: 'Crítica recibida:',
+				cambio: 'Cambio aplicado:',
+			}
+		: {
+				titulo: 'External technical review and v1.0 promotion gate',
+				pendiente:
+					`External review pending (${revisores.length}/2 independent technical reviewers). ` +
+					`Empirical calibration with observed data: ${data.calibradoConDatosReales ? 'complete' : 'pending'}. ` +
+					'Build validation blocks promoting this paper to v1.0.0 until at least two external critiques and resulting revisions are published.',
+				invitar: 'Submit technical critique on GitHub (critical feedback welcome)',
+				critica: 'Critique received:',
+				cambio: 'Revision applied:',
+			};
+---
+
+{
+	data.tipoPublicacion === 'working-paper' && data.hipotesis && (
+		<section class="revision-externa ui" aria-labelledby="titulo-revision-externa">
+			<h2 id="titulo-revision-externa">{ui.titulo}</h2>
+			{revisores.length === 0 ? (
+				<p class="revision-pendiente">{ui.pendiente}</p>
+			) : (
+				<ol class="revision-lista" role="list">
+					{revisores.map((r) => (
+						<li>
+							<p class="revision-meta">
+								<strong>{r.nombre}</strong> · {r.perfil} ·{' '}
+								<time datetime={r.fecha.toISOString().slice(0, 10)}>{fmtFecha(r.fecha)}</time>
+							</p>
+							<p>
+								<strong>{ui.critica}</strong> {r.critica}
+							</p>
+							<p>
+								<strong>{ui.cambio}</strong> {r.cambioRealizado}
+							</p>
+						</li>
+					))}
+				</ol>
+			)}
+			<p class="revision-accion">
+				<a href={issueUrl}>{ui.invitar} →</a>
+			</p>
+		</section>
+	)
+}
+
+<style>
+	.revision-externa {
+		margin-top: 2.5rem;
+		padding: 1.25rem 1.35rem;
+		border: 1px solid var(--linea);
+		background: var(--superficie);
+		font-size: var(--t-mini);
+	}
+
+	.revision-externa h2 {
+		font-size: var(--t-h3);
+		margin: 0 0 0.75rem;
+	}
+
+	.revision-pendiente {
+		color: var(--tinta-suave);
+		line-height: 1.5;
+	}
+
+	.revision-lista {
+		display: grid;
+		gap: 1rem;
+		margin-top: 0.75rem;
+	}
+
+	.revision-lista li {
+		padding-top: 0.75rem;
+		border-top: 1px solid var(--linea);
+	}
+
+	.revision-meta {
+		color: var(--tinta-suave);
+	}
+
+	.revision-accion {
+		margin-top: 0.85rem;
+	}
+
+	.revision-accion a {
+		display: inline-block;
+		padding-block: 0.25rem;
+		min-height: 1.5rem;
+		font-weight: 600;
+	}
+</style>

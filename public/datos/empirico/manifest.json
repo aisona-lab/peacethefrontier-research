@@ -1,0 +1,13 @@
+{
+  "manifest_version": 1,
+  "id": "h1-observado",
+  "hypothesis": "H1",
+  "synthetic": false,
+  "status": "collection-pending",
+  "protocol_path": "experiments/h1-empirico/PROTOCOL.md",
+  "last_updated": "2026-11-26",
+  "observed_row_count": 0,
+  "csv_path": "/datos/empirico/h1-observado.csv",
+  "csv_sha256": "5488fad80ab19b4a09862ca47aecfb69511fe760b0f255bf2b464fd24141761c",
+  "license": "CC-BY-4.0"
+}

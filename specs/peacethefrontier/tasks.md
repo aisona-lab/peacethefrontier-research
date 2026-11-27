@@ -119,5 +119,12 @@ Local 2026-10-02: Lighthouse móvil 100/100/100/100 en las 3 páginas medidas; 6
 - [x] TP.4 Componentes `MatrizHipotesis`, `FichaCodigoDatos`, `BitacoraInvestigacion`, endpoints `/rss.xml` y `/en/rss.xml` y CLI `research:new`. _(R18–R20)_
 - [x] TP.5 Publicar el nuevo repositorio principal limpio `aisona-lab/peacethefrontier-research` con `CITATION.cff` y verificar tipos, Vitest, CSP y Playwright + axe. _(R19, NF1–NF8)_
 
+## Fase Q: Credibilidad Científica, Explorable H1 y Gobernanza Empírica (2026-11-26)
+- [x] TQ.1 Semana 1: rebajar H1–H3 y PTF-WP 3–5 a `escenario-ficcion` («Escenario») y `v0.2.0`, añadir `AvisoSimulacion.astro`, COI (`aisona-lab`) en `sobre.mdx` y congelar H2/H3. _(R21)_
+- [x] TQ.2 Semanas 2–3: implementar `h1-explorable.ts`, `<ptf-h1-explorable>` con sliders, mapa de calor de frontera de inversión, URL compartible y notebook `h1_reproducir.ipynb` en Colab. _(R22)_
+- [x] TQ.3 Semanas 4–6 (andamiaje): crear `experiments/h1-empirico/` (protocolo, esquema, validador y recolector GitHub PRs) y panel `/research/datos-h1/` con 0 datos inventados. _(R23.1)_
+- [x] TQ.4 Semana 7 y continuo: compuerta en build `v1.0` (`revisoresExternos >= 2` + `calibradoConDatosReales`), `RevisionExterna.astro` y registro `/predicciones/` con Brier score. _(R23.2, R24)_
+- [ ] TQ.5 Recolección empírica real (Semanas 4–6) y publicación de `PTF-WP 6 v0.1.0` + revisión externa real (Semana 7). _(Ejecución humana/observacional posterior)_
+
 ## Después de v1 (no planificado aún)
 Newsletter, audio de los artículos, ediciones temáticas, colaboradores externos, más recorridos por tema.

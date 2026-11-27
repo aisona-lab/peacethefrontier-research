@@ -55,6 +55,8 @@ interface Revision {
 	publicado: Date; revisado: Date; datosHasta?: string; investigadoHasta?: string;
 	tipoPublicacion?: string; serie?: string; numero?: number; version?: string;
 	hipotesis?: string; experimento?: string; repositorioCodigo?: string; comandoReproduccion?: string;
+	calibradoConDatosReales?: boolean;
+	revisoresExternos?: readonly { nombre: string }[];
 }
 
 /** Editorial metadata must describe the same evidence in both languages. */
@@ -68,12 +70,21 @@ export function erroresRevision(entradas: readonly Revision[], fuentesValidas: R
 		if (a.investigadoHasta && a.investigadoHasta > a.revisado.toISOString().slice(0, a.investigadoHasta.length)) errores.push(`${a.id}: investigación posterior a revisión`);
 		if (a.experimento && !a.repositorioCodigo) errores.push(`${a.id}: el experimento "${a.experimento}" requiere repositorioCodigo`);
 		if (a.experimento && experimentosValidos && !experimentosValidos.has(a.experimento)) errores.push(`${a.id}: experimento inexistente "${a.experimento}"`);
+		if (a.tipoPublicacion === 'working-paper' && a.hipotesis && a.version) {
+			const mayor = Number(a.version.split('.')[0]);
+			const nRevisores = a.revisoresExternos?.length ?? 0;
+			if (mayor >= 1 && (!a.calibradoConDatosReales || nRevisores < 2)) {
+				errores.push(`${a.id}: v${a.version} requiere calibradoConDatosReales=true y al menos 2 revisoresExternos (R23.2)`);
+			}
+		}
 		const otro = porClave.get(a.clave);
 		if (otro) {
 			for (const campo of ['publicado', 'revisado'] as const)
 				if (a[campo].getTime() !== otro[campo].getTime()) errores.push(`${a.clave}: ${campo} difiere entre idiomas`);
-			for (const campo of ['evidencia', 'estado', 'datosHasta', 'investigadoHasta', 'tipoPublicacion', 'serie', 'numero', 'version', 'hipotesis', 'experimento', 'repositorioCodigo', 'comandoReproduccion'] as const)
+			for (const campo of ['evidencia', 'estado', 'datosHasta', 'investigadoHasta', 'tipoPublicacion', 'serie', 'numero', 'version', 'hipotesis', 'experimento', 'repositorioCodigo', 'comandoReproduccion', 'calibradoConDatosReales'] as const)
 				if (a[campo] !== otro[campo]) errores.push(`${a.clave}: ${campo} difiere entre idiomas`);
+			if ((a.revisoresExternos?.length ?? 0) !== (otro.revisoresExternos?.length ?? 0))
+				errores.push(`${a.clave}: revisoresExternos difiere entre idiomas`);
 			if ([...a.fuentes].sort().join('|') !== [...otro.fuentes].sort().join('|')) errores.push(`${a.clave}: fuentes difieren entre idiomas`);
 		} else porClave.set(a.clave, a);
 	}

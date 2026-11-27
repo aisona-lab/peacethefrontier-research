@@ -27,10 +27,11 @@ jobs:
         run: npm run check
       - name: Pruebas unitarias
         run: npm test
-      - name: Artefactos sintéticos reproducibles
+      - name: Artefactos sintéticos y empíricos reproducibles
         run: |
           npm run simulation:check
           npm run experiments:check
+          npm run empirical:check
       - name: Navegadores de Playwright
         run: npx playwright install --with-deps
       - name: Build (valida el contenido y genera las imágenes para redes)

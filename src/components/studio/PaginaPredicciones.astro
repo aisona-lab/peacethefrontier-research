@@ -1,0 +1,242 @@
+---
+import Base from '../../layouts/Base.astro';
+import type { Idioma } from '../../i18n/rutas';
+import { PREDICCIONES, calcularBrier } from '../../lib/programa/predicciones';
+import { REPOSITORIO } from '../../lib/studio/config';
+
+interface Props {
+	lang: Idioma;
+}
+
+const { lang } = Astro.props;
+const alt = lang === 'en' ? '/predicciones/' : '/en/predictions/';
+const brier = calcularBrier(PREDICCIONES);
+const loc = lang === 'es' ? 'es-ES' : 'en-US';
+const fmtPct = (v: number) =>
+	new Intl.NumberFormat(loc, { style: 'percent', maximumFractionDigits: 0 }).format(v);
+
+const ui =
+	lang === 'es'
+		? {
+				kicker: 'Registro público de calibración · Fechas de resolución verificables',
+				titulo: 'Registro público de predicciones',
+				descripcion:
+					'Predicciones falsables sobre agentes autónomos y coste de verificación con probabilidad explícita, criterio operativo y fecha de resolución (incluyendo horizontes de 4 a 19 meses). No se editan retroactivamente; todo cambio queda en el historial de git.',
+				abiertas: 'Predicciones abiertas',
+				resueltas: 'Resueltas',
+				brier: 'Brier score acumulado',
+				sinBrier: 'Pendiente de primera resolución (marzo 2027)',
+				prob: 'Probabilidad inicial',
+				registrada: 'Registrada',
+				resolucion: 'Fecha de resolución',
+				criterio: 'Criterio de resolución',
+				estados: {
+					abierta: 'Abierta',
+					confirmada: 'Confirmada',
+					refutada: 'Refutada',
+					ambigua: 'Ambigua',
+				},
+				historial: 'Comprobar inmutabilidad en el historial de GitHub',
+			}
+		: {
+				kicker: 'Public calibration ledger · Verifiable resolution dates',
+				titulo: 'Public predictions registry',
+				descripcion:
+					'Falsifiable predictions on autonomous agents and verification cost with explicit probabilities, operational resolution criteria and fixed resolution dates (including 4-to-19-month horizons). Never edited retroactively; git history preserves every commitment.',
+				abiertas: 'Open predictions',
+				resueltas: 'Resolved',
+				brier: 'Cumulative Brier score',
+				sinBrier: 'Awaiting first resolution (March 2027)',
+				prob: 'Initial probability',
+				registrada: 'Logged',
+				resolucion: 'Resolution date',
+				criterio: 'Resolution criterion',
+				estados: {
+					abierta: 'Open',
+					confirmada: 'Confirmed',
+					refutada: 'Falsified',
+					ambigua: 'Ambiguous',
+				},
+				historial: 'Verify commit timestamps in GitHub history',
+			};
+
+const abiertasCount = PREDICCIONES.filter((p) => p.estado === 'abierta').length;
+const resueltasCount = PREDICCIONES.length - abiertasCount;
+---
+
+<Base lang={lang} titulo={ui.titulo} descripcion={ui.descripcion} alternativa={alt}>
+	<div class="contenedor predicciones">
+		<header class="pred-cabecera">
+			<p class="ui pred-kicker">{ui.kicker}</p>
+			<h1>{ui.titulo}</h1>
+			<p class="entradilla">{ui.descripcion}</p>
+			<p class="ui pred-git">
+				<a href={`${REPOSITORIO}/commits/main/src/lib/programa/predicciones.ts`}>
+					{ui.historial} →
+				</a>
+			</p>
+		</header>
+
+		<dl class="pred-resumen ui">
+			<div>
+				<dt>{ui.abiertas}</dt>
+				<dd>{abiertasCount}</dd>
+			</div>
+			<div>
+				<dt>{ui.resueltas}</dt>
+				<dd>{resueltasCount}</dd>
+			</div>
+			<div>
+				<dt>{ui.brier}</dt>
+				<dd>{brier === null ? ui.sinBrier : brier.toFixed(4)}</dd>
+			</div>
+		</dl>
+
+		<ol class="pred-lista" role="list">
+			{
+				PREDICCIONES.map((p) => (
+					<li class="pred-tarjeta" id={p.id}>
+						<div class="pred-meta ui">
+							<span class="pred-id">{p.id}</span>
+							<span>{p.hipotesis}</span>
+							<span aria-hidden="true">·</span>
+							<span>{ui.estados[p.estado]}</span>
+							<span aria-hidden="true">·</span>
+							<span>
+								{ui.resolucion}: <time datetime={p.fechaResolucion}>{p.fechaResolucion}</time>
+							</span>
+						</div>
+						<h2>{p[lang].enunciado}</h2>
+						<p class="pred-criterio">
+							<strong class="ui">{ui.criterio}:</strong> {p[lang].criterioResolucion}
+						</p>
+						<p class="pred-pie ui">
+							<span>
+								{ui.prob}: <strong>{fmtPct(p.probabilidad)}</strong>
+							</span>
+							<span aria-hidden="true">·</span>
+							<span>
+								{ui.registrada}: <time datetime={p.fechaRegistro}>{p.fechaRegistro}</time>
+							</span>
+						</p>
+					</li>
+				))
+			}
+		</ol>
+	</div>
+</Base>
+
+<style>
+	.predicciones {
+		padding-block: 3rem 4rem;
+	}
+
+	.pred-cabecera {
+		padding-bottom: 2.25rem;
+		border-bottom: 1px solid var(--linea);
+		margin-bottom: 2.25rem;
+	}
+
+	.pred-kicker {
+		color: var(--tinta-suave);
+		margin-bottom: 0.75rem;
+	}
+
+	.pred-cabecera h1 {
+		font-size: var(--t-titulo);
+		max-width: 22ch;
+		margin-bottom: 1.15rem;
+	}
+
+	.pred-git {
+		margin-top: 1.1rem;
+		font-size: var(--t-mini);
+	}
+
+	.pred-git a {
+		display: inline-block;
+		padding-block: 0.25rem;
+		min-height: 1.5rem;
+	}
+
+	.pred-resumen {
+		display: grid;
+		gap: 1rem;
+		margin: 0 0 2.5rem;
+	}
+
+	@media (min-width: 44rem) {
+		.pred-resumen {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+	}
+
+	.pred-resumen > div {
+		padding: 1rem 1.15rem;
+		border: 1px solid var(--linea);
+		background: var(--superficie);
+	}
+
+	.pred-resumen dt {
+		font-size: var(--t-mini);
+		color: var(--tinta-suave);
+	}
+
+	.pred-resumen dd {
+		margin: 0.35rem 0 0;
+		font-weight: 600;
+	}
+
+	.pred-lista {
+		display: grid;
+		gap: 1.25rem;
+	}
+
+	.pred-tarjeta {
+		padding: 1.35rem 1.5rem;
+		border: 1px solid var(--linea);
+		background: var(--superficie);
+		max-width: 52rem;
+	}
+
+	.pred-meta {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.4rem 0.6rem;
+		font-size: var(--t-mini);
+		color: var(--tinta-suave);
+		margin-bottom: 0.65rem;
+	}
+
+	.pred-id {
+		padding: 0.1rem 0.45rem;
+		background: var(--sodio);
+		color: var(--sobre-sodio);
+		font-weight: 600;
+		border-radius: 2px;
+	}
+
+	.pred-tarjeta h2 {
+		font-size: clamp(1.2rem, 1.05rem + 0.5vw, 1.45rem);
+		line-height: 1.3;
+		font-weight: 400;
+	}
+
+	.pred-criterio {
+		margin-top: 0.75rem;
+		font-size: var(--t-ui);
+		color: var(--tinta-suave);
+	}
+
+	.pred-pie {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.4rem 0.75rem;
+		margin-top: 0.9rem;
+		padding-top: 0.75rem;
+		border-top: 1px solid var(--linea);
+		font-size: var(--t-mini);
+		color: var(--tinta-suave);
+	}
+</style>

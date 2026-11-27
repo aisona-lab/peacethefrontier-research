@@ -5,16 +5,16 @@ clave: wp-delegacion-autonoma
 tipoPublicacion: working-paper
 serie: PTF-WP
 numero: 3
-version: 1.0.0
+version: 0.2.0
 hipotesis: H1
 experimento: h1-delegacion-autonoma
 repositorioCodigo: experiments/h1-delegacion-autonoma
 comandoReproduccion: npm run experiments:check
 temas: [ia, espacio, salud, energia, informacion, gobernanza]
-evidencia: emergente
+evidencia: escenario-ficcion
 autor: Carlos Nicolás Soto
 publicado: 2026-11-24
-revisado: 2026-11-24
+revisado: 2026-11-26
 fuentes: [metr-horizontes-2026, metr-desarrolladores-2025, metr-productividad-2026, oit-genai-2025, iasr-2026]
 asistidoPorIA: true
 estado: borrador
@@ -23,7 +23,7 @@ sensible: false
 
 import Nota from '../../../components/articulo/Nota.astro';
 
-**PTF-WP 3 · v1.0.0 · Original research on H1 · 24 November 2026.** This paper presents a theoretical model and reproducible computational experiment (`experiments/h1-delegacion-autonoma`) designed by Carlos Nicolás Soto with AI assistance in coding and bilingual editing. All generated records (`3,300` rows, `synthetic=true`) are deterministic outputs of an explicit structural model, not field observations of real workforces.
+**PTF-WP 3 · v0.2.0 · Simulated scenario on H1 · Revised 26 November 2026.** All numerical outputs in this paper derive from a parameterized simulation with synthetic data (`experiments/h1-delegacion-autonoma`, `3,300` rows, `synthetic=true`), **not observed empirical data**. Use the embedded interactive explorable or the 1-click Colab notebook to perturb every assumption and see where the conclusion flips. Promotion to `v1.0.0` is blocked until [observed empirical calibration](/en/research/h1-data/) and external technical review complete.
 
 ## Question and hypothesis (H1)
 
@@ -80,4 +80,6 @@ Three structural findings sharpen **H1**:
 
 ## Version history
 
-**v1.0.0 — 24 November 2026:** initial release with explicit mathematical formulation, `3,300`-row Monte Carlo simulation across five sectors and public source code in `experiments/h1-delegacion-autonoma`.
+**v0.2.0 — 26 November 2026:** deliberate downgrade from `v1.0.0` / `emerging evidence` to `v0.2.0` / `Scenario` until empirical calibration (`PTF-WP 6`) and external technical review (at least 2 independent reviewers) are published; added interactive explorable with inversion-boundary heatmap and 1-click Colab notebook.
+
+**v0.1.0 (initially tagged v1.0.0) — 24 November 2026:** initial release with explicit mathematical formulation, `3,300`-row Monte Carlo simulation across five sectors and public source code in `experiments/h1-delegacion-autonoma`.

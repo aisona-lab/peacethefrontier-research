@@ -5,16 +5,16 @@ clave: wp-delegacion-autonoma
 tipoPublicacion: working-paper
 serie: PTF-WP
 numero: 3
-version: 1.0.0
+version: 0.2.0
 hipotesis: H1
 experimento: h1-delegacion-autonoma
 repositorioCodigo: experiments/h1-delegacion-autonoma
 comandoReproduccion: npm run experiments:check
 temas: [ia, espacio, salud, energia, informacion, gobernanza]
-evidencia: emergente
+evidencia: escenario-ficcion
 autor: Carlos Nicolás Soto
 publicado: 2026-11-24
-revisado: 2026-11-24
+revisado: 2026-11-26
 fuentes: [metr-horizontes-2026, metr-desarrolladores-2025, metr-productividad-2026, oit-genai-2025, iasr-2026]
 asistidoPorIA: true
 estado: borrador
@@ -23,7 +23,7 @@ sensible: false
 
 import Nota from '../../../components/articulo/Nota.astro';
 
-**PTF-WP 3 · v1.0.0 · Investigación original sobre H1 · 24 de noviembre de 2026.** Este documento presenta un modelo teórico y un experimento computacional reproducible (`experiments/h1-delegacion-autonoma`) diseñado por Carlos Nicolás Soto con asistencia de herramientas de IA en programación y edición bilingüe. Los datos generados (`3.300` filas, `synthetic=true`) son salidas deterministas de un modelo estructural parametrizado, no observaciones de campo sobre plantillas reales.
+**PTF-WP 3 · v0.2.0 · Escenario simulado sobre H1 · Revisado el 26 de noviembre de 2026.** Los resultados numéricos de este documento provienen de una simulación parametrizada con datos propios (`experiments/h1-delegacion-autonoma`, `3.300` filas, `synthetic=true`), **no de datos observados**. Usa el explorable interactivo de esta página o el notebook de Colab para mover los supuestos y ver dónde se invierte la conclusión. Este paper no ascenderá a `v1.0.0` hasta calibrarse con [datos empíricos observados](/research/datos-h1/) y pasar revisión técnica externa.
 
 ## Pregunta e hipótesis (H1)
 
@@ -80,4 +80,6 @@ Emergen tres conclusiones estructurales que matizan y precisan **H1**:
 
 ## Historial de versiones
 
-**v1.0.0 — 24 de noviembre de 2026:** primera versión con modelo matemático explícito, simulación Monte Carlo de `3.300` filas en cinco sectores y publicación del código en `experiments/h1-delegacion-autonoma`.
+**v0.2.0 — 26 de noviembre de 2026:** rebaja deliberada de `v1.0.0` / `evidencia emergente` a `v0.2.0` / `Escenario` hasta disponer de calibración empírica real (`PTF-WP 6`) y revisión externa (mínimo 2 revisores técnicos); incorporación del explorable interactivo con mapa de calor de inversión y notebook de Colab en un clic.
+
+**v0.1.0 (publicado inicialmente como v1.0.0) — 24 de noviembre de 2026:** primera versión con modelo matemático explícito, simulación Monte Carlo de `3.300` filas en cinco sectores y publicación del código en `experiments/h1-delegacion-autonoma`.

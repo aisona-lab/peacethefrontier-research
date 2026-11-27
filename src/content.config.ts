@@ -90,6 +90,19 @@ const articulos = defineCollection({
 		/** R10: armas, biología o vigilancia; exige la lista de comprobación del spec antes de publicar. */
 		sensible: z.boolean().default(false),
 		asistidoPorIA: z.boolean().default(false),
+		/** R23.2: v1.0.0 en working papers con hipótesis exige datos reales calibrados y >= 2 revisores externos. */
+		calibradoConDatosReales: z.boolean().default(false),
+		revisoresExternos: z
+			.array(
+				z.object({
+					nombre: z.string().trim().min(1),
+					perfil: z.string().trim().min(1),
+					fecha: z.coerce.date(),
+					critica: z.string().trim().min(10),
+					cambioRealizado: z.string().trim().min(10),
+				}),
+			)
+			.default([]),
 	}).refine(workingPaperCompleto, 'working papers require series, number and version'),
 });
 

@@ -243,3 +243,18 @@ MDX es contenido de confianza (solo desde git); el JSON que llega a las islas se
   `FichaCodigoDatos.astro`.
 - **Sindicación y autoría continua**: endpoints estáticos `/rss.xml` y `/en/rss.xml`, `CITATION.cff` en raíz y
   generador CLI `scripts/nueva-investigacion.mjs` (`npm run research:new`).
+
+## 12. Credibilidad científica, explorable H1 y gobernanza empírica (R21–R24)
+
+- **Rebaja epistémica y congelación**: `H1`–`H3` y `PTF-WP 3–5` se clasifican como `escenario-ficcion`
+  («Escenario») en `v0.2.0` con `AvisoSimulacion.astro` en portada, `/research/` y papers, más declaración
+  explícita de conflicto de interés (`aisona-lab`) en `sobre.mdx`.
+- **Explorable de H1 (`ExplorableH1.astro` + `explorable-h1.ts` + `h1-explorable.ts`)**: Web Component TS +
+  SVG nativo que lee `/datos/experimentos/h1-delegacion-autonoma/dataset.csv`, actualiza en vivo año de cruce
+  y mapa de calor con frontera de inversión (`var(--sodio)` sobre `color-mix()` de `--etico`/`--no-etico`),
+  persiste parámetros en la URL y ofrece notebook `experiments/h1-delegacion-autonoma/h1_reproducir.ipynb`.
+- **Pieza empírica y compuerta `v1.0`**: `experiments/h1-empirico/` (`PROTOCOL.md`, `schema.json`,
+  `validate.mjs`, `collect-github-prs.mjs`), panel `/research/datos-h1/` con 0 filas inventadas y regla en
+  `articulos.ts` que bloquea `version >= 1.0.0` sin `calibradoConDatosReales` y ≥ 2 `revisoresExternos`.
+- **Registro de predicciones (`src/lib/programa/predicciones.ts`)**: páginas `/predicciones/` y
+  `/en/predictions/` con horizontes de 3–18 meses y cálculo automático de Brier score.

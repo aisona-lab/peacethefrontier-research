@@ -22,6 +22,7 @@
     "simulation:check": "node scripts/generar-resiliencia.mjs --check",
     "experiments:generate": "node scripts/ejecutar-experimentos.mjs",
     "experiments:check": "node scripts/ejecutar-experimentos.mjs --check",
+    "empirical:check": "node experiments/h1-empirico/validate.mjs",
     "research:new": "node scripts/nueva-investigacion.mjs"
   },
   "allowScripts": {
