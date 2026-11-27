@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content';
 import type { Idioma } from '../../i18n/rutas';
 import { NIVELES } from '../../lib/evidencia';
 import { HIPOTESIS } from '../../lib/programa/hipotesis';
-import { PERFIL, urlCodigoRepositorio } from '../../lib/studio/config';
+import { PERFIL, urlCodigoRepositorio, urlColabNotebook } from '../../lib/studio/config';
 import { hrefPublico } from '../../lib/studio/espacios';
 import { rutaPublicacion } from '../../lib/studio/publicaciones';
 import { textosTema, urlTema } from '../../lib/temas';
@@ -16,32 +16,39 @@ interface Props {
 const { lang } = Astro.props;
 const coleccionTemas = await getCollection('temas');
 const mapaTemas = new Map(coleccionTemas.map((t) => [t.id, t]));
+const rutaDatosH1 = lang === 'en' ? '/en/research/h1-data/' : '/research/datos-h1/';
 
 const ui =
 	lang === 'es'
 		? {
 				titulo: 'Tres hipótesis falsables que estructuran el programa',
 				intro:
-					'Cada hipótesis delimita sus subtemas naturales, expone el mecanismo teórico que ponemos a prueba, declara qué evidencia futura la refutaría y enlaza directamente su working paper, código y datos.',
+					'Las tres hipótesis parten como escenarios simulados (v0.x, sin datos observados aún). H1 concentra el foco activo con explorable interactivo y recolección empírica; H2 y H3 permanecen congeladas hasta calibrar y revisar H1.',
 				subtemas: 'Subtemas naturales:',
 				temasAtlas: 'Temas del Atlas:',
 				teoria: 'Mecanismo teórico',
-				prueba: 'Prueba y hallazgo cuantitativo',
+				prueba: 'Prueba simulada (synthetic=true)',
 				refutacion: 'Criterio de refutación',
 				leerPaper: 'Leer investigación',
+				abrirExplorable: 'Abrir explorable interactivo',
+				abrirColab: 'Reproducir en Colab',
+				panelDatos: 'Datos empíricos H1',
 				verCodigo: 'Código en GitHub',
 				descargarCsv: 'Dataset CSV',
 			}
 		: {
 				titulo: 'Three falsifiable hypotheses structuring the programme',
 				intro:
-					'Each hypothesis scopes its natural subtopics, states the theoretical mechanism under test, declares which future evidence would falsify it, and links directly to its working paper, code and dataset.',
+					'All three hypotheses start as simulated scenarios (v0.x, no observed data yet). H1 is the sole active priority with an interactive explorable and empirical collection; H2 and H3 stay frozen until H1 is calibrated and externally reviewed.',
 				subtemas: 'Natural subtopics:',
 				temasAtlas: 'Atlas topics:',
 				teoria: 'Theoretical mechanism',
-				prueba: 'Quantitative test and finding',
+				prueba: 'Simulated test (synthetic=true)',
 				refutacion: 'Falsifiability criterion',
 				leerPaper: 'Read working paper',
+				abrirExplorable: 'Open interactive explorable',
+				abrirColab: 'Run in Colab',
+				panelDatos: 'H1 empirical panel',
 				verCodigo: 'Code on GitHub',
 				descargarCsv: 'CSV dataset',
 			};
@@ -63,19 +70,24 @@ const ui =
 					PERFIL,
 				);
 				const urlRepo = urlCodigoRepositorio(h.rutaCodigo);
+				const urlColab = h.rutaNotebookColab ? urlColabNotebook(h.rutaNotebookColab) : undefined;
 				const urlCsv = `/datos/experimentos/${h.experimentoId}/dataset.csv`;
 				const temasEnlazados = h.temas
 					.map((id) => mapaTemas.get(id))
 					.filter((t): t is NonNullable<typeof t> => Boolean(t));
 
 				return (
-					<li class="hipotesis-tarjeta" id={`hipotesis-${h.id.toLowerCase()}`}>
+					<li class="hipotesis-tarjeta" id={`hipotesis-${h.id.toLowerCase()}`} data-estado={h.estadoPrograma}>
 						<div class="hipotesis-meta ui">
 							<span class="hipotesis-etiqueta">{h.id}</span>
 							<span>{h.horizonte}</span>
 							<span aria-hidden="true">·</span>
 							<span class="hipotesis-evidencia">
 								<LineaEvidencia nivel={h.evidencia} /> {nivel.nombre[lang]}
+							</span>
+							<span aria-hidden="true">·</span>
+							<span class="hipotesis-estado" data-estado={h.estadoPrograma}>
+								{txt.estadoTexto}
 							</span>
 						</div>
 
@@ -115,6 +127,21 @@ const ui =
 								{ui.leerPaper}
 								<span class="solo-lectores"> {h.id}</span> →
 							</a>
+							{urlColab && (
+								<>
+									<a class="accion-principal" href={`${urlPaper}#explorable-h1`}>
+										{ui.abrirExplorable}
+										<span class="solo-lectores"> {h.id}</span>
+									</a>
+									<a href={urlColab}>
+										{ui.abrirColab}
+										<span class="solo-lectores"> {h.id}</span>
+									</a>
+									<a href={rutaDatosH1}>
+										{ui.panelDatos}
+									</a>
+								</>
+							)}
 							<a href={urlRepo}>
 								{ui.verCodigo}
 								<span class="solo-lectores"> {h.id}</span>
@@ -158,6 +185,10 @@ const ui =
 		min-width: 0;
 	}
 
+	.hipotesis-tarjeta[data-estado='en-calibracion-empirica'] {
+		border-left: 4px solid var(--sodio);
+	}
+
 	.hipotesis-meta {
 		display: flex;
 		flex-wrap: wrap;
@@ -181,6 +212,15 @@ const ui =
 		display: inline-flex;
 		align-items: center;
 		gap: 0.45rem;
+	}
+
+	.hipotesis-estado {
+		font-weight: 600;
+		color: var(--tinta);
+	}
+
+	.hipotesis-estado[data-estado='congelada-como-escenario'] {
+		color: var(--tinta-suave);
 	}
 
 	.hipotesis-tarjeta h3 {

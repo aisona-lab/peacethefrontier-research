@@ -22,8 +22,15 @@ for (const lang of ['es', 'en'])
 					await expect(page.locator('main .destacado-articulo')).toHaveCount(4);
 				}
 				if (space === 'studio' || space === 'research') {
+					await expect(page.locator('.aviso-simulacion')).toBeVisible();
 					await expect(page.locator('.hipotesis-tarjeta')).toHaveCount(3);
+					for (const idx of [0, 1, 2]) {
+						await expect(page.locator('.hipotesis-tarjeta').nth(idx)).toContainText(
+							lang === 'es' ? 'Escenario' : 'Scenario',
+						);
+					}
 					await expect(page.locator('.papers li')).toHaveCount(5);
+					await expect(page.locator('.papers')).toContainText('v0.2.0');
 					await expect(page.locator('.bitacora-lista > li')).toHaveCount(5);
 				}
 				if (space === 'sim' || space === 'open') {
@@ -89,7 +96,76 @@ test('los cinco working papers bilingües enlazan código, citas, traducción y 
 	}
 });
 
-test('los datasets sintéticos y los feeds RSS coinciden con sus manifiestos SHA-256', async ({
+test('explorable interactivo de H1 recalcula cruce y frontera en vivo, lee dataset.csv y enlaza Colab', async ({
+	page,
+}) => {
+	await page.setViewportSize({ width: 1280, height: 900 });
+	await page.goto('/research/working-papers/de-copilotos-a-agentes-autonomos/');
+
+	await expect(page.locator('.aviso-simulacion')).toBeVisible();
+	await expect(page.locator('.articulo-meta')).toContainText('v0.2.0');
+	await expect(page.locator('.articulo-meta')).toContainText('Escenario');
+	await expect(page.locator('.revision-externa')).toContainText('0/2');
+
+	const island = page.locator('ptf-h1-explorable[data-interactivo]');
+	await expect(island).toBeVisible();
+	await expect(island.locator('[data-crossover-year]')).toHaveText('2033');
+	await expect(island.locator('[data-heatmap-svg] .hm-boundary')).toHaveCount(1);
+	await expect(island.locator('[data-csv-status]')).toContainText('CSV verificado');
+	await expect(
+		page.locator('a[href*="colab.research.google.com/github/aisona-lab/peacethefrontier-research"]').first(),
+	).toBeVisible();
+
+	await island.locator('input[name="p0"]').fill('0.75');
+	await island.locator('input[name="k"]').fill('20');
+	await expect(island.locator('[data-crossover-year]')).toHaveText('Sin cruce');
+	await expect(page).toHaveURL(/p0=0\.75/);
+
+	await island.locator('[data-reset]').click();
+	await expect(island.locator('[data-crossover-year]')).toHaveText('2033');
+
+	await island.locator('select[name="sector"]').selectOption('computational-science');
+	await expect(island.locator('[data-crossover-year]')).toHaveText('2028');
+});
+
+test('conflicto de interés, panel empírico H1 (0 filas) y registro de predicciones cumplen WCAG 2.2 AA', async ({
+	page,
+}) => {
+	for (const path of ['/sobre/', '/en/about/']) {
+		await page.goto(path);
+		await expect(page.locator('#conflicto')).toBeAttached();
+		await expect(page.locator('main')).toContainText('aisona-lab');
+	}
+
+	for (const colorScheme of ['light', 'dark'] as const) {
+		await page.emulateMedia({ colorScheme, reducedMotion: 'reduce' });
+		await page.setViewportSize({ width: 375, height: 812 });
+
+		for (const path of ['/research/datos-h1/', '/en/research/h1-data/']) {
+			await page.goto(path);
+			await expect(page.locator('main h1')).toBeVisible();
+			await expect(page.locator('.datos-vacio')).toBeVisible();
+			expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+			const { violations } = await new AxeBuilder({ page })
+				.withTags(['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa'])
+				.analyze();
+			expect(violations).toEqual([]);
+		}
+
+		for (const path of ['/predicciones/', '/en/predictions/']) {
+			await page.goto(path);
+			await expect(page.locator('main h1')).toBeVisible();
+			await expect(page.locator('.pred-tarjeta')).toHaveCount(5);
+			expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+			const { violations } = await new AxeBuilder({ page })
+				.withTags(['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa'])
+				.analyze();
+			expect(violations).toEqual([]);
+		}
+	}
+});
+
+test('los datasets sintéticos, empíricos y los feeds RSS coinciden con sus manifiestos SHA-256', async ({
 	request,
 }) => {
 	const response = await request.get('/datos/studio/manifest.json');
@@ -122,6 +198,15 @@ test('los datasets sintéticos y los feeds RSS coinciden con sus manifiestos SHA
 			expect(bytes.byteLength).toBe(file.bytes);
 		}
 	}
+
+	const empRes = await request.get('/datos/empirico/manifest.json');
+	expect(empRes.ok()).toBe(true);
+	const empManifest = await empRes.json();
+	expect(empManifest.synthetic).toBe(false);
+	expect(empManifest.observed_row_count).toBe(0);
+	const empCsv = await request.get(empManifest.csv_path);
+	expect(empCsv.ok()).toBe(true);
+	expect(createHash('sha256').update(await empCsv.body()).digest('hex')).toBe(empManifest.csv_sha256);
 
 	for (const feedPath of ['/rss.xml', '/en/rss.xml']) {
 		const feedRes = await request.get(feedPath);

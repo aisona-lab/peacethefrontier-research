@@ -6,6 +6,11 @@ export function urlCodigoRepositorio(rutaCodigo: string): string {
 	if (/^https:\/\/github\.com\/[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+/.test(rutaCodigo)) return rutaCodigo;
 	return `${REPOSITORIO}/tree/main/${rutaCodigo.replace(/^\/+|\/+$/g, '')}`;
 }
+export function urlColabNotebook(rutaNotebook: string): string {
+	const limpio = rutaNotebook.replace(/^\/+/, '');
+	const repoSlug = REPOSITORIO.replace(/^https:\/\/github\.com\//, '');
+	return `https://colab.research.google.com/github/${repoSlug}/blob/main/${limpio}`;
+}
 const email=process.env.PTF_CONTACT_EMAIL;
 if(email&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))throw new Error('PTF_CONTACT_EMAIL no es un correo válido');
 export const CONTACTO=email?`mailto:${email}`:`${REPOSITORIO}/issues/new`;

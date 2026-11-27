@@ -64,4 +64,10 @@ describe('integridad editorial', () => {
 		expect(erroresRevision([{ ...conExp, repositorioCodigo: undefined }], new Set(['oficial']), new Set(['h1-delegacion-autonoma']))).toContainEqual(expect.stringContaining('repositorioCodigo'));
 		expect(erroresRevision([conExp], new Set(['oficial']), new Set(['otro']))).toContainEqual(expect.stringContaining('experimento inexistente'));
 	});
+	test('un working paper de hipótesis no puede subir a v1.0 sin calibración empírica y >= 2 revisores externos (R23.2)', () => {
+		const wp = { ...ficha, tipoPublicacion: 'working-paper', hipotesis: 'H1', version: '1.0.0', calibradoConDatosReales: false, revisoresExternos: [] };
+		expect(erroresRevision([wp], new Set(['oficial']))).toContainEqual(expect.stringMatching(/R23\.2/));
+		expect(erroresRevision([{ ...wp, version: '0.2.0' }], new Set(['oficial']))).toEqual([]);
+		expect(erroresRevision([{ ...wp, calibradoConDatosReales: true, revisoresExternos: [{ nombre: 'Rev 1' }, { nombre: 'Rev 2' }] }], new Set(['oficial']))).toEqual([]);
+	});
 });

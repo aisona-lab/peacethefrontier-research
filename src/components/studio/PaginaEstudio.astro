@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import NivelesEvidencia from '../NivelesEvidencia.astro';
+import AvisoSimulacion from './AvisoSimulacion.astro';
 import BitacoraInvestigacion from './BitacoraInvestigacion.astro';
 import DatosStudio from './DatosStudio.astro';
 import ExperimentosPortafolio from './ExperimentosPortafolio.astro';
@@ -22,6 +23,8 @@ const t = textosStudio(lang);
 const tesis = TESIS_CENTRAL[lang];
 const intro = espacio === 'studio' ? tesis.tesis : t.intro[espacio];
 const rssHref = lang === 'en' ? '/en/rss.xml' : '/rss.xml';
+const rutaDatosH1 = lang === 'en' ? '/en/research/h1-data/' : '/research/datos-h1/';
+const rutaPredicciones = lang === 'en' ? '/en/predictions/' : '/predicciones/';
 ---
 
 <Base
@@ -45,12 +48,37 @@ const rssHref = lang === 'en' ? '/en/rss.xml' : '/rss.xml';
 							<a class="accion-destacada" href="#hipotesis">
 								{lang === 'es' ? 'Explorar las 3 hipótesis' : 'Explore the 3 hypotheses'} ↓
 							</a>
+							<a href={rutaDatosH1}>
+								{lang === 'es' ? 'Panel empírico H1' : 'H1 empirical panel'}
+							</a>
+							<a href={rutaPredicciones}>
+								{lang === 'es' ? 'Registro de predicciones' : 'Predictions registry'}
+							</a>
 							<a href={REPOSITORIO}>
-								{lang === 'es' ? 'Repositorio limpio en GitHub' : 'Clean GitHub repository'} →
+								{lang === 'es' ? 'Repositorio en GitHub' : 'GitHub repository'} →
 							</a>
 							<a href={ruta(lang, 'metodologia')}>{t.metodologia}</a>
 							<a href={rssHref}>{lang === 'es' ? 'Feed RSS' : 'RSS feed'}</a>
 						</nav>
+						<AvisoSimulacion lang={lang} contexto="portada" />
+					</>
+				)
+			}
+			{
+				espacio === 'research' && (
+					<>
+						<nav class="ui studio-acciones" aria-label={lang === 'es' ? 'Paneles de verificación empírica' : 'Empirical verification panels'}>
+							<a class="accion-destacada" href={rutaDatosH1}>
+								{lang === 'es' ? 'Panel de datos reales H1' : 'H1 observed data panel'} →
+							</a>
+							<a href={rutaPredicciones}>
+								{lang === 'es' ? 'Registro público de predicciones' : 'Public predictions registry'}
+							</a>
+							<a href={`${ruta(lang, 'sobre')}#conflicto`}>
+								{lang === 'es' ? 'Conflicto de interés (aisona-lab)' : 'Conflict of interest (aisona-lab)'}
+							</a>
+						</nav>
+						<AvisoSimulacion lang={lang} contexto="portada" />
 					</>
 				)
 			}
@@ -107,8 +135,11 @@ const rssHref = lang === 'en' ? '/en/rss.xml' : '/rss.xml';
 						<p>
 							<strong>{DIRECTOR}</strong> {t.directorTexto}
 						</p>
-						<p class="ui">
+						<p class="ui studio-director-enlaces">
 							<a href={ruta(lang, 'sobre')}>{t.sobre} →</a>
+							<a href={`${ruta(lang, 'sobre')}#conflicto`}>
+								{lang === 'es' ? 'Declaración de conflicto de interés (aisona-lab)' : 'Conflict-of-interest disclosure (aisona-lab)'}
+							</a>
 						</p>
 					</section>
 
@@ -284,6 +315,19 @@ const rssHref = lang === 'en' ? '/en/rss.xml' : '/rss.xml';
 	.studio-director p,
 	.studio-contacto p {
 		margin-block: 1rem;
+	}
+
+	.studio-director-enlaces {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.45rem 1.35rem;
+	}
+
+	.studio-director-enlaces a,
+	.studio-contacto a {
+		display: inline-block;
+		padding-block: 0.25rem;
+		min-height: 1.5rem;
 	}
 
 	.studio a {

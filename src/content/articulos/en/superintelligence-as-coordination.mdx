@@ -5,16 +5,16 @@ clave: wp-coordinacion-multiagente
 tipoPublicacion: working-paper
 serie: PTF-WP
 numero: 4
-version: 1.0.0
+version: 0.2.0
 hipotesis: H2
 experimento: h2-coordinacion-multiagente
 repositorioCodigo: experiments/h2-coordinacion-multiagente
 comandoReproduccion: npm run experiments:check
 temas: [gobernanza, ia, riesgo, poder, computo]
-evidencia: emergente
+evidencia: escenario-ficcion
 autor: Carlos Nicolás Soto
 publicado: 2026-11-24
-revisado: 2026-11-24
+revisado: 2026-11-26
 fuentes: [iasr-2026, seul-compromisos-2024, ue-ley-ia, onu-panel-ia, ntia-pesos-2024]
 asistidoPorIA: true
 estado: borrador
@@ -23,7 +23,7 @@ sensible: false
 
 import Nota from '../../../components/articulo/Nota.astro';
 
-**PTF-WP 4 · v1.0.0 · Original research on H2 · 24 November 2026.** This paper presents a multi-agent strategic model and reproducible computational experiment (`experiments/h2-coordinacion-multiagente`) developed by Carlos Nicolás Soto with AI assistance in simulation code and bilingual editing. All `500` scenarios (`160,000` aggregated agent-round decisions, `synthetic=true`) represent stylized incentive equilibria rather than empirical measurements of specific treaties or laboratories.
+**PTF-WP 4 · v0.2.0 · Simulated scenario on H2 (frozen) · Revised 26 November 2026.** All numerical outputs in this document come strictly from a stylized simulation with synthetic parameters (`experiments/h2-coordinacion-multiagente`, `500` scenarios, `synthetic=true`), **not observed empirical data**. Under the scope freeze, H2 remains classified as a *Scenario* without further expansion until H1 is empirically calibrated and externally reviewed.
 
 ## Question and hypothesis (H2)
 
@@ -65,8 +65,10 @@ Three quantitative results substantiate **H2**:
 
 **What would falsify H2:** The hypothesis would be falsified if scaling raw model capability in isolation monotonically reduced both open-environment multi-agent incident rates and lab-to-deployment benchmark divergence without binding audit, liability or interoperability protocols.
 
-**Limitations:** Actors are modelled with symmetric baseline endowments and explicit parametric damage curves. Partial geopolitical coalitions, compute supply-chain asymmetries and partial Byzantine collusion are reserved for upcoming extensions (`PTF-WP 6`).
+**Limitations:** Actors are modelled with symmetric baseline endowments and explicit parametric damage curves. Partial geopolitical coalitions, compute supply-chain asymmetries and Byzantine collusion are outside scope; H2 stays frozen as a scenario pending empirical calibration of H1.
 
 ## Version history
 
-**v1.0.0 — 24 November 2026:** initial release with `8`-actor repeated game, `500` SHA-256-verified synthetic scenarios and public source code in `experiments/h2-coordinacion-multiagente`.
+**v0.2.0 — 26 November 2026:** deliberate downgrade from `v1.0.0` / `emerging evidence` to `v0.2.0` / `Scenario` and freeze of H2 until H1 is empirically calibrated and externally reviewed; simulation-only provenance stated explicitly.
+
+**v0.1.0 (initially tagged v1.0.0) — 24 November 2026:** initial release with `8`-actor repeated game, `500` SHA-256-verified synthetic scenarios and public source code in `experiments/h2-coordinacion-multiagente`.

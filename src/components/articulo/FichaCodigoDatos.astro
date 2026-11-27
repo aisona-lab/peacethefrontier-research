@@ -2,7 +2,8 @@
 import type { Idioma } from '../../i18n/rutas';
 import type { Articulo } from '../../lib/articulos-coleccion';
 import { leerExperimento } from '../../lib/studio/artefactos';
-import { urlCodigoRepositorio } from '../../lib/studio/config';
+import { urlCodigoRepositorio, urlColabNotebook } from '../../lib/studio/config';
+import { hipotesisPorId } from '../../lib/programa/hipotesis';
 
 interface Props {
 	lang: Idioma;
@@ -12,6 +13,9 @@ interface Props {
 const { lang, data } = Astro.props;
 const exp = data.experimento ? await leerExperimento(data.experimento) : undefined;
 const urlGitHub = data.repositorioCodigo ? urlCodigoRepositorio(data.repositorioCodigo) : undefined;
+const hip = data.hipotesis ? hipotesisPorId(data.hipotesis) : undefined;
+const urlColab = hip?.rutaNotebookColab ? urlColabNotebook(hip.rutaNotebookColab) : undefined;
+const rutaDatosH1 = lang === 'en' ? '/en/research/h1-data/' : '/research/datos-h1/';
 const fmt = new Intl.NumberFormat(lang === 'es' ? 'es-ES' : 'en-US');
 
 const etiquetasArchivo =
@@ -33,6 +37,8 @@ const t =
 				kicker: 'Código público, datos y reproducibilidad',
 				sintetico: 'Experimento determinista (100 % sintético)',
 				github: 'Ver código fuente en GitHub',
+				colab: 'Abrir en Google Colab (1 clic)',
+				panelEmpirico: 'Panel de datos reales H1',
 				manifiesto: 'Manifiesto SHA-256 (JSON)',
 				comando: 'Reproducir y verificar localmente:',
 				filas: 'filas',
@@ -43,6 +49,8 @@ const t =
 				kicker: 'Public code, data and reproducibility',
 				sintetico: 'Deterministic experiment (100% synthetic)',
 				github: 'Inspect source code on GitHub',
+				colab: 'Open in Google Colab (1 click)',
+				panelEmpirico: 'H1 observed data panel',
 				manifiesto: 'SHA-256 manifest (JSON)',
 				comando: 'Reproduce and verify locally:',
 				filas: 'rows',
@@ -69,6 +77,14 @@ const t =
 				<a class="ficha-codigo-repo" href={urlGitHub}>
 					{t.github} (<code>{data.repositorioCodigo}</code>) →
 				</a>
+				{urlColab && (
+					<a class="ficha-codigo-repo" href={urlColab}>
+						{t.colab} →
+					</a>
+				)}
+				{data.experimento === 'h1-delegacion-autonoma' && (
+					<a href={rutaDatosH1}>{t.panelEmpirico}</a>
+				)}
 				{exp.files.map((f) => (
 					<a href={f.path} download>
 						{etiquetasArchivo[f.role]} ({f.license})

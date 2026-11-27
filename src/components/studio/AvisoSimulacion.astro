@@ -1,0 +1,104 @@
+---
+import { ruta, type Idioma } from '../../i18n/rutas';
+
+interface Props {
+	lang: Idioma;
+	contexto?: 'portada' | 'paper';
+	congelada?: boolean;
+}
+
+const { lang, contexto = 'portada', congelada = false } = Astro.props;
+const rutaDatos = lang === 'en' ? '/en/research/h1-data/' : '/research/datos-h1/';
+
+const ui =
+	lang === 'es'
+		? {
+				etiqueta: 'Aviso de simulación · Sin datos observados aún',
+				portada:
+					'Los resultados numéricos actuales de H1, H2 y H3 provienen de simulaciones con datos propios (synthetic=true), no de datos observados en producción. H2 y H3 están congeladas como escenarios mientras calibramos H1 con mediciones reales y revisión externa.',
+				paper:
+					'Los resultados cuantitativos de este documento provienen de una simulación parametrizada con datos propios (synthetic=true), no de datos observados.',
+				congelada:
+					' Esta hipótesis permanece congelada en estado de Escenario (v0.x) hasta completar la calibración empírica y revisión externa de H1.',
+				enlaceDatos: 'Ver panel de datos empíricos de H1',
+				enlaceCoi: 'Conflicto de interés (aisona-lab)',
+			}
+		: {
+				etiqueta: 'Simulation notice · No observed data yet',
+				portada:
+					'Current numerical outputs for H1, H2 and H3 come from simulations with author-defined parameters (synthetic=true), not observed production data. H2 and H3 are frozen as scenarios while H1 undergoes empirical calibration and external review.',
+				paper:
+					'Quantitative outputs in this working paper come from a parameterized simulation with synthetic data (synthetic=true), not observed data.',
+				congelada:
+					' This hypothesis remains frozen as a Scenario (v0.x) until H1 empirical calibration and external review are complete.',
+				enlaceDatos: 'Inspect H1 empirical data panel',
+				enlaceCoi: 'Conflict of interest (aisona-lab)',
+			};
+---
+
+<div class="aviso-simulacion ui" role="note" aria-label={ui.etiqueta}>
+	<p class="aviso-titulo">
+		<span class="aviso-punto" aria-hidden="true" />
+		<span>{ui.etiqueta}</span>
+	</p>
+	<p class="aviso-texto">
+		{contexto === 'portada' ? ui.portada : ui.paper}
+		{congelada ? ui.congelada : ''}
+	</p>
+	<p class="aviso-enlaces">
+		<a href={rutaDatos}>{ui.enlaceDatos} →</a>
+		<a href={`${ruta(lang, 'sobre')}#conflicto`}>{ui.enlaceCoi}</a>
+	</p>
+</div>
+
+<style>
+	.aviso-simulacion {
+		padding: 1rem 1.2rem;
+		margin-block: 1.5rem 2rem;
+		border: 1px solid var(--linea);
+		border-left: 4px solid var(--sodio);
+		background: var(--superficie);
+		font-size: var(--t-mini);
+		max-width: 48rem;
+	}
+
+	.aviso-simulacion p {
+		margin: 0;
+	}
+
+	.aviso-titulo {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		font-weight: 600;
+		color: var(--tinta);
+	}
+
+	.aviso-punto {
+		width: 0.5rem;
+		height: 0.5rem;
+		border-radius: 50%;
+		background: var(--sodio);
+		flex: none;
+	}
+
+	.aviso-texto {
+		margin-top: 0.45rem !important;
+		color: var(--tinta-suave);
+		line-height: 1.5;
+	}
+
+	.aviso-enlaces {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.45rem 1.25rem;
+		margin-top: 0.65rem !important;
+	}
+
+	.aviso-enlaces a {
+		display: inline-block;
+		padding-block: 0.25rem;
+		min-height: 1.5rem;
+		font-weight: 600;
+	}
+</style>

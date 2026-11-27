@@ -1,0 +1,708 @@
+---
+import type { Idioma } from '../../i18n/rutas';
+import { H1_REGIMES, H1_SECTORS } from '../../../experiments/h1-delegacion-autonoma/model';
+import {
+	H1_LIMITS,
+	H1_REGIME_LABELS,
+	H1_SECTOR_LABELS,
+	computeAllSectorsComparison,
+	computeCrossoverTrajectory,
+	computeSensitivityHeatmap,
+	defaultParamsForSector,
+} from '../../lib/programa/h1-explorable';
+import { urlColabNotebook } from '../../lib/studio/config';
+
+interface Props {
+	lang: Idioma;
+}
+
+const { lang } = Astro.props;
+const base = defaultParamsForSector('health-workflow-admin', 'baseline-coevolution');
+const initial = computeCrossoverTrajectory(base);
+const sectorsInit = computeAllSectorsComparison(base);
+const heatInit = computeSensitivityHeatmap(base);
+const colabUrl = urlColabNotebook('experiments/h1-delegacion-autonoma/h1_reproducir.ipynb');
+const initialState = initial.crossoverYear === null ? 'never' : initial.crossoverYear <= 2031 ? 'early' : 'late';
+
+const loc = lang === 'es' ? 'es-ES' : 'en-US';
+const fmtPct = (v: number, digits = 1) =>
+	new Intl.NumberFormat(loc, { style: 'percent', minimumFractionDigits: digits, maximumFractionDigits: digits }).format(v);
+const fmtNum = (v: number, digits = 1) =>
+	new Intl.NumberFormat(loc, { minimumFractionDigits: digits, maximumFractionDigits: digits }).format(v);
+
+const HEAT_W = 540;
+const HEAT_H = 310;
+const PAD_L = 44;
+const PAD_R = 14;
+const PAD_T = 16;
+const PAD_B = 34;
+const plotW = HEAT_W - PAD_L - PAD_R;
+const plotH = HEAT_H - PAD_T - PAD_B;
+const cols = heatInit.pValues.length;
+const rows = heatInit.kValues.length;
+const cellW = plotW / cols;
+const cellH = plotH / rows;
+
+const boundaryPts: string[] = [];
+for (let r = 0; r < rows; r++) {
+	const flipCol = heatInit.flipIndexByRow[r];
+	if (flipCol === null || flipCol === 0) continue;
+	const x = PAD_L + flipCol * cellW;
+	const yBottom = PAD_T + (rows - r) * cellH;
+	const yTop = PAD_T + (rows - 1 - r) * cellH;
+	boundaryPts.push(`${x.toFixed(1)},${yBottom.toFixed(1)}`, `${x.toFixed(1)},${yTop.toFixed(1)}`);
+}
+
+const ui =
+	lang === 'es'
+		? {
+				kicker: 'Explorable interactivo de H1 · Sin backend · Sobre dataset.csv',
+				titulo: 'Mueve los supuestos y comprueba dónde se invierte la conclusión',
+				intro:
+					'Altera la fiabilidad inicial por paso (p₀), la longitud de la cadena (K), el coste de auditoría y la detección del verificador. El año de cruce y el mapa de calor del espacio de parámetros se recalculan en tu navegador con las mismas ecuaciones del código fuente.',
+				sector: 'Sector base',
+				regimen: 'Ritmo de mejora tecnológica',
+				p0: 'Fiabilidad inicial por paso (p₀ en 2026)',
+				k: 'Longitud de la cadena (K pasos)',
+				audit: 'Coste de auditoría final (c_audit)',
+				det: 'Detección inicial del verificador (d_det)',
+				restablecer: 'Restablecer escenario base',
+				copiar: 'Copiar enlace con estos supuestos',
+				colab: 'Reproducir en 1 clic en Google Colab',
+				resultadoTitulo: 'Año de cruce estimado (sector activo)',
+				cadena2031: 'Fiabilidad cadena (2031)',
+				riesgo2031: 'Riesgo cola no detectado (2031)',
+				ahorro2031: 'Ahorro neto vs. copiloto (2031)',
+				heatmapTitulo: 'Mapa de calor del espacio de parámetros (p₀ × K)',
+				heatmapNota:
+					'La línea amarilla marca la frontera exacta donde se invierte la conclusión entre dominio del copiloto y adopción autónoma (2026–2036).',
+				leyEarly: 'Cruza ≤ 2031',
+				leyLate: 'Cruza 2032–2036',
+				leyNever: 'Sin cruce (copiloto)',
+				leyFrontera: 'Frontera de inversión',
+				tablaTitulo: 'Impacto simultáneo en los cinco sectores (desplazamiento relativo)',
+				colSector: 'Sector',
+				colCruce: 'Año de cruce',
+				colRiesgo: 'Riesgo cola 2031',
+				colAhorro: 'Ahorro 2031',
+				sinCruce: 'Sin cruce',
+				verTablaHeat: 'Ver resumen accesible de la matriz del mapa de calor',
+			}
+		: {
+				kicker: 'Interactive H1 explorable · Client-side · Backed by dataset.csv',
+				titulo: 'Perturb the assumptions and see where the conclusion flips',
+				intro:
+					'Adjust initial per-step reliability (p₀), chain length (K), final audit cost and verifier detection rate. The crossover year and parameter-space heatmap recompute live in your browser using the exact equations from the repository.',
+				sector: 'Baseline sector',
+				regimen: 'Improvement regime',
+				p0: 'Initial per-step reliability (p₀ in 2026)',
+				k: 'Chain length (K steps)',
+				audit: 'Final audit cost (c_audit)',
+				det: 'Initial verifier detection (d_det)',
+				restablecer: 'Reset to baseline scenario',
+				copiar: 'Copy link with these assumptions',
+				colab: 'Reproduce in 1 click on Google Colab',
+				resultadoTitulo: 'Estimated crossover year (active sector)',
+				cadena2031: 'Chain reliability (2031)',
+				riesgo2031: 'Undetected tail risk (2031)',
+				ahorro2031: 'Net saving vs. copilot (2031)',
+				heatmapTitulo: 'Parameter-space sensitivity heatmap (p₀ × K)',
+				heatmapNota:
+					'The sodium-yellow contour marks the exact inversion boundary between copilot dominance and autonomous adoption (2026–2036).',
+				leyEarly: 'Crosses ≤ 2031',
+				leyLate: 'Crosses 2032–2036',
+				leyNever: 'No crossover (copilot)',
+				leyFrontera: 'Inversion boundary',
+				tablaTitulo: 'Simultaneous impact across all five sectors (relative shift)',
+				colSector: 'Sector',
+				colCruce: 'Crossover year',
+				colRiesgo: '2031 tail risk',
+				colAhorro: '2031 net saving',
+				sinCruce: 'No crossover',
+				verTablaHeat: 'View accessible summary of heatmap parameter regions',
+			};
+---
+
+<section class="explorable-h1" id="explorable-h1" aria-labelledby="titulo-explorable-h1">
+	<ptf-h1-explorable data-lang={lang}>
+		<header class="exp-h1-cabecera">
+			<p class="ui exp-h1-kicker">{ui.kicker}</p>
+			<h2 id="titulo-explorable-h1">{ui.titulo}</h2>
+			<p>{ui.intro}</p>
+		</header>
+
+		<div class="exp-h1-grid">
+			<fieldset class="exp-h1-controles ui">
+				<legend class="solo-lectores">{ui.titulo}</legend>
+
+				<label class="exp-select">
+					<span>{ui.sector}</span>
+					<select name="sector">
+						{
+							H1_SECTORS.map((s) => (
+								<option value={s.id} selected={s.id === base.sectorId}>
+									{H1_SECTOR_LABELS[s.id][lang]}
+								</option>
+							))
+						}
+					</select>
+				</label>
+
+				<label class="exp-select">
+					<span>{ui.regimen}</span>
+					<select name="regime">
+						{
+							H1_REGIMES.map((r) => (
+								<option value={r.id} selected={r.id === base.regimeId}>
+									{H1_REGIME_LABELS[r.id][lang]}
+								</option>
+							))
+						}
+					</select>
+				</label>
+
+				<label class="exp-slider">
+					<span class="exp-slider-cabecera">
+						<span>{ui.p0}</span>
+						<output data-out="p0">{fmtPct(base.baseStepReliability, 1)}</output>
+					</span>
+					<input
+						type="range"
+						name="p0"
+						min={H1_LIMITS.p0.min}
+						max={H1_LIMITS.p0.max}
+						step={H1_LIMITS.p0.step}
+						value={base.baseStepReliability.toFixed(3)}
+					/>
+				</label>
+
+				<label class="exp-slider">
+					<span class="exp-slider-cabecera">
+						<span>{ui.k}</span>
+						<output data-out="k">{base.steps}</output>
+					</span>
+					<input
+						type="range"
+						name="k"
+						min={H1_LIMITS.steps.min}
+						max={H1_LIMITS.steps.max}
+						step={H1_LIMITS.steps.step}
+						value={base.steps}
+					/>
+				</label>
+
+				<label class="exp-slider">
+					<span class="exp-slider-cabecera">
+						<span>{ui.audit}</span>
+						<output data-out="audit">{fmtNum(base.agentAuditCost, 1)}</output>
+					</span>
+					<input
+						type="range"
+						name="audit"
+						min={H1_LIMITS.audit.min}
+						max={H1_LIMITS.audit.max}
+						step={H1_LIMITS.audit.step}
+						value={base.agentAuditCost.toFixed(1)}
+					/>
+				</label>
+
+				<label class="exp-slider">
+					<span class="exp-slider-cabecera">
+						<span>{ui.det}</span>
+						<output data-out="det">{fmtPct(base.baseDetectionRate, 0)}</output>
+					</span>
+					<input
+						type="range"
+						name="det"
+						min={H1_LIMITS.det.min}
+						max={H1_LIMITS.det.max}
+						step={H1_LIMITS.det.step}
+						value={base.baseDetectionRate.toFixed(2)}
+					/>
+				</label>
+
+				<div class="exp-h1-botones">
+					<button type="button" class="exp-btn" data-reset>{ui.restablecer}</button>
+					<button type="button" class="exp-btn" data-copy-link>{ui.copiar}</button>
+				</div>
+				<p class="exp-status" role="status" data-copy-status></p>
+				<p class="exp-colab">
+					<a href={colabUrl}>{ui.colab} →</a>
+				</p>
+			</fieldset>
+
+			<div class="exp-h1-salida">
+				<div class="exp-kpi-panel ui">
+					<p class="exp-kpi-etiqueta">{ui.resultadoTitulo}</p>
+					<p class="exp-kpi-valor" data-crossover-year data-state={initialState}>
+						{initial.crossoverYear ?? ui.sinCruce}
+					</p>
+					<p class="exp-kpi-veredicto" data-out="verdict">
+						{initial.crossoverYear ? `${ui.colCruce}: ${initial.crossoverYear}` : ui.sinCruce}
+					</p>
+					<dl class="exp-kpi-metricas">
+						<div>
+							<dt>{ui.cadena2031}</dt>
+							<dd data-out="chain2031">{fmtPct(initial.point2031.chainReliability, 1)}</dd>
+						</div>
+						<div>
+							<dt>{ui.riesgo2031}</dt>
+							<dd data-out="tail2031">{fmtPct(initial.point2031.tailRisk, 2)}</dd>
+						</div>
+						<div>
+							<dt>{ui.ahorro2031}</dt>
+							<dd data-out="saving2031">
+								{initial.point2031.netSaving >= 0 ? '+' : ''}
+								{fmtNum(initial.point2031.netSaving, 1)}
+							</dd>
+						</div>
+					</dl>
+					<p class="exp-csv-status" data-csv-status>
+						{
+							lang === 'es'
+								? 'Contraste en vivo con /datos/experimentos/h1-delegacion-autonoma/dataset.csv (3.300 filas).'
+								: 'Live check against /datos/experimentos/h1-delegacion-autonoma/dataset.csv (3,300 rows).'
+						}
+					</p>
+				</div>
+
+				<figure class="exp-heatmap-caja">
+					<figcaption class="ui">
+						<strong>{ui.heatmapTitulo}</strong>
+						<p>{ui.heatmapNota}</p>
+					</figcaption>
+					<svg
+						class="exp-heatmap-svg"
+						data-heatmap-svg
+						width={HEAT_W}
+						height={HEAT_H}
+						viewBox={`0 0 ${HEAT_W} ${HEAT_H}`}
+						role="img"
+						aria-label={ui.heatmapTitulo}
+					>
+						{
+							heatInit.cells.map((c) => (
+								<rect
+									x={(PAD_L + c.col * cellW).toFixed(1)}
+									y={(PAD_T + (rows - 1 - c.row) * cellH).toFixed(1)}
+									width={(cellW + 0.4).toFixed(1)}
+									height={(cellH + 0.4).toFixed(1)}
+									class={`hm-cell hm-${c.regimeClass}`}
+								/>
+							))
+						}
+						{boundaryPts.length >= 2 && <polyline points={boundaryPts.join(' ')} class="hm-boundary" />}
+					</svg>
+					<ul class="exp-leyenda ui" role="list">
+						<li>
+							<span class="muestra hm-early" aria-hidden="true" />
+							{ui.leyEarly}: <strong data-out="share-early">{fmtPct(heatInit.shareEarly, 0)}</strong>
+						</li>
+						<li>
+							<span class="muestra hm-late" aria-hidden="true" />
+							{ui.leyLate}: <strong data-out="share-late">{fmtPct(heatInit.shareLate, 0)}</strong>
+						</li>
+						<li>
+							<span class="muestra hm-never" aria-hidden="true" />
+							{ui.leyNever}: <strong data-out="share-never">{fmtPct(heatInit.shareNever, 0)}</strong>
+						</li>
+						<li>
+							<span class="muestra-linea" aria-hidden="true" />
+							{ui.leyFrontera}
+						</li>
+					</ul>
+				</figure>
+			</div>
+		</div>
+
+		<details class="exp-sectores-detalles" open>
+			<summary class="ui">{ui.tablaTitulo}</summary>
+			<div class="tabla-desplazable" tabindex="0" role="group" aria-label={ui.tablaTitulo}>
+				<table class="ui exp-tabla">
+					<thead>
+						<tr>
+							<th scope="col">{ui.colSector}</th>
+							<th scope="col">{ui.colCruce}</th>
+							<th scope="col">{ui.colRiesgo}</th>
+							<th scope="col">{ui.colAhorro}</th>
+						</tr>
+					</thead>
+					<tbody data-sectors-body>
+						{
+							sectorsInit.map((s) => (
+								<tr data-selected={s.isSelected ? 'true' : undefined}>
+									<th scope="row">{H1_SECTOR_LABELS[s.sectorId][lang]}</th>
+									<td>{s.crossoverYear ?? ui.sinCruce}</td>
+									<td>{fmtPct(s.tailRisk2031, 2)}</td>
+									<td>
+										{s.netSaving2031 >= 0 ? '+' : ''}
+										{fmtNum(s.netSaving2031, 1)}
+									</td>
+								</tr>
+							))
+						}
+					</tbody>
+				</table>
+			</div>
+		</details>
+
+		<details class="exp-sectores-detalles">
+			<summary class="ui">{ui.verTablaHeat}</summary>
+			<p class="ui exp-resumen-accesible">
+				{ui.leyEarly}: {fmtPct(heatInit.shareEarly, 0)} · {ui.leyLate}: {fmtPct(heatInit.shareLate, 0)} ·{' '}
+				{ui.leyNever}: {fmtPct(heatInit.shareNever, 0)}.
+			</p>
+		</details>
+	</ptf-h1-explorable>
+</section>
+
+<script>
+	import './explorable-h1';
+</script>
+
+<style>
+	.explorable-h1 {
+		margin-block: 2.25rem 2.75rem;
+		padding: clamp(1.15rem, 0.9rem + 1vw, 1.75rem);
+		border: 1px solid var(--linea);
+		background: var(--superficie);
+		min-width: 0;
+	}
+
+	.exp-h1-cabecera p {
+		margin-top: 0.55rem;
+		color: var(--tinta-suave);
+	}
+
+	.exp-h1-kicker {
+		margin-top: 0 !important;
+		font-size: var(--t-mini);
+		font-weight: 600;
+		color: var(--tinta-suave);
+	}
+
+	.exp-h1-cabecera h2 {
+		margin-top: 0.35rem;
+		font-size: clamp(1.45rem, 1.2rem + 1vw, 1.9rem);
+	}
+
+	.exp-h1-grid {
+		display: grid;
+		gap: 1.5rem;
+		margin-top: 1.5rem;
+	}
+
+	@media (min-width: 52rem) {
+		.exp-h1-grid {
+			grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+			align-items: start;
+		}
+	}
+
+	.exp-h1-controles {
+		display: grid;
+		gap: 0.9rem;
+		margin: 0;
+		padding: 0;
+		border: 0;
+		font-size: var(--t-mini);
+		min-width: 0;
+	}
+
+	.exp-select,
+	.exp-slider {
+		display: grid;
+		gap: 0.3rem;
+	}
+
+	.exp-select select {
+		width: 100%;
+		min-height: 2.25rem;
+		padding: 0.35rem 0.55rem;
+		border: 1px solid var(--linea);
+		background: var(--fondo);
+		color: var(--tinta);
+		font: inherit;
+	}
+
+	.exp-slider-cabecera {
+		display: flex;
+		justify-content: space-between;
+		gap: 0.75rem;
+		align-items: baseline;
+	}
+
+	.exp-slider output {
+		font-weight: 600;
+		font-variant-numeric: tabular-nums;
+	}
+
+	.exp-slider input[type='range'] {
+		width: 100%;
+		min-height: 1.75rem;
+		accent-color: var(--tinta);
+	}
+
+	.exp-h1-botones {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+		margin-top: 0.25rem;
+	}
+
+	.exp-btn {
+		min-height: 2.25rem;
+		padding: 0.35rem 0.8rem;
+		border: 1px solid var(--linea);
+		border-radius: 999px;
+		background: var(--fondo);
+		color: var(--tinta);
+		cursor: pointer;
+	}
+
+	.exp-btn:hover {
+		border-color: var(--tinta);
+	}
+
+	.exp-status {
+		min-height: 1.25rem;
+		color: var(--tinta-suave);
+		margin: 0;
+	}
+
+	.exp-status:empty {
+		display: none;
+	}
+
+	.exp-colab {
+		margin: 0;
+	}
+
+	.exp-colab a {
+		display: inline-block;
+		padding-block: 0.25rem;
+		min-height: 1.5rem;
+		font-weight: 600;
+	}
+
+	.exp-h1-salida {
+		display: grid;
+		gap: 1.15rem;
+		min-width: 0;
+	}
+
+	.exp-kpi-panel {
+		padding: 1rem 1.15rem;
+		border: 1px solid var(--linea);
+		background: var(--fondo);
+		font-size: var(--t-mini);
+	}
+
+	.exp-kpi-etiqueta,
+	.exp-kpi-veredicto,
+	.exp-csv-status {
+		margin: 0;
+		color: var(--tinta-suave);
+	}
+
+	.exp-kpi-valor {
+		margin: 0.2rem 0 0.25rem;
+		font-family: var(--fuente-serif);
+		font-size: clamp(1.85rem, 1.4rem + 1.5vw, 2.5rem);
+		font-weight: 200;
+		line-height: 1.05;
+		color: var(--tinta);
+		font-variant-numeric: tabular-nums;
+	}
+
+	.exp-kpi-valor[data-state='early'] {
+		color: var(--etico);
+	}
+
+	.exp-kpi-valor[data-state='never'] {
+		color: var(--no-etico);
+	}
+
+	.exp-kpi-metricas {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr);
+		gap: 0.65rem;
+		margin: 0.85rem 0 0;
+		padding-top: 0.75rem;
+		border-top: 1px solid var(--linea);
+	}
+
+	@media (min-width: 30rem) {
+		.exp-kpi-metricas {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+	}
+
+	.exp-kpi-metricas dt {
+		color: var(--tinta-suave);
+	}
+
+	.exp-kpi-metricas dd {
+		margin: 0.15rem 0 0;
+		font-weight: 600;
+		color: var(--tinta);
+	}
+
+	.exp-csv-status {
+		margin-top: 0.75rem;
+		padding-top: 0.6rem;
+		border-top: 1px solid var(--linea);
+	}
+
+	.exp-heatmap-caja {
+		margin: 0;
+		padding: 1rem 1.1rem;
+		border: 1px solid var(--linea);
+		background: var(--fondo);
+		min-width: 0;
+	}
+
+	.exp-heatmap-caja figcaption {
+		font-size: var(--t-mini);
+		margin-bottom: 0.65rem;
+	}
+
+	.exp-heatmap-caja figcaption p {
+		margin: 0.25rem 0 0;
+		color: var(--tinta-suave);
+	}
+
+	.exp-heatmap-svg {
+		display: block;
+		width: 100%;
+		height: auto;
+		aspect-ratio: 540 / 310;
+	}
+
+	ptf-h1-explorable :global(.hm-cell) {
+		stroke: var(--fondo);
+		stroke-width: 0.5;
+	}
+
+	ptf-h1-explorable :global(.hm-early) {
+		fill: color-mix(in srgb, var(--etico) 58%, var(--superficie));
+		background: color-mix(in srgb, var(--etico) 58%, var(--superficie));
+	}
+
+	ptf-h1-explorable :global(.hm-late) {
+		fill: color-mix(in srgb, var(--etico) 26%, var(--superficie));
+		background: color-mix(in srgb, var(--etico) 26%, var(--superficie));
+	}
+
+	ptf-h1-explorable :global(.hm-never) {
+		fill: color-mix(in srgb, var(--no-etico) 34%, var(--superficie));
+		background: color-mix(in srgb, var(--no-etico) 34%, var(--superficie));
+	}
+
+	ptf-h1-explorable :global(.hm-boundary) {
+		fill: none;
+		stroke: var(--sodio);
+		stroke-width: 3;
+		stroke-linejoin: round;
+	}
+
+	ptf-h1-explorable :global(.hm-boundary-5y) {
+		fill: none;
+		stroke: var(--tinta);
+		stroke-width: 1.5;
+		stroke-dasharray: 4 3;
+		opacity: 0.75;
+		stroke-linejoin: round;
+	}
+
+	ptf-h1-explorable :global(.hm-guide) {
+		stroke: var(--tinta);
+		stroke-width: 1;
+		stroke-dasharray: 3 3;
+		opacity: 0.7;
+	}
+
+	ptf-h1-explorable :global(.hm-marker) {
+		fill: var(--sodio);
+		stroke: var(--sobre-sodio);
+		stroke-width: 2;
+	}
+
+	ptf-h1-explorable :global(.hm-axis) {
+		fill: var(--tinta-suave);
+		font-family: var(--fuente-sans);
+		font-size: 11.5px;
+		font-variant-numeric: tabular-nums;
+	}
+
+	.exp-leyenda {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.45rem 1rem;
+		margin-top: 0.65rem;
+		font-size: var(--t-mini);
+		color: var(--tinta-suave);
+	}
+
+	.exp-leyenda li {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.35rem;
+	}
+
+	.muestra {
+		display: inline-block;
+		width: 0.85rem;
+		height: 0.85rem;
+		border: 1px solid var(--linea);
+	}
+
+	.muestra-linea {
+		display: inline-block;
+		width: 1.1rem;
+		height: 3px;
+		background: var(--sodio);
+	}
+
+	.exp-sectores-detalles {
+		margin-top: 1.25rem;
+	}
+
+	.exp-sectores-detalles summary {
+		cursor: pointer;
+		font-size: var(--t-mini);
+		font-weight: 600;
+		padding-block: 0.25rem;
+		min-height: 1.5rem;
+	}
+
+	.tabla-desplazable {
+		max-width: 100%;
+		overflow-x: auto;
+		margin-top: 0.5rem;
+	}
+
+	.exp-tabla {
+		width: 100%;
+		border-collapse: collapse;
+		font-size: var(--t-mini);
+	}
+
+	.exp-tabla th,
+	.exp-tabla td {
+		padding: 0.5rem 0.45rem;
+		border-bottom: 1px solid var(--linea);
+		text-align: left;
+	}
+
+	ptf-h1-explorable :global(tr[data-selected='true']) {
+		background: color-mix(in srgb, var(--sodio) 14%, transparent);
+		font-weight: 600;
+	}
+
+	.exp-resumen-accesible {
+		margin-top: 0.5rem;
+		font-size: var(--t-mini);
+		color: var(--tinta-suave);
+	}
+</style>

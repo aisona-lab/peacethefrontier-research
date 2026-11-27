@@ -1,0 +1,281 @@
+---
+import Base from '../../layouts/Base.astro';
+import type { Idioma } from '../../i18n/rutas';
+import { leerDatosEmpiricosH1 } from '../../lib/programa/empirico';
+import { urlCodigoRepositorio } from '../../lib/studio/config';
+
+interface Props {
+	lang: Idioma;
+}
+
+const { lang } = Astro.props;
+const datos = await leerDatosEmpiricosH1();
+const alt = lang === 'en' ? '/research/datos-h1/' : '/en/research/h1-data/';
+const urlProtocolo = urlCodigoRepositorio('experiments/h1-empirico/PROTOCOL.md');
+const urlRecolector = urlCodigoRepositorio('experiments/h1-empirico/collect-github-prs.mjs');
+const paperH1 =
+	lang === 'es'
+		? '/research/working-papers/de-copilotos-a-agentes-autonomos/'
+		: '/en/research/working-papers/from-copilots-to-autonomous-agents/';
+
+const loc = lang === 'es' ? 'es-ES' : 'en-US';
+const fmtPct = (v: number | null) =>
+	v === null
+		? '—'
+		: new Intl.NumberFormat(loc, { style: 'percent', maximumFractionDigits: 1 }).format(v);
+const fmtMin = (v: number | null) =>
+	v === null
+		? '—'
+		: `${new Intl.NumberFormat(loc, { maximumFractionDigits: 1 }).format(v)} min`;
+
+const ui =
+	lang === 'es'
+		? {
+				kicker: 'Panel empírico H1 · Datos observados (nunca simulaciones)',
+				titulo: 'Panel de procedencia de datos reales de H1',
+				descripcion:
+					'Registro auditable fila por fila de tasas reales de fallo por paso y tiempo humano de verificación en repositorios abiertos y logs de agentes (base para PTF-WP 6 v0.1).',
+				estadoLabel: 'Estado de recolección',
+				estados: {
+					'collection-pending': 'Recolección programada (Semanas 4–6) · 0 filas inventadas',
+					collecting: 'Recolección mensual en curso',
+					calibrated: 'Calibrado con muestra observada',
+				},
+				filas: 'Observaciones registradas',
+				fallo: 'Tasa media de fallo por paso',
+				verif: 'Tiempo medio de verificación humana',
+				limpio: 'Aceptación sin retrabajo',
+				vacioTitulo: 'Sin observaciones cargadas todavía (0 filas)',
+				vacioTexto:
+					'Esta página existe para separar estrictamente los datos simulados de los datos observados. El protocolo pre-registrado, el esquema JSON y el recolector de PRs abiertos ya están publicados y verificados con npm run empirical:check. Durante las Semanas 4–6 se añadirán aquí mediciones reales de repos abiertos y logs propios anonimizados, publicándolas íntegramente incluso si contradicen H1.',
+				protocolo: 'Leer protocolo pre-registrado (PROTOCOL.md)',
+				recolector: 'Inspeccionar recolector CLI en GitHub',
+				csv: 'Descargar h1-observado.csv (CC BY 4.0)',
+				manifiesto: 'Manifiesto SHA-256 (JSON)',
+				volverH1: 'Volver al explorable y paper de H1 (PTF-WP 3)',
+				tablaTitulo: 'Procedencia fila por fila',
+				cols: ['ID', 'Fecha', 'Fuente', 'Sector', 'Pasos / Fallos', 'Verificación', 'Resultado'],
+			}
+		: {
+				kicker: 'H1 empirical panel · Observed data only (never simulations)',
+				titulo: 'H1 observed data provenance panel',
+				descripcion:
+					'Row-by-row auditable registry of real per-step failure rates and human verification times across open-source repositories and agent logs (backing PTF-WP 6 v0.1).',
+				estadoLabel: 'Collection status',
+				estados: {
+					'collection-pending': 'Scheduled collection (Weeks 4–6) · 0 fabricated rows',
+					collecting: 'Monthly collection underway',
+					calibrated: 'Calibrated with observed sample',
+				},
+				filas: 'Observed records',
+				fallo: 'Mean per-step failure rate',
+				verif: 'Mean human verification time',
+				limpio: 'Clean acceptance rate',
+				vacioTitulo: 'No observed records loaded yet (0 rows)',
+				vacioTexto:
+					'This panel exists to enforce a strict boundary between synthetic simulations and observed data. The pre-registered protocol, strict JSON schema and open-repo PR collector are already published and checked via npm run empirical:check. During Weeks 4–6, real measurements from open repos and anonymized agent logs will appear here—published in full even when they contradict H1.',
+				protocolo: 'Read pre-registered protocol (PROTOCOL.md)',
+				recolector: 'Inspect CLI collector on GitHub',
+				csv: 'Download h1-observado.csv (CC BY 4.0)',
+				manifiesto: 'SHA-256 manifest (JSON)',
+				volverH1: 'Return to H1 explorable and paper (PTF-WP 3)',
+				tablaTitulo: 'Row-by-row provenance',
+				cols: ['ID', 'Date', 'Source', 'Sector', 'Steps / Fails', 'Verification', 'Outcome'],
+			};
+---
+
+<Base lang={lang} titulo={ui.titulo} descripcion={ui.descripcion} alternativa={alt}>
+	<div class="contenedor datos-h1">
+		<header class="datos-cabecera">
+			<p class="ui datos-kicker">{ui.kicker}</p>
+			<h1>{ui.titulo}</h1>
+			<p class="entradilla">{ui.descripcion}</p>
+			<p class="ui datos-enlaces">
+				<a href={paperH1}>← {ui.volverH1}</a>
+				<a href={urlProtocolo}>{ui.protocolo}</a>
+				<a href={urlRecolector}>{ui.recolector}</a>
+				<a href={datos.manifest.csv_path} download>{ui.csv}</a>
+				<a href="/datos/empirico/manifest.json" download>{ui.manifiesto}</a>
+			</p>
+		</header>
+
+		<dl class="datos-kpis ui">
+			<div>
+				<dt>{ui.estadoLabel}</dt>
+				<dd>{ui.estados[datos.manifest.status]}</dd>
+			</div>
+			<div>
+				<dt>{ui.filas}</dt>
+				<dd>{datos.records.length}</dd>
+			</div>
+			<div>
+				<dt>{ui.fallo}</dt>
+				<dd>{fmtPct(datos.meanStepFailureRate)}</dd>
+			</div>
+			<div>
+				<dt>{ui.verif}</dt>
+				<dd>{fmtMin(datos.meanVerificationMinutes)}</dd>
+			</div>
+			<div>
+				<dt>{ui.limpio}</dt>
+				<dd>{fmtPct(datos.cleanAcceptanceRate)}</dd>
+			</div>
+		</dl>
+
+		{
+			datos.records.length === 0 ? (
+				<section class="datos-vacio" aria-labelledby="titulo-vacio">
+					<h2 id="titulo-vacio">{ui.vacioTitulo}</h2>
+					<p>{ui.vacioTexto}</p>
+					<p class="ui datos-sha">
+						SHA-256 (<code>h1-observado.csv</code>): <code>{datos.manifest.csv_sha256}</code> ·{' '}
+						{datos.manifest.last_updated}
+					</p>
+				</section>
+			) : (
+				<section aria-labelledby="titulo-tabla-emp">
+					<h2 id="titulo-tabla-emp">{ui.tablaTitulo}</h2>
+					<div class="tabla-desplazable" tabindex="0" role="group" aria-label={ui.tablaTitulo}>
+						<table class="ui datos-tabla">
+							<thead>
+								<tr>
+									{ui.cols.map((c) => (
+										<th scope="col">{c}</th>
+									))}
+								</tr>
+							</thead>
+							<tbody>
+								{datos.records.map((r) => (
+									<tr>
+										<th scope="row">{r.recordId}</th>
+										<td>{r.collectedDate}</td>
+										<td>
+											{r.sourceRef.startsWith('https://') ? (
+												<a href={r.sourceRef}>{r.sourceType}</a>
+											) : (
+												<code>{r.sourceRef.slice(0, 18)}…</code>
+											)}
+										</td>
+										<td>{r.sector}</td>
+										<td>
+											{r.chainSteps} / {r.stepFailures}
+										</td>
+										<td>{r.verificationMinutes} min</td>
+										<td>{r.outcome}</td>
+									</tr>
+								))}
+							</tbody>
+						</table>
+					</div>
+				</section>
+			)
+		}
+	</div>
+</Base>
+
+<style>
+	.datos-h1 {
+		padding-block: 3rem 4rem;
+	}
+
+	.datos-cabecera {
+		padding-bottom: 2.25rem;
+		border-bottom: 1px solid var(--linea);
+		margin-bottom: 2.25rem;
+	}
+
+	.datos-kicker {
+		color: var(--tinta-suave);
+		margin-bottom: 0.75rem;
+	}
+
+	.datos-cabecera h1 {
+		font-size: var(--t-titulo);
+		max-width: 22ch;
+		margin-bottom: 1.15rem;
+	}
+
+	.datos-enlaces {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem 1.25rem;
+		margin-top: 1.25rem;
+		font-size: var(--t-mini);
+	}
+
+	.datos-enlaces a {
+		display: inline-block;
+		padding-block: 0.25rem;
+		min-height: 1.5rem;
+	}
+
+	.datos-kpis {
+		display: grid;
+		gap: 1rem;
+		margin: 0 0 2.5rem;
+	}
+
+	@media (min-width: 48rem) {
+		.datos-kpis {
+			grid-template-columns: repeat(5, minmax(0, 1fr));
+		}
+	}
+
+	.datos-kpis > div {
+		padding: 1rem 1.15rem;
+		border: 1px solid var(--linea);
+		background: var(--superficie);
+	}
+
+	.datos-kpis dt {
+		font-size: var(--t-mini);
+		color: var(--tinta-suave);
+	}
+
+	.datos-kpis dd {
+		margin: 0.35rem 0 0;
+		font-weight: 600;
+		color: var(--tinta);
+	}
+
+	.datos-vacio {
+		max-width: 46rem;
+		padding: 1.5rem;
+		border: 1px solid var(--linea);
+		border-left: 4px solid var(--sodio);
+		background: var(--superficie);
+	}
+
+	.datos-vacio h2 {
+		font-size: var(--t-h3);
+		margin-bottom: 0.75rem;
+	}
+
+	.datos-vacio p {
+		color: var(--tinta-suave);
+	}
+
+	.datos-sha {
+		margin-top: 1rem;
+		font-size: var(--t-mini);
+		overflow-wrap: anywhere;
+	}
+
+	.tabla-desplazable {
+		max-width: 100%;
+		overflow-x: auto;
+	}
+
+	.datos-tabla {
+		width: 100%;
+		border-collapse: collapse;
+		font-size: var(--t-mini);
+	}
+
+	.datos-tabla th,
+	.datos-tabla td {
+		padding: 0.6rem 0.5rem;
+		border-bottom: 1px solid var(--linea);
+		text-align: left;
+	}
+</style>
